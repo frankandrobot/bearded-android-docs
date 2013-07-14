@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-07-13T20:18:33-04:00
+
+====== LoaderManager ======
+Created Saturday 13 July 2013
+
+* http://www.androiddesignpatterns.com/2012/07/understanding-loadermanager.html
