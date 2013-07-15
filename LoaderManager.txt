@@ -5,4 +5,8 @@ Creation-Date: 2013-07-13T20:18:33-04:00
 ====== LoaderManager ======
 Created Saturday 13 July 2013
 
+You will need to implement all of the functions correctly.
+
+You can use an Observer to tell the Loader that the data changed.
+
 * http://www.androiddesignpatterns.com/2012/07/understanding-loadermanager.html
