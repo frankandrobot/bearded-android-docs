@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-07-15T20:17:54-04:00
+
+====== WakeLock ======
+Created Monday 15 July 2013
+
+* request permission in the manifest
+
+
+* http://forums.androidcentral.com/sprint-galaxy-note-2/231477-what-wake-lock.html
