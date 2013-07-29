@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-07-28T20:08:53-04:00
+
+====== Service ======
+Created Sunday 28 July 2013
+
+While a Service does not run on the UI thread, it runs on the same thread as the Application. That means if the Service methods take too long, you will bring your Application to its knees.
+
+Gotchas
++ Handle multiple instances. onCreate() gets called once. onStartCommand() gets called each time a service is started
++ Services get killed when the phone runs out of resources. How to handle the restart can be handled....
++ Make it private if you're using it only locally. Add android:exported="false" to the Service in the manifest.
