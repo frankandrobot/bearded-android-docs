@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-08-27T16:46:05-04:00
+
+====== MultiThreadingTechniques ======
+Created Tuesday 27 August 2013
+
+====== Synchronized Keyword ======
+* Only works across the same instance of the same class
+
+====== Locks ======
+* Biggest advantage is that you can back out of an attempt to acquire a lock
+
+===== Links =====
+* http://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html
+* java.util.concurrent.locks
+* http://tutorials.jenkov.com/java-util-concurrent/lock.html
