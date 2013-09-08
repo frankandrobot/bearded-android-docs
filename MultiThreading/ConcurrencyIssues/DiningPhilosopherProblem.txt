@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-07T13:17:09-04:00
+
+====== DiningPhilosopherProblem ======
+Created Saturday 07 September 2013
+
+There are N philosphers sitting around a circular table eating spaghetti and discussing philosphy. The problem is that each philosopher needs 2 forks to eat, and there are only N
+forks, one between each 2 philosophers. Design an algorithm that the philosophers can follow that insures that none starves as long as each philosopher eventually stops eating, and such that themaximum number of philosophers can eat at once.
+
+* http://www.isi.edu/~faber/cs402/notes/lecture8.pdf
+* http://www.jakubkorab.net/2011/01/why-i-dig-scala-concurrency-and-the-dining-philosophers.html

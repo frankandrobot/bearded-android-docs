@@ -1,0 +1,38 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-08-31T21:10:55-04:00
+
+====== ActionBar ======
+Created Saturday 31 August 2013
+
+====== General Organization ======
+* App icon (up button)
+* View control
+* Action buttons
+* More button
+
+===== Tips =====
+* Use different layouts
+* Consider splitting action bar for portrait
+* Actions on the bottom in this case
+* Use FIT scheme to decide what actions to add
+** is the action frequent? 7 out of 10 visits or several times in a row
+** is the action important? 
+** is the action typical? 
+* screen width in dp determines how many icons fit in action bar
+
+    smaller than 360 dp = 2 icons (including more button)
+    360-499 dp = 3 icons
+    500-599 dp = 4 icons
+    600 dp and larger = 5 icons
+
+====== Gotchas ======
+As per http://stackoverflow.com/questions/11480302/overflow-actions-on-actionbar-not-showing
+
+* If you have a physical menu key, the overflow indicator does not show. That is a behaviour by design. See here for more details on another question asked.
+
+====== Links ======
+* http://developer.android.com/downloads/design/Android_Design_Icons_20120814.zip
+* http://android-developers.blogspot.com/2011/04/customizing-action-bar.html
+* http://stackoverflow.com/questions/17913084/actionbar-action-items-not-showing
+* http://developer.android.com/training/implementing-navigation/ancestral.html - for properly implementing Up button

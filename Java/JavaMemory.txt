@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-07T10:52:30-04:00
+
+====== JavaMemory ======
+Created Saturday 07 September 2013
+
+* different types of memory: heap and stack
+* local variables including arguments are always stored on the stack
+
+* Watch out for static mutable objects---don't store mutable non-threadsafe classes
+* Object pooling is in general inefficient unless the objects are very expensive to create. See http://www.ibm.com/developerworks/java/library/j-jtp01274/index.html
+* Explicit nulling is often bad unless you really will cause a memory leak. (Don't help the GC).
+
+====== Links ======
+* http://www.offthehill.org/articles/2011/06/03/java-static-variables-are-wrong-almost-always/
+* http://tech.puredanger.com/2009/01/27/java-concurrency-bugs-mutable-statics/
+* https://blog.codecentric.de/en/2010/01/the-java-memory-architecture-1-act/
+* http://www.ibm.com/developerworks/library/j-codetoheap/

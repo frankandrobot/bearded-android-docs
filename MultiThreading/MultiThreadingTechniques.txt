@@ -11,7 +11,24 @@ Created Tuesday 27 August 2013
 ====== Locks ======
 * Biggest advantage is that you can back out of an attempt to acquire a lock
 
+====== Join ======
+* The join method allows one thread to wait for the completion of another. If t is a Thread object whose thread is currently executing,
+
+t.join();
+
+causes the current thread to pause execution until t's thread terminate
+
+====== Wait vs Sleep ======
+Main difference between wait and sleep is that wait() method release the acquired monitor when thread is waiting while Thread.sleep() method keeps the lock or monitor even if thread is waiting. Also wait method in java should be called from synchronized method or block while there is no such requirement for sleep() method. Another difference is Thread.sleep() method is a static method and applies on current thread, while wait() is an instance specific method and only got wake up if some other thread calls notify method on same object. also in case of sleep, sleeping thread immediately goes to Runnable state after waking up while in case of wait, waiting thread first acquires the lock and then goes into Runnable state. So based upon your need if you require a specified second of pause use sleep() method or if you want to implement inter-thread communication use wait method.
+
+Read more: http://javarevisited.blogspot.com/2011/12/difference-between-wait-sleep-yield.html#ixzz2eECOk8bB
+
+====== NotifyAll vs Notify ======
+* notify() wakes up a //single //thread---and we can't specific which one.
+* notifyAll() wakes up all waiting threads
+
 ===== Links =====
 * http://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html
 * java.util.concurrent.locks
 * http://tutorials.jenkov.com/java-util-concurrent/lock.html
+* http://javarevisited.blogspot.sg/2011/07/java-multi-threading-interview.html

@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-07T13:15:38-04:00
+
+====== TODO ======
+* Program blocking queue using old Api (wait and sleep)
+* Program blocking queue using Java 5+
+
