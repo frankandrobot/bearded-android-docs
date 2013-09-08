@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-08T11:10:42-04:00
+
+====== HashMap ======
+Created Sunday 08 September 2013
+
+What are the differences between Map, Hashtable, HashMap, TreeMap, ConcurrentHashMap, LinkedHashMap?
+
+* Map is an interface for a key-value map
+* HashMap is a Map that uses a hash table for its implementation
+* Hashtable is a synchronized version of [[HashMap]]
+* TreeMap uses a tree to implement a map
+* ConcurrentHashMap allows for multiple threads to access it at the same time safely
+* LinkedHashMap preserves the iteration order that things were inserted in (others don’t provide a fixed iteration order)
+
+The HashMap class is roughly equivalent to Hashtable, except that it is unsynchronized and permits nulls. (HashMap allows null values as key and value whereas Hashtable doesnt allow). HashMap does not guarantee that the order of the map will remain constant over time. HashMap is unsynchronized and Hashtable is synchronized. 
