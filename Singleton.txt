@@ -1,0 +1,47 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-09T14:59:01-04:00
+
+====== Singleton ======
+Created Monday 09 September 2013
+
+When instantiating a singleton, make sure that the instantiator actually instantiates //one// instance of the object
+i.e., take into account [[ConcurrencyIssues]]
+
+      ''@Good''
+'''
+class A
+{
+       static private A instance = new A(); //thread-safe
+       static public A getInstance{ return A; }
+}
+'''
+
+
+Lazy instantiation:
+
+       ''@Good (lazy instantiation)''
+'''
+class A
+{
+      private static class Holder 
+      {
+            static private A instance = new A();
+      }
+      static public A getInstance() { return Holder.instance; } //thread-safe but doesn't get instantiated until called
+}
+'''
+
+
+====== Warnings ======
+1. They are generally used as a global instance, why is that so bad? Because you hide the dependencies of your application in your code, instead of exposing them through the interfaces. Making something global to avoid passing it around is a code smell.
+2. They violate the Single Responsibility Principle: by virtue of the fact that they control their own creation and lifecycle.
+3. They inherently cause code to be tightly coupled. This makes faking them out under test rather difficult in many cases.
+4. They carry state around for the lifetime of the app. Another hit to testing since you can end up with a situation where tests need to be ordered which is a big no no for unit tests. Why? Because each unit test should be independent from the other.
+5. Singletons are nothing more than global state. Global state makes it so your objects can secretly get hold of things which are not declared in their APIs, and, as a result, Singletons make your APIs into pathological liars.
+
+====== Links ======
+* http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons
+* http://jorudolph.wordpress.com/2009/11/22/singleton-considerations/
+* http://misko.hevery.com/2008/08/17/singletons-are-pathological-liars/
+* See also the http://gen5.info/q/2008/07/25/the-multiton-design-pattern/
