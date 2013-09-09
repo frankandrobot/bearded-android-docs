@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-07T11:21:27-04:00
+
+====== Volatile ======
+Created Saturday 07 September 2013
+
+Declaring instance volatile basically means that an update of the variable establishes a happens-before relationship with a reader.
