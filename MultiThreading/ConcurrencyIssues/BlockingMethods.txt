@@ -1,0 +1,30 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-08T22:36:28-04:00
+
+====== BlockingMethods ======
+Created Sunday 08 September 2013
+
+Blocking methods in Java are those method which block the executing thread until there operation finished.
+
+ 1) If you are writing GUI application may be in Swing never call blocking method in Event dispatcher thread or
+in the event handler. for example if you are reading a file or opening a network connection when a button is clicked
+don't do that on actionPerformed() method, instead just create another worker thread to do that job and return from
+actionPerformed(). this will keep your GUI responsive, but again it depends upon design if the operation is something which requires user to wait than consider using invokeAndWait() for synchronous update.
+
+2) Always let separate worker thread handles time consuming operations e.g. reading and writing to file, database or
+socket.
+
+3) Use timeout while calling blocking method. so if your blocking call doesn't return in specified time period, consider
+aborting it and returning back but again this depends upon scenario. if you are using Executor Framework for managing
+your worker threads, which is by the way recommended way than you can use Future object whose get() methods support timeout, but ensure that you properly terminate a blocking call.
+
+4) Extension of first practices, don't call blocking methods on keyPressed() or paint() method which are supposed to
+return as quickly as possible.
+
+5) Use call-back functions to process result of a blocking call.
+
+Read more: http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKievUu
+
+
+Read more: http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKd1fD8

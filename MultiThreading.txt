@@ -12,6 +12,10 @@ Reasons to use the Android framework for threading: you must implement the follo
 * No default thread pooling
 * No default for handling configuration changes in Android
 
+====== Threads vs Process ======
+* Threads are a subset of processes. 
+* Threads share memory except for the Stack
+
 Source:
 
 http://www.vogella.com/articles/AndroidBackgroundProcessing/article.html

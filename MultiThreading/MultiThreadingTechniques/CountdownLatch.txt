@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-08T23:03:04-04:00
+
+====== CountdownLatch ======
+Created Sunday 08 September 2013
+
+Works like a counter – allows one or more threads to wait on await() method for another N threads to call countDown() method N times (total number of calls should be N).
+
+* http://mkorytin.blogspot.com/2011/07/cyclicbarrier-countdownlatch-and.html

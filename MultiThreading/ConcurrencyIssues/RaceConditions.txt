@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-08T22:37:44-04:00
+
+====== RaceConditions ======
+Created Sunday 08 September 2013
+
+Race conditions occurs when two thread operate on same object without proper synchronization and there operation interleaves on each other. Classical example of Race condition is incrementing a counter since increment is not an atomic operation and can be further divided into three steps like read, update and write. if two threads tries to increment count at same time and if they read same value because of interleaving of read operation of one thread to update operation of another thread, one count will be lost when one thread overwrite increment done by other thread.
+
+Read more: http://javarevisited.blogspot.com/2012/02/what-is-race-condition-in.html#ixzz2eMLyjbjZ
