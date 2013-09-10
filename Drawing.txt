@@ -1,0 +1,40 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-10T14:55:06-04:00
+
+====== Drawing ======
+Created Tuesday 10 September 2013
+
+===== Draw to a View =====
+TODO
+
+===== Draw to a Canvas =====
+* use when application needs to regularly re-draw itself. 
+
+To draw something, you need 4 basic components: A Bitmap to hold the pixels, a Canvas to host the draw calls (writing into the bitmap), a drawing primitive (e.g. Rect, Path, text, Bitmap), and a paint (to describe the colors and styles for the drawing).
+
+Ex:
+
+'''
+private Bitmap getBitmapWithBorder(View v) {
+        Bitmap bitmap = getBitmapFromView(v);
+        Canvas can = new Canvas(bitmap);
+
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(LINE_THICKNESS);
+        paint.setColor(Color.BLACK);
+
+        can.drawBitmap(bitmap, 0, 0, null);
+        can.drawRect(rect, paint);
+
+        return bitmap;
+    }
+'''
+
+
+====== Links ======
+* http://developer.android.com/reference/android/graphics/Canvas.html
+* http://developer.android.com/guide/topics/graphics/2d-graphics.html
