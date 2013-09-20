@@ -1,0 +1,25 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-12T09:56:24-04:00
+
+====== StringBuilder ======
+Created Thursday 12 September 2013
+
+If you use String concatenation in a loop (something like:
+
+String s = "";
+for(int i = 0; i < 100; i++) {
+  s += ", " + i;
+}
+then you should use a StringBuilder (not StringBuffer) instead of a String, because it is much faster and consumes less memory.
+
+If you have a single statement:
+
+String s = "1, " + "2, " + "3, " + "4, " ....;
+then you can use "Strings", because the compiler will use StringBuilder automatically.
+
+**Note: **But it will use the default constructor, which means in the majority of cases, it will have to do a reallocation. However, go for readability unless you really need performance.
+
+====== Links ======
+* http://stackoverflow.com/questions/4645020/when-to-use-stringbuilder-in-java
+* http://stackoverflow.com/questions/8725739/stringbuilder-usage
