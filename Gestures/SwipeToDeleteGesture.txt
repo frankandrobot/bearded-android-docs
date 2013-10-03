@@ -7,7 +7,7 @@ Created Tuesday 10 September 2013
 
 * Use getScaledTouchSlop() to account for different touch screen calibrations (If translation > touch slop, then the phone thinks its a real touch action.)
 * To prevent parent views from handling touch views, use ViewParent#requestDisallowInterceptTouchEvent. Setting lasts until an UP or CANCEL event.
-* See also [[Gestures]] to figure out how to do event handling properly.
+* See also [[TouchEvents:Gestures]] to figure out how to do event handling properly.
 
 ====== Links ======
 * http://developer.android.com/shareables/devbytes/ListViewItemAnimations.zip
