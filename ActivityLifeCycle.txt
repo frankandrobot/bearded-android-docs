@@ -6,6 +6,7 @@ Creation-Date: 2013-08-28T10:19:54-04:00
 Created Wednesday 28 August 2013
 
 * http://developer.android.com/guide/topics/fundamentals/activities.html
+* http://developer.android.com/training/basics/activity-lifecycle/starting.html
 
 An activity represents a single screen with a user interface. For example, an email application might have one activity that shows a list of new emails, another activity to compose an email, and another activity for reading emails. Although the activities work together to form a cohesive user experience in the email application, each one is independent of the others. As such, a different application can start any one of these activities (if the email application allows it). For example, a camera application can start the activity in the email application that composes new mail, in order for the user to share a picture. 
 

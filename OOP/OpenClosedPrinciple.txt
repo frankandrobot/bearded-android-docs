@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-10-31T16:24:55-04:00
+
+====== OpenClosedPrinciple ======
+
+Created Tuesday 15 October 2013
+* http://lostechies.com/joeocampo/2008/03/21/ptom-the-open-closed-principle/
