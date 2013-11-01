@@ -11,7 +11,7 @@ Think of a fragment as a sub-activity.
 
 Fragments can:
 
-* be added programmatically using the [[FragmentManager]]  or in XML with the [[Fragment]] tag
+* be added programmatically using the [[FragmentManager]] or in XML with the [[Fragment]] tag
 * communicate with the activity with a listener. Have the Activity implement the listener interface, then get an instance in the onAttach() method.
 
 ===== Difference Between Activity Life Cycle =====

@@ -11,7 +11,11 @@ TODO
 ===== Draw to a Canvas =====
 * use when application needs to regularly re-draw itself. 
 
-To draw something, you need 4 basic components: A Bitmap to hold the pixels, a Canvas to host the draw calls (writing into the bitmap), a drawing primitive (e.g. Rect, Path, text, Bitmap), and a paint (to describe the colors and styles for the drawing).
+To draw something, you need 4 basic components: 
+1. A Bitmap to hold the pixels, 
+2. a Canvas to host the draw calls (writing into the bitmap), 
+3. a drawing primitive (e.g. Rect, Path, text, Bitmap), and 
+4. a paint (to describe the colors and styles for the drawing).
 
 Ex:
 

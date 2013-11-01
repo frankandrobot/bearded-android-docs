@@ -5,18 +5,19 @@ Creation-Date: 2013-09-10T19:33:49-04:00
 ====== TouchEvents ======
 Created Tuesday 10 September 2013
 
-How do onInterceptTouchEvent, dispatchTouchEvent and onTouchEvent interact together within a hierarchy of Views (ViewGroup) ? A short example would be very helpful...many thanks in advance !
+How do onInterceptTouchEvent, dispatchTouchEvent and onTouchEvent interact together within a hierarchy of Views (ViewGroup)?
 
-The best place to demystify this is the source code. The docs are woefully inadequate about explaining this.
+* dispatchTouchEvent is actually defined on Activity, View and ViewGroup. Think of it as a controller which decides how to route the touch events.
 
-dispatchTouchEvent is actually defined on Activity, View and ViewGroup. Think of it as a controller which decides how to route the touch events.
+===== View#dispatchTouchEvent =====
+The simplest case is that of View.dispatchTouchEvent which will route the touch event to either OnTouchListener.onTouchEvent if its defined or to the extension method onTouchEvent.
 
-For example, the simplest case is that of View.dispatchTouchEvent which will route the touch event to either OnTouchListener.onTouchEvent if its defined or to the extension method onTouchEvent.
-
+===== ViewGroup =====
 For ViewGroup.dispatchTouchEvent things are way more complicated. It needs to figure out which one of its child views should get the event (by calling child.dispatchTouchEvent). This is basically a hit testing algorithm where you figure out which child view's bounding rectangle contains the touch point coordinates.
 
-But before it can dispatch the event to the appropriate child view, the parent can spy and/or intercept the event all together. This is what onInterceptTouchEvent is there for. So it calls this method first before doing the hit testing and if the event was hijacked (by returning true from onInterceptTouchEvent) it sends a ACTION_CANCEL to the child views so they can abandon their touch event processing (from previous touch events) and from then onwards all touch events at the parent level are dispatched to onTouchListener.onTouch (if defined) or onTouchEvent(). Also in that case, onInterceptTouchEvent is never called again.
+But before it can dispatch the event to the appropriate child view, the parent can spy and/or intercept the event all together. This is what onInterceptTouchEvent is there for. So it calls this method first before doing the hit testing and if the event was hijacked (by returning true from onInterceptTouchEvent) it sends a ACTION_CANCEL to the child views so they can abandon their touch event processing (from previous touch events) and from then onwards all touch events at the parent level are dispatched to onTouchListener.onTouch (if defined) or onTouchEvent. Also in that case, onInterceptTouchEvent is never called again.
 
+===== Summary =====
 Would you even want to override [Activity|ViewGroup|View].dispatchTouchEvent? Unless you are doing some custom routing you probably should not.
 
 The main extension methods are ViewGroup.onInterceptTouchEvent if you want to spy and/or intercept touch event at the parent level and View.onTouchListener/View.onTouchEvent for main event handling.

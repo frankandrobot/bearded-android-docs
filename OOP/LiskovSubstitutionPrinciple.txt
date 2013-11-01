@@ -34,5 +34,5 @@ class Ellipse
 '''
 
 
-* If you override #stretchX to stretch horizontally and vertically, this breaks LSP. (If you call #stretchX on an ellipse, then you don't expect it to also stretch vertically.)
+* If you override #stretchX to stretch horizontally and vertically, this breaks LSP. (If you call #stretchX on an ellipse, then you don't expect it to also stretch vertically. Why is this a big deal? Imagine the ellipse lived in a rectangle on the screen. If #stretchX behaved this way, the ellipse might pop out of the rectangle...an unexpected result.)
 * If you don't override #stretchX on a circle and call #stretchX on a circle, then it won't be a circle anymore. (This breaks the Circle object.)

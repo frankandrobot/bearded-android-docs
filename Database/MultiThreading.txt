@@ -9,10 +9,12 @@ The goals:
 
 1. It should be readable and easy to maintain
 2. It should be generic enough so that the "database" can be a sqlite database or something over the network.
-3. It should be multi-thread safe. By "thread safe":
-   a. it should NOT run in the main UI thread,
-   b. database calls should not conflict with each other
-   c. the system should know how to communicate results back to the main UI thread.)
+3. It should be multi-thread safe. 
+
+By "thread safe":
+1. it should NOT run in the main UI thread,
+2. database calls should not conflict with each other
+3. the system should know how to communicate results back to the main UI thread.
 4. It should know about configuration changes (like changing the phone orientation)
 
 ===== Solution =====
@@ -22,9 +24,9 @@ For example, your app can have one framework for internal database calls and ano
 
 Another way to satisfy (1) is to do things the "Android way". (Other developers, including your future self, shouldn't have to struggle to learn your code.)
 
-(2) is actually pretty easy: just implement a class that abstracts all the low-level CRUD. For example, one class can handle sqlite databases and another class //with the same interface// can handle a Google drive backend.
+(2) is actually pretty easy: just implement a class that abstracts all the low-level CRUD. For example, one class can handle sqlite databases and another class //with the same interface// that can handle a Google drive backend.
 
-You can handle (3) and (4) by using Android classes. 
+You can handle (3) by using Android classes. 
 Here are some suggested solutions:
 
 * [[AsyncTask]] - unfortunately, [[AsyncTask]] doesn't know about configuration changes.
@@ -35,16 +37,13 @@ Loaders are designed to load data but you can hack a Loader to also handle inser
  
 The catch is that before HoneyComb, all Loaders share a thread pool to excecute requests in parallel. (After HoneyComb, Loaders execute tasks in sequence.) This means that not only are your tasks NOT guaranteed to execute in order but you have to worry about multithreading issues, in particular, data consistency issues. 
 
-
-
-However, I don't think that this is such a big deal. Since Loaders are spawned from the UI, the only you are using a Loader for the UI, so I don't think multi-threading will cause you too much of a problem.  
+However, I don't think that this is such a big deal. Since Loaders are spawned from the UI, only you are using a Loader for the UI, so I don't think multi-threading will cause you too much of a problem.  
 
 Handling these "multithreading issues" depends on the app. For example, if there's only one database operation at a time, then you don't need to worry. 
 
 You need to worry when two threads update the database at the same time (for example, the user and a background thread). 
 
-AsyncTaskLoaders unfortunately execute all operations /at
-the same time/, so there's no guarantee that the other is
+AsyncTaskLoaders unfortunately execute all operations //at the same time//, so there's no guarantee that the other is
 correct, so you get inconsistent data. 
 
 Let's talk about inconsistent data. This is the classic
@@ -57,26 +56,16 @@ multi-threading problem:
 |                                 | if (x == null)                  |
 |                                 | //insert x into db              |
 
-The result is that x gets inserted twice. Using
-begin*Transaction() doesn't help either unless you get a
-reserved lock. This way only one thread will get the lock
-and insert x. 
+The result is that x gets inserted twice. Using begin*Transaction() doesn't help either unless you get a
+reserved lock. This way only one thread will get the lock and insert x. 
 
-The problem with this solution is that well you are now in
-multi-thread land where everything is not as it seems.
-AsyncTaskLoader tries to run all tasks at the same time, so
-you have no guarantee on the order that your database
+The problem with this solution is that well you are now in multi-thread land where everything is not as it seems.
+AsyncTaskLoader tries to run all tasks at the same time, so you have no guarantee on the order that your database
 operations get executed. 
 
-Is there a better solution? For most apps, you don't have to
-worry about 100's of users all trying to get the same data.
-What I'm trying to get at is that you don't need to worry
-about multi-threading. Your "users" are the person using the
-phone and maybe a handful of background threads. So you can
-probably get away with the following:
+Is there a better solution? For most apps, you don't have to worry about 100's of users all trying to get the same data. What I'm trying to get at is that you don't need to worry about multi-threading. Your "users" are the person using the phone and maybe a handful of background threads. So you can probably get away with the following:
 
- + Create a class that abstracts the lo-level database access.
- + Create a ContentProvider using the class above.
- + Create a class that encapsulates business logic. Ex: add
-   a task 
+* Create a class that abstracts the lo-level database access.
+* Create a ContentProvider using the class above.
+* Create a class that encapsulates business logic. Ex: add a task 
 
