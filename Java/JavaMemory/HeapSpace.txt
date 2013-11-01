@@ -5,6 +5,6 @@ Creation-Date: 2013-09-07T12:45:24-04:00
 ====== HeapSpace ======
 Created Saturday 07 September 2013
 
-When a Java program started Java Virtual Machine gets some memory from Operating System. Java Virtual Machine or JVM uses this memory for all its need and part of this memory is call java heap memory. Heap in Java generally located at bottom of address space and move upwards. whenever we create object using new operator or by any another means object is allocated memory from Heap and When object dies or garbage collected ,memory goes back to Heap space in Java, to learn more about garbage collection see how garbage collection works in Java.
+Heap memory is the memory used by the JVM to run a program. Heap in Java generally located at bottom of address space and moves upwards. Whenever we create object using new operator or by any another means object is allocated memory from Heap and When object dies or garbage collected ,emory goes back to Heap space in Java.
 
 Read more: http://javarevisited.blogspot.com/2011/05/java-heap-space-memory-size-jvm.html#ixzz2eE5IwlSL
