@@ -5,13 +5,13 @@ Creation-Date: 2013-09-07T10:54:38-04:00
 ====== ImmutableObject ======
 Created Saturday 07 September 2013
 
-* Make the class final
-* make all members final, set them explicitly, in a static block, or in the constructor
-* Make all members private
-* No Methods that modify state
-* Be extremely careful to limit access to mutable member components(remember the field may be final but the object can still be mutable. ie private final Date imStillMutable) - See defensive copying or its cousin copy constructors for more info.
+1. Make the class final
+2. make all members final, set them explicitly, in a static block, or in the constructor
+3. Make all members private
+4. No Methods that modify state
+5. Be extremely careful to limit access to mutable member components (remember the field may be final but the object can still be mutable. ie private final Date imStillMutable) - See defensive copying or its cousin copy constructors for more info.
 
-no.1 is very important and easy to overlook. If its not final people can freely extend your class, override behavior, then supply their new class as a suitable substitute. By declaring the class final you can ensure it will never be extended. This is indicative of the problems surrounding inheritance especially when it is applied inappropriately. 
+(1) is very important and easy to overlook. If its not final people can freely extend your class, override behavior, then supply their new class as a suitable substitute. By declaring the class final you can ensure it will never be extended. This is indicative of the problems surrounding inheritance especially when it is applied inappropriately. 
 
 ====== Links ======
 * http://stackoverflow.com/questions/6305752/how-to-create-immutable-objects-in-java
