@@ -5,7 +5,8 @@ Creation-Date: 2013-09-07T11:16:36-04:00
 ====== ConcurrencyIssues ======
 Created Saturday 07 September 2013
 
-* Be careful when instantiating Singletons. See http://tech.puredanger.com/2007/06/15/double-checked-locking/
+* Be careful when instantiating a :Singleton. See http://tech.puredanger.com/2007/06/15/double-checked-locking/
+* a common issue is that you have synchronize both reads AND writes
 
 ====== Links ======
 * http://stackoverflow.com/questions/461896/what-is-the-most-frequent-concurrency-issue-youve-encountered-in-java
