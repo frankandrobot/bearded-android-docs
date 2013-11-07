@@ -8,7 +8,7 @@ Created Monday 09 September 2013
 When instantiating a singleton, make sure that the instantiator actually instantiates //one// instance of the object
 i.e., take into account [[ConcurrencyIssues]]
 
-      ''@Good''
+  ''@Good''
 '''
 class A
 {
@@ -20,7 +20,7 @@ class A
 
 Lazy instantiation:
 
-       ''@Good (lazy instantiation)''
+  ''@Good (lazy instantiation)''
 '''
 class A
 {
@@ -33,7 +33,39 @@ class A
 '''
 
 
-====== Warnings ======
+===== Bad Example (Old school DoubleCheckedLocking) =====
+Back in the days when it was expensive to enter a synchronized block, people would instantiate a singleton this way:
+
+'''
+public class PieChucker 
+{
+    private static PieChucker instance;
+    public static PieChucker getInstance() 
+    {
+        if(instance == null) { 
+            synchronized(PieChucker.class) {
+                if(instance == null) {
+                     instance = new PieChucker();
+                }
+            }
+        }
+        return instance;
+    }
+'''
+  }
+
+The problem with this technique has to do with JavaMemory:CacheCoherence. Even though Objects are stored in the heap, methods often create cached copies of variables and then sync the results with the heap. Suppose this happens:
+* Thread_1 is the first to call getInstance(). It proceeds to create a new PieChucker. While it is doing this, Thread_2....
+* Thread_2 calls getInstance(). It sees null instance so it passes the first check. It stops at the synchronized barrier. Meanwhile...
+* Thread_1 finishes creating the PieChucker. It leaves the synchronized block. HOWEVER,....
+* the PieChucker was created on the heap but it still hasn't been initialized completely. As a result...
+* Thread_2 enters the synchronized block. It thinks it has a (complete) [[PieChucker]] and returns an incomplete object.
+
+Sources:
+* http://tech.puredanger.com/2007/06/15/double-checked-locking/
+* http://javamex.com/tutorials/synchronization_concurrency_synchronized2.shtml
+
+===== Warnings =====
 1. They are generally used as a global instance, why is that so bad? Because you hide the dependencies of your application in your code, instead of exposing them through the interfaces. Making something global to avoid passing it around is a code smell.
 2. They violate the Single Responsibility Principle: by virtue of the fact that they control their own creation and lifecycle.
 3. They inherently cause code to be tightly coupled. This makes faking them out under test rather difficult in many cases.

@@ -6,7 +6,7 @@ Creation-Date: 2013-09-07T10:52:30-04:00
 Created Saturday 07 September 2013
 
 Different types of memory: 
-* heap - contains objects (i.e., whenever you use "new" keyword, this is where object goes)
+* [[+HeapSpace]] - contains objects (i.e., whenever you use "new" keyword, this is where object goes)
 * stack - methods, local variables, and reference variables. Each method call has its own frame on the stack.
 * code - bytecode
 * static - static data/methods
