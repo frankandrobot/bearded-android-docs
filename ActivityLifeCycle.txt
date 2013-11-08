@@ -12,16 +12,13 @@ An activity represents a single screen with a user interface. For example, an em
 
 An activity can exist in essentially three states:
 
-;Resumed
-:The activity is in the foreground of the screen and has user focus. (This state is also sometimes referred to as "running".)
-;Paused
-:Another activity is in the foreground and has focus, but this one is still visible. That is, another activity is visible on top of this one and that activity is partially transparent or doesn't cover the entire screen. A paused activity is completely alive (the Activity object is retained in memory, it maintains all state and member information, and remains attached to the window manager), but can be killed by the system in extremely low memory situations.
-;Stopped
-:The activity is completely obscured by another activity (the activity is now in the "background"). A stopped activity is also still alive (the Activity object is retained in memory, it maintains all state and member information, but is not attached to the window manager). However, it is no longer visible to the user and it can be killed by the system when memory is needed elsewhere.
+* Resumed (aka Running) - The activity is in the foreground of the screen and has user focus.
+* Paused - Another activity is in the foreground and has focus, but this one is still visible. That is, another activity is visible on top of this one and that activity is partially transparent or doesn't cover the entire screen. A paused activity is completely alive (the Activity object is retained in memory, it maintains all state and member information, and remains attached to the window manager), but can be killed by the system in extremely low memory situations.
+* Stopped (aka Background) - The activity is completely obscured by another activity. A stopped activity is also still alive (the Activity object is retained in memory, it maintains all state and member information, but is not attached to the window manager). However, it is no longer visible to the user and it can be killed by the system when memory is needed elsewhere.
 
 If an activity is paused or stopped, the system can drop it from memory either by asking it to finish (calling its finish() method), or simply killing its process. When the activity is opened again (after being finished or killed), it must be created all over.
 
-{{{
+'''
 public class ExampleActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,4 +51,5 @@ public class ExampleActivity extends Activity {
         // The activity is about to be destroyed.
     }
 }
-}}}
+'''
+
