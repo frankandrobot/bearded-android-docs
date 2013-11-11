@@ -1,0 +1,70 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-10T19:37:08-05:00
+
+====== CustomView ======
+Created Sunday 10 November 2013
+
+* http://developer.android.com/training/custom-views/%E2%80%8E
+* http://www.vogella.com/articles/AndroidCustomViews/article.html
+
+* To allow the Android Developer Tools to interact with your view, at a minimum you must provide a constructor that takes a Context and an AttributeSet object as parameters. 
+
+To control the view with XML:
+* define custom attributes for your view in a <declare-styleable> resource element
+* Specify values for the attributes in your XML layout
+* Retrieve attribute values at runtime
+* Apply the retrieved attribute values to your view
+
+'''
+@Example (res/values/attrs.xml file)
+<resources>
+   <declare-styleable name="PieChart">
+       <attr name="showText" format="boolean" />
+       <attr name="labelPosition" format="enum">
+           <enum name="left" value="0"/>
+           <enum name="right" value="1"/>
+       </attr>
+   </declare-styleable>
+</resources>
+'''
+
+Then this is how you use them:
+
+'''
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:custom="http://schemas.android.com/apk/res/[yourpackagename]">
+ <com.example.customviews.charting.PieChart
+     custom:showText="true"
+     custom:labelPosition="left" />
+</LinearLayout>
+'''
+
+**Note: **You can use any namespace instead of ''custom''.
+
+Here's how you get the values in the View class:
+
+'''
+public PieChart(Context context, AttributeSet attrs) {
+   super(context, attrs);
+   TypedArray a = context.getTheme().
+'''
+**obtainStyledAttributes**''(''
+''        attrs,''
+''        R.styleable.PieChart,''
+''        0, 0);''
+
+''   try {''
+''       mShowText = a.getBoolean(R.styleable.PieChart_showText, false);''
+''       mTextPos = a.getInteger(R.styleable.PieChart_labelPosition, 0);''
+''   } finally {''
+''       a.''**recycle**''();''
+''   }''
+''}''
+
+===== Layout =====
+* All views must know how to measure and layout themselves.
+* #requestLayout tells the view to measure and layout itself. This method calls #requestLayout on its parent so its potentially expensive. You don't normally override this.
+* #onMeasure determines the size for the view and its children. It must set the dimension via a call to #setMeasuredDimension.
+* #onLayout (in the parent) positions child views based on the result of #onMeasure. This call happens typically once. 
