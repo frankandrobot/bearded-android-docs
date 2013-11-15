@@ -11,22 +11,25 @@ Created Wednesday 28 August 2013
 * An activity represents a single screen with a user interface. For example, an email application might have one activity that shows a list of new emails, another activity to compose an email, and another activity for reading emails. 
 * Activities are independent of each other.
 * Other applications can start an activity. For example, a camera application can start the activity in the email application that composes new mail, in order for the user to share a picture. 
-
+  
 ===== Activity States =====
-			                                  +-------------+
-''			 onResume()-->| Resumed  |--->onPause()--o''
-''			    ^         | (visible)|		 |''
-''			    |         +-----+----+		 |''
-''		       +----+-----+	    ^ 		+--------+----------+''
-''	   onStart()-->| Started  |       onResume()<---|    Paused         |''
-''	      ^	       | (visible)|	     		|(partially visible)|''
-''	 +----+----+   +-----+----+			+--------+----------+''
-''   +---->| Created |	     ^					 |''
-''   |	 +---------+	     |				     onStop()''
-''onCreate()		     |				     	 |''
-''			     |				  +------+--+''
-''			    onRestart()<------------------| Stopped |----->onDestroy()''
-''							  +---------+''
+
+'''
+                                    +----------+
+                       onResume()-->| Resumed  |--->onPause()--o
+                          ^         | (visible)|               |
+                          |         +-----+----+               |
+                     +----+-----+         ^           +--------+----------+
+         onStart()-->| Started  |       onResume()<---|    Paused         |
+              ^      | (visible)|                     |(partially visible)|
+         +----+----+ +-----+----+                    +--------+----------+
+   +---->| Created |       ^                                  |
+   |     +---------+       |                               onStop()
+onCreate()                 |                                  |
+                           |                           +------+--+
+                         onRestart()<------------------| Stopped |----->onDestroy()
+                                                       +---------+
+'''
 
 An activity can exist in essentially three states:
 
