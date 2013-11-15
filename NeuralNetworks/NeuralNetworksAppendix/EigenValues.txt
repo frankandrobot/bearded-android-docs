@@ -1,0 +1,39 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-15T15:40:46-05:00
+
+====== EigenValues ======
+Created Friday 15 November 2013
+
+* http://tutorial.math.lamar.edu/Classes/DE/LA_Eigen.aspx
+* http://www.sosmath.com/matrix/eigen1/eigen1.html
+
+Let `vec v` be a vector, `alpha` a scalar, and M be a matrix.
+
+`alpha` is an **eigenvalue** of M and `vec v` is an **eigenvector **of M if `M vec v = alpha vec v`.
+
+* Matrix multiplication of a matrix with its eigenvectors is the same as scalar multiplication.
+
+===== Calculating the Eigenvalues and Eigenvectors =====
+If M is an n x n matrix then `det(M - alpha I)` is an nth-degree polynomial (in `alpha`) called the **characteristic polynomial**.
+
+To find the eigen values of a matrix, all you need to do is find the roots of the characteristic polynomial.
+
+==== Example ====
+`M = ((2,7), (-1,-6))`
+
+Then 
+`M - alpha I` 
+`= M - ((alpha,0), (0, alpha))`
+`= ((2-alpha,7), (-1,-6-alpha))`
+
+So 
+`det(M - alpha I)`
+`= (2-alpha)(-6-alpha) - (-7)`
+`= -12+4alpha+alpha^2 + 7`
+`= alpha^2 + 4 alpha - 5`
+`= (alpha + 5)(alpha - 1)`
+
+The eigenvalues are -5 and 1.
+
+
