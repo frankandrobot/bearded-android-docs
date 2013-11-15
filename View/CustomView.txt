@@ -16,6 +16,7 @@ To control the view with XML:
 * Retrieve attribute values at runtime
 * Apply the retrieved attribute values to your view
 
+===== Defining Custom XML Attributes =====
 '''
 @Example (res/values/attrs.xml file)
 <resources>
@@ -29,7 +30,8 @@ To control the view with XML:
 </resources>
 '''
 
-Then this is how you use them:
+
+===== Using Custom XML Attributes =====
 
 '''
 <?xml version="1.0" encoding="utf-8"?>
@@ -43,14 +45,14 @@ Then this is how you use them:
 
 **Note: **You can use any namespace instead of ''custom''.
 
-Here's how you get the values in the View class:
+==== Setting Custom XML Attributes in the View ====
 
 '''
 public PieChart(Context context, AttributeSet attrs) {
    super(context, attrs);
-   TypedArray a = context.getTheme().
+   
 '''
-**obtainStyledAttributes**''(''
+''TypedArray a = context.getTheme().obtainStyledAttributes(''
 ''        attrs,''
 ''        R.styleable.PieChart,''
 ''        0, 0);''
@@ -59,9 +61,11 @@ public PieChart(Context context, AttributeSet attrs) {
 ''       mShowText = a.getBoolean(R.styleable.PieChart_showText, false);''
 ''       mTextPos = a.getInteger(R.styleable.PieChart_labelPosition, 0);''
 ''   } finally {''
-''       a.''**recycle**''();''
+''       a.recycle();''
 ''   }''
 ''}''
+
+**Note: **use #obtainStyledAttributes to get a TypedArray. Make sure to call #recycle when you're done.
 
 ===== Layout =====
 * All views must know how to measure and layout themselves.

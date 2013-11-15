@@ -13,7 +13,7 @@ Created Wednesday 28 August 2013
 * Other applications can start an activity. For example, a camera application can start the activity in the email application that composes new mail, in order for the user to share a picture. 
 
 ===== Activity States =====
-				      ''         +----------+''
+			                                  +-------------+
 ''			 onResume()-->| Resumed  |--->onPause()--o''
 ''			    ^         | (visible)|		 |''
 ''			    |         +-----+----+		 |''
