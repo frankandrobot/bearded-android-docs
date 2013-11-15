@@ -1,0 +1,30 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-15T14:44:15-05:00
+
+====== HessianMatrix ======
+Created Friday 15 November 2013
+
+* http://home.bi.no/a0710194/Teaching/BI-Mathematics/GRA-6035/2010/lecture5-hand.pdf
+* http://www.math.vt.edu/people/dlr/m2k_svb11_hesian.pdf
+
+The **hessian matrix **is used to classify ~~CritialPoints~~ 
+
+In 2D, the hessian matrix of a function f is
+
+`H(f) = ((f_(x x), f_(xy)),(f_(yx), f_(yy)))`
+
+where `f_(xy)` is the derivative of `f_x` with respect to y.
+
+Ex: `f(x,y) = x^2 - y^2 - xy`
+
+* `f_x = 2x - y`, `f_y = -2y - x`
+* `f_(x x) = 2`, `f_(xy) = -1`
+* `f_(yy) = -2`, `f_(yx) = -1`
+
+`H(f) = ((2, -1), (-1, -2))`
+
+===== Properties of Hessian =====
+* the Hessian is always symettric H(f)* = H(f) (Not sure what *  does)
+
+Meaning of Determinant of [[HessianMatrix]]
