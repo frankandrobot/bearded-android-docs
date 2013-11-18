@@ -5,4 +5,9 @@ Creation-Date: 2013-11-15T10:05:48-05:00
 ====== NeuralNetworks ======
 Created Friday 15 November 2013
 
+===== Purpose of the Bias =====
+In the Perceptron model we allowed a “bias” b which translated the separating hyperplane so that it need not pass through the origin, hence allowing a the set of all pairs \((\mathbf{w}, b)\) to represent every possible hyperplane.
 
+A **neuron** N is a pair `(W, sigma)`, where W is a list of weights \((w_0, w_1, \dots, w_k)\), and `sigma` is an activation function. The **impulse function** of a neuron N, which we will denote `f_N: {0,1}^(k+1) -> [0,1]`, is defined as
+
+$$f_N(\mathbf{x}) = \sigma(\left \langle \mathbf{w}, \mathbf{x} \right \rangle) = \sigma \left (\sum_i^k w_i x_i \right )$$

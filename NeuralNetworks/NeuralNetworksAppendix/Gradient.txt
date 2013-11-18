@@ -11,5 +11,5 @@ $$ \nabla f(x,y) = f_x \hat i + f_y \hat j$$
 
 where \(f_x\) is the partial derivative of f with respect to x.
 
-* In 2D, it points in the direction of the biggest slope.
+* In 2D, it points in the direction of the biggest ascent.
 * In 1D, the gradient reduces to \( \nabla f(x) = f_x \hat i\). In other words, in 1D, the gradient of a function is just the slope. 
