@@ -8,3 +8,18 @@ Created Monday 18 November 2013
 * http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf
 * http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/
 
+Step 1. Initialize the weights.
+Step 2. For each training value:
+Step 2a. Peform the forward computation.
+Step 2b. Perform the backward computation
+Step 2c. Repeat steps 2a--2b until the error is smaller than a pre-selected value.
+
+===== Initalizing the Weights =====
+"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See [[:NeuralNetworks]] ) lie at //the transition between the linear and saturated parts of the +ActivationFunction// " (I have no idea what the emphasized parts means.)
+
+Most researchers seem to initialize the weights to random values between 0 and 1.
+
+
+
+
+
