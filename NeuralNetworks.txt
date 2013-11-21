@@ -9,9 +9,11 @@ Created Friday 15 November 2013
  
 A **neuron** N is a pair `(W, sigma)`, where W is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)`. We call `w_0` the bias weight. (Note: implementations may put the bias at the end of the list.)
 
-The **induced local field** of neuron N, `v_N: RR^(k+1) -> RR`, is defined as
+If `v_N: RR^(k+1) -> RR` is defined as
 
-`v_N(bb x) = sigma(sum_i^k w_i x_i)`
+`v_N(bb x) = sum_i^k w_i x_i`
+
+Then the value of `v_N` at a specific `bb x` is called the **induced local field **of neuron N.
 
 If `sigma` is an [[+ActivationFunction]] , then the **impulse function** of a neuron N, which we will denote `f_N: RR^(k+1) -> [0,1]`, is defined as
 

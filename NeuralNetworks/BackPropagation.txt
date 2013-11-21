@@ -8,16 +8,87 @@ Created Monday 18 November 2013
 * http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf
 * http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/
 
+Given training data `{(bb x_1, bb t_1), ...,(bb x_p, bb t_p)}` where each `bb x_i` and `bb t_i` is a vector, define `E_i` as
+
+`E_i = 1/2 ||bb o_i - bb t_i||^2`
+
+where `bb o_i` is the output of the network for input `bb x_i` and `||*||` is the [[Appendix:EuclidianDistance|euclidian distance]]. Each `E_i` is just the error of the ith training example.
+
+**Note:** Since we're dealing with vectors, the error is the sum of the differences of the expected (`t_i`) and actual (`o_i`) output //for each neuron in the output layer//. Each `E_i` actually looks like this:
+
+`E_i = (o_(i1) - t_(i1)) + cdots + (o_(im) - t_(im))`
+
+where `o_(ij)` is the actual output of the jth neuron (in the output layer) and `t_(ij)` is the expected output of the jth neuron (in the output layer).
+
+We want to minimize the total error `E` of the network:
+
+`E = sum_i^p E_i = 1/2 sum_i^p ||bb o_i - bb t_i||^2`
+
+===== Motivation for the Backpropagation Algorithm =====
+* E is actually function of the weights! The input `bb x_i` and expected output `bb t_i` are fixed. The weights are the only parameters that can minimize the error function. The backpropagation algorithm finds the local minimum of the error function.
+* E is continuous and differentiable. Each impulse function comprising the network is continuous and differentiable. E is built via composition and summation of the impulse functions. Thus, the [[Appendix:Gradient|gradient]] exists. 
+
+As a result, we can use the method of [[Appendix:GradientDescent]] to find the values of the weights. This is essentially all that the backpropagation algorithm is.
+
 Step 1. Initialize the weights.
-Step 2. For each training value:
-Step 2a. Peform the forward computation.
-Step 2b. Perform the backward computation
-Step 2c. Repeat steps 2a--2b until the error is smaller than a pre-selected value.
+Step 2. Construct the error function.
+Step 3. Perform the backpropagation.
+Step 4. Adjust the weights.
+Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value.
 
 ===== Initalizing the Weights =====
 "Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See [[:NeuralNetworks]] ) lie at //the transition between the linear and saturated parts of the +ActivationFunction// " (I have no idea what the emphasized parts means.)
 
-Most researchers seem to initialize the weights to random values between 0 and 1.
+Most researchers initialize the weights to random values between 0 and 1.
+
+===== Constructing the Error Function =====
+Calculate the output of the network for each training example. Use the output to compute `E_i`.
+
+Gotcha 1: recall that we have to append a 1 to each input because of the bias. Make sure to append a 1 to the output from a previous layer to the next layer.
+
+Gotcha 2: for each neuron, make sure to save the value of its induced local field and impulse function. You'll need these values for the backpropagation. 
+
+===== Performing the Backpropagation =====
+
+For each training example, compute the local gradients (`theta"s"`) of each neuron. 
+Let L be the output layer. 
+Let `v_j^((l))` be the induced local field of neuron `j` in layer `l`. 
+Let `o_j^((l))` be the output (value of the impulse function) of neuron `j` in layer `l`.
+Let `gamma_j^((l))` be the derivative of neuron `j`s [[ActivationFunction|activation function]].
+(In general, a superscript `l` corresponds to layer `l`.)
+
+**Note: **`gamma_k` is a function. `v_j` and `o_j` are real numbers.
+
+Define the local gradient `theta_j^((l))` of neuron `j` recursively as follows:
+
+* for neuron `j` in output layer `L`, `theta_k^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`
+* for neuron `j` in hidden layer `l`, `theta_k^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k theta_k^((l+1)) xx w_(kj)^((l+1))`
+
+where weight `w_kj^((l+1))` connects neuron `j` in layer `l` to neuron k in layer `(l+1)`. A diagram will help:
+
+'''
+Layer l               Layer (l+1)
+neuron 1              neuron 1, gradient 1
+...                 / ...
+...               /   ...
+...           w_1j    ...
+...           /       ...
+...         /         ... 
+...       /           ...
+neuron j ----w_kj---> neuron k, gradient k
+'''
+
+
+In other words, for a hidden neuron `j` in layer `l`, take the sum of the product of the gradients in the //next //layer and the weights that connect neuron `j` to the neuron of that local gradient.
+
+**Note: **If its not clear, `gamma_j^((l)) ( v_j^((l)) )` is the value of the derivative of the activation function at the induced local field. It's not multiplication.
+
+Since the recursion starts in the output layer, the computations proceed from the back to the front (hence the name "backpropagation").
+
+===== Adjusting the Weights =====
+Use the local gradients to adjust the weights. 
+
+`w_kj^l = w_kj^l + eta sigma^l_j`
 
 
 
