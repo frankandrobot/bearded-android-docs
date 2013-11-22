@@ -5,31 +5,9 @@ Creation-Date: 2013-11-18T11:20:27-05:00
 ====== BackPropagation ======
 Created Monday 18 November 2013
 
-* http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf
-* http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/
+You may want to first read the [[+Motivation|motivation]] for the back propagation algorithm.
 
-Given training data `{(bb x_1, bb t_1), ...,(bb x_p, bb t_p)}` where each `bb x_i` and `bb t_i` is a vector, define `E_i` as
-
-`E_i = 1/2 ||bb o_i - bb t_i||^2`
-
-where `bb o_i` is the output of the network for input `bb x_i` and `||*||` is the [[Appendix:EuclidianDistance|euclidian distance]]. Each `E_i` is just the error of the ith training example.
-
-**Note:** Since we're dealing with vectors, the error is the sum of the differences of the expected (`t_i`) and actual (`o_i`) output //for each neuron in the output layer//. Each `E_i` actually looks like this:
-
-`E_i = (o_(i1) - t_(i1)) + cdots + (o_(im) - t_(im))`
-
-where `o_(ij)` is the actual output of the jth neuron (in the output layer) and `t_(ij)` is the expected output of the jth neuron (in the output layer).
-
-We want to minimize the total error `E` of the network:
-
-`E = sum_i^p E_i = 1/2 sum_i^p ||bb o_i - bb t_i||^2`
-
-===== Motivation for the Backpropagation Algorithm =====
-* E is actually function of the weights! The input `bb x_i` and expected output `bb t_i` are fixed. The weights are the only parameters that can minimize the error function. The backpropagation algorithm finds the local minimum of the error function.
-* E is continuous and differentiable. Each impulse function comprising the network is continuous and differentiable. E is built via composition and summation of the impulse functions. Thus, the [[Appendix:Gradient|gradient]] exists. 
-
-As a result, we can use the method of [[Appendix:GradientDescent]] to find the values of the weights. This is essentially all that the backpropagation algorithm is.
-
+===== The Backpropagation Algorithm =====
 Step 1. Initialize the weights.
 Step 2. Construct the error function.
 Step 3. Perform the backpropagation.
