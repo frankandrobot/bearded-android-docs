@@ -81,3 +81,14 @@ The gradient points in the direction of steepest ascent, so if we want to go to 
 Let's step back for a minute. We're adjusting the weights (which are the real inputs) so that the error function E is at its global minimum (hopefully). The problem is how can we be sure its a global minimum? how can we be sure the adjustment doesn't overshoot the minimum? how can we be sure we don't oscillate near the minimum?
 
 Enter the **momentum**. 
+
+==== More Complex Case ====
+We still haven't seen why the backpropagation algorithm is named that way. Consider a slightly more complex network consisting of two layers and a single neuron in each layer. 
+
+{{./diagram.png?type=diagram}}
+
+The output of the network is no longer a simple application of the impulse function `f_2` for the neuron in the output layer. 
+Let `bb y = (y_1,y_2)` be the output of the hidden layer (the layer containing neuron `N_1`).
+Then the output of the network is
+
+`f_2(bb y) = phi(sum_k w_(k2)y_k)`
