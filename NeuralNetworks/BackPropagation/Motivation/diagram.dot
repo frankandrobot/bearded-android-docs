@@ -1,13 +1,34 @@
 digraph neural_network {
 	rankdir=LR;
+	splines=line;
+
+
 	size="8,5"
 	node [shape = doublecircle]; N1 N2;
 	node [shape = point]; o1 o2;
 	node [shape = box];
+
+	subgraph layer0 {
+		color=white;
+		x1 x2 "x3 = +1"
+                label = "input"
+        }
+
+	subgraph layer1 {
+		color=white;
+	        N1
+                label = "layer 1 (hidden layer)"
+	}	
+
+        subgraph layer2 {
+		N2
+                label = "layer 2 (output layer)"
+	}
+
 	x1 -> N1 [ label = "w11" ];
         x2 -> N1 [ label = "w21" ];
-        "x3 = +1" -> N1 [ label = "w31" ];
-        
+	"x3 = +1" -> N1 [ label = "w31" ];
+
         N1 -> y1 [ label = "f_1"];
         N1 -> "y2 = +1";
 
@@ -15,6 +36,6 @@ digraph neural_network {
         "y2 = +1" -> N2 [ label = "w22" ];
 
         N2 -> o2 [label = "f_2"];
-        o2 -> output
+        o2 -> output 
 
 }

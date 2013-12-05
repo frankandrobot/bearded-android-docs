@@ -92,3 +92,16 @@ Let `bb y = (y_1,y_2)` be the output of the hidden layer (the layer containing n
 Then the output of the network is
 
 `f_2(bb y) = phi(sum_k w_(k2)y_k)`
+
+The good news is that for `w_(j2)` (the weights of the output layer), `(dE_i)/(dw_(j2))` reduces to the previous case.
+
+`(dE_i)/(dw_(j2)) = 2(phi(C + w_(j2) y_j) - D) xx (d)/(dw_(j2))(phi(C + w_(j2) y_j) - D)`
+`                 = 2(phi(C + w_(j2) y_j) - D) xx phi'(C + w_(j2) y_j) xx y_j`
+`                 = 2[phi(sum_k w_(k2) y_k)] - t_i) xx phi'(sum_k w_(k2) y_k) xx y_j` 
+
+What about for the weights in the hidden layer?
+
+`(dE_i)/(dw_(j1)) = (d)/(dw_(j1)) phi(sum_k w_(k2) y_k) - t_i]^2`
+`                 = (d)/(dw_(j1)) phi(sum_k w_(k2) ((sum phi(sum_l w_(l1) x_(il))) - t_i]^2`
+
+Continued...
