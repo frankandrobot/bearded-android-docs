@@ -5,22 +5,25 @@ Creation-Date: 2013-11-15T10:05:48-05:00
 ====== NeuralNetworks ======
 Created Friday 15 November 2013
 
-* http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/
- 
+===== Definition of a Neuron =====
 A **neuron** N is a pair `(W, sigma)`, where W is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)`. We call `w_0` the bias weight. (Note: implementations may put the bias at the end of the list.)
 
 If `v_N: RR^(k+1) -> RR` is defined as
 
-`v_N(bb x) = sum_i^k w_i x_i`
+`\ v_N(bb x) = bb w * bb x = bb sum_i^k w_i x_i`
 
-Then the value of `v_N` at a specific `bb x` is called the **induced local field **of neuron N.
+then the value of `v_N` at a specific `bb x` is called the **induced local field **of neuron N.
 
-If `sigma` is an [[+ActivationFunction]] , then the **impulse function** of a neuron N, which we will denote `f_N: RR^(k+1) -> [0,1]`, is defined as
+If `sigma` is an [[+ActivationFunction|activation function]], then the **impulse function** of a neuron N, which we will denote `f_N: RR^(k+1) -> [0,1]`, is defined as
 
-`f_N(bb x) = sigma(v_N(bb x))`
+`f_N(bb x) = sigma(v_N(bb x)) = sigma(bb w * bb x)`
 
 By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs `bb x`.
 
-===== Purpose of the Bias =====
-In the Perceptron model we allowed a “bias” b which translated the separating hyperplane so that it need not pass through the origin, hence allowing a the set of all pairs `(bb w, b)` to represent every possible hyperplane.
+==== Purpose of the Bias ====
+A single neuron basically separates data with a line (or in general, a hyper plane). The bias allows for lines that do not pass through the origin. 
+
+===== Definition of a Neural Network =====
+A **neural network **can be thought of as a function that is itself the composition, sum, and product of impulse functions. See [[http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics|here]] for pictures or take a look at the [[+Resources|resources.]]
+ 
 

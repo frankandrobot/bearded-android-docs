@@ -17,7 +17,7 @@ Following are some guidelines on when you should use //another// approach:
 * Is the problem is very "discrete"? Can the correct answer can be found in a look-up table of reasonable size? If so, then use a look-up table.
 * Are precise numeric output values required?
 
-Conversely, here are some situations where a BP NN might be a good idea:
+Conversely, here are some situations where backpropagation might be a good idea:
 
 * A large amount of input/output data is available, but you're not sure how to relate it to the output.
 * The problem appears to have overwhelming complexity, but there is clearly a solution.
@@ -27,55 +27,71 @@ Conversely, here are some situations where a BP NN might be a good idea:
 
 Source: http://www.seattlerobotics.org/encoder/nov98/neural.html
 
-===== The Backpropagation Algorithm (Version A) =====
-Step 1. Initialize the weights.
-Step 2. Construct the error function.
-Step 3. Perform the backpropagation.
-Step 4. Adjust the weights.
-Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value.
+===== The Backpropagation Algorithm =====
+Step 0. Initialize the weights.
 
-Pros: if F is the neural network function and `{(bb x_i, bb t_i)}` is the training data, then `F(bb x_i) = bb t_i`.
-Cons: Uses a heck of a lot of memory. For mobile, this is probably not the way to go.
+Step 1. Pick values for the learning and momentum parameters. See [[+Parameters|backpropagation parameters.]] 
+Step 2. For each training example:
 
-===== Initalizing the Weights =====
-"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See [[:NeuralNetworks]] ) lie at //the transition between the linear and saturated parts of the +ActivationFunction// " (I have no idea what the emphasized parts means.)
+Step 2a. Perform the forward propagation. For each layer and each neuron, store its induced local field and the value of its impulse function.
+Step 2b. Calculate and store the gradients of each neuron starting with the output layer.
+Step 2c. Calculate and update the weight adjustments of each neuron starting with the output layer. Discard the stored induced local fields, impulse functions, and gradients.
 
-Most researchers initialize the weights to random values between 0 and 1.
+Step 3. Adjust the weights using the weight adjustments. Make sure to store the values of the previous weights.
+Step 4. Construct the error function for each training example.
 
-===== Constructing the Error Function =====
-For each training example:
-* use the output to compute `E_i`.
-* store the values of induced local fields and impulse functions. You'll need these values for the backpropagation. 
+Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value. If the error never converges, pick new parameters and restart from Step 1.
 
-**Gotcha 1:** recall that we have to append a 1 to each input because of the bias. Make sure to append a 1 to the output from a previous layer to the next layer.
+**Notes:** 
+1. Its called the //backpropagation //algorithm because you start from the output layer (Steps 1b and 1c) and work backwards to the input layer.
+2. Steps 2--4 are one iteration of the backpropagation algorithm.
+3. A common mistake is to not wait until the end to adjust the weights. You need to calculate the //cumulative //weight adjustments (of all examples) before adjusting the weights.
 
-**Gotcha 2:** for each training example and each neuron, you save value of its induced local field and impulse function. This can be prohibitive depending on the neural network.
+==== Required Memory and Data Structures ====
+You'll need data structure(s) to store:
 
-===== Performing the Backpropagation =====
+* induced local fields and the values of the impulse functions of its neurons of each layer. However, since these are just used to find the gradients and the weight adjustments, you do not need different data structures for each example. The data structure(s) can be shared by each example.
+* gradients of the neurons of each layer. //Ditto.// Since these are just used to find the weight adjustments, you do not need different data structures for each example. The data structure(s) can be shared by each example.
+* weight adjustments for the weights of the neurons in each layer. These represent the //cumulative //weight adjustments of all examples, so all you need is one set of data structure(s) per iteration.
+* //previous //weight values (these are used by the momentum term). You do not need to store the complete history of the weights, just the previous values.
 
-For each training example:
+==== Initalizing the Weights ====
+"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See [[:NeuralNetworks|neural networks]]) lie at //the transition between the linear and saturated parts of the //[[ActivationFunction|activation function]]" (I have no idea what the emphasized parts means.)
 
-* compute the local gradients (`delta"s"`) of each neuron. 
+Most researchers initialize the weights to random values between 0 and 1. I use a gaussian with mean 0.5 and standard deviation 1.
 
-Let L be the output layer. 
-Let `v_j^((l))` be the induced local field of neuron `j` in layer `l`. 
-Let `o_j^((l))` be the output (value of the impulse function) of neuron `j` in layer `l`.
-Let `gamma_j^((l))` be the derivative of neuron `j`s [[ActivationFunction|activation function]].
-(In general, a superscript `l` corresponds to layer `l`.)
+==== Performing the Forward Propagation ====
+* Given a training input `bb x_i`, calculate the output of the neural network. 
+* Make sure to store the induced local fields and the values of the impulse functions of each neuron in each layer.
+
+==== Constructing the Gradients (`delta"s"`) ====
+This is how to compute the local gradients (`delta"s"`) of each neuron:
+
+* Let `N_j` be neuron `j`.
+* Let `L` be the output layer. 
+* Let `v_j^((l))` be the induced local field of `N_j` in layer `l`. 
+* Let `o_j^((l))` be the output (value of the impulse function) of `N_j` in layer `l`.
+* Let `gamma_j^((l))` be the derivative of `N_j`s [[ActivationFunction|activation function]].
+* Let weight `w_(kj)^((l))` connects `N_k` in layer `l` to `N_j` in the previous layer.
+* (In general, let a superscript `l` denote layer `l`.)
 
 **Note: **`gamma_k` is a function. `v_j` and `o_j` are real numbers.
 
 Define the local gradient `delta_j^((l))` of neuron `j` recursively as follows:
 
-* for neuron `j` in output layer `L`, `delta_k^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`
-* for neuron `j` in hidden layer `l`, `delta_k^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))`
+* for neuron `N_j` in output layer `L`, `delta_k^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`
+* for neuron `N_j` in hidden layer `l`, `delta_k^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))`
 
-where weight `w_kj^((l+1))` connects neuron `j` in layer `l` to neuron k in layer `(l+1)`. A diagram will help:
+where the summation `sum_k` is over the neurons in layer `(l+1)` and weight `w_(kj)^((l+1))` connects `N_k` in layer `(l+1)` to `N_j` in layer `l`. 
+
+**Note: **If its not clear, `gamma_j^((l)) ( v_j^((l)) )` is the derivative of the activation function at neuron `N_j`s induced local field. It's not a product.
+
+A diagram will help:
 
 '''
 Layer l               Layer (l+1)
 neuron 1              neuron 1, gradient 1
-...                 / ...
+neuron 2            / neuron 2, gradient 2
 ...               /   ...
 ...           w_1j    ...
 ...           /       ...
@@ -84,24 +100,58 @@ neuron 1              neuron 1, gradient 1
 neuron j ----w_kj---> neuron k, gradient k
 '''
 
-In other words, for a hidden neuron `j` in layer `l`, take the sum of the product of the gradients in the //next //layer and the weights that connect neuron `j` to the neuron of that local gradient.
+In other words, for a hidden neuron `N_j` in layer `l`, its gradient is the product of (a) the derivate of the activation function at its induced local field and (b) the sum of the product of the gradients in the //next //layer and the weights that connect `N_j` to that gradient's neuron.
 
-**Note: **If its not clear, `gamma_j^((l)) ( v_j^((l)) )` is the value of the derivative of the activation function at the induced local field. It's not multiplication.
+**Note:**
+1. Its now clear why we needed to store the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.
+2. Don't forget to store the values of the `delta"s"` which will be needed in the next step.
 
-Since the recursion starts in the output layer, the computations proceed from the back to the front (hence the name "backpropagation").
+==== Constructing the Weight Adjustments (aka Learning Term) ====
+This is how we calculate the weight adjustments:
 
-* Make sure to store the values of the `delta"s"`
+* Let `eta` be the learning parameter.
+* Let `o_j^((l))` be the output (value of the impulse function) of neuron `N_j` in layer `l`.
+* Let weight `w_(kj)^((l))` connects `N_k` in layer `l` to `N_j` in the previous layer. 
+* Let weight `w_(j0)` be the bias for all `j`.
 
-===== Adjusting the Weights =====
-Use the local gradients to adjust the weights. 
+Define `y_j^((l))` as the output from neuron `N_j` in layer `l`:
+* For `l = 0` (input layer), let `y_j^((0)) = x_j` (the input). 
+* For `l > 0`, let `y_j^((l)) = o_j^((l))` (the output of neuron `N_j` in layer `l`).
+* For all `l`, let `y_0^((l)) = +1`.
 
-`w_(kj)^((l)) = w_(kj)^((l)) + alpha(w_(kj)^(**(l))) + eta sigma_j^((l)) o_k^((l-1))`
+**Note:** 
+1. With this definition of the `y_j`s, `y_j^(l)` can be used as the //input //that's fed to the //next //layer `(l+1)`.
+2. Since `w_(j0)` is always the bias, the output of neuron `N_j` in layer `l` with weights `bb w` and activation function `phi` is just `\ phi(bb y^((l-1)) * bb w) = phi(sum_i y_i^((l-1)) w_(ji))` where the sum `sum_i` is over the weights in the previous layer.
+
+The weight adjustment for weight `w_(kj)` in layer `l` //and// the given training example is:
+
+`\ Delta w_(kj)^((l)) = eta sigma_k^((l)) y_j^((l-1))` (learning term)
+
+**For each example and weight,** **add these values together and store them somewhere.**
+
+**Note:**
+1. Its now clear why we needed to store the values of the impulse functions and the gradients---calculating these values dynamically significantly reduces the performance of the algorithm.
+2. The final weight adjustment is the 
 
 where `w_(kj)^(**(1))` is the value of the weight in the //previous// time step. If there is no previous value, then this term defaults to 0.
 
 * Make sure to store the previous values of the weights
 
 **Note: **Make sure to do this step //after //computing the gradients. Otherwise, it won't work.
+
+`\ delta w_(kj)^((l)) = w_(kj)^((l)) = w_(kj)^((l)) + alpha(w_(kj)^(**(l))) + eta sigma_j^((l)) o_k^((l-1))`
+
+==== Constructing the Error Function ====
+For each training example:
+* use the output to compute `E_i`.
+* store the values of induced local fields and impulse functions. You'll need these values for the backpropagation. 
+
+**Gotcha 1:** recall that we have to append a 1 to each input because of the bias. Make sure to append a 1 to the output from a previous layer to the next layer.
+
+**Gotcha 2:** for each training example and each neuron, you save value of its induced local field and impulse function. This can be prohibitive depending on the neural network.
+
+
+
 
 
 
