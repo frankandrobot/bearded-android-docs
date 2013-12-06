@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./Help/ConfigureZim.html'>Prev</a> ]
+
+			[ <a href='./index.html.html'>Index</a> ]
+
+	[ <a href='./HttpProtocol/HttpChunkedEncoding.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>HttpProtocol</h1>
+
+<p>
+Created Saturday 09 November 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="http://www.jmarshall.com/easy/http/" title="http://www.jmarshall.com/easy/http/" class="http">http://www.jmarshall.com/easy/http/</a></li>
+</ul>
+</p>
+
+<h2>Basics</h2>
+<p>
+<ul>
+<li>HTTP = Hypertext Transfer Protocol. </li>
+<li>It's the network protocol for the Internet. </li>
+<li>A browser is an HTTP client</li>
+<li>A web server is an HTTP server</li>
+<li>Usually HTTP servers listen to port 80 but any port can be used.</li>
+<li>Usually TCP/IP sockets is used</li>
+<li>HTTP is a stateless protocol</li>
+<li>HTTP is used to transmit resources, not just files. Ex: HTML files, image files, query results, or anything else. (A resource is anything that can have a URL)</li>
+</ul>
+</p>
+
+<h3>HTTP 1.1</h3>
+<p>
+<ul>
+<li>allows multiple transactions through a single <a href="./HttpProtocol/HttpPersistenConnection.html" title="+HttpPersistenConnection" class="page">+HttpPersistenConnection</a></li>
+<li>cache support</li>
+<li><a href="./HttpProtocol/HttpChunkedEncoding.html" title="+HttpChunkedEncoding" class="page">+HttpChunkedEncoding</a> encoding allows a response to be sent before its total length is known</li>
+<li>multiple domains (hosts) can be served from a single IP address.</li>
+</ul>
+</p>
+
+<h2>HTTP Transactions</h2>
+<p>
+HTTP messages look like this:<br>
+</p>
+<pre>
+&lt;initial line, different for request vs. response&gt;
+Header1: value1
+Header2: value2
+Header3: value3
+etc...
+[blank line here!!!]
+&lt;optional message body goes here, like file contents or query data;
+ it can be many lines long, or even binary data $&amp;*%@!^$@&gt;
+</pre>
+
+
+<p>
+<strong>Notes: </strong>Blank lines should be CRLF!!! (but LF should also be handled properly)<br>
+</p>
+
+<h2>Initial Line</h2>
+
+<h3>Initial Request Line</h3>
+
+<p>
+The initial line is different for the request than for the response. A request line has three parts, separated by spaces: a method name (See <a href="./HttpProtocol/HttpMethods.html" title="+HttpMethods" class="page">+HttpMethods</a>), the local path of the requested resource, and the version of HTTP being used. A typical request line is:<br>
+</p>
+
+<p>
+<code>GET /path/to/file/index.html HTTP/1.0</code><br>
+</p>
+
+<h3>Initial Response Line</h3>
+<p>
+The initial response line, called the status line, also has three parts separated by spaces: the HTTP version, a response status code that gives the result of the request, and an English reason phrase describing the status code. Typical status lines are:<br>
+</p>
+
+<p>
+<code>HTTP/1.0 404 Not Found</code><br>
+</p>
+
+<h2>Headers</h2>
+
+<h3>Request Headers</h3>
+<p>
+<ul>
+<li>HTTP 1.0 defines 16 headers, though none are required. </li>
+<li>HTTP 1.1 defines 46 headers, and one (Host:) is required. </li>
+</ul>
+</p>
+
+<p>
+For Net-politeness, using these optional headers is a good idea:<br>
+</p>
+
+<p>
+<ul>
+<li>From: header gives the email address of whoever's making the request, or running the program doing so.</li>
+<li>User-Agent: header identifies the program that's making the request, in the form "Program-name/x.xx", where x.xx is the (mostly) alphanumeric version of the program. For example, <code>User-agent: Mozilla/3.0Gold</code>.</li>
+</ul>
+</p>
+
+<p>
+If you don't support persistent connections or if you know a request will be the last on its connection, then include<br>
+<ul>
+<li>Connection: close header to close the persistent connection</li>
+</ul>
+</p>
+
+<h4>Example:</h4>
+<pre>
+GET /path/file.html HTTP/1.1
+Host: www.host1.com:80
+[blank line here]
+</pre>
+
+
+<h3>Response Headers</h3>
+<p>
+<ul>
+<li>all headers except for Date: are optional (including Host:)</li>
+</ul>
+</p>
+
+<p>
+If you're writing servers, using these optional headers is a good idea:<br>
+</p>
+
+<p>
+<ul>
+<li>Server: header identifies the server in the form "Program-name/x.xx". For example, <code>Server: Apache/1.2b3-dev</code>.</li>
+<li>Last-Modified: header gives the modification date of the resource that's being returned. It's used in caching and other bandwidth-saving activities. Use Greenwich Mean Time, in the format <code>Last-Modified: Fri, 31 Dec 1999 23:59:59 GMT</code></li>
+</ul>
+</p>
+
+<p>
+To tell the client, the connection was closed use<br>
+<ul>
+<li>Connection: close if a response contains this header, then the server will close the connection following that response, and the client shouldn't send any more requests through that connection.</li>
+</ul>
+</p>
+
+<p>
+A server might close the connection before all responses are sent, so a client must keep track of requests and resend them as needed. When resending, don't pipeline the requests until you know the connection is persistent.<br>
+</p>
+
+<p>
+Caching is an important improvement in HTTP 1.1, and can't work without timestamped responses. So, servers must timestamp every response with a Date: header containing the current time, in the form<br>
+</p>
+
+<p>
+<code>Date: Fri, 31 Dec 1999 23:59:59 GMT</code><br>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

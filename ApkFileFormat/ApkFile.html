@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='../ApkFileFormat.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./Dalvik.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>ApkFile</h1>
+
+<p>
+Created Tuesday 10 September 2013<br>
+</p>
+
+<p>
+<ul>
+<li>Android application package file. </li>
+</ul>
+</p>
+
+<p>
+Contains:<br>
+<ul>
+<li>application's code (.dex files)</li>
+<li>resources</li>
+<li>manifest file</li>
+</ul>
+</p>
+
+<p>
+To run an application on an emulator or device, the application must be signed using debug or release mode. <br>
+</p>
+
+<h2>Build Process</h2>
+<p>
+<ul>
+<li>The Android Asset Packaging Tool (aapt) compiles resource files (ex: manifest and XML) and compiles them. Produces R.java.</li>
+<li>The aidl tool converts any .aidl interfaces into Java interfaces.</li>
+<li>Java compiler creates CLASS files for all of your Java code.</li>
+<li>The dex tool converts the CLASS files to Dalvik byte code. Any 3rd party libraries and .class files that you have included in your project are also converted into .dex files.</li>
+<li>The apkbuilder takes the compiled resources, DEX files, and all non-compiled resources (such as images) and creates the APK file</li>
+<li>The APK is then signed with either a debug or release key before it can be installed to a device.</li>
+<li>Finally, if the application is being signed in release mode, you must align the .apk with the zipalign tool. Aligning the final .apk decreases memory usage when the application is running on a device.</li>
+<li>(optional) use <a href="./ProGuard.html" title="ProGuard" class="page">ProGuard</a> to obfuscate the APK file</li>
+</ul>
+</p>
+
+<h1>Links</h1>
+<p>
+<ul>
+<li><a href="http://developer.android.com/guide/appendix/glossary.html" title="http://developer.android.com/guide/appendix/glossary.html" class="http">http://developer.android.com/guide/appendix/glossary.html</a></li>
+<li><a href="http://developer.android.com/tools/building/index.html" title="http://developer.android.com/tools/building/index.html" class="http">http://developer.android.com/tools/building/index.html</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<b>Backlinks:</b>		<a href='./DexFile.html'>ApkFileFormat:DexFile</a>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

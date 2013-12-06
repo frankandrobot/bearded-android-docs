@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./ActivationFunction/SigmoidFunction.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./BackPropagation/Motivation.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>BackPropagation</h1>
+
+<p>
+Created Monday 18 November 2013<br>
+</p>
+
+<p>
+You may want to first read the <a href="./BackPropagation/Motivation.html" title="motivation" class="page">motivation</a> for the back propagation algorithm.<br>
+</p>
+
+<h2>When BackPropagation is Appropriate</h2>
+<p>
+Following are some guidelines on when you should use <em>another</em> approach:<br>
+</p>
+
+<p>
+<ul>
+<li>Can you write down a flow chart or a formula that accurately describes the problem? </li>
+<li>Is there a simple piece of hardware or software that already does what you want?</li>
+<li>Do you want the functionality to "evolve" in a direction that is not pre-defined? If so, then consider using a Genetic Algorithm (that's another topic!).</li>
+<li>Is generating input/output examples hard? </li>
+<li>Is the problem is very "discrete"? Can the correct answer can be found in a look-up table of reasonable size? If so, then use a look-up table.</li>
+<li>Are precise numeric output values required?</li>
+</ul>
+</p>
+
+<p>
+Conversely, here are some situations where a BP NN might be a good idea:<br>
+</p>
+
+<p>
+<ul>
+<li>A large amount of input/output data is available, but you're not sure how to relate it to the output.</li>
+<li>The problem appears to have overwhelming complexity, but there is clearly a solution.</li>
+<li>It is easy to create a number of examples of the correct behavior.</li>
+<li>The solution to the problem may change over time, within the bounds of the given input and output parameters (i.e., today 2+2=4, but in the future we may find that 2+2=3.8).</li>
+<li>Outputs can be "fuzzy", or non-numeric.</li>
+</ul>
+</p>
+
+<p>
+Source: <a href="http://www.seattlerobotics.org/encoder/nov98/neural.html" title="http://www.seattlerobotics.org/encoder/nov98/neural.html" class="http">http://www.seattlerobotics.org/encoder/nov98/neural.html</a><br>
+</p>
+
+<h2>The Backpropagation Algorithm (Version A)</h2>
+<p>
+Step 1. Initialize the weights.<br>
+Step 2. Construct the error function.<br>
+Step 3. Perform the backpropagation.<br>
+Step 4. Adjust the weights.<br>
+Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value.<br>
+</p>
+
+<p>
+Pros: if F is the neural network function and `{(bb x_i, bb t_i)}` is the training data, then `F(bb x_i) = bb t_i`.<br>
+Cons: Uses a heck of a lot of memory. For mobile, this is probably not the way to go.<br>
+</p>
+
+<h2>Initalizing the Weights</h2>
+<p>
+"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See <a href="../NeuralNetworks.html" title=":NeuralNetworks" class="page">:NeuralNetworks</a> ) lie at <em>the transition between the linear and saturated parts of the +ActivationFunction</em> " (I have no idea what the emphasized parts means.)<br>
+</p>
+
+<p>
+Most researchers initialize the weights to random values between 0 and 1.<br>
+</p>
+
+<h2>Constructing the Error Function</h2>
+<p>
+For each training example:<br>
+<ul>
+<li>use the output to compute `E_i`.</li>
+<li>store the values of induced local fields and impulse functions. You'll need these values for the backpropagation. </li>
+</ul>
+</p>
+
+<p>
+<strong>Gotcha 1:</strong> recall that we have to append a 1 to each input because of the bias. Make sure to append a 1 to the output from a previous layer to the next layer.<br>
+</p>
+
+<p>
+<strong>Gotcha 2:</strong> for each training example and each neuron, you save value of its induced local field and impulse function. This can be prohibitive depending on the neural network.<br>
+</p>
+
+<h2>Performing the Backpropagation</h2>
+
+<p>
+For each training example:<br>
+</p>
+
+<p>
+<ul>
+<li>compute the local gradients (`delta"s"`) of each neuron. </li>
+</ul>
+</p>
+
+<p>
+Let L be the output layer. <br>
+Let `v_j^((l))` be the induced local field of neuron `j` in layer `l`. <br>
+Let `o_j^((l))` be the output (value of the impulse function) of neuron `j` in layer `l`.<br>
+Let `gamma_j^((l))` be the derivative of neuron `j`s <a href="./ActivationFunction.html" title="activation function" class="page">activation function</a>.<br>
+(In general, a superscript `l` corresponds to layer `l`.)<br>
+</p>
+
+<p>
+<strong>Note: </strong>`gamma_k` is a function. `v_j` and `o_j` are real numbers.<br>
+</p>
+
+<p>
+Define the local gradient `delta_j^((l))` of neuron `j` recursively as follows:<br>
+</p>
+
+<p>
+<ul>
+<li>for neuron `j` in output layer `L`, `delta_k^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`</li>
+<li>for neuron `j` in hidden layer `l`, `delta_k^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))`</li>
+</ul>
+</p>
+
+<p>
+where weight `w_kj^((l+1))` connects neuron `j` in layer `l` to neuron k in layer `(l+1)`. A diagram will help:<br>
+</p>
+
+<pre>
+Layer l               Layer (l+1)
+neuron 1              neuron 1, gradient 1
+...                 / ...
+...               /   ...
+...           w_1j    ...
+...           /       ...
+...         /         ... 
+...       /           ...
+neuron j ----w_kj---&gt; neuron k, gradient k
+</pre>
+
+<p>
+In other words, for a hidden neuron `j` in layer `l`, take the sum of the product of the gradients in the <em>next </em>layer and the weights that connect neuron `j` to the neuron of that local gradient.<br>
+</p>
+
+<p>
+<strong>Note: </strong>If its not clear, `gamma_j^((l)) ( v_j^((l)) )` is the value of the derivative of the activation function at the induced local field. It's not multiplication.<br>
+</p>
+
+<p>
+Since the recursion starts in the output layer, the computations proceed from the back to the front (hence the name "backpropagation").<br>
+</p>
+
+<p>
+<ul>
+<li>Make sure to store the values of the `delta"s"`</li>
+</ul>
+</p>
+
+<h2>Adjusting the Weights</h2>
+<p>
+Use the local gradients to adjust the weights. <br>
+</p>
+
+<p>
+`w_(kj)^((l)) = w_(kj)^((l)) + alpha(w_(kj)^(**(l))) + eta sigma_j^((l)) o_k^((l-1))`<br>
+</p>
+
+<p>
+where `w_(kj)^(**(1))` is the value of the weight in the <em>previous</em> time step. If there is no previous value, then this term defaults to 0.<br>
+</p>
+
+<p>
+<ul>
+<li>Make sure to store the previous values of the weights</li>
+</ul>
+</p>
+
+<p>
+<strong>Note: </strong>Make sure to do this step <em>after </em>computing the gradients. Otherwise, it won't work.<br>
+</p>
+
+
+
+
+
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+	<b>Attachments:</b>
+	<table>		<tr><td><a href='./BackPropagation/BackPropagation'>BackPropagation</a></td><td>&nbsp;</td><td>0b</td></tr>		<tr><td><a href='./BackPropagation/Motivation'>Motivation</a></td><td>&nbsp;</td><td>0b</td></tr>	</table>
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='../View.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./ListView.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>CustomView</h1>
+
+<p>
+Created Sunday 10 November 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="http://developer.android.com/training/custom-views/%E2%80%8E" title="http://developer.android.com/training/custom-views/%E2%80%8E" class="http">http://developer.android.com/training/custom-views/%E2%80%8E</a></li>
+<li><a href="http://www.vogella.com/articles/AndroidCustomViews/article.html" title="http://www.vogella.com/articles/AndroidCustomViews/article.html" class="http">http://www.vogella.com/articles/AndroidCustomViews/article.html</a></li>
+</ul>
+</p>
+
+<p>
+<ul>
+<li>To allow the Android Developer Tools to interact with your view, at a minimum you must provide a constructor that takes a Context and an AttributeSet object as parameters. </li>
+</ul>
+</p>
+
+<p>
+To control the view with XML:<br>
+<ul>
+<li>define custom attributes for your view in a &lt;declare-styleable&gt; resource element</li>
+<li>Specify values for the attributes in your XML layout</li>
+<li>Retrieve attribute values at runtime</li>
+<li>Apply the retrieved attribute values to your view</li>
+</ul>
+</p>
+
+<h2>Defining Custom XML Attributes</h2>
+<pre>
+@Example (res/values/attrs.xml file)
+&lt;resources&gt;
+   &lt;declare-styleable name="PieChart"&gt;
+       &lt;attr name="showText" format="boolean" /&gt;
+       &lt;attr name="labelPosition" format="enum"&gt;
+           &lt;enum name="left" value="0"/&gt;
+           &lt;enum name="right" value="1"/&gt;
+       &lt;/attr&gt;
+   &lt;/declare-styleable&gt;
+&lt;/resources&gt;
+</pre>
+
+
+<h2>Using Custom XML Attributes</h2>
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:custom="http://schemas.android.com/apk/res/[yourpackagename]"&gt;
+ &lt;com.example.customviews.charting.PieChart
+     custom:showText="true"
+     custom:labelPosition="left" /&gt;
+&lt;/LinearLayout&gt;
+</pre>
+
+<p>
+<strong>Note: </strong>You can use any namespace instead of <code>custom</code>.<br>
+</p>
+
+<h3>Setting Custom XML Attributes in the View</h3>
+
+<pre>
+public PieChart(Context context, AttributeSet attrs) {
+   super(context, attrs);
+   
+</pre>
+<p>
+<code>TypedArray a = context.getTheme().obtainStyledAttributes(</code><br>
+<code>        attrs,</code><br>
+<code>        R.styleable.PieChart,</code><br>
+<code>        0, 0);</code><br>
+<br>
+<code>   try {</code><br>
+<code>       mShowText = a.getBoolean(R.styleable.PieChart_showText, false);</code><br>
+<code>       mTextPos = a.getInteger(R.styleable.PieChart_labelPosition, 0);</code><br>
+<code>   } finally {</code><br>
+<code>       a.recycle();</code><br>
+<code>   }</code><br>
+<code>}</code><br>
+<br>
+<strong>Note: </strong>use #obtainStyledAttributes to get a TypedArray. Make sure to call #recycle when you're done.<br>
+<br>
+</p>
+<h2>Layout</h2>
+<p>
+<ul>
+<li>All views must know how to measure and layout themselves.</li>
+<li>#requestLayout tells the view to measure and layout itself. This method calls #requestLayout on its parent so its potentially expensive. You don't normally override this.</li>
+<li>#onMeasure determines the size for the view and its children. It must set the dimension via a call to #setMeasuredDimension.</li>
+<li>#onLayout (in the parent) positions child views based on the result of #onMeasure. This call happens typically once. </li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

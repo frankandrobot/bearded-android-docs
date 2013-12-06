@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='../ConcurrencyIssues.html'>Prev</a> ]
+
+			[ <a href='../../index.html.html'>Index</a> ]
+
+	[ <a href='./DeadLock.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>BlockingMethods</h1>
+
+<p>
+Created Sunday 08 September 2013<br>
+</p>
+
+<p>
+Blocking methods in Java are those method which block the executing thread until there operation finished.<br>
+</p>
+
+<p>
+<ul>
+<li>If you are writing GUI application may be in Swing never call blocking method in Event dispatcher thread or in the event handler. for example if you are reading a file or opening a network connection when a button is clicked don't do that on actionPerformed() method, instead just create another worker thread to do that job and return from actionPerformed(). This will keep your GUI responsive, but again it depends upon design if the operation is something which requires user to wait than consider using invokeAndWait() for synchronous update.</li>
+</ul>
+</p>
+
+<p>
+<ul>
+<li>Always let separate worker thread handle time consuming operations e.g. reading and writing to file, database or socket.</li>
+</ul>
+</p>
+
+<p>
+<ul>
+<li>Use timeout while calling blocking method. so if your blocking call doesn't return in specified time period, consider aborting it and returning back but again this depends upon scenario. if you are using Executor Framework for managing your worker threads, which is by the way recommended way than you can use Future object whose get() methods support timeout, but ensure that you properly terminate a blocking call.</li>
+</ul>
+</p>
+
+<p>
+<ul>
+<li>Extension of first practices, don't call blocking methods on keyPressed() or paint() method which are supposed to return as quickly as possible.</li>
+</ul>
+</p>
+
+<p>
+<ul>
+<li>Use call-back functions to process result of a blocking call.</li>
+</ul>
+</p>
+
+<p>
+Read more: <a href="http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKievUu" title="http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKievUu" class="http">http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKievUu</a><br>
+</p>
+
+
+<p>
+Read more: <a href="http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKd1fD8" title="http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKd1fD8" class="http">http://javarevisited.blogspot.com/2012/02/what-is-blocking-methods-in-java-and.html#ixzz2eMKd1fD8</a><br>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./Inheritance.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./OpenClosedPrinciple.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>LiskovSubstitutionPrinciple</h1>
+
+<p>
+Created Tuesday 15 October 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/56860/what-is-the-liskov-substitution-principle" title="http://stackoverflow.com/questions/56860/what-is-the-liskov-substitution-principle" class="http">http://stackoverflow.com/questions/56860/what-is-the-liskov-substitution-principle</a></li>
+<li>Bob Martin: <a href="http://www.objectmentor.com/resources/articles/lsp.pdf" title="http://www.objectmentor.com/resources/articles/lsp.pdf" class="http">http://www.objectmentor.com/resources/articles/lsp.pdf</a></li>
+</ul>
+</p>
+
+<p>
+See also DesignByContract.<br>
+</p>
+
+<p>
+<ul>
+<li>The LSP is functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.</li>
+</ul>
+</p>
+
+<h2>Example: Circle-Ellipse Problem</h2>
+
+<p>
+A circle is a special case of an ellipse, so should we use inheritance to model this relationship?<br>
+Probably not. While a circle is an ellipse, the Circle Object behaves differently than the Ellipse Object.<br>
+Suppose the ellipse class looks like this:<br>
+</p>
+
+<pre>
+class Ellipse
+{
+   //bunch of math constants
+   int centerX, centerY;
+   int h, k;
+   int a, b;
+
+   public void stretchX(float s)
+   {
+       //stretch the ellipse horizontally
+   }
+}
+</pre>
+
+<p>
+<ul>
+<li>If you override #stretchX to stretch horizontally and vertically, this breaks LSP. (If you call #stretchX on an ellipse, then you don't expect it to also stretch vertically. Why is this a big deal? Imagine the ellipse lived in a rectangle on the screen. If #stretchX behaved this way, the ellipse might pop out of the rectangle...an unexpected result.)</li>
+<li>If you don't override #stretchX on a circle and call #stretchX on a circle, then it won't be a circle anymore. (This breaks the Circle object.)</li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

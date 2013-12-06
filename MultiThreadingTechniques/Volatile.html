@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./ThreadLocal.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='../NeuralNetworks.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>Volatile</h1>
+
+<p>
+Created Saturday 07 September 2013<br>
+</p>
+
+<p>
+<ul>
+<li>the value of the variable is always stored in the <a href="./JavaMemory/HeapSpace.html" title="JavaMemory:HeapSpace" class="page">JavaMemory:HeapSpace</a> and not in the stack</li>
+<li>a write to volatile variable establishes a happens-before relationship with readers. All readers will see the new value of the variable once the writer finishes.</li>
+</ul>
+</p>
+
+<h2>When to Use Volatile</h2>
+<p>
+<ul>
+<li>To make long and doubles atomic</li>
+<li>Alternative way of doing synchronization</li>
+<li>To tell compiler to NOT do code optimization that is undesirable in multi-threaded environment. Ex: don't cache value in stack</li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

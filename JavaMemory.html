@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./Intent.html'>Prev</a> ]
+
+			[ <a href='./index.html.html'>Index</a> ]
+
+	[ <a href='./JavaMemory/HeapSpace.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>JavaMemory</h1>
+
+<p>
+Created Saturday 07 September 2013<br>
+</p>
+
+<p>
+Different types of memory: <br>
+<ul>
+<li><a href="./JavaMemory/HeapSpace.html" title="+HeapSpace" class="page">+HeapSpace</a> - contains objects (i.e., whenever you use "new" keyword, this is where object goes)</li>
+<li>stack - methods, local variables, and reference variables. Each method call has its own frame on the stack.</li>
+<li>code - bytecode</li>
+<li>static - static data/methods</li>
+</ul>
+</p>
+
+
+<p>
+<ul>
+<li>Watch out for static mutable objects---don't store mutable non-threadsafe classes</li>
+<li>Object pooling is in general inefficient unless the objects are very expensive to create. See <a href="http://www.ibm.com/developerworks/java/library/j-jtp01274/index.html" title="http://www.ibm.com/developerworks/java/library/j-jtp01274/index.html" class="http">http://www.ibm.com/developerworks/java/library/j-jtp01274/index.html</a></li>
+<li>Explicit nulling is often bad unless you really will cause a memory leak. (Don't help the GC).</li>
+</ul>
+</p>
+
+<h1>Links</h1>
+<p>
+<ul>
+<li><a href="http://www.offthehill.org/articles/2011/06/03/java-static-variables-are-wrong-almost-always/" title="http://www.offthehill.org/articles/2011/06/03/java-static-variables-are-wrong-almost-always/" class="http">http://www.offthehill.org/articles/2011/06/03/java-static-variables-are-wrong-almost-always/</a></li>
+<li><a href="http://tech.puredanger.com/2009/01/27/java-concurrency-bugs-mutable-statics/" title="http://tech.puredanger.com/2009/01/27/java-concurrency-bugs-mutable-statics/" class="http">http://tech.puredanger.com/2009/01/27/java-concurrency-bugs-mutable-statics/</a></li>
+<li><a href="https://blog.codecentric.de/en/2010/01/the-java-memory-architecture-1-act/" title="https://blog.codecentric.de/en/2010/01/the-java-memory-architecture-1-act/" class="https">https://blog.codecentric.de/en/2010/01/the-java-memory-architecture-1-act/</a></li>
+<li><a href="http://www.ibm.com/developerworks/library/j-codetoheap/" title="http://www.ibm.com/developerworks/library/j-codetoheap/" class="http">http://www.ibm.com/developerworks/library/j-codetoheap/</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

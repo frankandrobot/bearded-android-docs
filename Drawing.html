@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./Design/Notifications.html'>Prev</a> ]
+
+			[ <a href='./index.html.html'>Index</a> ]
+
+	[ <a href='./Fragment.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>Drawing</h1>
+
+<p>
+Created Tuesday 10 September 2013<br>
+</p>
+
+<h2>Draw to a View</h2>
+<p>
+TODO<br>
+</p>
+
+<h2>Draw to a Canvas</h2>
+<p>
+<ul>
+<li>use when application needs to regularly re-draw itself. </li>
+</ul>
+</p>
+
+<p>
+To draw something, you need 4 basic components: <br>
+<ol type="1" start="1">
+<li>A Bitmap to hold the pixels, </li>
+<li>a Canvas to host the draw calls (writing into the bitmap), </li>
+<li>a drawing primitive (e.g. Rect, Path, text, Bitmap), and </li>
+<li>a paint (to describe the colors and styles for the drawing).</li>
+</ol>
+</p>
+
+<p>
+Ex:<br>
+</p>
+
+<pre>
+private Bitmap getBitmapWithBorder(View v) {
+        Bitmap bitmap = getBitmapFromView(v);
+        Canvas can = new Canvas(bitmap);
+
+        Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+
+        Paint paint = new Paint();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(LINE_THICKNESS);
+        paint.setColor(Color.BLACK);
+
+        can.drawBitmap(bitmap, 0, 0, null);
+        can.drawRect(rect, paint);
+
+        return bitmap;
+    }
+</pre>
+
+
+<h1>Links</h1>
+<p>
+<ul>
+<li><a href="http://developer.android.com/reference/android/graphics/Canvas.html" title="http://developer.android.com/reference/android/graphics/Canvas.html" class="http">http://developer.android.com/reference/android/graphics/Canvas.html</a></li>
+<li><a href="http://developer.android.com/guide/topics/graphics/2d-graphics.html" title="http://developer.android.com/guide/topics/graphics/2d-graphics.html" class="http">http://developer.android.com/guide/topics/graphics/2d-graphics.html</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./ApkFileFormat/DexFile.html'>Prev</a> ]
+
+			[ <a href='./index.html.html'>Index</a> ]
+
+	[ <a href='./Database.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>ContentProvider</h1>
+
+<p>
+Created Sunday 14 July 2013<br>
+</p>
+
+<p>
+A content provider manages a shared set of application data. You can store the data in the file system, an SQLite database, on the web, or any other persistent storage location your application can access. Through the content provider, other applications can query or even modify the data (if the content provider allows it). For example, the Android system provides a content provider that manages the user's contact information. As such, any application with the proper permissions can query part of the content provider (such as ContactsContract.Data) to read and write information about a particular person.<br>
+</p>
+
+<p>
+When you want to access data in a content provider, you use the ContentResolver object in your application's Context to communicate with the provider as a client. <br>
+</p>
+
+<p>
+To retrieve data from a provider, your application needs "read access permission" for the provider. You can't request this permission at run-time; instead, you have to specify that you need this permission in your manifest, using the &lt;uses-permission&gt; element and the exact permission name defined by the provider.<br>
+</p>
+
+<p>
+The next step in retrieving data a provider is to construct a query. <br>
+</p>
+
+<p>
+Note: A provider isn't required to have a primary key, and it isn't required to use _ID as the column name of a primary key if one is present. However, if you want to bind data from a provider to a ListView, one of the column names has to be _ID. This requirement is explained in more detail in the section Displaying query results.<br>
+</p>
+
+<p>
+!Links<br>
+<ul>
+<li><a href="http://developer.android.com/guide/topics/providers/content-providers.html" title="http://developer.android.com/guide/topics/providers/content-providers.html" class="http">http://developer.android.com/guide/topics/providers/content-providers.html</a></li>
+<li><a href="http://developer.android.com/guide/topics/providers/content-provider-basics.html" title="http://developer.android.com/guide/topics/providers/content-provider-basics.html" class="http">http://developer.android.com/guide/topics/providers/content-provider-basics.html</a></li>
+<li><a href="http://developer.android.com/guide/topics/manifest/provider-element.html" title="http://developer.android.com/guide/topics/manifest/provider-element.html" class="http">http://developer.android.com/guide/topics/manifest/provider-element.html</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

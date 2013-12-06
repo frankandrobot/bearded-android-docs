@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./SwipeToDeleteGesture.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='../Help.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>TouchEvents</h1>
+
+<p>
+Created Tuesday 10 September 2013<br>
+</p>
+
+<p>
+How do onInterceptTouchEvent, dispatchTouchEvent and onTouchEvent interact together within a hierarchy of Views (ViewGroup)?<br>
+</p>
+
+<p>
+<ul>
+<li>dispatchTouchEvent is actually defined on Activity, View and ViewGroup. Think of it as a controller which decides how to route the touch events.</li>
+</ul>
+</p>
+
+<h2>View#dispatchTouchEvent</h2>
+<p>
+The simplest case is that of View.dispatchTouchEvent which will route the touch event to either OnTouchListener.onTouchEvent if its defined or to the extension method onTouchEvent.<br>
+</p>
+
+<h2>ViewGroup</h2>
+<p>
+For ViewGroup.dispatchTouchEvent things are way more complicated. It needs to figure out which one of its child views should get the event (by calling child.dispatchTouchEvent). This is basically a hit testing algorithm where you figure out which child view's bounding rectangle contains the touch point coordinates.<br>
+</p>
+
+<p>
+But before it can dispatch the event to the appropriate child view, the parent can spy and/or intercept the event all together. This is what onInterceptTouchEvent is there for. So it calls this method first before doing the hit testing and if the event was hijacked (by returning true from onInterceptTouchEvent) it sends a ACTION_CANCEL to the child views so they can abandon their touch event processing (from previous touch events) and from then onwards all touch events at the parent level are dispatched to onTouchListener.onTouch (if defined) or onTouchEvent. Also in that case, onInterceptTouchEvent is never called again.<br>
+</p>
+
+<h2>Summary</h2>
+<p>
+Would you even want to override [Activity|ViewGroup|View].dispatchTouchEvent? Unless you are doing some custom routing you probably should not.<br>
+</p>
+
+<p>
+The main extension methods are ViewGroup.onInterceptTouchEvent if you want to spy and/or intercept touch event at the parent level and View.onTouchListener/View.onTouchEvent for main event handling.<br>
+</p>
+
+<p>
+All in all its overly complicated design imo but android apis lean more towards flexibility than simplicity.<br>
+</p>
+
+<h1>Links</h1>
+<p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/9586032/android-difference-between-onintercepttouchevent-and-dispatchtouchevent" title="http://stackoverflow.com/questions/9586032/android-difference-between-onintercepttouchevent-and-dispatchtouchevent" class="http">http://stackoverflow.com/questions/9586032/android-difference-between-onintercepttouchevent-and-dispatchtouchevent</a></li>
+<li><a href="http://developer.android.com/training/gestures/viewgroup.html" title="http://developer.android.com/training/gestures/viewgroup.html" class="http">http://developer.android.com/training/gestures/viewgroup.html</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./HashMap.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./InterviewQuestions.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>ImmutableObject</h1>
+
+<p>
+Created Saturday 07 September 2013<br>
+</p>
+
+<p>
+<ol type="1" start="1">
+<li>Make the class final</li>
+<li>make all members final, set them explicitly, in a static block, or in the constructor</li>
+<li>Make all members private</li>
+<li>No Methods that modify state</li>
+<li>Be extremely careful to limit access to mutable member components (remember the field may be final but the object can still be mutable. ie private final Date imStillMutable) - See defensive copying or its cousin copy constructors for more info.</li>
+</ol>
+</p>
+
+<p>
+(1) is very important and easy to overlook. If its not final people can freely extend your class, override behavior, then supply their new class as a suitable substitute. By declaring the class final you can ensure it will never be extended. This is indicative of the problems surrounding inheritance especially when it is applied inappropriately. <br>
+</p>
+
+<h1>Links</h1>
+<p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/6305752/how-to-create-immutable-objects-in-java" title="http://stackoverflow.com/questions/6305752/how-to-create-immutable-objects-in-java" class="http">http://stackoverflow.com/questions/6305752/how-to-create-immutable-objects-in-java</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

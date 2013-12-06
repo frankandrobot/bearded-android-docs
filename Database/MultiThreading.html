@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='../Database.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./Resources.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>MultiThreading</h1>
+
+<p>
+Created Friday 12 July 2013<br>
+</p>
+
+<p>
+The goals:<br>
+</p>
+
+<p>
+<ol type="1" start="1">
+<li>It should be readable and easy to maintain</li>
+<li>It should be generic enough so that the "database" can be a sqlite database or something over the network.</li>
+<li>It should be multi-thread safe. </li>
+</ol>
+</p>
+
+<p>
+By "thread safe":<br>
+<ol type="1" start="1">
+<li>it should NOT run in the main UI thread,</li>
+<li>database calls should not conflict with each other</li>
+<li>the system should know how to communicate results back to the main UI thread.</li>
+<li>It should know about configuration changes (like changing the phone orientation)</li>
+</ol>
+</p>
+
+<h2>Solution</h2>
+<p>
+(1) is subjective but you can follow rules like KISS---Keep It Simple Stupid. For coding, KISS means that each class does one thing and thing very well. <br>
+</p>
+
+<p>
+For example, your app can have one framework for internal database calls and another for external database calls ("external" as in the Android system via Intents and <a href="./ContentProviders.html" title="ContentProviders" class="page">ContentProviders</a>). <br>
+</p>
+
+<p>
+Another way to satisfy (1) is to do things the "Android way". (Other developers, including your future self, shouldn't have to struggle to learn your code.)<br>
+</p>
+
+<p>
+(2) is actually pretty easy: just implement a class that abstracts all the low-level CRUD. For example, one class can handle sqlite databases and another class <em>with the same interface</em> that can handle a Google drive backend.<br>
+</p>
+
+<p>
+You can handle (3) by using Android classes. <br>
+Here are some suggested solutions:<br>
+</p>
+
+<p>
+<ul>
+<li><a href="./AsyncTask.html" title="AsyncTask" class="page">AsyncTask</a> - unfortunately, <a href="./AsyncTask.html" title="AsyncTask" class="page">AsyncTask</a> doesn't know about configuration changes.</li>
+<li><a href="./AsyncTaskLoader.html" title="AsyncTaskLoader" class="page">AsyncTaskLoader</a> - seems to be the way to go</li>
+<li>headless fragments - Fragments without a UI. You have to basically reimplement the <a href="./AsyncTaskLoader.html" title="AsyncTaskLoader" class="page">AsyncTaskLoader</a> framework so that defeats the point. (See here <a href="http://blogactivity.wordpress.com/2011/09/01/proper-use-of-asynctask/" title="http://blogactivity.wordpress.com/2011/09/01/proper-use-of-asynctask/" class="http">http://blogactivity.wordpress.com/2011/09/01/proper-use-of-asynctask/</a>)</li>
+</ul>
+</p>
+
+<p>
+Loaders are designed to load data but you can hack a Loader to also handle insertions/update. (You can do whatever you want in the loadInBackground() method.)<br>
+</p>
+ 
+<p>
+The catch is that before HoneyComb, all Loaders share a thread pool to excecute requests in parallel. (After HoneyComb, Loaders execute tasks in sequence.) This means that not only are your tasks NOT guaranteed to execute in order but you have to worry about multithreading issues, in particular, data consistency issues. <br>
+</p>
+
+<p>
+However, I don't think that this is such a big deal. Since Loaders are spawned from the UI, only you are using a Loader for the UI, so I don't think multi-threading will cause you too much of a problem.  <br>
+</p>
+
+<p>
+Handling these "multithreading issues" depends on the app. For example, if there's only one database operation at a time, then you don't need to worry. <br>
+</p>
+
+<p>
+You need to worry when two threads update the database at the same time (for example, the user and a background thread). <br>
+</p>
+
+<p>
+AsyncTaskLoaders unfortunately execute all operations <em>at the same time</em>, so there's no guarantee that the other is<br>
+correct, so you get inconsistent data. <br>
+</p>
+
+<p>
+Let's talk about inconsistent data. This is the classic<br>
+multi-threading problem:<br>
+</p>
+
+<p>
+| Thread 1                        | Thread 2                        |<br>
+| Object x = //read value from db |                                 |<br>
+| if (x == null)                  |                                 |<br>
+| <em>insert x into db              | Object x = </em>read value from db |<br>
+|                                 | if (x == null)                  |<br>
+|                                 | //insert x into db              |<br>
+</p>
+
+<p>
+The result is that x gets inserted twice. Using begin*Transaction() doesn't help either unless you get a<br>
+reserved lock. This way only one thread will get the lock and insert x. <br>
+</p>
+
+<p>
+The problem with this solution is that well you are now in multi-thread land where everything is not as it seems.<br>
+AsyncTaskLoader tries to run all tasks at the same time, so you have no guarantee on the order that your database<br>
+operations get executed. <br>
+</p>
+
+<p>
+Is there a better solution? For most apps, you don't have to worry about 100's of users all trying to get the same data. What I'm trying to get at is that you don't need to worry about multi-threading. Your "users" are the person using the phone and maybe a handful of background threads. So you can probably get away with the following:<br>
+</p>
+
+<p>
+<ul>
+<li>Create a class that abstracts the lo-level database access.</li>
+<li>Create a ContentProvider using the class above.</li>
+<li>Create a class that encapsulates business logic. Ex: add a task </li>
+</ul>
+</p>
+
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

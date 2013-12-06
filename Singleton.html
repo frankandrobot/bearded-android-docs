@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./Service.html'>Prev</a> ]
+
+			[ <a href='./index.html.html'>Index</a> ]
+
+	[ <a href='./TODO.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>Singleton</h1>
+
+<p>
+Created Monday 09 September 2013<br>
+</p>
+
+<p>
+When instantiating a singleton, make sure that the instantiator actually instantiates <em>one</em> instance of the object<br>
+i.e., take into account <a href="./ConcurrencyIssues.html" title="ConcurrencyIssues" class="page">ConcurrencyIssues</a><br>
+</p>
+
+<p>
+  <code>@Good</code><br>
+</p>
+<pre>
+class A
+{
+       static private A instance = new A(); //thread-safe
+       static public A getInstance{ return A; }
+}
+</pre>
+
+
+<p>
+Lazy instantiation:<br>
+</p>
+
+<p>
+  <code>@Good (lazy instantiation)</code><br>
+</p>
+<pre>
+class A
+{
+      private static class Holder 
+      {
+            static private A instance = new A();
+      }
+      static public A getInstance() { return Holder.instance; } //thread-safe but doesn't get instantiated until called
+}
+</pre>
+
+
+<h2>Bad Example (Old school DoubleCheckedLocking)</h2>
+<p>
+Back in the days when it was expensive to enter a synchronized block, people would instantiate a singleton this way:<br>
+</p>
+
+<pre>
+public class PieChucker 
+{
+    private static PieChucker instance;
+    public static PieChucker getInstance() 
+    {
+        if(instance == null) { 
+            synchronized(PieChucker.class) {
+                if(instance == null) {
+                     instance = new PieChucker();
+                }
+            }
+        }
+        return instance;
+    }
+</pre>
+<p>
+  }<br>
+<br>
+The problem with this technique has to do with JavaMemory:CacheCoherence. Even though Objects are stored in the heap, methods often create cached copies of variables and then sync the results with the heap. Suppose this happens:<br>
+<ul>
+<li>Thread_1 is the first to call getInstance(). It proceeds to create a new PieChucker. While it is doing this, Thread_2....</li>
+<li>Thread_2 calls getInstance(). It sees null instance so it passes the first check. It stops at the synchronized barrier. Meanwhile...</li>
+<li>Thread_1 finishes creating the PieChucker. It leaves the synchronized block. HOWEVER,....</li>
+<li>the PieChucker was created on the heap but it still hasn't been initialized completely. As a result...</li>
+<li>Thread_2 enters the synchronized block. It thinks it has a (complete) <a href="./PieChucker.html" title="PieChucker" class="page">PieChucker</a> and returns an incomplete object.</li>
+</ul>
+<br>
+Sources:<br>
+<ul>
+<li><a href="http://tech.puredanger.com/2007/06/15/double-checked-locking/" title="http://tech.puredanger.com/2007/06/15/double-checked-locking/" class="http">http://tech.puredanger.com/2007/06/15/double-checked-locking/</a></li>
+<li><a href="http://javamex.com/tutorials/synchronization_concurrency_synchronized2.shtml" title="http://javamex.com/tutorials/synchronization_concurrency_synchronized2.shtml" class="http">http://javamex.com/tutorials/synchronization_concurrency_synchronized2.shtml</a></li>
+</ul>
+<br>
+</p>
+<h2>Warnings</h2>
+<p>
+<ol type="1" start="1">
+<li>They are generally used as a global instance, why is that so bad? Because you hide the dependencies of your application in your code, instead of exposing them through the interfaces. Making something global to avoid passing it around is a code smell.</li>
+<li>They violate the Single Responsibility Principle: by virtue of the fact that they control their own creation and lifecycle.</li>
+<li>They inherently cause code to be tightly coupled. This makes faking them out under test rather difficult in many cases.</li>
+<li>They carry state around for the lifetime of the app. Another hit to testing since you can end up with a situation where tests need to be ordered which is a big no no for unit tests. Why? Because each unit test should be independent from the other.</li>
+<li>Singletons are nothing more than global state. Global state makes it so your objects can secretly get hold of things which are not declared in their APIs, and, as a result, Singletons make your APIs into pathological liars.</li>
+</ol>
+<br>
+</p>
+<h1>Links</h1>
+<p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons" title="http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons" class="http">http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons</a></li>
+<li><a href="http://jorudolph.wordpress.com/2009/11/22/singleton-considerations/" title="http://jorudolph.wordpress.com/2009/11/22/singleton-considerations/" class="http">http://jorudolph.wordpress.com/2009/11/22/singleton-considerations/</a></li>
+<li><a href="http://misko.hevery.com/2008/08/17/singletons-are-pathological-liars/" title="http://misko.hevery.com/2008/08/17/singletons-are-pathological-liars/" class="http">http://misko.hevery.com/2008/08/17/singletons-are-pathological-liars/</a></li>
+<li>See also the <a href="http://gen5.info/q/2008/07/25/the-multiton-design-pattern/" title="http://gen5.info/q/2008/07/25/the-multiton-design-pattern/" class="http">http://gen5.info/q/2008/07/25/the-multiton-design-pattern/</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

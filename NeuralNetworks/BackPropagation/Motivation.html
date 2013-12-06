@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='../BackPropagation.html'>Prev</a> ]
+
+			[ <a href='../../index.html.html'>Index</a> ]
+
+	[ <a href='../Resources.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>Motivation</h1>
+
+<p>
+Created Thursday 21 November 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf" title="http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf" class="http">http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf</a></li>
+<li><a href="http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/" title="http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/" class="http">http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/</a></li>
+</ul>
+</p>
+
+<p>
+Given training data `{(bb x_1, bb t_1), ...,(bb x_p, bb t_p)}` where each `bb x_i` and `bb t_i` is a vector:<br>
+</p>
+
+<p>
+`bb x_i = (x_(i1), ...,  x_(i n))` and `bb t_i = (t_(i1), ..., t_(i n))`<br>
+</p>
+
+<p>
+Each `t_(ij)` is the expected output of the ith training example for the jth neuron in the output layer. (However, the relationship between the `x_(ij)s` and the output layer isn't always as clear cut, and that's fine.)<br>
+</p>
+
+<p>
+Define `E_i` as<br>
+</p>
+
+<p>
+`E_i = 1/2 ||bb o_i - bb t_i||^2`<br>
+</p>
+
+<p>
+where `bb o_i` is the actual output of the network for input `bb x_i` and `||*||` is the euclidian distance. Each `E_i` is just the error of the ith training example.<br>
+</p>
+
+<p>
+<strong>Note:</strong> Since we're dealing with vectors, the error is the sum of the differences of the expected (`t_i`) and actual (`o_i`) output <em>for each neuron in the output layer</em>. Each `E_i` actually looks like this:<br>
+</p>
+
+<p>
+`E_i = (o_(i1) - t_(i1))^2 + cdots + (o_(im) - t_(im))^2`<br>
+</p>
+
+<p>
+where `o_(ij)` is the actual output of the jth neuron (in the output layer) and `t_(ij)` is the expected output of the jth neuron (in the output layer).<br>
+</p>
+
+<p>
+We want to minimize the total error `E` of the network:<br>
+</p>
+
+<p>
+`E = sum_i^p E_i = 1/2 sum_i^p ||bb o_i - bb t_i||^2`<br>
+</p>
+
+<h2>Motivation for the Backpropagation Algorithm</h2>
+<p>
+<ul>
+<li>E is actually function of the weights! The input `bb x_i` and expected output `bb t_i` are fixed. The weights are the only parameters that can minimize the error function.</li>
+<li>E is continuous and differentiable. Each impulse function comprising the network is continuous and differentiable. E is built via composition and summation of the impulse functions. Thus, its gradient exists. </li>
+</ul>
+</p>
+
+<p>
+As a result, we can use the method of Appendix:GradientDescent to find the values of the weights. This is essentially all that the backpropagation algorithm is.<br>
+</p>
+
+<h3>The Gradient of `E`</h3>
+<p>
+Let's start with the case of a single-layer network with only a single neuron.<br>
+Then `E_i` reduces to `(o_(i1) - t_(i1))^2`, or dropping the extra subscript for the only neuron, `E_i = (o_i - t_i)^2`. But wait there's more! Since its a single neuron, the output is just the value of the neuron's impulse function `f`, so <br>
+</p>
+
+<p>
+`E_i = (f(bb x_i) - t_i)^2 = [phi(sum_k w_k x_(ik)) - t_i]^2`.<br>
+</p>
+
+<p>
+Thus, `E = sum_i [phi(sum_k w_k x_(ik)) - t_i]^2`.<br>
+</p>
+
+<p>
+The gradient of E is defined as<br>
+</p>
+
+<p>
+`grad E = ((dE)/(dw_0),... ,(dE)/(dw_k))`.<br>
+</p>
+
+<p>
+Let's compute a `(dE)/(dw_j)` nice and slow. Recall `E` is the sum of `E_i`s.<br>
+</p>
+
+<p>
+`(dE_i)/(dw_j) = (d)/(dw_j) [phi(sum_k w_k x_(ik)) - t_i]^2`<br>
+</p>
+
+<p>
+`t_i` and each `x_(ik)` are constants. Also, we treat each `w_i != w_j` as constants. So the expression can be treated like this:<br>
+</p>
+
+<p>
+`(dE_i)/(dw_j) = (d)/(dw_j) (phi(C + w_j x_(ij)) - D)^2`<br>
+</p>
+
+<p>
+where `C` and `D` are constants. Applying the chain rule twice (once on the squared term and then on `phi`)<br>
+</p>
+
+<p>
+`(dE_i)/(dw_j) = 2(phi(C + w_j x_(ij)) - D) xx (d)/(dw_j)(phi(C + w_j x_(ij)) - D)`<br>
+`              = 2(phi(C + w_j x_(ij)) - D) xx phi'(C + w_j x_(ij)) xx x_(ij)`<br>
+`              = 2[phi(sum_k w_k x_(ik)] - t_i) xx phi'(sum_k w_k x_(ik)) xx x_(ij)`<br>
+</p>
+
+<p>
+Phew! Let's make a simplification. Recall the definition of the output `o_i`:<br>
+</p>
+
+<p>
+`(dE_i)/(dw_j) = 2(o_i - t_i) phi'(o_i) x_(ij)`<br>
+</p>
+
+<p>
+Thus:<br>
+</p>
+
+<p>
+`(dE)/(dw_j) = 2 sum_(i=1)^p (o_i - t_i) phi'(o_i) x_(ij)`<br>
+</p>
+
+<p>
+The gradient points in the direction of steepest ascent, so if we want to go to the minimum, just travel backwards along the gradient. In other words, add a negative multiple of `(dE)/(dw_j)` to the current weight `w_j` to go towards the minimum of `E`:<br>
+</p>
+
+<p>
+`w_j = w_j - eta sum_(i=1)^p (o_i - t_i) phi'(o_i) x_(ij)`<br>
+</p>
+
+<p>
+(We drop the "2" since it gets absorbed by `eta`. `eta` is called the <strong>learning parameter</strong>.)<br>
+</p>
+
+<p>
+<ul>
+<li><strong>The backpropagation algorithm repeats this process until the error E is smaller than a preset value.</strong></li>
+</ul>
+</p>
+
+<p>
+Let's step back for a minute. We're adjusting the weights (which are the real inputs) so that the error function E is at its global minimum (hopefully). The problem is how can we be sure its a global minimum? how can we be sure the adjustment doesn't overshoot the minimum? how can we be sure we don't oscillate near the minimum?<br>
+</p>
+
+<p>
+Enter the <strong>momentum</strong>. <br>
+</p>
+
+<h3>More Complex Case</h3>
+<p>
+We still haven't seen why the backpropagation algorithm is named that way. Consider a slightly more complex network consisting of two layers and a single neuron in each layer. <br>
+</p>
+
+<p>
+<img src="./Motivation/diagram.png" alt=""><br>
+</p>
+
+<p>
+The output of the network is no longer a simple application of the impulse function `f_2` for the neuron in the output layer. <br>
+Let `bb y = (y_1,y_2)` be the output of the hidden layer (the layer containing neuron `N_1`).<br>
+Then the output of the network is<br>
+</p>
+
+<p>
+`f_2(bb y) = phi(sum_k w_(k2)y_k)`<br>
+</p>
+
+<p>
+The good news is that for `w_(j2)` (the weights of the output layer), `(dE_i)/(dw_(j2))` reduces to the previous case.<br>
+</p>
+
+<p>
+`(dE_i)/(dw_(j2)) = 2(phi(C + w_(j2) y_j) - D) xx (d)/(dw_(j2))(phi(C + w_(j2) y_j) - D)`<br>
+`                 = 2(phi(C + w_(j2) y_j) - D) xx phi'(C + w_(j2) y_j) xx y_j`<br>
+`                 = 2[phi(sum_k w_(k2) y_k)] - t_i) xx phi'(sum_k w_(k2) y_k) xx y_j` <br>
+</p>
+
+<p>
+What about for the weights in the hidden layer?<br>
+</p>
+
+<p>
+`(dE_i)/(dw_(j1)) = (d)/(dw_(j1)) phi(sum_k w_(k2) y_k) - t_i]^2`<br>
+`                 = (d)/(dw_(j1)) phi(sum_k w_(k2) ((sum phi(sum_l w_(l1) x_(il))) - t_i]^2`<br>
+</p>
+
+<p>
+Continued...<br>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<b>Backlinks:</b>		<a href='../BackPropagation.html'>NeuralNetworks:BackPropagation</a>
+<br><br>
+
+	<b>Attachments:</b>
+	<table>		<tr><td><a href='./Motivation/diagram.dot'>diagram.dot</a></td><td>&nbsp;</td><td>776b</td></tr>		<tr><td><a href='./Motivation/diagram.png'>diagram.png</a></td><td>&nbsp;</td><td>3.76kb</td></tr>	</table>
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

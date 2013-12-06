@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='../HttpProtocol.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./HttpMethods.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>HttpChunkedEncoding</h1>
+
+<p>
+Created Saturday 09 November 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="http://www.jmarshall.com/easy/http/" title="http://www.jmarshall.com/easy/http/" class="http">http://www.jmarshall.com/easy/http/</a></li>
+</ul>
+</p>
+
+<p>
+If a server wants to start sending a response before knowing its total length (like with long script output), it might use the simple chunked transfer-encoding, which breaks the complete response into smaller chunks and sends them in series. You can identify such a response because it contains the "Transfer-Encoding: chunked" header. All HTTP 1.1 clients must be able to receive chunked messages.<br>
+</p>
+
+<p>
+A chunked message body contains a series of chunks, followed by a line with "0" (zero), followed by optional footers (just like headers), and a blank line. Each chunk consists of two parts:<br>
+</p>
+
+<p>
+a line with the size of the chunk data, in hex, possibly followed by a semicolon and extra parameters you can ignore (none are currently standard), and ending with CRLF.<br>
+the data itself, followed by CRLF.<br>
+So a chunked response might look like the following:<br>
+</p>
+
+<pre>
+HTTP/1.1 200 OK
+Date: Fri, 31 Dec 1999 23:59:59 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+
+1a; ignore-stuff-here
+abcdefghijklmnopqrstuvwxyz
+10
+1234567890abcdef
+0
+some-footer: some-value
+another-footer: another-value
+[blank line here]
+</pre>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<b>Backlinks:</b>		<a href='../HttpProtocol.html'>HttpProtocol</a>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

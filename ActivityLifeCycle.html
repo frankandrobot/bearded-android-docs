@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./View/ListView.html'>Prev</a> ]
+
+			[ <a href='./index.html.html'>Index</a> ]
+
+	[ <a href='./ApkFileFormat.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>ActivityLifeCycle</h1>
+
+<p>
+Created Wednesday 28 August 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="http://developer.android.com/guide/topics/fundamentals/activities.html" title="http://developer.android.com/guide/topics/fundamentals/activities.html" class="http">http://developer.android.com/guide/topics/fundamentals/activities.html</a></li>
+<li><a href="http://developer.android.com/training/basics/activity-lifecycle/starting.html" title="http://developer.android.com/training/basics/activity-lifecycle/starting.html" class="http">http://developer.android.com/training/basics/activity-lifecycle/starting.html</a></li>
+</ul>
+</p>
+
+<p>
+<ul>
+<li>An activity represents a single screen with a user interface. For example, an email application might have one activity that shows a list of new emails, another activity to compose an email, and another activity for reading emails. </li>
+<li>Activities are independent of each other.</li>
+<li>Other applications can start an activity. For example, a camera application can start the activity in the email application that composes new mail, in order for the user to share a picture. </li>
+</ul>
+</p>
+  
+<h2>Activity States</h2>
+
+<pre>
+                                    +----------+
+                       onResume()--&gt;| Resumed  |---&gt;onPause()--o
+                          ^         | (visible)|               |
+                          |         +-----+----+               |
+                     +----+-----+         ^           +--------+----------+
+         onStart()--&gt;| Started  |       onResume()&lt;---|    Paused         |
+              ^      | (visible)|                     |(partially visible)|
+         +----+----+ +-----+----+                    +--------+----------+
+   +----&gt;| Created |       ^                                  |
+   |     +---------+       |                               onStop()
+onCreate()                 |                                  |
+                           |                           +------+--+
+                         onRestart()&lt;------------------| Stopped |-----&gt;onDestroy()
+                                                       +---------+
+</pre>
+
+<p>
+An activity can exist in essentially three states:<br>
+</p>
+
+<p>
+<ul>
+<li>Resumed (aka Running) - The activity is in the foreground of the screen and has user focus.</li>
+<li>Paused - Another activity is in the foreground and has focus, but this one is still visible. That is, another activity is visible on top of this one and that activity is partially transparent or doesn't cover the entire screen. A paused activity is completely alive (the Activity object is retained in memory, it maintains all state and member information, and remains attached to the window manager), but can be killed by the system in extremely low memory situations.</li>
+<li>Stopped (aka Background) - The activity is completely obscured by another activity. A stopped activity is also still alive (the Activity object is retained in memory, it maintains all state and member information, but is not attached to the window manager). However, it is no longer visible to the user and it can be killed by the system when memory is needed elsewhere.</li>
+<li>The other states (Created and Started) are transient and the system quickly moves from them to the next state by calling the next lifecycle callback method. That is, after the system calls onCreate(), it quickly calls onStart(), which is quickly followed by onResume().</li>
+</ul>
+</p>
+
+<p>
+If an activity is paused or stopped, the system can drop it from memory either by asking it to finish (calling its finish() method), or simply killing its process. When the activity is opened again (after being finished or killed), it must be created all over.<br>
+</p>
+
+<p>
+<strong>Note: </strong>In extreme cases, when the system is super low on memory, onDestroy() may never be called! However, onStop() is always called.<br>
+</p>
+
+<h2>Pausing an Activity</h2>
+
+<p>
+<ul>
+<li>Stop actions that consume CPU.</li>
+<li>Commit unsaved changes, but only if users expect such changes to be permanently saved when they leave (such as a draft email).</li>
+<li>Release system resources that may affect battery life while your activity is paused and the user does not need them.</li>
+<li>Don't write to the database in onPause().</li>
+</ul>
+</p>
+
+<p>
+<strong>Note:</strong> onPause() is designed to be lightweight! Do heavyweight housekeeping like database access in onStop()<br>
+</p>
+
+<h2>Stopping an Activity</h2>
+<p>
+Because the system retains your Activity instance in system memory when it is stopped, it's possible that you don't need to implement the onStop() and onRestart() (or even onStart() methods at all. For most activities that are relatively simple, the activity will stop and restart just fine and you might only need to use onPause() to pause ongoing actions and disconnect from system resources.<br>
+</p>
+
+<h2>Recreating an Activity</h2>
+<p>
+When data to save is simple:<br>
+<ul>
+<li>Save state to the bundle in onSaveInstanceState(Bundle)</li>
+<li>Restore state from the saved bundle in onRestoreInstanceState(Bundle)</li>
+</ul>
+</p>
+
+<p>
+Disadvantage is that a Bundle stores objects with Parcelable (so it can be expensive). You may also need to reinstantiate expensive objects such as network connections. This can make rotating the phone seem sluggish. An alternative:<br>
+</p>
+
+<p>
+<ul>
+<li>Override the onRetainNonConfigurationInstance() method to return the object you would like to retain.</li>
+<li>When your activity is created again, call getLastNonConfigurationInstance() to recover your object.</li>
+</ul>
+</p>
+
+<p>
+<strong>Note: </strong>watch out for memory leaks! Don't store the Activity or anything associated with its Context.<br>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

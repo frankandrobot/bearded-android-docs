@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./MultiThreading/HeadlessFragments.html'>Prev</a> ]
+
+			[ <a href='./index.html.html'>Index</a> ]
+
+	[ <a href='./MultiThreadingTechniques/CountdownLatch.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>MultiThreadingTechniques</h1>
+
+<p>
+Created Tuesday 27 August 2013<br>
+</p>
+
+<h1>Synchronized Keyword</h1>
+<p>
+<ul>
+<li>Only works across the same instance of the same class</li>
+</ul>
+</p>
+
+<h1>Locks</h1>
+<p>
+<ul>
+<li>Biggest advantage is that you can back out of an attempt to acquire a lock</li>
+</ul>
+</p>
+
+<h1>Join</h1>
+<p>
+<ul>
+<li>The join method allows one thread to wait for the completion of another. If t is a Thread object whose thread is currently executing,</li>
+</ul>
+</p>
+
+<p>
+t.join();<br>
+</p>
+
+<p>
+causes the current thread to pause execution until t's thread terminate<br>
+</p>
+
+<h1>Wait vs Sleep</h1>
+<p>
+Main difference between wait and sleep is that wait() method release the acquired monitor when thread is waiting while Thread.sleep() method keeps the lock or monitor even if thread is waiting. Also wait method in java should be called from synchronized method or block while there is no such requirement for sleep() method. Another difference is Thread.sleep() method is a static method and applies on current thread, while wait() is an instance specific method and only got wake up if some other thread calls notify method on same object. also in case of sleep, sleeping thread immediately goes to Runnable state after waking up while in case of wait, waiting thread first acquires the lock and then goes into Runnable state. So based upon your need if you require a specified second of pause use sleep() method or if you want to implement inter-thread communication use wait method.<br>
+</p>
+
+<p>
+Read more: <a href="http://javarevisited.blogspot.com/2011/12/difference-between-wait-sleep-yield.html#ixzz2eECOk8bB" title="http://javarevisited.blogspot.com/2011/12/difference-between-wait-sleep-yield.html#ixzz2eECOk8bB" class="http">http://javarevisited.blogspot.com/2011/12/difference-between-wait-sleep-yield.html#ixzz2eECOk8bB</a><br>
+</p>
+
+<h1>NotifyAll vs Notify</h1>
+<p>
+<ul>
+<li>notify() wakes up a <em>single </em>thread---and we can't specific which one.</li>
+<li>notifyAll() wakes up all waiting threads</li>
+</ul>
+</p>
+
+<h2>Links</h2>
+<p>
+<ul>
+<li><a href="http://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html" title="http://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html" class="http">http://docs.oracle.com/javase/tutorial/essential/concurrency/newlocks.html</a></li>
+<li>java.util.concurrent.locks</li>
+<li><a href="http://tutorials.jenkov.com/java-util-concurrent/lock.html" title="http://tutorials.jenkov.com/java-util-concurrent/lock.html" class="http">http://tutorials.jenkov.com/java-util-concurrent/lock.html</a></li>
+<li><a href="http://javarevisited.blogspot.sg/2011/07/java-multi-threading-interview.html" title="http://javarevisited.blogspot.sg/2011/07/java-multi-threading-interview.html" class="http">http://javarevisited.blogspot.sg/2011/07/java-multi-threading-interview.html</a></li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./StringBuilder.html'>Prev</a> ]
+
+			[ <a href='../index.html.html'>Index</a> ]
+
+	[ <a href='./BitwiseOperators.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>WeakReferences</h1>
+
+<p>
+Created Friday 08 November 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="https://weblogs.java.net/blog/enicholas/archive/2006/05/understanding_w.html" title="https://weblogs.java.net/blog/enicholas/archive/2006/05/understanding_w.html" class="https">https://weblogs.java.net/blog/enicholas/archive/2006/05/understanding_w.html</a></li>
+</ul>
+</p>
+
+<p>
+There are actually four different degrees of reference strength: strong, soft, weak, and phantom, in order from strongest to weakest<br>
+</p>
+ 
+
+<h2>Strong References</h2>
+<p>
+A strong reference is an ordinary Java reference, the kind you use every day. For example, the code:<br>
+</p>
+
+<p>
+<code>StringBuffer buffer = new StringBuffer();</code><br>
+</p>
+
+<p>
+If an object is reachable via a chain of strong references (strongly reachable), it is not eligible for garbage collection.<br>
+</p>
+
+<h2>Weak References</h2>
+<p>
+A weak reference is a reference that isn't strong enough to force an object to remain in memory. Weak references allow you to leverage the garbage collector's ability to determine reachability for you, so you don't have to do it yourself. You create a weak reference like this:<br>
+</p>
+
+<p>
+<code>WeakReference&lt;Widget&gt; weakWidget = new WeakReference&lt;Widget&gt;(widget);</code><br>
+</p>
+
+<h2>Soft References</h2>
+<p>
+A soft reference is exactly like a weak reference, except that it is less eager to throw away the object to which it refers. An object which is only weakly reachable (the strongest references to it are WeakReferences) will be discarded at the next garbage collection cycle, but an object which is softly reachable will generally stick around for a while.<br>
+</p>
+
+<p>
+SoftReferences aren't required to behave any differently than WeakReferences, but in practice softly reachable objects are generally retained as long as memory is in plentiful supply. This makes them an excellent foundation for a cache, such as the image cache described above, since you can let the garbage collector worry about both how reachable the objects are (a strongly reachable object will never be removed from the cache) and how badly it needs the memory they are consuming.<br>
+</p>
+
+<h2>Phantom References</h2>
+<p>
+A phantom reference is quite different than either SoftReference or WeakReference. Its grip on its object is so tenuous that you can't even retrieve the object -- its get() method always returns null. The only use for such a reference is keeping track of when it gets enqueued into a ReferenceQueue, as at that point you know the object to which it pointed is dead. How is that different from WeakReference, though?<br>
+</p>
+
+<p>
+What good are PhantomReferences? I'm only aware of two serious cases for them: first, they allow you to determine exactly when an object was removed from memory. They are in fact the only way to determine that. This isn't generally that useful, but might come in handy in certain very specific circumstances like manipulating large images: if you know for sure that an image should be garbage collected, you can wait until it actually is before attempting to load the next image, and therefore make the dreaded OutOfMemoryError less likely.<br>
+</p>
+
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>
