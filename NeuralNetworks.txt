@@ -24,5 +24,3 @@ By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs 
 ===== Purpose of the Bias =====
 In the Perceptron model we allowed a “bias” b which translated the separating hyperplane so that it need not pass through the origin, hence allowing a the set of all pairs `(bb w, b)` to represent every possible hyperplane.
 
-
-
