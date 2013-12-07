@@ -6,7 +6,7 @@ Creation-Date: 2013-11-15T10:05:48-05:00
 Created Friday 15 November 2013
 
 ===== Definition of a Neuron =====
-A **neuron** N is a pair `(W, sigma)`, where W is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)`. We call `w_0` the bias weight. (Note: implementations may put the bias at the end of the list.)
+A **neuron** N is a pair `(bb w, phi)`, where `bb w` is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)` and `phi` is an [[+ActivationFunction|activation function]]. We call `w_0` the bias weight. (Note: alternatively, we can put the bias at the end of the list. We would just need to redefine `x_0` accordingly. See below.)
 
 If `v_N: RR^(k+1) -> RR` is defined as
 
@@ -14,9 +14,9 @@ If `v_N: RR^(k+1) -> RR` is defined as
 
 then the value of `v_N` at a specific `bb x` is called the **induced local field **of neuron N.
 
-If `sigma` is an [[+ActivationFunction|activation function]], then the **impulse function** of a neuron N, which we will denote `f_N: RR^(k+1) -> [0,1]`, is defined as
+The **impulse function** of a neuron N, which we will denote `f_N: RR^(k+1) -> (0,1)`, is defined as
 
-`f_N(bb x) = sigma(v_N(bb x)) = sigma(bb w * bb x)`
+`f_N(bb x) = phi(v_N(bb x)) = phi(bb w * bb x)`
 
 By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs `bb x`.
 
@@ -24,6 +24,6 @@ By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs 
 A single neuron basically separates data with a line (or in general, a hyper plane). The bias allows for lines that do not pass through the origin. 
 
 ===== Definition of a Neural Network =====
-A **neural network **can be thought of as a function that is itself the composition, sum, and product of impulse functions. See [[http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics|here]] for pictures or take a look at the [[+Resources|resources.]]
+A **neural network **can be thought of as a function that is itself the composition, sum, and product of impulse functions. See [[http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics|here]] for diagrams or take a look at the [[+Resources|resources.]] More importantly, since `phi` is continuous and differentiable, the function representing the neural network is itself continuous and differentiable. 
  
 

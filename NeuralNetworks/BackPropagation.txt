@@ -72,7 +72,7 @@ This is how to compute the local gradients (`delta"s"`) of each neuron:
 * Let `v_j^((l))` be the induced local field of `N_j` in layer `l`. 
 * Let `o_j^((l))` be the output (value of the impulse function) of `N_j` in layer `l`.
 * Let `gamma_j^((l))` be the derivative of `N_j`s [[ActivationFunction|activation function]].
-* Let weight `w_(kj)^((l))` connects `N_k` in layer `l` to `N_j` in the previous layer.
+* Let weight `w_(kj)^((l))` connect `N_k` in layer `l` to `N_j` in the previous layer.
 * (In general, let a superscript `l` denote layer `l`.)
 
 **Note: **`gamma_k` is a function. `v_j` and `o_j` are real numbers.
@@ -106,18 +106,19 @@ In other words, for a hidden neuron `N_j` in layer `l`, its gradient is the prod
 1. Its now clear why we needed to store the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.
 2. Don't forget to store the values of the `delta"s"` which will be needed in the next step.
 
-==== Constructing the Weight Adjustments (aka Learning Term) ====
+==== Constructing the Weight Adjustments (aka the Learning Term) ====
 This is how we calculate the weight adjustments:
 
 * Let `eta` be the learning parameter.
 * Let `o_j^((l))` be the output (value of the impulse function) of neuron `N_j` in layer `l`.
-* Let weight `w_(kj)^((l))` connects `N_k` in layer `l` to `N_j` in the previous layer. 
+* Let weight `w_(kj)^((l))` connect `N_k` in layer `l` to `N_j` in the previous layer. 
 * Let weight `w_(j0)` be the bias for all `j`.
 
 Define `y_j^((l))` as the output from neuron `N_j` in layer `l`:
-* For `l = 0` (input layer), let `y_j^((0)) = x_j` (the input). 
+
+* For `l = 0` (input layer), let `y_j^((0)) = x_j` (the "output" of the input layer is just the input). 
 * For `l > 0`, let `y_j^((l)) = o_j^((l))` (the output of neuron `N_j` in layer `l`).
-* For all `l`, let `y_0^((l)) = +1`.
+* For all `l`, let `y_0^((l)) = +1` (`y_0` gets mapped to the bias).
 
 **Note:** 
 1. With this definition of the `y_j`s, `y_j^(l)` can be used as the //input //that's fed to the //next //layer `(l+1)`.
@@ -127,19 +128,24 @@ The weight adjustment for weight `w_(kj)` in layer `l` //and// the given trainin
 
 `\ Delta w_(kj)^((l)) = eta sigma_k^((l)) y_j^((l-1))` (learning term)
 
-**For each example and weight,** **add these values together and store them somewhere.**
+Each weight `w_(kj)` will have a different learning term `Delta w_(kj)` //for each training example.// **For each `w_(kj)`, save the sum of all its learning terms `Delta w_(kj)^((l))`. **This cumulative sum is what's actually used to adjust the weight `w_(kj)`. 
 
 **Note:**
-1. Its now clear why we needed to store the values of the impulse functions and the gradients---calculating these values dynamically significantly reduces the performance of the algorithm.
-2. The final weight adjustment is the 
+1. Wait until you calculate the total sum of the `Delta w_(kj)`s from all the training examples before adjusting the weights. 
+2. Its now clear why we needed to store the values of the impulse functions and the gradients---calculating these values dynamically significantly reduces the performance of the algorithm.
 
-where `w_(kj)^(**(1))` is the value of the weight in the //previous// time step. If there is no previous value, then this term defaults to 0.
+==== Adjusting the Weights ====
+This is how to adjust the weights:
 
-* Make sure to store the previous values of the weights
+* Let `sum Delta w_(kj)^((l))` be the cumulative sum of the learning terms for `w_(kj)^((l))`. 
+* Let `w_(kj)^(**(1))` be the //previous //value of the weight. If there is no previous value, let `w_(kj)^(**(1)) = 0`.
+* Let `alpha` be the momentum term
 
-**Note: **Make sure to do this step //after //computing the gradients. Otherwise, it won't work.
+Adjust the weights using this formula:
 
-`\ delta w_(kj)^((l)) = w_(kj)^((l)) = w_(kj)^((l)) + alpha(w_(kj)^(**(l))) + eta sigma_j^((l)) o_k^((l-1))`
+`w_(kj)^((l)) = w_(kj)^((l)) + alpha(w_(kj)^(**(l))) + eta sum Delta w_(kj)^((l))`
+
+**Note: **`alpha(w_(kj)^(**(l)))` is the momentum term.
 
 ==== Constructing the Error Function ====
 For each training example:
