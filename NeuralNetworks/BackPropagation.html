@@ -22,8 +22,9 @@
 			h5         { color: #4e9a06             }
 			span.insen { color: grey                }
 		</style>
+
 <script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
 </script>
 
 	</head>
@@ -45,131 +46,93 @@
 
 <h1>BackPropagation</h1>
 
-<p>
-Created Monday 18 November 2013<br>
-</p>
-
-<p>
-You may want to first read the <a href="./BackPropagation/Motivation.html" title="motivation" class="page">motivation</a> for the back propagation algorithm.<br>
-</p>
-
-<h2>When BackPropagation is Appropriate</h2>
-<p>
+<a href="./BackPropagation/Motivation.html" title="motivation" class="page">motivation</a> for the back propagation algorithm.<br>
+<br>
+<h2>When BackPropagation is Appropriate</h2><br>
 Following are some guidelines on when you should use <em>another</em> approach:<br>
-</p>
-
-<p>
-<ul>
+<br>
 <li>Can you write down a flow chart or a formula that accurately describes the problem? </li>
 <li>Is there a simple piece of hardware or software that already does what you want?</li>
 <li>Do you want the functionality to "evolve" in a direction that is not pre-defined? If so, then consider using a Genetic Algorithm (that's another topic!).</li>
 <li>Is generating input/output examples hard? </li>
 <li>Is the problem is very "discrete"? Can the correct answer can be found in a look-up table of reasonable size? If so, then use a look-up table.</li>
 <li>Are precise numeric output values required?</li>
-</ul>
-</p>
-
-<p>
-Conversely, here are some situations where a BP NN might be a good idea:<br>
-</p>
-
-<p>
-<ul>
+<br>
+Conversely, here are some situations where backpropagation might be a good idea:<br>
+<br>
 <li>A large amount of input/output data is available, but you're not sure how to relate it to the output.</li>
 <li>The problem appears to have overwhelming complexity, but there is clearly a solution.</li>
 <li>It is easy to create a number of examples of the correct behavior.</li>
 <li>The solution to the problem may change over time, within the bounds of the given input and output parameters (i.e., today 2+2=4, but in the future we may find that 2+2=3.8).</li>
 <li>Outputs can be "fuzzy", or non-numeric.</li>
-</ul>
-</p>
+<br>
+Source: <a href="http://www.seattlerobotics.org/encoder/nov98/neural.html" title="http://www.seattlerobotics.org/encoder/nov98/neural.html" class="http">http://www.seattlerobotics.org/encoder/nov98/neural.html</a>
 
-<p>
-Source: <a href="http://www.seattlerobotics.org/encoder/nov98/neural.html" title="http://www.seattlerobotics.org/encoder/nov98/neural.html" class="http">http://www.seattlerobotics.org/encoder/nov98/neural.html</a><br>
-</p>
+<h2>The Backpropagation Algorithm</h2><br>
+Step 0. Initialize the weights.<br>
+<br>
+Step 1. Pick values for the learning and momentum parameters. See <a href="./BackPropagation/Parameters.html" title="backpropagation parameters." class="page">backpropagation parameters.</a> <br>
+<br>
+Step 2. For each training example:<br>
+<li>2a. Perform the forward propagation. For each layer, store each neuron's induced local field and value of its impulse function.</li>
+<li>2b. Calculate and store the gradients of each neuron starting with the output layer.</li>
+<li>2c. Update the cumulative learning term for each weight of each neuron starting with the output layer. Discard the stored induced local fields, impulse functions, and gradients.</li>
+<br>
+Step 3. Adjust each weight using its cumulative learning term and momentum term. Make sure to store the values of the previous weights.<br>
+Step 4. Construct the error function from the training examples.<br>
+<br>
+Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value. If the error never converges, pick new <a href="./BackPropagation/Parameters.html" title="backpropagation parameters" class="page">backpropagation parameters</a> and restart from Step 1.<br>
+<br>
+<strong>Notes:</strong> 
+<li style="list-style-image: url(../_resources/1..png)">Its called the <em>backpropagation </em>algorithm because you start from the output layer (Steps 2b and c) and work backwards to the input layer.</li>
+<li style="list-style-image: url(../_resources/2..png)">Steps 2--4 are one iteration of the backpropagation algorithm.</li>
+<li style="list-style-image: url(../_resources/3..png)">A common mistake is adjust the weights before cycling through all the examples. You need to calculate a weight's <em>cumulative </em>learning term (from all the examples) before updating it.</li>
 
-<h2>The Backpropagation Algorithm (Version A)</h2>
-<p>
-Step 1. Initialize the weights.<br>
-Step 2. Construct the error function.<br>
-Step 3. Perform the backpropagation.<br>
-Step 4. Adjust the weights.<br>
-Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value.<br>
-</p>
+<h3>Required Memory and Data Structures</h3><br>
+You'll need data structure(s) to store:<br>
+<br>
+<li>induced local fields and the values of the impulse functions of its neurons <em>for each layer</em>. Since these are just used to find the gradients and the learning terms, you do not need to store this data for each example. The data structure(s) can be shared by each example.</li>
+<li>gradients of the neurons of each layer. <em>Ditto.</em> Since these are just used to find the learning terms, you do not need to store this data for each example. The data structure(s) can be shared by each example.</li>
+<li>learning terms for the weights of the neurons in each layer. These represent the <em>cumulative </em>learning terms of all examples, so all you need is one set of data structure(s) per iteration.</li>
+<li><em>previous </em>weight values (these are used by the momentum term). You do not need to store the complete history of the weights, just the previous values.</li>
 
-<p>
-Pros: if F is the neural network function and `{(bb x_i, bb t_i)}` is the training data, then `F(bb x_i) = bb t_i`.<br>
-Cons: Uses a heck of a lot of memory. For mobile, this is probably not the way to go.<br>
-</p>
+<h3>Initalizing the Weights</h3><br>
+"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See <a href="../NeuralNetworks.html" title="neural networks" class="page">neural networks</a>) lie at <em>the transition between the linear and saturated parts of the </em><a href="./ActivationFunction.html" title="activation function" class="page">activation function</a>" (I have no idea what the emphasized parts means.)<br>
+<br>
+Most researchers initialize the weights to random values between 0 and 1. I use a gaussian with mean 0.5 and standard deviation 1.<br>
+<br>
+<h3>Performing the Forward Propagation</h3>
+<li>Given a training input `bb x_i`, calculate the output of the neural network. </li>
+<li>Make sure to store the induced local fields and the values of the impulse functions of each neuron in each layer.</li>
 
-<h2>Initalizing the Weights</h2>
-<p>
-"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See <a href="../NeuralNetworks.html" title=":NeuralNetworks" class="page">:NeuralNetworks</a> ) lie at <em>the transition between the linear and saturated parts of the +ActivationFunction</em> " (I have no idea what the emphasized parts means.)<br>
-</p>
+<h3>Constructing the Gradients (`delta"s"`)</h3><br>
+This is how to compute the local gradients (`delta"s"`) of each neuron:<br>
+<br>
+<li>Let `N_j` be neuron `j`.</li>
+<li>Let `L` be the output layer. </li>
+<li>Let `v_j^((l))` be the induced local field of `N_j` in layer `l`. </li>
+<li>Let `o_j^((l))` be the output (value of the impulse function) of `N_j` in layer `l`.</li>
+<li>Let `gamma_j^((l))` be the derivative of `N_j`s <a href="./ActivationFunction.html" title="activation function" class="page">activation function</a>.</li>
+<li>Let weight `w_(kj)^((l))` connect `N_k` in layer `l` to `N_j` in the previous layer.</li>
+<li>(In general, let a superscript `l` denote layer `l`.)</li>
 
-<p>
-Most researchers initialize the weights to random values between 0 and 1.<br>
-</p>
-
-<h2>Constructing the Error Function</h2>
-<p>
-For each training example:<br>
-<ul>
-<li>use the output to compute `E_i`.</li>
-<li>store the values of induced local fields and impulse functions. You'll need these values for the backpropagation. </li>
-</ul>
-</p>
-
-<p>
-<strong>Gotcha 1:</strong> recall that we have to append a 1 to each input because of the bias. Make sure to append a 1 to the output from a previous layer to the next layer.<br>
-</p>
-
-<p>
-<strong>Gotcha 2:</strong> for each training example and each neuron, you save value of its induced local field and impulse function. This can be prohibitive depending on the neural network.<br>
-</p>
-
-<h2>Performing the Backpropagation</h2>
-
-<p>
-For each training example:<br>
-</p>
-
-<p>
-<ul>
-<li>compute the local gradients (`delta"s"`) of each neuron. </li>
-</ul>
-</p>
-
-<p>
-Let L be the output layer. <br>
-Let `v_j^((l))` be the induced local field of neuron `j` in layer `l`. <br>
-Let `o_j^((l))` be the output (value of the impulse function) of neuron `j` in layer `l`.<br>
-Let `gamma_j^((l))` be the derivative of neuron `j`s <a href="./ActivationFunction.html" title="activation function" class="page">activation function</a>.<br>
-(In general, a superscript `l` corresponds to layer `l`.)<br>
-</p>
-
-<p>
 <strong>Note: </strong>`gamma_k` is a function. `v_j` and `o_j` are real numbers.<br>
-</p>
-
-<p>
+<br>
 Define the local gradient `delta_j^((l))` of neuron `j` recursively as follows:<br>
-</p>
-
-<p>
-<ul>
-<li>for neuron `j` in output layer `L`, `delta_k^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`</li>
-<li>for neuron `j` in hidden layer `l`, `delta_k^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))`</li>
-</ul>
-</p>
-
-<p>
-where weight `w_kj^((l+1))` connects neuron `j` in layer `l` to neuron k in layer `(l+1)`. A diagram will help:<br>
-</p>
-
+<br>
+<li>for neuron `N_j` in output layer `L`, `delta_k^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`</li>
+<li>for neuron `N_j` in hidden layer `l`, `delta_k^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))`</li>
+<br>
+where the summation `sum_k` is over the neurons in layer `(l+1)` and weight `w_(kj)^((l+1))` connects `N_k` in layer `(l+1)` to `N_j` in layer `l`. <br>
+<br>
+<strong>Note: </strong>If its not clear, `gamma_j^((l)) ( v_j^((l)) )` is the derivative of the activation function at neuron `N_j`s induced local field. It's not a product.<br>
+<br>
+A diagram will help:<br>
+<br>
 <pre>
 Layer l               Layer (l+1)
 neuron 1              neuron 1, gradient 1
-...                 / ...
+neuron 2            / neuron 2, gradient 2
 ...               /   ...
 ...           w_1j    ...
 ...           /       ...
@@ -177,52 +140,90 @@ neuron 1              neuron 1, gradient 1
 ...       /           ...
 neuron j ----w_kj---&gt; neuron k, gradient k
 </pre>
+<br>
+In other words, for a hidden neuron `N_j` in layer `l`, its gradient is the product of (a) the derivate of the activation function at its induced local field and (b) the sum of the product of the gradients in the <em>next </em>layer and the weights that connect `N_j` to that gradient's neuron.<br>
+<br>
+<strong>Note:</strong>
+<li style="list-style-image: url(../_resources/1..png)">Its now clear why we needed to store the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.</li>
+<li style="list-style-image: url(../_resources/2..png)">Don't forget to store the values of the `delta"s"` which will be needed in the next step.</li>
 
-<p>
-In other words, for a hidden neuron `j` in layer `l`, take the sum of the product of the gradients in the <em>next </em>layer and the weights that connect neuron `j` to the neuron of that local gradient.<br>
-</p>
+<h3>Constructing the Learning Terms</h3><br>
+Up to this point, our notation hasn't taken into account the training examples `{bb x(i), bb t(i)}`. We'll do this now by appending a term with `(i)` to denote the value for the ith training example. Ex: `sigma_j^((l))(i)` is the gradient for neuron `N_j` in layer `l` when the network is fed input `bb x(i)` (the ith training example).<br>
+<br>
+<strong>Note: </strong>Neuron `N_j` in layer `l` isn't necessarily fed input `bb x(i)`. <em>The network is fed input `bb x(i)` and that in turn completely determines the inputs to neuron `N_j^((l))`.</em><br>
+<br>
+This is how we calculate the learning terms:<br>
+<br>
+<li>Let `{bb x(i), bb t(i)}` be the training examples. `bb x(i)` is a vector `(x_1(i), ..., x_n(i))`.</li>
+<li>Let `eta` be the learning parameter.</li>
+<li>Let `o_j^((l))(i)` be the output (value of the impulse function) of neuron `N_j^((l))` when the network is fed input `bb x(i)`.</li>
+<li>Let weight `w_(kj)^((l))` connect `N_k` in layer `l` to `N_j` in the previous layer. </li>
+<li>Let weight `w_(j0)` be the bias for all `j`.</li>
+<li>Let `sigma_j^((l))(i)` be the gradient of neuron `N_j^((l))` when the network is fed input `bb x(i)`.</li>
+<br>
+Define `bb y^((l))(i)` as the output from neuron `N_j^((l))` when the network is fed input `bb x(i)`:<br>
+<br>
+<li>For `l = 0` (input layer), let `y_j^((0))(i) = x_j(i)` (the "output" of the input layer is just the input). </li>
+<li>For `l &gt; 0`, let `y_j^((l))(i) = o_j^((l))(i)` (the output of neuron `N_j` in layer `l`).</li>
+<li>For all `l`, let `y_0^((l))(i) = +1` (`y_0` gets mapped to the bias).</li>
 
-<p>
-<strong>Note: </strong>If its not clear, `gamma_j^((l)) ( v_j^((l)) )` is the value of the derivative of the activation function at the induced local field. It's not multiplication.<br>
-</p>
+<strong>Note:</strong> 
+<li style="list-style-image: url(../_resources/1..png)">`y_j^((l))(i)` can be thought of as the <em>input </em>that's fed to the <em>next </em>layer `(l+1)`.</li>
+<li style="list-style-image: url(../_resources/2..png)">Since `w_(j0)` is always the bias, the output of neuron `N_j` in layer `l` with weights `bb w` and activation function `phi` is just `\ phi(bb y^((l-1))(i) * bb w) = phi(sum_i y_i^((l-1))(i) w_(ji))` where the sum `sum_i` is over neurons in the previous layer.</li>
+<br>
+The learning term for weight `w_(kj)` in layer `l` <em>and</em> <em>the ith training example</em> is:<br>
+<br>
+`\ Delta w_(kj)^((l))(i) = eta sigma_k^((l))(i) y_j^((l-1))(i)`<br>
+<br>
+Each weight will have a different learning term for each example<em>.</em> <strong>For each weight `w_(kj)^((l))`, store the sum of all its learning terms for all the training examples, `sum_i Delta w_(kj)^((l))(i)`. </strong>This cumulative sum is what's actually used to adjust the weight. <br>
+<br>
+<strong>Note:</strong>
+<li style="list-style-image: url(../_resources/1..png)">Wait until you have the total sum `sum_i Delta w_(kj)^((l))(i)` from all the training examples before adjusting the weights. </li>
+<li style="list-style-image: url(../_resources/2..png)">Its now clear why we needed to store the values of the impulse functions and the gradients---calculating these values dynamically significantly reduces the performance of the algorithm.</li>
 
-<p>
-Since the recursion starts in the output layer, the computations proceed from the back to the front (hence the name "backpropagation").<br>
-</p>
-
-<p>
-<ul>
-<li>Make sure to store the values of the `delta"s"`</li>
-</ul>
-</p>
-
-<h2>Adjusting the Weights</h2>
-<p>
-Use the local gradients to adjust the weights. <br>
-</p>
-
-<p>
-`w_(kj)^((l)) = w_(kj)^((l)) + alpha(w_(kj)^(**(l))) + eta sigma_j^((l)) o_k^((l-1))`<br>
-</p>
-
-<p>
-where `w_(kj)^(**(1))` is the value of the weight in the <em>previous</em> time step. If there is no previous value, then this term defaults to 0.<br>
-</p>
-
-<p>
-<ul>
-<li>Make sure to store the previous values of the weights</li>
-</ul>
-</p>
-
-<p>
-<strong>Note: </strong>Make sure to do this step <em>after </em>computing the gradients. Otherwise, it won't work.<br>
-</p>
-
-
-
-
-
+<h3>Adjusting the Weights</h3><br>
+This is how to adjust the weights:<br>
+<br>
+<li>Let `w_(kj)^(**(l))` be the <em>previous</em> value of the weight. </li>
+<li>If there is no previous value, let `w_(kj)^(**(l)) = 0`.</li>
+<li>Let `sum_i Delta w_(kj)^((l))(i)` be the cumulative sum of the learning terms for `w_(kj)^((l))` for all the training examples. </li>
+<li>Let `alpha` be the momentum term.</li>
+<br>
+Adjust the weights using this formula:<br>
+<br>
+`\ w_(kj)^((l)) = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + sum_i Delta w_(kj)^((l))(i)`<br>
+`\ \ \ \ = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + eta sum_i sigma_k^((l))(i) y_j^((l-1))(i)`<br>
+<br>
+<strong>Note: </strong>`alpha w_(kj)^(**(l))` is the momentum term.<br>
+<br>
+<h3>Constructing the Error Function</h3>
+<li>Let `{bb x(i), bb t(i)}` be the `p` training examples. </li>
+<li>Let `bb o(i)` be the actual output of the network for training input `bb x(i)`. </li>
+<strong>Note:</strong>
+<li style="list-style-image: url(../_resources/1..png)">Each `bb x(i)` and `bb t(i)` are vectors, `bb x(i) = (x_1(i), ...,  x_n(i))` and `bb t(i) = (t_1(i), ..., t_n(i))`. </li>
+<li style="list-style-image: url(../_resources/2..png)">Each `t_j(i)` is the expected output of the ith training example for the jth neuron in the output layer.</li>
+<li style="list-style-image: url(../_resources/3..png)">`bb o(i)` is a vector `o_1(i), ..., o_n(i)`.</li>
+<li style="list-style-image: url(../_resources/4..png)">`o_j(i)` is the output (value of the impulse function) of neuron `N_j` in the output layer for input `bb x(i)`. </li>
+<br>
+With these definitions, `bb o(i) - bb t(i)` is the difference in the expected and actual values. We seek to minimize these differences for all training examples:<br>
+<br>
+For each training example `i`, construct the error `E_i`<br>
+<br>
+`\ E_i = 1/2 ||bb o(i) - bb t(i)||^2`<br>
+<br>
+where `||*||` is the <a href="./Appendix/EuclidianDistance.html" title="euclidian distance" class="page">euclidian distance</a>.  Since we're dealing with vectors, each `E_i` actually looks like this:<br>
+<br>
+`\ E_i = 1/2 (o_1(i) - t_1(i))^2 + cdots + (o_n(i) - t_n(i))^2`<br>
+<br>
+Construct the total error `E` of the network for all training examples:<br>
+<br>
+`\ E = sum_i^p E_i = 1/2 sum_i^p ||bb o(i) - bb t(i)||^2 = 1/2 sum_i^p (o_1(i) - t_1(i))^2 + cdots + (o_n(i) - t_n(i))^2`<br>
+<br>
+Repeat another iteration of the backpropagation algorithm until the error is less than a pre-selected amount.<br>
+<br>
+<h2>Troubleshooting</h2>
+<li>Unit test, unit test, unit test. You'll be suprised how easy it is to introduce a typo that breaks your implementation.</li>
+<li>The error never converges? Make sure you know how the <a href="./BackPropagation/Parameters.html" title="backpropagation parameters" class="page">backpropagation parameters</a> work.</li>
 
 
 <!-- End wiki content -->
@@ -231,11 +232,11 @@ where `w_(kj)^(**(1))` is the value of the weight in the <em>previous</em> time 
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+	<b>Backlinks:</b>		<a href='./BackPropagation/Parameters.html'>NeuralNetworks:BackPropagation:Parameters</a>
 <br><br>
 
 	<b>Attachments:</b>
-	<table>		<tr><td><a href='./BackPropagation/BackPropagation'>BackPropagation</a></td><td>&nbsp;</td><td>0b</td></tr>		<tr><td><a href='./BackPropagation/Motivation'>Motivation</a></td><td>&nbsp;</td><td>0b</td></tr>	</table>
+	<table>		<tr><td><a href='./BackPropagation/Motivation'>Motivation</a></td><td>&nbsp;</td><td>4.10kb</td></tr>	</table>
 
 <!-- End Attachments and Backlinks -->
 

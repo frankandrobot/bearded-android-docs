@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+		<meta name='Generator' content='Zim 0.60'>
+		<style type='text/css'>
+			a          { text-decoration: none      }
+			a:hover    { text-decoration: underline }
+			a:active   { text-decoration: underline }
+			strike     { color: grey                }
+			u          { text-decoration: none;
+			             background-color: yellow   }
+			tt         { color: #2e3436;            }
+			pre        { color: #2e3436;
+			             margin-left: 20px          }
+			h1         { text-decoration: underline;
+			             color: #4e9a06             }
+			h2         { color: #4e9a06             }
+			h3         { color: #4e9a06             }
+			h4         { color: #4e9a06             }
+			h5         { color: #4e9a06             }
+			span.insen { color: grey                }
+		</style>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+	</head>
+	<body>
+
+<!-- Header -->
+
+	[ <a href='./Motivation.html'>Prev</a> ]
+
+			[ <a href='../../index.html.html'>Index</a> ]
+
+	[ <a href='../Resources.html'>Next</a> ]
+
+<!-- End Header -->
+
+<hr />
+
+<!-- Wiki content -->
+
+<h1>Parameters</h1>
+
+<li>`w_(kj)^((l))` is a weight connecting neuron `N_k` in layer `l` to neuron `N_j` in the previous layer</li>
+<li>`w_(kj)^(**(l))` is the <em>previous </em>value of the weight</li>
+<li>`alpha` is called the <strong>momentum parameter</strong></li>
+<li>`eta` is called the <strong>learning parameter</strong></li>
+<li>the sum `sum_i` is over all the training examples</li>
+<li>`sigma_k^((l))(i)` is the gradient of neuron `N_k^((l))` when the network is fed input `bb x(i)`</li>
+<li>`y_j^((l-1))(i)` is the input fed to layer `l` when the network is fed input `bb x(i)`. See <a href="../BackPropagation.html" title="back propagation implementation." class="page">back propagation implementation.</a></li>
+ <br>
+Unfortunately, networks can not learn using arbitrary learning and momentum parameters. You might think that the implementation is broken but you’re just using the wrong parameters. So develop an intuitive understanding of these parameters:<br>
+<br>
+<li>start with a simple two-layer network and train it to learn one example. Explore how the parameters affect the rate of learning or whether the network learns at all. </li>
+<li>Repeat with two examples. </li>
+<br>
+In general, you’ll find that difficult problems require a smaller learning parameter (but that increases the number of iterations of the backpropagation algorithm required). The momentum keeps the network from getting stuck but if its too large then it also keeps the network from learning.
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<b>Backlinks:</b>		<a href='../BackPropagation.html'>NeuralNetworks:BackPropagation</a>
+<br><br>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+	</body>
+
+</html>

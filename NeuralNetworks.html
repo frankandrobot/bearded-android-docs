@@ -22,8 +22,9 @@
 			h5         { color: #4e9a06             }
 			span.insen { color: grey                }
 		</style>
+
 <script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=AM_HTMLorMML.js">
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
 </script>
 
 	</head>
@@ -49,14 +50,9 @@
 Created Friday 15 November 2013<br>
 </p>
 
+<h2>Definition of a Neuron</h2>
 <p>
-<ul>
-<li><a href="http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/" title="http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/" class="http">http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/</a></li>
-</ul>
-</p>
- 
-<p>
-A <strong>neuron</strong> N is a pair `(W, sigma)`, where W is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)`. We call `w_0` the bias weight. (Note: implementations may put the bias at the end of the list.)<br>
+A <strong>neuron</strong> N is a pair `(bb w, phi)`, where `bb w` is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)` and `phi` is an <a href="./NeuralNetworks/ActivationFunction.html" title="activation function" class="page">activation function</a>. We call `w_0` the bias weight. (Note: alternatively, we can put the bias at the end of the list. We would just need to redefine `x_0` accordingly. See below.)<br>
 </p>
 
 <p>
@@ -64,29 +60,35 @@ If `v_N: RR^(k+1) -&gt; RR` is defined as<br>
 </p>
 
 <p>
-`v_N(bb x) = sum_i^k w_i x_i`<br>
+`\ v_N(bb x) = bb w * bb x = bb sum_i^k w_i x_i`<br>
 </p>
 
 <p>
-Then the value of `v_N` at a specific `bb x` is called the <strong>induced local field </strong>of neuron N.<br>
+then the value of `v_N` at a specific `bb x` is called the <strong>induced local field </strong>of neuron N.<br>
 </p>
 
 <p>
-If `sigma` is an <a href="./NeuralNetworks/ActivationFunction.html" title="+ActivationFunction" class="page">+ActivationFunction</a> , then the <strong>impulse function</strong> of a neuron N, which we will denote `f_N: RR^(k+1) -&gt; [0,1]`, is defined as<br>
+The <strong>impulse function</strong> of a neuron N, which we will denote `f_N: RR^(k+1) -&gt; (0,1)`, is defined as<br>
 </p>
 
 <p>
-`f_N(bb x) = sigma(v_N(bb x))`<br>
+`f_N(bb x) = phi(v_N(bb x)) = phi(bb w * bb x)`<br>
 </p>
 
 <p>
 By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs `bb x`.<br>
 </p>
 
-<h2>Purpose of the Bias</h2>
+<h3>Purpose of the Bias</h3>
 <p>
-In the Perceptron model we allowed a “bias” b which translated the separating hyperplane so that it need not pass through the origin, hence allowing a the set of all pairs `(bb w, b)` to represent every possible hyperplane.<br>
+A single neuron basically separates data with a line (or in general, a hyper plane). The bias allows for lines that do not pass through the origin. <br>
 </p>
+
+<h2>Definition of a Neural Network</h2>
+<p>
+A <strong>neural network </strong>can be thought of as a function that is itself the composition, sum, and product of impulse functions. See <a href="http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics" title="here" class="http">here</a> for diagrams or take a look at the <a href="./NeuralNetworks/Resources.html" title="resources." class="page">resources.</a> More importantly, since `phi` is continuous and differentiable, the function representing the neural network is itself continuous and differentiable. <br>
+</p>
+ 
 
 
 
@@ -100,7 +102,7 @@ In the Perceptron model we allowed a “bias” b which translated the separatin
 <br><br>
 
 	<b>Attachments:</b>
-	<table>		<tr><td><a href='./NeuralNetworks/ActivationFunction'>ActivationFunction</a></td><td>&nbsp;</td><td>0b</td></tr>		<tr><td><a href='./NeuralNetworks/Appendix'>Appendix</a></td><td>&nbsp;</td><td>4.10kb</td></tr>		<tr><td><a href='./NeuralNetworks/BackPropagation'>BackPropagation</a></td><td>&nbsp;</td><td>4.10kb</td></tr>	</table>
+	<table>		<tr><td><a href='./NeuralNetworks/ActivationFunction'>ActivationFunction</a></td><td>&nbsp;</td><td>4.10kb</td></tr>		<tr><td><a href='./NeuralNetworks/Appendix'>Appendix</a></td><td>&nbsp;</td><td>4.10kb</td></tr>		<tr><td><a href='./NeuralNetworks/BackPropagation'>BackPropagation</a></td><td>&nbsp;</td><td>4.10kb</td></tr>	</table>
 
 <!-- End Attachments and Backlinks -->
 
