@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-12-09T13:22:25-05:00
+
+====== ConvolutionalNetwork ======
+Created Monday 09 December 2013
+
+* good at recognizing invariant characteristics
+* cons: need large training examples
+
+Convolutional networks combine three architectural ideas to ensure some degree of shift and distortion invariance local receptive fields, shared weights, and  spatial or temporal subsampling
+
+With local receptive fields neurons can extract elementary visual features such as oriented edges, end-points, etc. These features are then combined by the higher layers
+
+
+

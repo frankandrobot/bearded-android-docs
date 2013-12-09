@@ -5,7 +5,7 @@ Creation-Date: 2013-11-09T20:43:20-05:00
 ====== DialogBoxes ======
 Created Saturday 09 November 2013
 
-* [[AlertDialog]] - A dialog that can show a title, up to three buttons, a list of selectable items, or a custom layout.
+* AlertDialog - A dialog that can show a title, up to three buttons, a list of selectable items, or a custom layout.
 * DatePickerDialog - A dialog with a pre-defined UI that allows the user to select a date or time.
 * TimePickerDialog - A dialog with a pre-defined UI that allows the user to select a date or time.
 * ProgressDialog: This dialog box displays a progress wheel or a progress bar. It is an extension of AlertDialog and supports adding buttons.

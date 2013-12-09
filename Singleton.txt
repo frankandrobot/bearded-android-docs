@@ -6,7 +6,7 @@ Creation-Date: 2013-09-09T14:59:01-04:00
 Created Monday 09 September 2013
 
 When instantiating a singleton, make sure that the instantiator actually instantiates //one// instance of the object
-i.e., take into account [[ConcurrencyIssues]]
+i.e., take into account ConcurrencyIssues
 
   ''@Good''
 '''
@@ -59,7 +59,7 @@ The problem with this technique has to do with JavaMemory:CacheCoherence. Even t
 * Thread_2 calls getInstance(). It sees null instance so it passes the first check. It stops at the synchronized barrier. Meanwhile...
 * Thread_1 finishes creating the PieChucker. It leaves the synchronized block. HOWEVER,....
 * the PieChucker was created on the heap but it still hasn't been initialized completely. As a result...
-* Thread_2 enters the synchronized block. It thinks it has a (complete) [[PieChucker]] and returns an incomplete object.
+* Thread_2 enters the synchronized block. It thinks it has a (complete) PieChucker and returns an incomplete object.
 
 Sources:
 * http://tech.puredanger.com/2007/06/15/double-checked-locking/

@@ -27,7 +27,7 @@ Conversely, here are some situations where backpropagation might be a good idea:
 
 Source: http://www.seattlerobotics.org/encoder/nov98/neural.html
 
-===== The Backpropagation Algorithm =====
+===== The Backpropagation Algorithm (Batch Mode) =====
 Step 0. Initialize the weights.
 
 Step 1. Pick values for the learning and momentum parameters. See [[+Parameters|backpropagation parameters.]] 
