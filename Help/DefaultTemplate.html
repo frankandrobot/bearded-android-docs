@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bearded-android-docs : Android quick docs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+
+    <title>DefaultTemplate</title>
+    <meta name='Generator' content='Zim 0.60'>
+    
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+  </head>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
+
+          <h1 id="project_title">Bearded-android-docs</h1>
+          <h2 id="project_tagline">DefaultTemplate</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<!-- Wiki content -->
+
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+  &lt;head&gt;
+    &lt;meta charset='utf-8' /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="chrome=1" /&gt;
+    &lt;meta name="description" content="Bearded-android-docs : Android quick docs" /&gt;
+
+    &lt;link rel="stylesheet" type="text/css" media="screen" href="
+</pre>
+<a href="http://frankandrobot.github.io/bearded-android-docs/" title="http://frankandrobot.github.io/bearded-android-docs/" class="http">http://frankandrobot.github.io/bearded-android-docs/</a><code>stylesheets/stylesheet.css"&gt;</code>
+
+<code>    &lt;title&gt;[% page.heading %]&lt;/title&gt;</code>
+<code>    &lt;meta name='Generator' content='Zim [% zim.version %]'&gt;</code>
+    
+<code>    &lt;script type="text/javascript"</code>
+<code>   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js"&gt;</code>
+<code>&lt;/script&gt;</code>
+
+<code>  &lt;/head&gt;</code>
+
+<code>    &lt;!-- HEADER --&gt;</code>
+<code>    &lt;div id="header_wrap" class="outer"&gt;</code>
+<code>        &lt;header class="inner"&gt;</code>
+<code>          &lt;a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs"&gt;View on GitHub&lt;/a&gt;</code>
+
+<code>          &lt;h1 id="project_title"&gt;Bearded-android-docs&lt;/h1&gt;</code>
+<code>          &lt;h2 id="project_tagline"&gt;[% page.heading %]&lt;/h2&gt;</code>
+
+<code>            &lt;section id="downloads"&gt;</code>
+<code>              &lt;a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master"&gt;Download this project as a .zip file&lt;/a&gt;</code>
+<code>              &lt;a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master"&gt;Download this project as a tar.gz file&lt;/a&gt;</code>
+<code>            &lt;/section&gt;</code>
+<code>        &lt;/header&gt;</code>
+<code>    &lt;/div&gt;</code>
+
+<code>    &lt;!-- MAIN CONTENT --&gt;</code>
+<code>    &lt;div id="main_content_wrap" class="outer"&gt;</code>
+<code>      &lt;section id="main_content" class="inner"&gt;</code>
+
+<code>&lt;!-- Wiki content --&gt;</code>
+
+<code>&lt;!-- [% IF page.properties.type == 'namespace-index' -%] --&gt; </code>
+<code>&lt;!-- &lt;h1&gt;Document Index&lt;/h1&gt; --&gt;</code>
+<code>&lt;!-- [%- ELSE -%] --&gt;</code>
+<code>&lt;!-- &lt;h1&gt;[% page.heading %]&lt;/h1&gt; --&gt;</code>
+<code>&lt;!-- [%- END %] --&gt;</code>
+
+<code>[% page.body %]</code>
+
+<code>&lt;!-- End wiki content --&gt;</code>
+
+<code>&lt;hr /&gt;</code>
+
+<code>&lt;!-- Attachments and Backlinks --&gt;</code>
+
+<code>[% IF page.has_backlinks -%]</code>
+<code>&lt;h3&gt;Backlinks:&lt;/h3&gt;</code>
+<code>[%- FOREACH link = page.backlinks -%]</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href='[% url(link) %]'&gt;[% link.name %]&lt;/a&gt;</code>
+<code>[%- END -%]</code>
+<code>[%- ELSE -%]</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;i&gt;No backlinks to this page.&lt;/i&gt;</code>
+<code>[%- END %]</code>
+
+<code>[% IF page.has_attachments -%]</code>
+<code>&lt;h3&gt;Attachments:&lt;/h3&gt;</code>
+<code>&lt;table&gt;</code>
+<code>[%- FOREACH file = page.attachments -%]</code>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;&lt;a href='[% url(file) %]'&gt;[% file.basename %]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;[% file.size %]&lt;/td&gt;&lt;/tr&gt;</code>
+<code>[%- END -%]</code>
+<code>&lt;/table&gt;</code>
+<code>[%- END %]</code>
+
+<code>&lt;!-- End Attachments and Backlinks --&gt;</code>
+
+<code>    &lt;div id="disqus_thread"&gt;&lt;/div&gt;</code>
+<code>    &lt;script type="text/javascript"&gt;</code>
+<code>        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</code>
+<code>        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname</code>
+
+<code>        /* * * DON'T EDIT BELOW THIS LINE * * */</code>
+<code>        (function() {</code>
+<code>            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;</code>
+<code>            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';</code>
+<code>            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);</code>
+<code>        })();</code>
+<code>    &lt;/script&gt;</code>
+<code>    &lt;noscript&gt;Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</code>
+<code>    &lt;a href="http://disqus.com" class="dsq-brlink"&gt;comments powered by &lt;span class="logo-disqus"&gt;Disqus&lt;/span&gt;&lt;/a&gt;</code>
+    
+<code>      &lt;/section&gt;</code>
+<code>    &lt;/div&gt;</code>
+
+<code>    &lt;!-- FOOTER  --&gt;</code>
+<code>    &lt;div id="footer_wrap" class="outer"&gt;</code>
+<code>      &lt;footer class="inner"&gt;</code>
+<code>        &lt;p class="copyright"&gt;Bearded-android-docs maintained by &lt;a href="https://github.com/frankandrobot"&gt;frankandrobot&lt;/a&gt;&lt;/p&gt;</code>
+<code>        &lt;p&gt;Published with &lt;a href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;&lt;/p&gt;</code>
+<code>        &lt;p&gt;&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;/p&gt;</code>
+
+<code>      &lt;/footer&gt;</code>
+<code>    &lt;/div&gt;</code>
+
+    
+
+<code>  &lt;/body&gt;</code>
+<code>&lt;/html&gt;</code>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bearded-android-docs maintained by <a href="https://github.com/frankandrobot">frankandrobot</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
