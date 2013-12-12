@@ -18,7 +18,7 @@ Created Saturday 09 November 2013
 * HTTP is used to transmit resources, not just files. Ex: HTML files, image files, query results, or anything else. (A resource is anything that can have a URL)
 
 ==== HTTP 1.1 ====
-* allows multiple transactions through a single [[+HttpPersistenConnection]]
+* allows multiple transactions through a single +HttpPersistenConnection
 * cache support
 * [[+HttpChunkedEncoding]] encoding allows a response to be sent before its total length is known
 * multiple domains (hosts) can be served from a single IP address.

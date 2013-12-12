@@ -12,6 +12,6 @@ Created Tuesday 15 October 2013
 
 Summary: there is no better or worse principle. There's only "appropriate" and "inadequate" design for the given task. However, in general, prefer composition.
 
-* Use the [[+LiskovSubstitutionPrinciple]] to determine if you should use inheritance.
+* Use the +LiskovSubstitutionPrinciple to determine if you should use inheritance.
 * Composition represents a "has a"/"uses a" relationship. Ex: A car has an engine. (Alternatively, does Type B only want some of the methods of Type A?)
 * Inheritance is a "behaves likes a" relationship. (Alternatively, does Type B want to use all the public methods of Type A such that Type B can be used wherever Type A is expected?)
