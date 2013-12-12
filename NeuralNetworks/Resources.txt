@@ -16,8 +16,9 @@ Created Friday 06 December 2013
 
 ===== Convolutional Networks =====
 * http://www.dspguide.com/ch6/2.htm - general (useless) definition of convolution
-* http://www.iro.umontreal.ca/~lisa/pointeurs/handbook-convo.pdf - //Convolutional Networks for Images, Speech, and Time-Series// by Lecun and Bengio - really good overview of convolutional networks
-* http://ufldl.stanford.edu/tutorial/index.php/Convolutional_Neural_Network - good overview of convolutional networks
+* http://ufldl.stanford.edu/tutorial/index.php/Convolutional_Neural_Network - basic yet good overview of convolutional networks
+* http://www.iro.umontreal.ca/~lisa/pointeurs/handbook-convo.pdf - //Convolutional Networks for Images, Speech, and Time-Series// by Lecun and Bengio - really good non-mathematical overview of convolutional networks
+* http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf - more detailed overview of convolutional networks
 * http://ufldl.stanford.edu/wiki/index.php/Exercise:Convolution_and_Pooling - convolution and pooling
 * http://yann.lecun.com/exdb/publis/index.html
 * http://cs.nyu.edu/~koray/publis/lecun-iscas-10.pdf - //Convolutional Networks and Applications in Vision// by LeCun, Kavukcuoglu, and Farabet
