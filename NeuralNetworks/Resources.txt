@@ -9,7 +9,7 @@ Created Friday 06 December 2013
 * //Neural Networks: a Comprehensive Foundation //by Simon Haykin - thorough yet complex overview of neural networks
 * http://msdn.microsoft.com/en-us/magazine/jj658979.aspx - good hands-on explanation of the backpropagation algorithm
 * http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/ - really awesome theoretical explanation of the backpropagation algorithm and overrall a very good blog about machine-learning.
-* http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf - good theoretical explanation of the backpropagation algorithm. Alternative proof without calculus (well mostly)
+* http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf - //Chapter 7: The Backpropagation Algorithm //from //Neural Networks: A Systematic Introduction// by Raul Rojas - good theoretical explanation of the backpropagation algorithm. Alternative proof without calculus (well,... mostly). Bonus points for explaning the backprop in matrix form
 * https://dspace.ist.utl.pt/bitstream/2295/57975/1/licao_20.pdf - gave me the aha! moment for when I finally got training with multiple examples
 * http://tgmstat.wordpress.com/2013/06/12/draw-neural-network-diagrams-graphviz/ - how to draw neural networks with Graphviz
 * http://yann.lecun.com/exdb/publis/index.html - links to other topics
