@@ -95,7 +95,7 @@ This is how we calculate the learning terms:
 * Let `o_j^((l))(i)` be the output (value of the impulse function) of neuron `N_j^((l))` when the network is fed input `bb x(i)`.
 * Let weight `w_(kj)^((l))` connect `N_k` in layer `l` to `N_j` in the previous layer. 
 * Let weight `w_(j0)` be the bias for all `j`.
-* Let `sigma_j^((l))(i)` be the gradient of neuron `N_j^((l))` when the network is fed input `bb x(i)`.
+* Let `delta_j^((l))(i)` be the gradient of neuron `N_j^((l))` when the network is fed input `bb x(i)`.
 
 Define `bb y^((l))(i)` as the output from neuron `N_j^((l))` when the network is fed input `bb x(i)`:
 
@@ -109,7 +109,7 @@ Define `bb y^((l))(i)` as the output from neuron `N_j^((l))` when the network is
 
 The learning term for weight `w_(kj)` in layer `l` //and// //the ith training example// is:
 
-`\ Delta w_(kj)^((l))(i) = eta sigma_k^((l))(i) y_j^((l-1))(i)`
+`\ Delta w_(kj)^((l))(i) = eta delta_k^((l))(i) y_j^((l-1))(i)`
 
 Each weight will have a different learning term for each example//.// **For each weight `w_(kj)^((l))`, store the sum of all its learning terms for all the training examples, `sum_i Delta w_(kj)^((l))(i)`. **This cumulative sum is what's actually used to adjust the weight. 
 
@@ -128,7 +128,7 @@ This is how to adjust the weights:
 Adjust the weights using this formula:
 
 `\ w_(kj)^((l)) = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + sum_i Delta w_(kj)^((l))(i)`
-`\ \ \ \ = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + eta sum_i sigma_k^((l))(i) y_j^((l-1))(i)`
+`\ \ \ \ = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + eta sum_i delta_k^((l))(i) y_j^((l-1))(i)`
 
 **Note: **`alpha w_(kj)^(**(l))` is the momentum term.
 
