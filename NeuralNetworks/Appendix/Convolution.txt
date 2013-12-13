@@ -37,3 +37,6 @@ Define `x_s(i,j)` as:
 `\ \ x_s(i,j) = sigma(bb P_(ns)(i,j) * bb W + b)`
 
 Construction of feature map `X_s` //without// //applying the activation function `sigma`// //or the bias// is called **convolution with kernel **`bb W` (i.e., if `X'_s` is defined as `x'_s(i,j) = bb P_(ns)(i,j) * bb W`, then `X'_s` is the convolution of kernel `bb W`).
+
+===== Resources =====
+* http://www.mathworks.com/help/vision/ref/2dconvolution.html
