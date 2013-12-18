@@ -14,7 +14,7 @@ A HEAD request is just like a GET request, except it asks the server to return t
 The response to a HEAD request must never contain a message body, just the status line and headers.
 
 ===== The POST Method =====
- OST request is used to send data to the server to be processed in some way, like by a CGI script. A POST request is different from a GET request in the following ways:
+POST request is used to send data to the server to be processed in some way, like by a CGI script. A POST request is different from a GET request in the following ways:
 
 * There's a block of data sent with the request, in the message body. There are usually extra headers to describe this message body, like Content-Type: and Content-Length:.
 * The request URI is not a resource to retrieve; it's usually a program to handle the data you're sending. The HTTP response is normally program output, not a static file.

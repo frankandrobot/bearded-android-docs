@@ -17,8 +17,12 @@ Created Saturday 09 November 2013
 * HTTP is a stateless protocol
 * HTTP is used to transmit resources, not just files. Ex: HTML files, image files, query results, or anything else. (A resource is anything that can have a URL)
 
+==== HTTP 1.0 ====
+* one transaction per connection
+* one domain (host) per IP address
+
 ==== HTTP 1.1 ====
-* allows multiple transactions through a single +HttpPersistenConnection
+* allows multiple transactions through a single +HttpPersistentConnection
 * cache support
 * [[+HttpChunkedEncoding]] encoding allows a response to be sent before its total length is known
 * multiple domains (hosts) can be served from a single IP address.
@@ -43,28 +47,38 @@ etc...
 
 ==== Initial Request Line ====
 
-The initial line is different for the request than for the response. A request line has three parts, separated by spaces: a method name (See [[+HttpMethods]]), the local path of the requested resource, and the version of HTTP being used. A typical request line is:
+The **initial request line** has three parts, each separated by a space: 
 
+1. a method name (See [[+HttpMethods]]), 
+2. the local path of the requested resource, and 
+3. the HTTP version.
+
+=== Example: ===
 ''GET /path/to/file/index.html HTTP/1.0''
 
 ==== Initial Response Line ====
-The initial response line, called the status line, also has three parts separated by spaces: the HTTP version, a response status code that gives the result of the request, and an English reason phrase describing the status code. Typical status lines are:
+The **initial response line **(aka the status line) has three parts, each separated by a space:
 
+1. the HTTP version, 
+2. a response status code, and 
+3. a reason (in "plain English") describing the status code. 
+
+=== Example: ===
 ''HTTP/1.0 404 Not Found''
 
 ===== Headers =====
 
 ==== Request Headers ====
 * HTTP 1.0 defines 16 headers, though none are required. 
-* HTTP 1.1 defines 46 headers, and one (Host:) is required. 
+* HTTP 1.1 defines 46 headers, and one (''Host:'') is required. 
 
 For Net-politeness, using these optional headers is a good idea:
 
-* From: header gives the email address of whoever's making the request, or running the program doing so.
-* User-Agent: header identifies the program that's making the request, in the form "Program-name/x.xx", where x.xx is the (mostly) alphanumeric version of the program. For example, ''User-agent: Mozilla/3.0Gold''.
+* ''From:'' header gives the email address of whoever's making the request, or running the program doing so.
+* ''User-Agent:'' header identifies the program that's making the request in the form ''Program-name/x.xx'' where ''x.xx'' is the program version. For example, ''User-agent: Mozilla/3.0Gold''.
 
 If you don't support persistent connections or if you know a request will be the last on its connection, then include
-* Connection: close header to close the persistent connection
+* ''Connection:'' close header to close the persistent connection
 
 === Example: ===
 '''
@@ -75,15 +89,15 @@ Host: www.host1.com:80
 
 
 ==== Response Headers ====
-* all headers except for Date: are optional (including Host:)
+* all headers except for ''Date:'' are optional (including Host:)
 
-If you're writing servers, using these optional headers is a good idea:
+It's a good idea for servers to return these optional headers:
 
-* Server: header identifies the server in the form "Program-name/x.xx". For example, ''Server: Apache/1.2b3-dev''.
-* Last-Modified: header gives the modification date of the resource that's being returned. It's used in caching and other bandwidth-saving activities. Use Greenwich Mean Time, in the format ''Last-Modified: Fri, 31 Dec 1999 23:59:59 GMT''
+* ''Server:'' header identifies the server in the form ''Program-name/x.xx''. For example, ''Server: Apache/1.2b3-dev''.
+* ''Last-Modified:'' header is the last date the resource was modified. It's used in caching and other bandwidth-saving activities. Use Greenwich Mean Time in the format ''Last-Modified: Fri, 31 Dec 1999 23:59:59 GMT''
 
-To tell the client, the connection was closed use
-* Connection: close if a response contains this header, then the server will close the connection following that response, and the client shouldn't send any more requests through that connection.
+To tell the client the connection was closed use
+* ''Connection:'' close if a response contains this header, then the server will close the connection following that response, and the client shouldn't send any more requests through that connection.
 
 A server might close the connection before all responses are sent, so a client must keep track of requests and resend them as needed. When resending, don't pipeline the requests until you know the connection is persistent.
 
