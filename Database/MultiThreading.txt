@@ -49,19 +49,20 @@ correct, so you get inconsistent data.
 Let's talk about inconsistent data. This is the classic
 multi-threading problem:
 
-| Thread 1                        | Thread 2                        |
-| Object x = //read value from db |                                 |
-| if (x == null)                  |                                 |
-| //insert x into db              | Object x = //read value from db |
-|                                 | if (x == null)                  |
-|                                 | //insert x into db              |
+'''
+| Thread 1                         | Thread 2                        |
+| Object x = /*read value from db*/|                                 |
+| if (x == null)                   |                                 |
+| insert x into db                 | Object x = read value from db   |
+|                                  | if (x == null)                  |
+|                                  | /*insert x into db*/            |
+'''
 
-The result is that x gets inserted twice. Using begin*Transaction() doesn't help either unless you get a
-reserved lock. This way only one thread will get the lock and insert x. 
+
+The result is that x gets inserted twice. Using begin*Transaction() doesn't help either unless you get a reserved lock. This way only one thread will get the lock and insert x. 
 
 The problem with this solution is that well you are now in multi-thread land where everything is not as it seems.
-AsyncTaskLoader tries to run all tasks at the same time, so you have no guarantee on the order that your database
-operations get executed. 
+AsyncTaskLoader tries to run all tasks at the same time, so you have no guarantee on the order that your database operations get executed. 
 
 Is there a better solution? For most apps, you don't have to worry about 100's of users all trying to get the same data. What I'm trying to get at is that you don't need to worry about multi-threading. Your "users" are the person using the phone and maybe a handful of background threads. So you can probably get away with the following:
 

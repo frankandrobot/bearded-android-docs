@@ -7,10 +7,14 @@ Created Thursday 12 September 2013
 
 If you use String concatenation in a loop (something like:
 
+'''
 String s = "";
 for(int i = 0; i < 100; i++) {
   s += ", " + i;
 }
+'''
+
+
 then you should use a StringBuilder (not StringBuffer) instead of a String, because it is much faster and consumes less memory.
 
 If you have a single statement:
