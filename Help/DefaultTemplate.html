@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Bearded-android-docs : Android quick docs" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="
+http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
     <title>DefaultTemplate</title>
     <meta name='Generator' content='Zim 0.60'>
@@ -38,6 +39,18 @@
 
 <!-- Wiki content -->
 
+<!-- -->
+<!-- <h1>DefaultTemplate</h1> -->
+<!-- -->
+
+<p>
+Created Sunday 08 December 2013<br>
+</p>
+
+<p>
+Use this template with Zim:<br>
+</p>
+
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -49,104 +62,106 @@
 
     &lt;link rel="stylesheet" type="text/css" media="screen" href="
 </pre>
-<a href="http://frankandrobot.github.io/bearded-android-docs/" title="http://frankandrobot.github.io/bearded-android-docs/" class="http">http://frankandrobot.github.io/bearded-android-docs/</a><code>stylesheets/stylesheet.css"&gt;</code>
-
-<code>    &lt;title&gt;[% page.heading %]&lt;/title&gt;</code>
-<code>    &lt;meta name='Generator' content='Zim [% zim.version %]'&gt;</code>
-    
-<code>    &lt;script type="text/javascript"</code>
-<code>   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js"&gt;</code>
-<code>&lt;/script&gt;</code>
-
-<code>  &lt;/head&gt;</code>
-
-<code>    &lt;!-- HEADER --&gt;</code>
-<code>    &lt;div id="header_wrap" class="outer"&gt;</code>
-<code>        &lt;header class="inner"&gt;</code>
-<code>          &lt;a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs"&gt;View on GitHub&lt;/a&gt;</code>
-
-<code>          &lt;h1 id="project_title"&gt;Bearded-android-docs&lt;/h1&gt;</code>
-<code>          &lt;h2 id="project_tagline"&gt;[% page.heading %]&lt;/h2&gt;</code>
-
-<code>            &lt;section id="downloads"&gt;</code>
-<code>              &lt;a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master"&gt;Download this project as a .zip file&lt;/a&gt;</code>
-<code>              &lt;a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master"&gt;Download this project as a tar.gz file&lt;/a&gt;</code>
-<code>            &lt;/section&gt;</code>
-<code>        &lt;/header&gt;</code>
-<code>    &lt;/div&gt;</code>
-
-<code>    &lt;!-- MAIN CONTENT --&gt;</code>
-<code>    &lt;div id="main_content_wrap" class="outer"&gt;</code>
-<code>      &lt;section id="main_content" class="inner"&gt;</code>
-
-<code>&lt;!-- Wiki content --&gt;</code>
-
-<code>&lt;!-- [% IF page.properties.type == 'namespace-index' -%] --&gt; </code>
-<code>&lt;!-- &lt;h1&gt;Document Index&lt;/h1&gt; --&gt;</code>
-<code>&lt;!-- [%- ELSE -%] --&gt;</code>
-<code>&lt;!-- &lt;h1&gt;[% page.heading %]&lt;/h1&gt; --&gt;</code>
-<code>&lt;!-- [%- END %] --&gt;</code>
-
-<code>[% page.body %]</code>
-
-<code>&lt;!-- End wiki content --&gt;</code>
-
-<code>&lt;hr /&gt;</code>
-
-<code>&lt;!-- Attachments and Backlinks --&gt;</code>
-
-<code>[% IF page.has_backlinks -%]</code>
-<code>&lt;h3&gt;Backlinks:&lt;/h3&gt;</code>
-<code>[%- FOREACH link = page.backlinks -%]</code>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href='[% url(link) %]'&gt;[% link.name %]&lt;/a&gt;</code>
-<code>[%- END -%]</code>
-<code>[%- ELSE -%]</code>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;i&gt;No backlinks to this page.&lt;/i&gt;</code>
-<code>[%- END %]</code>
-
-<code>[% IF page.has_attachments -%]</code>
-<code>&lt;h3&gt;Attachments:&lt;/h3&gt;</code>
-<code>&lt;table&gt;</code>
-<code>[%- FOREACH file = page.attachments -%]</code>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;&lt;a href='[% url(file) %]'&gt;[% file.basename %]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;[% file.size %]&lt;/td&gt;&lt;/tr&gt;</code>
-<code>[%- END -%]</code>
-<code>&lt;/table&gt;</code>
-<code>[%- END %]</code>
-
-<code>&lt;!-- End Attachments and Backlinks --&gt;</code>
-
-<code>    &lt;div id="disqus_thread"&gt;&lt;/div&gt;</code>
-<code>    &lt;script type="text/javascript"&gt;</code>
-<code>        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</code>
-<code>        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname</code>
-
-<code>        /* * * DON'T EDIT BELOW THIS LINE * * */</code>
-<code>        (function() {</code>
-<code>            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;</code>
-<code>            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';</code>
-<code>            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);</code>
-<code>        })();</code>
-<code>    &lt;/script&gt;</code>
-<code>    &lt;noscript&gt;Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</code>
-<code>    &lt;a href="http://disqus.com" class="dsq-brlink"&gt;comments powered by &lt;span class="logo-disqus"&gt;Disqus&lt;/span&gt;&lt;/a&gt;</code>
-    
-<code>      &lt;/section&gt;</code>
-<code>    &lt;/div&gt;</code>
-
-<code>    &lt;!-- FOOTER  --&gt;</code>
-<code>    &lt;div id="footer_wrap" class="outer"&gt;</code>
-<code>      &lt;footer class="inner"&gt;</code>
-<code>        &lt;p class="copyright"&gt;Bearded-android-docs maintained by &lt;a href="https://github.com/frankandrobot"&gt;frankandrobot&lt;/a&gt;&lt;/p&gt;</code>
-<code>        &lt;p&gt;Published with &lt;a href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;&lt;/p&gt;</code>
-<code>        &lt;p&gt;&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;/p&gt;</code>
-
-<code>      &lt;/footer&gt;</code>
-<code>    &lt;/div&gt;</code>
-
-    
-
-<code>  &lt;/body&gt;</code>
-<code>&lt;/html&gt;</code>
+<p>
+<a href="http://frankandrobot.github.io/bearded-android-docs/" title="http://frankandrobot.github.io/bearded-android-docs/" class="http">http://frankandrobot.github.io/bearded-android-docs/</a><code>stylesheets/stylesheet.css"&gt;</code><br>
+<br>
+<code>    &lt;title&gt;[% page.heading %]&lt;/title&gt;</code><br>
+<code>    &lt;meta name='Generator' content='Zim [% zim.version %]'&gt;</code><br>
+    <br>
+<code>    &lt;script type="text/javascript"</code><br>
+<code>   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js"&gt;</code><br>
+<code>&lt;/script&gt;</code><br>
+<br>
+<code>  &lt;/head&gt;</code><br>
+<br>
+<code>    &lt;!-- HEADER --&gt;</code><br>
+<code>    &lt;div id="header_wrap" class="outer"&gt;</code><br>
+<code>        &lt;header class="inner"&gt;</code><br>
+<code>          &lt;a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs"&gt;View on GitHub&lt;/a&gt;</code><br>
+<br>
+<code>          &lt;h1 id="project_title"&gt;Bearded-android-docs&lt;/h1&gt;</code><br>
+<code>          &lt;h2 id="project_tagline"&gt;[% page.heading %]&lt;/h2&gt;</code><br>
+<br>
+<code>            &lt;section id="downloads"&gt;</code><br>
+<code>              &lt;a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master"&gt;Download this project as a .zip file&lt;/a&gt;</code><br>
+<code>              &lt;a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master"&gt;Download this project as a tar.gz file&lt;/a&gt;</code><br>
+<code>            &lt;/section&gt;</code><br>
+<code>        &lt;/header&gt;</code><br>
+<code>    &lt;/div&gt;</code><br>
+<br>
+<code>    &lt;!-- MAIN CONTENT --&gt;</code><br>
+<code>    &lt;div id="main_content_wrap" class="outer"&gt;</code><br>
+<code>      &lt;section id="main_content" class="inner"&gt;</code><br>
+<br>
+<code>&lt;!-- Wiki content --&gt;</code><br>
+<br>
+<code>&lt;!-- [% IF page.properties.type == 'namespace-index' -%] --&gt; </code><br>
+<code>&lt;!-- &lt;h1&gt;Document Index&lt;/h1&gt; --&gt;</code><br>
+<code>&lt;!-- [%- ELSE -%] --&gt;</code><br>
+<code>&lt;!-- &lt;h1&gt;[% page.heading %]&lt;/h1&gt; --&gt;</code><br>
+<code>&lt;!-- [%- END %] --&gt;</code><br>
+<br>
+<code>[% page.body %]</code><br>
+<br>
+<code>&lt;!-- End wiki content --&gt;</code><br>
+<br>
+<code>&lt;hr /&gt;</code><br>
+<br>
+<code>&lt;!-- Attachments and Backlinks --&gt;</code><br>
+<br>
+<code>[% IF page.has_backlinks -%]</code><br>
+<code>&lt;h3&gt;Backlinks:&lt;/h3&gt;</code><br>
+<code>[%- FOREACH link = page.backlinks -%]</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a href='[% url(link) %]'&gt;[% link.name %]&lt;/a&gt;</code><br>
+<code>[%- END -%]</code><br>
+<code>[%- ELSE -%]</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;i&gt;No backlinks to this page.&lt;/i&gt;</code><br>
+<code>[%- END %]</code><br>
+<br>
+<code>[% IF page.has_attachments -%]</code><br>
+<code>&lt;h3&gt;Attachments:&lt;/h3&gt;</code><br>
+<code>&lt;table&gt;</code><br>
+<code>[%- FOREACH file = page.attachments -%]</code><br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;&lt;a href='[% url(file) %]'&gt;[% file.basename %]&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;[% file.size %]&lt;/td&gt;&lt;/tr&gt;</code><br>
+<code>[%- END -%]</code><br>
+<code>&lt;/table&gt;</code><br>
+<code>[%- END %]</code><br>
+<br>
+<code>&lt;!-- End Attachments and Backlinks --&gt;</code><br>
+<br>
+<code>    &lt;div id="disqus_thread"&gt;&lt;/div&gt;</code><br>
+<code>    &lt;script type="text/javascript"&gt;</code><br>
+<code>        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */</code><br>
+<code>        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname</code><br>
+<br>
+<code>        /* * * DON'T EDIT BELOW THIS LINE * * */</code><br>
+<code>        (function() {</code><br>
+<code>            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;</code><br>
+<code>            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';</code><br>
+<code>            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);</code><br>
+<code>        })();</code><br>
+<code>    &lt;/script&gt;</code><br>
+<code>    &lt;noscript&gt;Please enable JavaScript to view the &lt;a href="http://disqus.com/?ref_noscript"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</code><br>
+<code>    &lt;a href="http://disqus.com" class="dsq-brlink"&gt;comments powered by &lt;span class="logo-disqus"&gt;Disqus&lt;/span&gt;&lt;/a&gt;</code><br>
+    <br>
+<code>      &lt;/section&gt;</code><br>
+<code>    &lt;/div&gt;</code><br>
+<br>
+<code>    &lt;!-- FOOTER  --&gt;</code><br>
+<code>    &lt;div id="footer_wrap" class="outer"&gt;</code><br>
+<code>      &lt;footer class="inner"&gt;</code><br>
+<code>        &lt;p class="copyright"&gt;Bearded-android-docs maintained by &lt;a href="https://github.com/frankandrobot"&gt;frankandrobot&lt;/a&gt;&lt;/p&gt;</code><br>
+<code>        &lt;p&gt;Published with &lt;a href="http://pages.github.com"&gt;GitHub Pages&lt;/a&gt;&lt;/p&gt;</code><br>
+<code>        &lt;p&gt;&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;/p&gt;</code><br>
+<br>
+<code>      &lt;/footer&gt;</code><br>
+<code>    &lt;/div&gt;</code><br>
+<br>
+    <br>
+<br>
+<code>  &lt;/body&gt;</code><br>
+<code>&lt;/html&gt;</code><br>
+</p>
 
 
 <!-- End wiki content -->

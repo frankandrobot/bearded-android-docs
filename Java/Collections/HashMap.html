@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bearded-android-docs : Android quick docs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="
+http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+
+    <title>HashMap</title>
+    <meta name='Generator' content='Zim 0.60'>
+    
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+  </head>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
+
+          <h1 id="project_title">Bearded-android-docs</h1>
+          <h2 id="project_tagline">HashMap</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<!-- Wiki content -->
+
+<!-- -->
+<!-- <h1>HashMap</h1> -->
+<!-- -->
+
+<p>
+Created Sunday 08 September 2013<br>
+</p>
+
+<p>
+The HashMap class is roughly equivalent to HashTable, except that it is unsynchronized and permits nulls. (HashMap allows null values as key and value whereas Hashtable doesnt allow). HashMap does not guarantee that the order of the map will remain constant over time. HashMap is unsynchronized and Hashtable is synchronized. <br>
+</p>
+
+<p>
+What are the differences between Map, HashTable, <a href="" title="HashMap" class="page">HashMap</a>, TreeMap, ConcurrentHashMap, LinkedHashMap?<br>
+</p>
+
+<p>
+<ul>
+<li>Map is an interface for a key-value map</li>
+<li>HashMap is a Map that uses a hash table for its implementation</li>
+<li>HashTable is a synchronized version of <a href="" title="HashMap" class="page">HashMap</a> - it is very slow</li>
+<li>TreeMap uses a tree to implement a map</li>
+<li>ConcurrentHashMap allows for multiple threads to access it at the same time safely</li>
+<li>LinkedHashMap preserves the iteration order that things were inserted in (others don’t provide a fixed iteration order)</li>
+</ul>
+</p>
+
+<h1>Keys</h1>
+<p>
+To use a class as a key, you must (correctly) implement #equals and #hashCode.<br>
+<a href="" title="HashMap" class="page">HashMap</a> works by calling the key's #hashCode method. A HashCode need not always be unique. Keys with the same HashCode map to the same bucket. <a href="" title="HashMap" class="page">HashMap</a> then uses the key's #equals method to find a match in the bucket. Obviously, if #equals doesn't work as expected, then <a href="" title="HashMap" class="page">HashMap</a> may enter the same object twice in the hash map or get the wrong object.<br>
+</p>
+ 
+<p>
+See the <a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/HashMap.java" title="HashMap source code" class="http">HashMap source code</a>.<br>
+</p>
+
+<p>
+Implementing #hashCode incorrectly degrades a HashMaps performance. <a href="" title="HashMap" class="page">HashMap</a> ANDs a hash code with the hash map capacity to get the bucket to store the key/value pair. Obviously, if your #hashCode function always returns the same lower bits, then you will basically reduce the <a href="" title="HashMap" class="page">HashMap</a> into a LinkedList --- #get then runs in linear time. <br>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bearded-android-docs maintained by <a href="https://github.com/frankandrobot">frankandrobot</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
