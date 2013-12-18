@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-12-17T18:52:35-05:00
+
+====== ArrayList ======
+Created Tuesday 17 December 2013
+
+===== ArrayList vs Array (primitive type) =====
+* http://stackoverflow.com/questions/716597/array-or-list-in-java-which-is-faster
+
+Is this a case of premature optimization? The correct answer is "It depends". It depends on what JVM you are running, it depends on how your JIT compiler is optimizing the code, it depends on which platform you're running on. Arrays may be faster in JET or Avian , but lists might be faster on HotSpot or IcedTea. In short, if this is the degree of control you need over performance, you need to use a much lower level language like assembly or C. Java is not suitable.
+
+The common consensus is that the performance difference is minor. List interface provides more flexibility.
