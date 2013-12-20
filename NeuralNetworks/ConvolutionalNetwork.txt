@@ -12,5 +12,5 @@ Convolutional networks combine three architectural ideas to ensure some degree o
 
 With local receptive fields neurons can extract elementary visual features such as oriented edges, end-points, etc. These features are then combined by the higher layers
 
-
-
+===== Learning With Backprop =====
+The standard algorithm must be slighthly modified to take account of the weight sharing. An easy way to implement it is to first compute the partial derivatives of the loss function with respect to each connection (as if the network were conventional multi layer). Then the partial derivatives of all the connections that share the same parameter are added to form the derivative w/ respect to that parameter.
