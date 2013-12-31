@@ -1,0 +1,31 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-12-31T11:36:06-05:00
+
+====== History ======
+Created Tuesday 31 December 2013
+
+Paranoia about killer sentient robots (ex: Terminator and Matrix). There's also talk about the "singularity" (a period during which the pace of technological change will be so great, that human life will be irreversibly transformed)
+ 
+However, despite the fact that we have autonomous cars and semi-autonomous drones, actual AI research hasn't advanced that much when it comes to creating "sentient" life. 
+ 
+* Inspired by brain neurons over 50 years ago! the first mathematical model in 1943 by Warren McCulloch and Walter Pitts
+* Original model is very simple. It's one layer of neurons. Mathematically speaking, they are very weak. Can model only linear data. 
+* Not suprisingly research floundered until the 1970s with multi-layered networks.
+* Unfortunately, neural networks had one problem...they were unable to "learn" (we haven't defined that yet) by themselves until the 1980s when the backpropagation was mathematically shown to be valid.
+* With the introduction of the backpropagation algorithm, neural networks could learn patterns from data by themselves. (Its actually a form of supervised learning because you provide the patterns)
+* The backpropagation algorithm uses calculus. The error produces an abstract space. It finds the slope (in 2D or the gradient in 3D or higher) of the error and adjusts the weights in the direction of the slope. 
+
+===== Different Types of Neural Networks =====
+* Feed-forward networks are ideal for classification problems
+
+===== Uses of Neural Networks =====
+* Classification - the goal is to assign the input object to a predetermined class or group. We provide input objects that are representative of all groups. NN deduces classification rules from training data. Ex: handwriting recognition
+* Prediction
+* Clustering (data mining) - unsupervised learning. Goal is to figure out the groups that partition the data.
+* Association
+
+Links
+* http://www-cs-faculty.stanford.edu/~eroberts/courses/soco/projects/neural-networks/History/history1.html
+* Elements of Artificial Neural Networks
+Kishan Mehrotra, Chilukuri K. Mohan and Sanjay Ranka
