@@ -8,9 +8,23 @@ Created Monday 09 December 2013
 * good at recognizing invariant characteristics
 * cons: need large training examples
 
-Convolutional networks combine three architectural ideas to ensure some degree of shift and distortion invariance local receptive fields, shared weights, and  spatial or temporal subsampling
+Convolutional networks combine three ideas:
 
-With local receptive fields neurons can extract elementary visual features such as oriented edges, end-points, etc. These features are then combined by the higher layers
+* local receptive fields (inspired by the feline visual system!)
+* shared weights
+* spatial or temporal subsampling
+
+The result is shift and distortion invariance.
+
+===== Overview of How a CNN Works =====
+Local receptive fields neurons extract the topology of the input---elementary visual features such as oriented edges, end-points, etc. Higher layers then combine these features.
+
+Weight sharing allows knowledge learned in one feature detector to be used across other parts of the image.
+
+===== Reasons for Using a CNN =====
+* a fully connected neural network requires 100,000s of weights
+* no in-built invariance for translations or distortions in inputs
+* fully connected neural network ignores the topology of the input. Nearby pixels have high correlation. CNN networks force the extraction of local features by using a local receptive field.
 
 ===== Learning With Backprop =====
 The standard algorithm must be slighthly modified to take account of the weight sharing. An easy way to implement it is to first compute the partial derivatives of the loss function with respect to each connection (as if the network were conventional multi layer). Then the partial derivatives of all the connections that share the same parameter are added to form the derivative w/ respect to that parameter.
