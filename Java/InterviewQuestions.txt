@@ -8,3 +8,12 @@ Created Saturday 07 September 2013
 * http://javarevisited.blogspot.com/2011/04/top-20-core-java-interview-questions.html
 * http://javarevisited.blogspot.sg/2011/10/how-substring-in-java-works.html
 * http://javarevisited.blogspot.sg/2011/07/java-multi-threading-interview.html
+
+Questions
+ + Where do you guys see this company in the next 2 years?
+ + How can I be a successful employee here?
+ + What do you guys enjoy about working here?
+ + What will be my top priority for the first couple of months?
+ + What challenges will I face?
+ + What does a typical day look like?
+ + Is there any
