@@ -5,27 +5,59 @@ Creation-Date: 2013-12-31T11:36:06-05:00
 ====== History ======
 Created Tuesday 31 December 2013
 
-Paranoia about killer sentient robots (ex: Terminator and Matrix). Worry over the coming "singularity" (a period during which the pace of technological change will be so great, that human life will be irreversibly transformed). The reality is that actual machine learning hasn't advanced that much when it comes to creating a machine that can think for itself. "sentient" life. (This is despite the fact that we have autonomous cars and semi-autonomous drones.)
- 
-Neural networks:
-* Inspired by brain neurons over 50 years ago---the first mathematical model in 1943 by Warren McCulloch and Walter Pitts
-* A neuron is basically a linear function. Each coordinate is multiplied by a weight and the sum of each product is the output of the neuron. Originally, only a single layer of neurons was used producing multiple outputs. Mathematically speaking, single layer neural networks are very weak. Can model only linear data. 
-* Not suprisingly research floundered until the 1970s until research in multi-layered networks came along.
-* Unfortunately, neural networks had one problem...they were unable to "learn" until the 1980s when the backpropagation was mathematically shown to be valid.
-* With the introduction of the backpropagation algorithm, neural networks could learn patterns from data by themselves. (Its actually a form of supervised learning because you provide the patterns)
-* The backpropagation algorithm uses calculus. The error produces an abstract space. It finds the slope (in 2D or the gradient in 3D or higher) of the error and adjusts the weights in the direction of the slope. 
+Two neural networks are at a bar. One says to the  other, "Hey, I learned that if A then B". The other replies, "Wow, I know that if B then C". "Why don't we teach ourselves if A then C?" A while later, they ask each other "What was it what we were talking about?"
 
-===== Different Types of Neural Networks =====
-* Feed-forward networks are ideal for classification problems
+The joke is in reference to the fact that while neural networks can be used to create powerful technologies (self-driving car, voice recognition like Google Now, etc), neural networks are actually pretty stupid. The reality is that machine learning hasn't advanced much when it comes to creating a machine that can actually think for itself i.e., "sentient" artificial intelligence. 
 
-===== Uses of Neural Networks =====
-* Classification - the goal is to assign the input object to a predetermined class or group. We provide input objects that are representative of all groups. NN deduces classification rules from training data. Ex: handwriting recognition
-* Prediction
-* Clustering (data mining) - unsupervised learning. Goal is to figure out the groups that partition the data.
-* Pattern Association
-* Optimization - minimizing or maximizing a function
+As per [[http://www.ted.com/talks/jeff_hawkins_on_how_brain_science_will_change_computing.html|this TED talk]], the real problem is that there doesn't seem to be a common "theory of learning."
 
-Links
+===== Why Neural Networks? =====
+
+[[NeuralNetworks|Neural networks]] (NNs) are easy to understand conceptually and (somewhat) easy to code. A strong math background is also required.
+
+NNs are good at these types of problems:
+
+* **Classification** - the goal is to assign the input object to a predetermined class or group. We provide input objects that are representative of all groups (training examples). NN deduces classification rules from training examples. Ex: handwriting recognition 
+* **Prediction** - ex: sun cycles
+* **Clustering (data mining)** - Similar to classification. However, we don't provide the representative groups. The goal is to figure out the groups that partition the training example. Ex: learn characters in an alien language from sample writings. (This is a type of //unsupervised learning//.)
+* **Pattern Association** - pick out faces from blurry photographs
+* **Optimization** - minimizing or maximizing a function
+
+In general, NNs are good at //bottom-up learning//. In contrast, to top-down learning, in bottom-up learning, hard and fast rules either don't exist or are too complicated to express. Real world example: the rules managers use to distribute work at a customer service center. (Managers may not be able to completely verbalize what they do.) 
+
+===== A Brief History =====
+
+* Neurons were researched over 100 years ago. Scientists discovered that our brain is made up of millions of connected neurons.
+* first mathematical model of a neuron was created in 1943 by Warren McCulloch and Walter Pitts 
+* The original neuron model is basically a linear function. Each coordinate is multiplied by a weight and the sum of each product is the output of the neuron.
+* Neurons working together in parallel is a //single layer of a neural network//. Layers can be stacked together to create //multi-layer neural networks//. 
+* By the 60s, NNs had a lot of hype---robotic servants, etc.
+* A book in 1969 by Minsky helped destroy interest in neural networks for the next decade. 
+* Minksy pointed out the elephant in the room. Single layer neural networks can model only linear data. 
+* Research decreased during the 70s because: (1) computers weren't (yet) powerful enough for research and (2) no motivation or $money$ (thanks to Minksy)
+* It wasn't until the 80's that interest in NNs surged again. In particular, the [[BackPropagation|backpropagation algorithm]] was popularized by Rumelhart. (Up until this point, there was no obvious way to automatically train an NN with sample data.)
+
+===== Different Types of NNs =====
+
+There are actually different types of NNs suitable for different types of problems:
+
+* **recursive neural networks** - sentiment analysis (natural language processing)
+* [[ConvolutionalNetwork|convolution networks]] - image processing
+* many more
+
+===== The Backpropagation Algorithm =====
+
+The backpropagation algorithm is a popular way of training neural networks. The basic form is described [[BackPropagation:BatchModeBackPropagation|here]].  
+
+* The backpropagation algorithm is a form of //supervised learning// because you supply the examples.
+* Its called "backprop" because it starts from the output layer and recursively works backwards to the input layer.
+* We make one small change to the neuron model in order for the backprop algorithm to be guaranteed to work---apply an [[ActivationFunction|activation function]] to the output of the neuron. (A commonly used one is ''tanh''. Activation functions have certain math properties that allow the math to work.)
+* The algorithm reduces the error one small step at a time. It iteratively travels along the direction of highest slope until error is less than given value.
+* The problem is that we don't know if we reached a local minimum or a global minimum. Theoretically, the algorithm can get stuck even when you add a correction term. However, it doesn't in practice and scientists aren't really sure why.
+
+===== Some Resources =====
+
+* http://jeremykun.com/2011/08/11/the-perceptron-and-all-the-things-it-cant-perceive/
+* http://www.cogsci.rpi.edu/~rsun/sun-zhang-jcsr2004-f.pdf
 * http://www-cs-faculty.stanford.edu/~eroberts/courses/soco/projects/neural-networks/History/history1.html
-* Elements of Artificial Neural Networks
-Kishan Mehrotra, Chilukuri K. Mohan and Sanjay Ranka
+* //Elements of Artificial Neural Networks//. Kishan Mehrotra, Chilukuri K. Mohan and Sanjay Ranka

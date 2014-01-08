@@ -13,6 +13,7 @@ Created Friday 06 December 2013
 * https://dspace.ist.utl.pt/bitstream/2295/57975/1/licao_20.pdf - gave me the aha! moment for when I finally got training with multiple examples
 * http://tgmstat.wordpress.com/2013/06/12/draw-neural-network-diagrams-graphviz/ - how to draw neural networks with Graphviz
 * http://yann.lecun.com/exdb/publis/index.html - links to other topics
+* [[http://neuralnetworksanddeeplearning.com/chap1.html|Online Book]]
 
 ===== Learning =====
 * [[http://yann.lecun.com/exdb/publis/pdf/lecun-89.pdf|LeCun (1989). Generalization and Network Design Strategies]]
