@@ -5,25 +5,11 @@ Creation-Date: 2013-11-15T10:05:48-05:00
 ====== NeuralNetworks ======
 Created Friday 15 November 2013
 
-===== Definition of a Neuron =====
-A **neuron** N is a pair `(bb w, phi)`, where `bb w` is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)` and `phi` is an [[+ActivationFunction|activation function]]. We call `w_0` the bias weight. (Note: alternatively, we can put the bias at the end of the list. We would just need to redefine `x_0` accordingly. See below.)
+To understand what a neural network is, please see the definition of a [[+Neuron|neuron]] first.
 
-If `v_N: RR^(k+1) -> RR` is defined as
+A **single layer** **neural network **is one or more [[+Neuron|neurons]] working together in parallel. A **multi-layer neural network** is two or more single-layer networks working in sequence. 
+See [[http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics|here]] for diagrams or take a look at the [[+Resources|resources.]] 
 
-`\ v_N(bb x) = bb w * bb x = bb sum_i^k w_i x_i`
-
-then the value of `v_N` at a specific `bb x` is called the **induced local field **of neuron N.
-
-The **impulse function** of a neuron N, which we will denote `f_N: RR^(k+1) -> (0,1)`, is defined as
-
-`f_N(bb x) = phi(v_N(bb x)) = phi(bb w * bb x)`
-
-By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs `bb x`.
-
-==== Purpose of the Bias ====
-A single neuron separates data with a line (or in general, a hyper plane). The bias allows for lines that do not pass through the origin. 
-
-===== Definition of a Neural Network =====
-A **neural network **can be thought of as a function that is itself the composition, sum, and product of impulse functions. See [[http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics|here]] for diagrams or take a look at the [[+Resources|resources.]] More importantly, since `phi` is continuous and differentiable, the function representing the neural network is itself continuous and differentiable. 
+Neural networks can be thought of as a function of the input //and //the weights of the neurons. More importantly, if each neuron represents a continuous and differentiable function, then the entire network is a continuous and differentiable function. This property is important for learning. (See [[+BackPropagation]]).
  
 
