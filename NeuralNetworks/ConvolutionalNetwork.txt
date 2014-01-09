@@ -17,12 +17,13 @@ Convolutional networks combine three ideas:
 The result is shift and distortion invariance.
 
 ===== Overview of How a CNNs Work =====
-Local receptive fields extract the topology of the input---elementary visual features such as oriented edges, end-points, etc. Higher layers then combine these features. Subsampling reduces 
-
-Weight sharing allows knowledge learned in one feature detector to be used across other parts of the image.
+* Local receptive fields extract the topology of the input---elementary visual features such as oriented edges, end-points, etc. 
+* Higher layers then combine these features. 
+* Subsampling makes the network more robust to slight distortions and translations.
+* Weight sharing allows knowledge learned in one feature detector to be used across other parts of the image. It also reduces the number of free parameters, increasing the network's ability to generalize.
 
 ===== Reasons for Using a CNN =====
-* a fully connected neural network requires 100,000s of weights
+* a fully connected neural network requires 100,000s of weights while a CNN uses much less.
 * no in-built invariance for translations or distortions in inputs
 * fully connected neural network ignores the topology of the input. Nearby pixels have high correlation. CNN networks force the extraction of local features by using a local receptive field.
 
