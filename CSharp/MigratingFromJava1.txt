@@ -58,7 +58,7 @@ checked
 
 * **decimal** --- defines 128-bit number
 * **delegate** --- function pointers (see [[MigratingFromJava2]])
-* **dynamic**''/''**object** --- ''object ''works just like ''Object'' in Java. ''dynamic'' was introduced in C# 4.0. It works just like ''Object'' except that you don't need to make explicit casts (i.e., it turns C# into a dynamic language, so this can be dangerous). Allows interaction with dynamically typed objects. See resources below.
+* **dynamic**''/''**object** --- ''object ''works just like ''Object'' in Java. ''dynamic'' was introduced in C# 4.0. It works just like ''Object'' except that you don't need to make explicit casts (i.e., it turns C# into a dynamic language, so this can be dangerous). Allows interaction with dynamically typed objects. See resources below. See also //duck typing.//
 
 '''
 object o = 10;
@@ -68,7 +68,7 @@ int y = d + 3;// cast not needed!
 '''
 
 
-* built-in **event** handlers (see below)
+* built-in support for **event** handlers (see [[MigratingFromJava2]])
 * **explicit** --- defines casting from a one class to another class as a user-defined operator
 
 '''
@@ -253,15 +253,16 @@ C# has
 * LINQ
 
 ===== Resources =====
+* [[http://stackoverflow.com/questions/610199/the-art-of-programming-java-vs-c-sharp|Java vs C#]]
+* [[http://stackoverflow.com/questions/9033/hidden-features-of-c|Hidden Features of C#]]
 * http://stackoverflow.com/questions/20976660/migrate-from-java-to-c
 * http://programmers.stackexchange.com/questions/221944/using-c-to-learn-c
-* http://stackoverflow.com/questions/9033/hidden-features-of-c - hidden C# features
 * https://github.com/bdb-opensource/c-sharp-pitfalls
 * http://msdn.microsoft.com/en-us/library/ms836794.aspx
 * http://stackoverflow.com/questions/15803965/use-new-keyword-in-c-sharp
 * http://stackoverflow.com/questions/5523031/dynamic-keyword-vs-object-data-type
-* http://blogs.msdn.com/b/csharpfaq/archive/2010/01/25/what-is-the-difference-between-dynamic-and-object-keywords.aspx
-* http://msdn.microsoft.com/en-us/library/ms182131.aspx - avoid ''out'' parameters
-* http://msdn.microsoft.com/en-us/library/aa288471(v=vs.71).aspx - working with structs
-* http://msdn.microsoft.com/en-us/library/aa288465(v=vs.71).aspx - indexers
+* [[http://blogs.msdn.com/b/csharpfaq/archive/2010/01/25/what-is-the-difference-between-dynamic-and-object-keywords.aspx|What is the difference between dynamic and object keywords?]]
+* [[http://msdn.microsoft.com/en-us/library/ms182131.aspx|Official Docs: Avoid OUT params]]
+* [[http://msdn.microsoft.com/en-us/library/aa288471(v=vs.71).aspx|Official Docs: Working with structs]]
+* [[http://msdn.microsoft.com/en-us/library/aa288465(v=vs.71).aspx|Official Docs: Indexers]]
 * [[http://stackoverflow.com/questions/3640866/is-there-a-free-opensource-c-sharp-ide-in-windows|Are there any opensource C# IDEs?]]

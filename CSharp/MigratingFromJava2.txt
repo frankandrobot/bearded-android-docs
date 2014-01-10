@@ -112,6 +112,116 @@ Base bd = new Derived();
 
 
 ===== Events =====
+C# has built-in support for events. 
+
+==== Creating and Using Events ====
+'''
+//Define delegate callback
+public delegate boolean ChangedEventHandler(object sender, int i);
+
+class EventClass
+{
+    //clients register listener with this event
+    public event ChangeEventHandler changedEvent;
+
+    public void foo()
+    {
+        //invoke event
+        if (changedEvent != null) 
+        {
+           if (changedEvent(this, 50)) //...;
+           else //....;
+    }
+}   
+	
+class Test
+{
+    //onChange handler
+    private boolean onChanged(object sender, int i) { //... }
+  
+    public void bar()
+    {
+         EventClass eventClass = new EventClass();
+         
+         //register event handler
+         //"+=" notation means you can add multiple handlers
+         eventClass.changedEvent += new ChangedEventHandler(onChanged);
+
+         eventClass.foo(); //calls Test#onChanged
+
+         //unregister event handler
+'''
+             ''eventClass.changedEvent -= new ChangedEventHandler(onChanged);''
+''    }''
+''}''
+
+**Note: **C# provides a built-in delegate for handling events ''EventHandler'' which is defined as
+
+''public delegate void EventHandler(object sender, EventArgs e);''
+
+where ''EventArgs ''is a built-in class.
+
+==== Events and Inheritance ====
+* child classes cannot directly invoke an event from a parent class. The workaround is to define a ''virtual'' parent method that calls the event directly. Child classes can then ''override'' this method.
+* events can be defined in interfaces. Implementing classes must define a corresponding event.
+
+==== Working with EventHandler Class, Creating Events That Work With .NET Framework ====
+See [[http://msdn.microsoft.com/en-us/library/w369ty8x.aspx|How to: Publish Events that Conform to .NET Framework Guidelines]]
+
+===== Lambdas =====
+A **lambda **expression are anonymous functions that can be used to create delegates or //expression trees//. 
+
+==== Creating a Lambda ====
+'''
+//first define a delegate
+delegate int foo(int i);
+delegate int bar(int a, int b);
+delegate int foobar();
+//...
+//these are all equivalent:
+foo lambda1 = (x) => x * x;
+foo lambda2 = x => x * x;
+foo lambda3 = (int x) => x * x;
+foo lambda4 = x => { Console.WriteLine(x); return x * x; }; //multi-statement
+bar lambda1b = (x,y) => x + y;
+bar lambda2b = (int x, int y) => x + y;
+foobar lambda1c = () => 4; //returns 4 (DOH!)
+//in general,
+//(input params) => expression (returning a value)
+
+'''
+**Note 1:** You don't need to specify the type of the input params (like in the examples above). However, the arguments must implicitly cast to the types defined in the delegate.
+
+**Note 2: **Multi-statement lambdas are called **statement lambdas **and they are //not //supported by LINQ expression providers.
+
+==== Lambdas and Closure ====
+Like Javascript, you can reference outside variables inside of a lambda expression (thereby, creating a **closure**). And like Javascript, the same issues related to closure apply. For example:
+
+'''
+delegate int foo();
+foo[] foos = new foo[5];
+for (int i=0; i<5; i++) {
+    foos[i] = x => i;
+}
+//does NOT print 0,1,2,3,4
+//instead prints 5,5,5,5,5
+for (int i=0; i<5; i++)
+   Console.WriteLine(foos[i]());
+'''
+
+
+==== Anonymous Methods vs Lambdas ====
+C# 2.0 introduced anynymous methods and C# 3.0 introduced lambdas. //Lambdas are the preffered way to write inline code.//
+
+=== Creating an Anonymous Method ===
+'''
+// Create a delegate. 
+delegate void foo(int x);
+
+// create the anonymous method
+foo d = delegate(int k) { // ...  };
+'''
+
 
 ===== Multi-Threading =====
 
@@ -122,3 +232,6 @@ Base bd = new Derived();
 ===== Resources =====
 * [[http://msdn.microsoft.com/en-us/library/aa288459(v=vs.71).aspx|All about delegates]]
 * [[http://msdn.microsoft.com/en-us/library/aa645739(v=vs.71).aspx|Events Tutorial]]
+* [[http://msdn.microsoft.com/en-us/library/w369ty8x.aspx|How to Publish Events that Conform to .NET Guidelines]]
+* [[http://msdn.microsoft.com/en-us/library/bb397687.aspx|Lambda Expressions]]
+* [[http://stackoverflow.com/questions/9636438/expression-lambda-versus-statement-lambda|Expression Lambda versus Statement Lambda]]
