@@ -223,11 +223,9 @@ foo d = delegate(int k) { // ...  };
 '''
 
 
-===== Multi-Threading =====
-
 ===== Unsafe Mode =====
 
-===== LINQ =====
+
 
 ===== Resources =====
 * [[http://msdn.microsoft.com/en-us/library/aa288459(v=vs.71).aspx|All about delegates]]
