@@ -83,15 +83,17 @@ In Java, if ''var'' is a variable of type T (generic type), then ''var = null'' 
 ''T var = default(T);''
 
 ===== Multi-Threading =====
+TODO
 
 ===== Reflection =====
+TODO
 
 ===== LINQ =====
 **Language-Integrated Queries** or **LINQ **generalizes query languages i.e., LINQ allows you to work with C# objects to access data structures such as databases or XML. LINQ supports at least these data sources:
 
 * data from memory
 * XML
-* SQL databases
+* SQL databases.
 
 A typical LINQ operation looks like this:
 
@@ -114,11 +116,17 @@ foreach (int num in numQuery)
 }
 '''
 
+* Use the [[http://msdn.microsoft.com/en-us/library/bb384429.aspx|Object Relational Designer]] to map database data to objects.
 * See also: [[http://msdn.microsoft.com/en-us/library/bb397927.aspx|Basic LINQ Queries]]
 * LINQ can also be used for data transformation
 * Under the hood, LINQ queries use methods. The above example is equivalent to:
 
-var'' numQuery2 = numbers.Where(num => num % 2 == 0).OrderBy(n => n);''
+'''
+var numQuery2 = numbers
+                .Where(num => num % 2 == 0)
+                .OrderBy(n => n);
+'''
+
 
 ===== Resources =====
 * [[http://msdn.microsoft.com/en-us/library/512aeb7t.aspx|Generics C# Programming Guide]]
