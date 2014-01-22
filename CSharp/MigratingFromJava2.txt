@@ -5,6 +5,63 @@ Creation-Date: 2014-01-08T14:59:47-05:00
 ====== MigratingFromJava2 ======
 Created Wednesday 08 January 2014
 
+===== Anonymous Types =====
+You create anonymous types by using the ''new'' operator together with an object initializer:
+
+'''
+var anonymousType = new { First = "Uriel", Last = "Avalos" }; 
+Console.WriteLine(v.Amount + v.Message);
+'''
+
+
+===== Extension Methods =====
+An extension method "adds" new methods to existing types without modifying the original source code. In most cases, you will be using pre-defined extension methods instead of creating your own.
+
+==== Limitations ====
+* Can only add //new //methods. If you try to add an extension method with the same signature as an existing method, the existing method will be used.
+* Cannot access private data.
+
+==== Creating an Extension Method ====
+'''
+using System.Linq;
+using System.Text;
+using System;
+
+namespace CustomExtensions
+{
+    //Extension methods must be defined in a static class 
+    public static class StringExtension
+    {
+        // This is the extension method. 
+        // The first parameter takes the "this" modifier
+        // and specifies the type for which the method is defined. 
+        public static int MyLength(this String str)
+        {
+            return str.Length;
+        }
+    }
+}
+namespace Extension_Methods_Simple
+{
+    //Import the extension method namespace. 
+    using CustomExtensions;
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string s = "The quick brown fox jumped over the lazy dog.";
+            //  Call the method as if it were an  
+            //  instance method on the type. Note that the first 
+            //  parameter is not specified by the calling code. 
+            int i = s.MyLength();
+        }
+    }
+}
+'''
+
+
+See the resources below for more info.
+
 ===== Delegates =====
 A **delegate** is a function pointer. Unlike function pointers in C or C++, delegates are object-oriented, type-safe, and secure.
 
@@ -237,9 +294,12 @@ foo d = delegate(int k) { // ...  };
 See the resources below for more information.
 
 ===== Resources =====
+* [[http://msdn.microsoft.com/en-us/library/bb383977.aspx|Extension Methods]]
+* [[http://msdn.microsoft.com/en-us/library/bb311042.aspx|How to: Implement and Call a Custom Extension Method]]
 * [[http://msdn.microsoft.com/en-us/library/aa288459(v=vs.71).aspx|All about delegates]]
 * [[http://msdn.microsoft.com/en-us/library/aa645739(v=vs.71).aspx|Events Tutorial]]
 * [[http://msdn.microsoft.com/en-us/library/w369ty8x.aspx|How to Publish Events that Conform to .NET Guidelines]]
 * [[http://msdn.microsoft.com/en-us/library/bb397687.aspx|Lambda Expressions]]
 * [[http://stackoverflow.com/questions/9636438/expression-lambda-versus-statement-lambda|Expression Lambda versus Statement Lambda]]
 * [[http://msdn.microsoft.com/en-us/library/aa288474(v=vs.71).aspx|Unsafe Code Tutorial]]
+* [[http://msdn.microsoft.com/en-us/library/bb397696.aspx|Anonymous Types]]

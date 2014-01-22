@@ -25,6 +25,8 @@ Created Tuesday 07 January 2014
 * C# has dynamic-language support (can be dangerous. See ''dynamic'' keyword below)
 * C# has extra language keywords (see below)
 * both support inheritance but each handles it slightly differently (see [[MigratingFromJava2]])
+* C# has anonymous types (see [[MigratingFromJava2]])
+* C# has //extension methods// --- "add" new methods to existing types without modifying the original source code (See [[MigratingFromJava2]])
 
 ===== Java Keywords With No C# Equivalents =====
 * native
@@ -113,6 +115,9 @@ class MyClass
 {
     public int MyInt { get; set; }
 }
+
+//You can also create instantances of these classes with set:
+MyClass myClass = new MyClass{ MyInt = 4 };
 '''
 
 * **implicit** --- works just like ''explicit'' except you don't have to use an explicit cast
@@ -240,7 +245,7 @@ using (MyResource myRes = new MyResource())
 * **var** --- implicit type similar to using ''Object ''keyword in Java except that compiler knows the underlying type
 
 ==== Unsafe Mode Keywords ====
-Unsafe code is for allowing C/C++ style pointer manipulation.  See [[MigratingFromJava2]]
+Unsafe code is for allowing C/C++ style pointer manipulation. See [[MigratingFromJava2]]
 
 * ''fixed'' --- used in unsafe mode for manipulating pointers
 * sizeof

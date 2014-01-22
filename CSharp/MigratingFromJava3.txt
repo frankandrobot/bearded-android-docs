@@ -86,7 +86,39 @@ In Java, if ''var'' is a variable of type T (generic type), then ''var = null'' 
 
 ===== Reflection =====
 
-==== LINQ ====
+===== LINQ =====
+**Language-Integrated Queries** or **LINQ **generalizes query languages i.e., LINQ allows you to work with C# objects to access data structures such as databases or XML. LINQ supports at least these data sources:
+
+* data from memory
+* XML
+* SQL databases
+
+A typical LINQ operation looks like this:
+
+'''
+//  1. Data source. 
+int[] numbers = new int[7] { 0, 1, 2, 3, 4, 5, 6 };
+
+// 2. Query creation. 
+// numQuery is an IEnumerable<int> 
+var numQuery =
+    from num in numbers
+    where (num % 2) == 0
+    orderby num
+    select num;
+
+// 3. Query execution. 
+foreach (int num in numQuery)
+{
+   Console.Write("{0,1} ", num);
+}
+'''
+
+* See also: [[http://msdn.microsoft.com/en-us/library/bb397927.aspx|Basic LINQ Queries]]
+* LINQ can also be used for data transformation
+* Under the hood, LINQ queries use methods. The above example is equivalent to:
+
+var'' numQuery2 = numbers.Where(num => num % 2 == 0).OrderBy(n => n);''
 
 ===== Resources =====
 * [[http://msdn.microsoft.com/en-us/library/512aeb7t.aspx|Generics C# Programming Guide]]
@@ -94,3 +126,6 @@ In Java, if ''var'' is a variable of type T (generic type), then ''var = null'' 
 * [[http://msdn.microsoft.com/en-us/library/d5x73970.aspx|Constraints on Type Parameters]]
 * [[http://msdn.microsoft.com/en-us/library/twcad0zb.aspx|Generic Methods]]
 * [[http://msdn.microsoft.com/en-us/library/f4a6ta2h.aspx|Generics in the Runtime]]
+* [[http://msdn.microsoft.com/en-us/library/bb397933.aspx|Getting Started With LINQ]]
+* [[http://msdn.microsoft.com/en-us/library/bb397927.aspx|Basic LINQ Queries]]
+* [[http://msdn.microsoft.com/en-us/library/bb397914.aspx|Data Transformations with LINQ]]
