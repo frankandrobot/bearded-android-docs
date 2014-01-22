@@ -17,14 +17,14 @@ Created Tuesday 07 January 2014
 
 ===== Differences =====
 * there is no ''throws'' list of exceptions for function declarations---you have to look at docs, examine code, etc. to figure out if something gets thrown (error prone)
-* in Java, you must catch all ''Exception''s that are explicitly thrown;  ''RuntimeException''s need not be caught. In contrast, in C#, all exceptions are equivalent to Java ''RuntimeException''s (so they never need to be caught even when explictly thrown).
+* in Java, you must catch all ''Exception''s that are explicitly thrown; ''RuntimeException''s need not be caught. In contrast, in C#, all exceptions are equivalent to Java ''RuntimeException''s (so they never need to be caught even when explictly thrown).
 * Java is supported by more OSes
 * C# has an "unsafe" mode (aka C++ mode)
 * C# allows operator overloading (can be gross)
 * C# supports indexers where you can access a class like an array (see ''this'' keyword below)
 * C# has dynamic-language support (can be dangerous. See ''dynamic'' keyword below)
 * C# has extra language keywords (see below)
-* both support inheritance but each handles it slightly differently (see [[MigratingFromJava2]]
+* both support inheritance but each handles it slightly differently (see [[MigratingFromJava2]])
 
 ===== Java Keywords With No C# Equivalents =====
 * native
@@ -69,7 +69,7 @@ int y = d + 3;// cast not needed!
 
 
 * built-in support for **event** handlers (see [[MigratingFromJava2]])
-* **explicit** --- defines casting from a one class to another class as a user-defined operator
+* **explicit** --- defines casting from one class to another class as a user-defined operator
 
 '''
 class Apartment
@@ -147,7 +147,6 @@ public class Vector3D
 }
 '''
 
-
 * **out** --- signals that method argument may be modified by the method. //HOWEVER//, the official docs says to use ''out'' sparringly.
 * **override**/**virtual **--- use this keyword pair to effectively erase base methods in child classes. (Compare with ''new.)''
 
@@ -184,7 +183,7 @@ add(1,2,3);
 
 * **ref** --- in C# like in Java objects are passed by reference. Marking a parameter with ''ref'' passes a pointer to //that// pointer. The official docs say to use this keyword infrequently.
 * **sbyte** --- signed byte between -128 and 127
-* **struct** --- lightweight class. Work just like a class except that structs are: (1) stored on the stack instead of the [[JavaMemory:HeapSpace|heap]]. (2) passed by value instead of by reference. (3) constructors (if defined) must take parameters. (4) no support for inheritance. (However, structs can implement interfaces.) (5) you can control memory layout of its fields. See resources for details.
+* **struct** --- lightweight class. Works just like a class except that structs are: (1) stored on the stack instead of the [[JavaMemory:HeapSpace|heap]]. (2) passed by value instead of by reference. (3) constructors (if defined) must take parameters. (4) no support for inheritance. (However, structs can implement interfaces.) (5) you can control memory layout of its fields. See resources for details.
 * **this** --- works just like ''this'' in Java. However, it's also used to create an //indexer//. An **indexer** allows you to access a class object like an array: you define the operator [] for a class.
 
 '''
