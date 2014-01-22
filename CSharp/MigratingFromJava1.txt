@@ -237,6 +237,7 @@ using (MyResource myRes = new MyResource())
 //NOTE: object must implement IDisposable interface
 '''
 
+* **var** --- implicit type similar to using ''Object ''keyword in Java except that compiler knows the underlying type
 
 ==== Unsafe Mode Keywords ====
 Unsafe code is for allowing C/C++ style pointer manipulation.  See [[MigratingFromJava2]]
