@@ -211,7 +211,7 @@ for (int i=0; i<5; i++)
 
 
 ==== Anonymous Methods vs Lambdas ====
-C# 2.0 introduced anynymous methods and C# 3.0 introduced lambdas. //Lambdas are the preffered way to write inline code.//
+C# 2.0 introduced anynymous methods and C# 3.0 introduced lambdas. As per the offical docs, l//ambdas are the preffered way to write inline code.//
 
 === Creating an Anonymous Method ===
 '''
@@ -224,8 +224,15 @@ foo d = delegate(int k) { // ...  };
 
 
 ===== Unsafe Mode =====
+**Unsafe mode** is for allowing C/C++ style pointer manipulation. The following are the recommended reasons for using unsafe mode:
 
+* Performance-critical code
+* Dealing with existing structures on disk
+* Advanced COM or Platform Invoke scenarios that involve structures with pointers in them
 
+**Note:** With pointers you get better performance than the usual array access, the resulting code is harder to maintain. Do NOT use unsafe mode just to write C/C++ code in C#! 
+
+See the resources below for more information.
 
 ===== Resources =====
 * [[http://msdn.microsoft.com/en-us/library/aa288459(v=vs.71).aspx|All about delegates]]
@@ -233,3 +240,4 @@ foo d = delegate(int k) { // ...  };
 * [[http://msdn.microsoft.com/en-us/library/w369ty8x.aspx|How to Publish Events that Conform to .NET Guidelines]]
 * [[http://msdn.microsoft.com/en-us/library/bb397687.aspx|Lambda Expressions]]
 * [[http://stackoverflow.com/questions/9636438/expression-lambda-versus-statement-lambda|Expression Lambda versus Statement Lambda]]
+* [[http://msdn.microsoft.com/en-us/library/aa288474(v=vs.71).aspx|Unsafe Code Tutorial]]

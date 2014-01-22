@@ -241,7 +241,9 @@ using (MyResource myRes = new MyResource())
 
 
 ==== Unsafe Mode Keywords ====
-* ''fixed'' --- used in unsafe mode for manipulating pointers
+Unsafe code is for allowing C/C++ style pointer manipulation.  See [[MigratingFromJava2]]
+
+• ''fixed'' --- used in unsafe mode for manipulating pointers
 * sizeof
 * stacalloc
 
