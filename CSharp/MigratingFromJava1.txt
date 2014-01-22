@@ -121,6 +121,21 @@ MyClass myClass = new MyClass{ MyInt = 4 };
 '''
 
 * **implicit** --- works just like ''explicit'' except you don't have to use an explicit cast
+* **namespace** --- used to create a scope containing a group of related objects.
+
+'''
+namespace SampleNamespace
+{
+    class SampleClass { }
+
+    namespace SampleNamespace.Nested
+    {
+        class SampleClass2 { }
+    }
+}
+'''
+
+
 * **new** --- works just like ''new'' in Java. However, it can also be used to //hide //base methods in child classes. Note that if you cast a child object to a parent object, you will be able to access the hidden method. (Contrast this behavior with ''virtual/override'')
 
 '''
@@ -241,6 +256,15 @@ using (MyResource myRes = new MyResource())
 
 //NOTE: object must implement IDisposable interface
 '''
+
+The **using **keyword is also used to import namespaces:
+
+'''
+using System;
+System.Console.WriteLine("Hello");
+Console.WriteLine("World!");
+'''
+
 
 * **var** --- implicit type similar to using ''Object ''keyword in Java except that compiler knows the underlying type
 
