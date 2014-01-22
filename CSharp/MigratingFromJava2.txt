@@ -16,11 +16,11 @@ delegate void foobar(int i);
 
 class Foo
 {
-    //these two will be passed as function ptrs
+    //assign these two as delegates implementing foobar
     public void delegate1(int i) { //... }
     public void delegate2(int i) { //... }
     
-    //this is how you use a delegate as a parameter
+    //pass delegate as function pointer to method
     public callDelegate(foobar delegateMethod)
     {
         //call delegate with input 0
@@ -183,8 +183,10 @@ foo lambda1 = (x) => x * x;
 foo lambda2 = x => x * x;
 foo lambda3 = (int x) => x * x;
 foo lambda4 = x => { Console.WriteLine(x); return x * x; }; //multi-statement
+//multi-params:
 bar lambda1b = (x,y) => x + y;
 bar lambda2b = (int x, int y) => x + y;
+//no params:
 foobar lambda1c = () => 4; //returns 4 (DOH!)
 //in general,
 //(input params) => expression (returning a value)
@@ -230,7 +232,7 @@ foo d = delegate(int k) { // ...  };
 * Dealing with existing structures on disk
 * Advanced COM or Platform Invoke scenarios that involve structures with pointers in them
 
-**Note:** With pointers you get better performance than the usual array access, the resulting code is harder to maintain. Do NOT use unsafe mode just to write C/C++ code in C#! 
+**Note:** With pointers you get better performance than the usual array access; however, the resulting code is harder to maintain. Do NOT use unsafe mode just to write C/C++ code in C#! 
 
 See the resources below for more information.
 

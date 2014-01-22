@@ -5,10 +5,92 @@ Creation-Date: 2014-01-10T17:03:24-05:00
 ====== MigratingFromJava3 ======
 Created Friday 10 January 2014
 
-Generics
+===== Generics =====
+As far as I can tell, Java and C# generics are very similar with at least these differences:
+* in C# you can use "base" types (pass by value) as generic types, resulting in performance gain
+* while you can put upper bounds on generic types, C# has no concept of a lower bound
+* generic methods with no params can't automatically deduce return type
 
-Multi-Threading
+==== Defining/Using Generic Classes ====
+'''
+public class GenericClass<T> 
+{
+    T data;
+    
+    public GenericClass(T input) { //... }
+    
+    public void method1(T t)  { // ... }
+    
+    public T method2() { // ... }
+}
+//...
+GenericClass<int> genericClass = new GenericClass<int>(5); 
 
-Reflection
+//multiple generic types
+public class GenericClass<T,U> { //... }   
+'''
 
-LINQ
+
+==== Defining/Using Generic Methods ====
+'''
+public class SomeClass
+{
+    public T genericMethod<T>(T input) { // ... }
+}
+//...
+SomeClass someClass = new SomeClass();
+int result1 = someClass.genericMethod<int>(5);
+int result2 = someClass.genericMethod(4); //type inference
+'''
+
+**Note: **The compiler cannot infer type parameters only from a constraint or return value. Therefore type inference does not work with methods that have no parameters. 
+
+==== Constraints ====
+'''
+//T must be an Employee or derive from Employee
+public class GenericClass<T> where T : Employee
+{
+    //...
+}
+
+//T must be a struct
+public class GenericClass<T> where T : struct { //... } 
+
+//T must be a class
+public class GenericClass<T> where T : class { //... }
+'''
+
+'''
+//multiple constraints
+class EmployeeList<T> where T : Employee, IEmployee, new()
+{
+    // ...
+}
+
+//constraints on multiple generic types
+class Test<T, U>
+    where U : struct 
+    where T : new() { } 
+'''
+
+**Note: **When used as a generic constraint, ''new()'' means that the generic type must have a public parameterless constructor. When used together with other constraints, the ''new()'' constraint must be specified last.
+
+**Note: **Don't use **==** or **!=** operators for comparison on generic types with no constraints (unbounded type parameters) or those that use ''class'' constraint. These comparisons will fail!
+
+==== Generics and Value Types ====
+In Java, if ''var'' is a variable of type T (generic type), then ''var = null'' is always valid. In C#, that statement isn't valid when T is a value type (''int'', ''float'', etc). The solution is to use ''default'': 
+
+''T var = default(T);''
+
+===== Multi-Threading =====
+
+===== Reflection =====
+
+==== LINQ ====
+
+===== Resources =====
+* [[http://msdn.microsoft.com/en-us/library/512aeb7t.aspx|Generics C# Programming Guide]]
+* [[http://msdn.microsoft.com/en-us/library/0x6a29h6.aspx|Introduction to Generics]]
+* [[http://msdn.microsoft.com/en-us/library/d5x73970.aspx|Constraints on Type Parameters]]
+* [[http://msdn.microsoft.com/en-us/library/twcad0zb.aspx|Generic Methods]]
+* [[http://msdn.microsoft.com/en-us/library/f4a6ta2h.aspx|Generics in the Runtime]]

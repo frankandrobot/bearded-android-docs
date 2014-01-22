@@ -10,7 +10,7 @@ Created Tuesday 07 January 2014
 * all objects are references
 * both use auto garbage collection
 * both are type safe
-* both allow generics (templates)
+* both allow generics (with slight differences. See [[MigratingFromJava3]])
 * single inheritance
 * both have built-in unicode support
 * both have built-in support for exception handling. (With differences. See below.)
@@ -40,7 +40,6 @@ string s = o as string;
 if (s != null) //...
 '''
 
-
 * **checked** keyword --- creates block where you must check for arithmetic exceptions.
 
 '''
@@ -66,7 +65,6 @@ dynamic d = 10;
 int x = (int) o + 3; //cast needed
 int y = d + 3;// cast not needed!
 '''
-
 
 * built-in support for **event** handlers (see [[MigratingFromJava2]])
 * **explicit** --- defines casting from one class to another class as a user-defined operator
@@ -243,7 +241,7 @@ using (MyResource myRes = new MyResource())
 ==== Unsafe Mode Keywords ====
 Unsafe code is for allowing C/C++ style pointer manipulation.  See [[MigratingFromJava2]]
 
-• ''fixed'' --- used in unsafe mode for manipulating pointers
+* ''fixed'' --- used in unsafe mode for manipulating pointers
 * sizeof
 * stacalloc
 
