@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bearded-android-docs : Android quick docs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="
+http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+
+    <title>MigratingFromJava1</title>
+    <meta name='Generator' content='Zim 0.60'>
+    
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+  </head>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
+
+          <h1 id="project_title">Bearded-android-docs</h1>
+          <h2 id="project_tagline">MigratingFromJava1</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<!-- Wiki content -->
+
+<!-- -->
+<!-- <h1>MigratingFromJava1</h1> -->
+<!-- -->
+
+<h2>Similarities</h2>
+<li>both have similar syntax</li>
+<li>all objects are references</li>
+<li>both use auto garbage collection</li>
+<li>both are type safe</li>
+<li>both allow generics (with slight differences. See <a href="./MigratingFromJava3.html" title="MigratingFromJava3" class="page">MigratingFromJava3</a>)</li>
+<li>single inheritance</li>
+<li>both have built-in unicode support</li>
+<li>both have built-in support for exception handling. (With differences. See below.)</li>
+<li>both have similar build processes (see <a href="./MigratingFromJava4.html" title="MigratingFromJava4" class="page">MigratingFromJava4</a>)</li>
+
+<h2>Differences</h2>
+<li>there is no <code>throws</code> list of exceptions for function declarations---you have to look at docs, examine code, etc. to figure out if something gets thrown (error prone)</li>
+<li>in Java, you must catch all <code>Exception</code>s that are explicitly thrown; <code>RuntimeException</code>s need not be caught. In contrast, in C#, all exceptions are equivalent to Java <code>RuntimeException</code>s (so they never need to be caught even when explictly thrown).</li>
+<li>Java is supported by more OSes</li>
+<li>C# has an "unsafe" mode (aka C++ mode)</li>
+<li>C# allows operator overloading (can be gross)</li>
+<li>C# supports indexers where you can access a class like an array (see <code>this</code> keyword below)</li>
+<li>C# has dynamic-language support (can be dangerous. See <code>dynamic</code> keyword below)</li>
+<li>C# has extra language keywords (see below)</li>
+<li>both support inheritance but each handles it slightly differently (see <a href="./MigratingFromJava2.html" title="MigratingFromJava2" class="page">MigratingFromJava2</a>)</li>
+<li>C# has anonymous types (see <a href="./MigratingFromJava2.html" title="MigratingFromJava2" class="page">MigratingFromJava2</a>)</li>
+<li>C# has <em>extension methods</em> --- "add" new methods to existing types without modifying the original source code (See <a href="./MigratingFromJava2.html" title="MigratingFromJava2" class="page">MigratingFromJava2</a>)</li>
+
+<h2>Java Keywords With No C# Equivalents</h2>
+<li>native</li>
+<li>transient</li>
+<li>synchronized (when used on methods) - C# supports only synchronized blocks with <code>lock</code> keyword; however, you cannot synchronize methods.</li>
+
+<h2>C# Keywords With No Java Equivalents</h2>
+<li><strong>as</strong> keyword --- tries to cast object to given type; otherwise, returns null</li>
+
+<pre>
+Object o = //...
+string s = o as string;
+if (s != null) //...
+</pre>
+
+<li><strong>checked</strong> keyword --- creates block where you must check for arithmetic exceptions.</li>
+
+<pre>
+checked
+{
+   try
+   {
+        short x = 32767;
+        short y = 32767;
+        short z = y + z;
+   }
+   catch (OverflowException e) { //... }
+}
+</pre>
+
+<li><strong>decimal</strong> --- defines 128-bit number</li>
+<li><strong>delegate</strong> --- function pointers (see <a href="./MigratingFromJava2.html" title="MigratingFromJava2" class="page">MigratingFromJava2</a>)</li>
+<li><strong>dynamic</strong><code>/</code><strong>object</strong> --- <code>object </code>works just like <code>Object</code> in Java. <code>dynamic</code> was introduced in C# 4.0. It works just like <code>Object</code> except that you don't need to make explicit casts (i.e., it turns C# into a dynamic language, so this can be dangerous). Allows interaction with dynamically typed objects. See resources below. See also <em>duck typing.</em></li>
+
+<pre>
+object o = 10;
+dynamic d = 10;
+int x = (int) o + 3; //cast needed
+int y = d + 3;// cast not needed!
+</pre>
+
+<li>built-in support for <strong>event</strong> handlers (see <a href="./MigratingFromJava2.html" title="MigratingFromJava2" class="page">MigratingFromJava2</a>)</li>
+<li><strong>explicit</strong> --- defines casting from one class to another class as a user-defined operator</li>
+
+<pre>
+class Apartment
+{
+    public string name;
+
+    //convert an aparment to a house
+    public static explicit operator House(Apartment a)
+    {
+	return new House(a.name);
+    }
+
+    //...
+}
+
+Apartment a = new Apartment("Soho");
+//cast Apartment to House
+House h = (House) a;
+</pre>
+
+<li><strong>extern</strong> --- methods whose implementations are defined externally</li>
+<li><strong>foreach</strong> --- used for <code>foreach</code> loops. Use <strong>in</strong> keyword.</li>
+<li><strong>get</strong><code>/</code><strong>set</strong> --- <code>get {}</code> and <code>set {}</code> define setters and getters that behave like class fields. Use <strong>value</strong> for the setter.</li>
+
+<pre>
+class MyClass
+{
+    private int myint;
+    public int MyInt
+    {
+        get { return m_int; }
+        set { m_int = value; }
+    }
+}
+
+MyClass m = new MyClass();
+Int i = m.MyInt;
+m.MyInt = 23;
+
+//Note: in C# 3.0 the above class declaration is equivalent to:
+//(thanks to auto-implemented properties)
+class MyClass
+{
+    public int MyInt { get; set; }
+}
+
+//You can also create instantances of these classes with set:
+MyClass myClass = new MyClass{ MyInt = 4 };
+</pre>
+
+<li><strong>implicit</strong> --- works just like <code>explicit</code> except you don't have to use an explicit cast</li>
+<li><strong>namespace</strong> --- used to create a scope containing a group of related objects.</li>
+
+<pre>
+namespace SampleNamespace
+{
+    class SampleClass { }
+
+    namespace SampleNamespace.Nested
+    {
+        class SampleClass2 { }
+    }
+}
+</pre>
+
+
+<li><strong>new</strong> --- works just like <code>new</code> in Java. However, it can also be used to <em>hide </em>base methods in child classes. Note that if you cast a child object to a parent object, you will be able to access the hidden method. (Contrast this behavior with <code>virtual/override</code>)</li>
+
+<pre>
+class BaseClass
+{
+    public void m1() { //... } 
+}
+
+class DerivedClass : BaseClass
+{
+    public new void m1() { //... }
+}
+
+DerivedClass derived = new DerivedClass();
+derived.m1(); //calls DerivedClass#m1
+
+BaseClass casted = new DerivedClass();
+casted.m1(); //calls BaseClass#m1
+
+</pre>
+<li><strong>operator</strong> --- allows you to override operators in classes. </li>
+
+<pre>
+public class Vector3D
+{
+    public static Vector3D operator + (Vector3D v) { //.. }
+}
+</pre>
+
+<li><strong>out</strong> --- signals that method argument may be modified by the method. <em>HOWEVER</em>, the official docs says to use <code>out</code> sparringly.</li>
+<li><strong>override</strong>/<strong>virtual </strong>--- use this keyword pair to effectively erase base methods in child classes. (Compare with <code>new.)</code></li>
+
+<pre>
+class BaseClass
+{
+    public virtual void m1() { //... } 
+}
+
+class DerivedClass : BaseClass
+{
+    public override void m1() { //... }
+}
+
+DerivedClass derived = new DerivedClass();
+derived.m1(); //calls DerivedClass#m1
+
+BaseClass casted = new DerivedClass();
+casted.m1(); //calls DerivedClass#m1
+</pre>
+
+<li><strong>params</strong> --- works just like ... in Java. </li>
+
+<pre>
+public int add(params int[] args)
+{
+    //...
+}
+
+//can call #add with variable number of arguments:
+add(1);
+add(1,2,3); 
+</pre>
+
+<li><strong>ref</strong> --- in C# like in Java objects are passed by reference. Marking a parameter with <code>ref</code> passes a pointer to <em>that</em> pointer. The official docs say to use this keyword infrequently.</li>
+<li><strong>sbyte</strong> --- signed byte between -128 and 127</li>
+<li><strong>struct</strong> --- lightweight class. Works just like a class except that structs are: (1) stored on the stack instead of the <a href="../JavaMemory/HeapSpace.html" title="heap" class="page">heap</a>. (2) passed by value instead of by reference. (3) constructors (if defined) must take parameters. (4) no support for inheritance. (However, structs can implement interfaces.) (5) you can control memory layout of its fields. See resources for details.</li>
+<li><strong>this</strong> --- works just like <code>this</code> in Java. However, it's also used to create an <em>indexer</em>. An <strong>indexer</strong> allows you to access a class object like an array: you define the operator [] for a class.</li>
+
+<pre>
+class Layout
+{
+    string[] _values = new string[100]; // Backing store
+
+    public string this[int number]
+    {
+	get { return _values[number]; }
+	set { _values[number] = value; }
+    }
+}
+
+Layout layout = new Layout();
+layout[1] = "Hello world";
+String value1 = layout[1];
+
+//Note: in above example, "number" is an int but it can be any type.
+//Note: an indexer can use any number of parameters
+</pre>
+
+<li><strong>typeof</strong> --- returns the <code>Type</code> of the object</li>
+<li><strong>unit</strong> --- unsigned integer</li>
+<li><strong>ulong</strong> --- unsigned long</li>
+<li><strong>unchecked</strong> --- opposite of <strong>checked</strong>. No arithmetic exception checking in block. </li>
+<li><strong>unsafe</strong> --- defines an unsafe block</li>
+<li><strong>using</strong> --- ensure object is disposed (marked for garbage collection) as soon as you're done using it.</li>
+
+<pre>
+using (MyResource myRes = new MyResource())
+{
+    myRes.DoSomething();
+}
+
+//is equivalent to
+
+{ // limits scope of myRes
+    MyResource myRes= new MyResource();
+    try
+    {
+        myRes.DoSomething();
+    }
+    finally
+    {
+        // Check for a null resource.
+        if (myRes!= null)
+            // Call the object's Dispose method.
+            ((IDisposable)myRes).Dispose();
+    }
+}
+
+//NOTE: object must implement IDisposable interface
+</pre>
+<br>
+The <strong>using </strong>keyword is also used to import namespaces:<br>
+<br>
+<pre>
+using System;
+System.Console.WriteLine("Hello");
+Console.WriteLine("World!");
+</pre>
+
+
+<li><strong>var</strong> --- implicit type similar to using <code>Object </code>keyword in Java except that compiler knows the underlying type</li>
+
+<h3>Unsafe Mode Keywords</h3><br>
+Unsafe code is for allowing C/C++ style pointer manipulation. See <a href="./MigratingFromJava2.html" title="MigratingFromJava2" class="page">MigratingFromJava2</a>
+
+<li><code>fixed</code> --- used in unsafe mode for manipulating pointers</li>
+<li>sizeof</li>
+<li>stacalloc</li>
+
+<h2>Resources</h2>
+<li><a href="http://msdn.microsoft.com/en-us/library/ms836794.aspx" title="C# and Java: Comparing Programming Languages" class="http">C# and Java: Comparing Programming Languages</a></li>
+<li><a href="http://stackoverflow.com/questions/610199/the-art-of-programming-java-vs-c-sharp" title="Java vs C#" class="http">Java vs C#</a></li>
+<li><a href="http://stackoverflow.com/questions/9033/hidden-features-of-c" title="Hidden Features of C#" class="http">Hidden Features of C#</a></li>
+<li><a href="http://stackoverflow.com/questions/20976660/migrate-from-java-to-c" title="http://stackoverflow.com/questions/20976660/migrate-from-java-to-c" class="http">http://stackoverflow.com/questions/20976660/migrate-from-java-to-c</a></li>
+<li><a href="http://programmers.stackexchange.com/questions/221944/using-c-to-learn-c" title="http://programmers.stackexchange.com/questions/221944/using-c-to-learn-c" class="http">http://programmers.stackexchange.com/questions/221944/using-c-to-learn-c</a></li>
+<li><a href="https://github.com/bdb-opensource/c-sharp-pitfalls" title="https://github.com/bdb-opensource/c-sharp-pitfalls" class="https">https://github.com/bdb-opensource/c-sharp-pitfalls</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/ms836794.aspx" title="http://msdn.microsoft.com/en-us/library/ms836794.aspx" class="http">http://msdn.microsoft.com/en-us/library/ms836794.aspx</a></li>
+<li><a href="http://stackoverflow.com/questions/15803965/use-new-keyword-in-c-sharp" title="http://stackoverflow.com/questions/15803965/use-new-keyword-in-c-sharp" class="http">http://stackoverflow.com/questions/15803965/use-new-keyword-in-c-sharp</a></li>
+<li><a href="http://stackoverflow.com/questions/5523031/dynamic-keyword-vs-object-data-type" title="http://stackoverflow.com/questions/5523031/dynamic-keyword-vs-object-data-type" class="http">http://stackoverflow.com/questions/5523031/dynamic-keyword-vs-object-data-type</a></li>
+<li><a href="http://blogs.msdn.com/b/csharpfaq/archive/2010/01/25/what-is-the-difference-between-dynamic-and-object-keywords.aspx" title="What is the difference between dynamic and object keywords?" class="http">What is the difference between dynamic and object keywords?</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/ms182131.aspx" title="Official Docs: Avoid OUT params" class="http">Official Docs: Avoid OUT params</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/aa288471(v=vs.71).aspx" title="Official Docs: Working with structs" class="http">Official Docs: Working with structs</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/library/aa288465(v=vs.71).aspx" title="Official Docs: Indexers" class="http">Official Docs: Indexers</a></li>
+<li><a href="http://stackoverflow.com/questions/3640866/is-there-a-free-opensource-c-sharp-ide-in-windows" title="Are there any opensource C# IDEs?" class="http">Are there any opensource C# IDEs?</a></li>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+<h3>Backlinks:</h3>	<a href='./MigratingFromJava2.html'>CSharp:MigratingFromJava2</a>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bearded-android-docs maintained by <a href="https://github.com/frankandrobot">frankandrobot</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

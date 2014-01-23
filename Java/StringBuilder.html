@@ -51,11 +51,15 @@ Created Thursday 12 September 2013<br>
 If you use String concatenation in a loop (something like:<br>
 </p>
 
+<pre>
+String s = "";
+for(int i = 0; i &lt; 100; i++) {
+  s += ", " + i;
+}
+</pre>
+
+
 <p>
-String s = "";<br>
-for(int i = 0; i &lt; 100; i++) {<br>
-  s += ", " + i;<br>
-}<br>
 then you should use a StringBuilder (not StringBuffer) instead of a String, because it is much faster and consumes less memory.<br>
 </p>
 

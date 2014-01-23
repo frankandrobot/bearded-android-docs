@@ -49,7 +49,7 @@ Created Monday 09 September 2013<br>
 
 <p>
 When instantiating a singleton, make sure that the instantiator actually instantiates <em>one</em> instance of the object<br>
-i.e., take into account ConcurrencyIssues<br>
+i.e., take into account <a href="./ConcurrencyIssues.html" title="ConcurrencyIssues" class="page">ConcurrencyIssues</a><br>
 </p>
 
 <p>
@@ -113,7 +113,7 @@ The problem with this technique has to do with JavaMemory:CacheCoherence. Even t
 <li>Thread_2 calls getInstance(). It sees null instance so it passes the first check. It stops at the synchronized barrier. Meanwhile...</li>
 <li>Thread_1 finishes creating the PieChucker. It leaves the synchronized block. HOWEVER,....</li>
 <li>the PieChucker was created on the heap but it still hasn't been initialized completely. As a result...</li>
-<li>Thread_2 enters the synchronized block. It thinks it has a (complete) PieChucker and returns an incomplete object.</li>
+<li>Thread_2 enters the synchronized block. It thinks it has a (complete) <a href="./PieChucker.html" title="PieChucker" class="page">PieChucker</a> and returns an incomplete object.</li>
 </ul>
 <br>
 Sources:<br>
@@ -151,7 +151,7 @@ Sources:<br>
 
 <!-- Attachments and Backlinks -->
 
-<h3>Backlinks:</h3>	<a href='../MultiThreading/ConcurrencyIssues.html'>MultiThreading:ConcurrencyIssues</a>
+	<i>No backlinks to this page.</i>
 
 
 

@@ -129,24 +129,23 @@ Let's talk about inconsistent data. This is the classic<br>
 multi-threading problem:<br>
 </p>
 
-<p>
-| Thread 1                        | Thread 2                        |<br>
-| Object x = //read value from db |                                 |<br>
-| if (x == null)                  |                                 |<br>
-| <em>insert x into db              | Object x = </em>read value from db |<br>
-|                                 | if (x == null)                  |<br>
-|                                 | //insert x into db              |<br>
-</p>
+<pre>
+| Thread 1                         | Thread 2                        |
+| Object x = /*read value from db*/|                                 |
+| if (x == null)                   |                                 |
+| insert x into db                 | Object x = read value from db   |
+|                                  | if (x == null)                  |
+|                                  | /*insert x into db*/            |
+</pre>
+
 
 <p>
-The result is that x gets inserted twice. Using begin*Transaction() doesn't help either unless you get a<br>
-reserved lock. This way only one thread will get the lock and insert x. <br>
+The result is that x gets inserted twice. Using begin*Transaction() doesn't help either unless you get a reserved lock. This way only one thread will get the lock and insert x. <br>
 </p>
 
 <p>
 The problem with this solution is that well you are now in multi-thread land where everything is not as it seems.<br>
-AsyncTaskLoader tries to run all tasks at the same time, so you have no guarantee on the order that your database<br>
-operations get executed. <br>
+AsyncTaskLoader tries to run all tasks at the same time, so you have no guarantee on the order that your database operations get executed. <br>
 </p>
 
 <p>

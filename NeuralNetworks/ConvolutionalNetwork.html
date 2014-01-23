@@ -55,15 +55,44 @@ Created Monday 09 December 2013<br>
 </p>
 
 <p>
-Convolutional networks combine three architectural ideas to ensure some degree of shift and distortion invariance local receptive fields, shared weights, and  spatial or temporal subsampling<br>
+Convolutional networks combine three ideas:<br>
 </p>
 
 <p>
-With local receptive fields neurons can extract elementary visual features such as oriented edges, end-points, etc. These features are then combined by the higher layers<br>
+<ul>
+<li>local receptive fields (inspired by the feline visual system!)</li>
+<li>shared weights</li>
+<li>spatial or temporal subsampling</li>
+</ul>
 </p>
 
+<p>
+The result is shift and distortion invariance.<br>
+</p>
 
+<h2>Overview of How a CNNs Work</h2>
+<p>
+<ul>
+<li>Local receptive fields extract the topology of the input---elementary visual features such as oriented edges, end-points, etc. </li>
+<li>Higher layers then combine these features. </li>
+<li>Subsampling makes the network more robust to slight distortions and translations.</li>
+<li>Weight sharing allows knowledge learned in one feature detector to be used across other parts of the image. It also reduces the number of free parameters, increasing the network's ability to generalize.</li>
+</ul>
+</p>
 
+<h2>Reasons for Using a CNN</h2>
+<p>
+<ul>
+<li>a fully connected neural network requires 100,000s of weights while a CNN uses much less.</li>
+<li>no in-built invariance for translations or distortions in inputs</li>
+<li>fully connected neural network ignores the topology of the input. Nearby pixels have high correlation. CNN networks force the extraction of local features by using a local receptive field.</li>
+</ul>
+</p>
+
+<h2>Learning With Backprop</h2>
+<p>
+The standard algorithm must be slighthly modified to take account of the weight sharing. An easy way to implement it is to first compute the partial derivatives of the loss function with respect to each connection (as if the network were conventional multi layer). Then the partial derivatives of all the connections that share the same parameter are added to form the derivative w/ respect to that parameter.<br>
+</p>
 
 
 <!-- End wiki content -->
@@ -72,7 +101,7 @@ With local receptive fields neurons can extract elementary visual features such 
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='./History.html'>NeuralNetworks:History</a>
 
 
 

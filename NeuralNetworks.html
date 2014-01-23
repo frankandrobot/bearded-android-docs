@@ -47,43 +47,17 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 Created Friday 15 November 2013<br>
 </p>
 
-<h2>Definition of a Neuron</h2>
 <p>
-A <strong>neuron</strong> N is a pair `(bb w, phi)`, where `bb w` is the bias plus a list of `k` weights `(w_0, w_1,... , w_k)` and `phi` is an <a href="./NeuralNetworks/ActivationFunction.html" title="activation function" class="page">activation function</a>. We call `w_0` the bias weight. (Note: alternatively, we can put the bias at the end of the list. We would just need to redefine `x_0` accordingly. See below.)<br>
+To understand what a neural network is, please see the definition of a <a href="./NeuralNetworks/Neuron.html" title="neuron" class="page">neuron</a> first.<br>
 </p>
 
 <p>
-If `v_N: RR^(k+1) -&gt; RR` is defined as<br>
+A <strong>single layer</strong> <strong>neural network </strong>is one or more <a href="./NeuralNetworks/Neuron.html" title="neurons" class="page">neurons</a> working together in parallel. A <strong>multi-layer neural network</strong> is two or more single-layer networks working in sequence. <br>
+See <a href="http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics" title="here" class="http">here</a> for diagrams or take a look at the <a href="./NeuralNetworks/Resources.html" title="resources." class="page">resources.</a> <br>
 </p>
 
 <p>
-`\ v_N(bb x) = bb w * bb x = bb sum_i^k w_i x_i`<br>
-</p>
-
-<p>
-then the value of `v_N` at a specific `bb x` is called the <strong>induced local field </strong>of neuron N.<br>
-</p>
-
-<p>
-The <strong>impulse function</strong> of a neuron N, which we will denote `f_N: RR^(k+1) -&gt; (0,1)`, is defined as<br>
-</p>
-
-<p>
-`f_N(bb x) = phi(v_N(bb x)) = phi(bb w * bb x)`<br>
-</p>
-
-<p>
-By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs `bb x`.<br>
-</p>
-
-<h3>Purpose of the Bias</h3>
-<p>
-A single neuron separates data with a line (or in general, a hyper plane). The bias allows for lines that do not pass through the origin. <br>
-</p>
-
-<h2>Definition of a Neural Network</h2>
-<p>
-A <strong>neural network </strong>can be thought of as a function that is itself the composition, sum, and product of impulse functions. See <a href="http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics" title="here" class="http">here</a> for diagrams or take a look at the <a href="./NeuralNetworks/Resources.html" title="resources." class="page">resources.</a> More importantly, since `phi` is continuous and differentiable, the function representing the neural network is itself continuous and differentiable. <br>
+Neural networks can be thought of as a function of the input <em>and </em>the weights of the neurons. More importantly, if each neuron represents a continuous and differentiable function, then the entire network is a continuous and differentiable function. This property is important for learning. (See <a href="./NeuralNetworks/BackPropagation.html" title="+BackPropagation" class="page">+BackPropagation</a>).<br>
 </p>
  
 
@@ -95,7 +69,7 @@ A <strong>neural network </strong>can be thought of as a function that is itself
 
 <!-- Attachments and Backlinks -->
 
-<h3>Backlinks:</h3>	<a href='./NeuralNetworks/BackPropagation/BatchModeBackPropagation.html'>NeuralNetworks:BackPropagation:BatchModeBackPropagation</a>
+<h3>Backlinks:</h3>	<a href='./NeuralNetworks/History.html'>NeuralNetworks:History</a>	<a href='./NeuralNetworks/BackPropagation/BatchModeBackPropagation.html'>NeuralNetworks:BackPropagation:BatchModeBackPropagation</a>
 
 <h3>Attachments:</h3>
 <table>	<tr><td><a href='./NeuralNetworks/ActivationFunction'>ActivationFunction</a></td><td>&nbsp;</td><td>4.10kb</td></tr>	<tr><td><a href='./NeuralNetworks/Appendix'>Appendix</a></td><td>&nbsp;</td><td>4.10kb</td></tr>	<tr><td><a href='./NeuralNetworks/BackPropagation'>BackPropagation</a></td><td>&nbsp;</td><td>4.10kb</td></tr></table>

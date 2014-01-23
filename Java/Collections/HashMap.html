@@ -48,11 +48,20 @@ Created Sunday 08 September 2013<br>
 </p>
 
 <p>
-The HashMap class is roughly equivalent to HashTable, except that it is unsynchronized and permits nulls. (HashMap allows null values as key and value whereas Hashtable doesnt allow). HashMap does not guarantee that the order of the map will remain constant over time. HashMap is unsynchronized and Hashtable is synchronized. <br>
+A <strong>hash map </strong>is a datastructure that maps keys to values. The HashMap class is roughly equivalent to the <a href="./HashTable.html" title="HashTable" class="page">HashTable</a> class except that it is unsynchronized and permits nulls.<br>
 </p>
 
 <p>
-What are the differences between Map, HashTable, <a href="" title="HashMap" class="page">HashMap</a>, TreeMap, ConcurrentHashMap, LinkedHashMap?<br>
+In Java, a hash map:<br>
+<ul>
+<li>is unsynchronized</li>
+<li>permits null keys and values </li>
+<li>does not guarantee the order of the map will remain constant over time. </li>
+</ul>
+</p>
+
+<p>
+What are the differences between Map, <a href="./HashTable.html" title="HashTable" class="page">HashTable</a>, <a href="" title="HashMap" class="page">HashMap</a>, TreeMap, ConcurrentHashMap, LinkedHashMap?<br>
 </p>
 
 <p>
@@ -66,7 +75,7 @@ What are the differences between Map, HashTable, <a href="" title="HashMap" clas
 </ul>
 </p>
 
-<h1>Keys</h1>
+<h2>Keys</h2>
 <p>
 To use a class as a key, you must (correctly) implement #equals and #hashCode.<br>
 <a href="" title="HashMap" class="page">HashMap</a> works by calling the key's #hashCode method. A HashCode need not always be unique. Keys with the same HashCode map to the same bucket. <a href="" title="HashMap" class="page">HashMap</a> then uses the key's #equals method to find a match in the bucket. Obviously, if #equals doesn't work as expected, then <a href="" title="HashMap" class="page">HashMap</a> may enter the same object twice in the hash map or get the wrong object.<br>
@@ -87,7 +96,7 @@ Implementing #hashCode incorrectly degrades a HashMaps performance. <a href="" t
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='./HashTable.html'>Java:Collections:HashTable</a>
 
 
 
