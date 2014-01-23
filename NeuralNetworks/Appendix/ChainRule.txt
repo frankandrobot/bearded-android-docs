@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-18T11:38:24-05:00
+
+====== ChainRule ======
+Created Monday 18 November 2013
+
+* http://archives.math.utk.edu/visual.calculus/2/chain_rule.4/
+
+Let F be the composition of two differentiable functions f and g; `F(x) = f(g(x))`. 
+Then F is differentiable and
+
+$$F'(x) = f'(g(x)) g'(x)$$

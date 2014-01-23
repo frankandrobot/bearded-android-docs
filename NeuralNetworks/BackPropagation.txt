@@ -1,0 +1,34 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-18T11:20:27-05:00
+
+====== BackPropagation ======
+Created Monday 18 November 2013
+
+You may want to first read the [[+Motivation|motivation]] for the back propagation algorithm.
+
+There are actually several types of backpropagation, all based on the method of +Appendix/GradientDescent:
+
+* **batch gradient **(or **batch mode**) - weights are updated after going through the entire training set. See [[+BatchModeBackPropagation]].
+* **stochastic gradient**
+
+===== When BackPropagation is Appropriate =====
+Following are some guidelines on when you should use //another// approach:
+
+* Can you write down a flow chart or a formula that accurately describes the problem? 
+* Is there a simple piece of hardware or software that already does what you want?
+* Do you want the functionality to "evolve" in a direction that is not pre-defined? If so, then consider using a Genetic Algorithm (that's another topic!).
+* Is generating input/output examples hard? 
+* Is the problem is very "discrete"? Can the correct answer can be found in a look-up table of reasonable size? If so, then use a look-up table.
+* Are precise numeric output values required?
+
+Conversely, here are some situations where backpropagation might be a good idea:
+
+* A large amount of input/output data is available, but you're not sure how to relate it to the output.
+* The problem appears to have overwhelming complexity, but there is clearly a solution.
+* It is easy to create a number of examples of the correct behavior.
+* The solution to the problem may change over time, within the bounds of the given input and output parameters (i.e., today 2+2=4, but in the future we may find that 2+2=3.8).
+* Outputs can be "fuzzy", or non-numeric.
+
+Source: http://www.seattlerobotics.org/encoder/nov98/neural.html
+

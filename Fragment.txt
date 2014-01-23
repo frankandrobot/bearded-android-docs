@@ -1,0 +1,48 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-07-14T11:19:50-04:00
+
+====== Fragment ======
+Created Sunday 14 July 2013
+
+A **fragment** as a modular section of an activity which has its own lifecycle, receives its own input events, and which you can add or remove while the activity is running (sort of like a "sub activity" that you can reuse in different activities). 
+
+Think of a fragment as a sub-activity.
+
+Fragments can:
+
+* be added programmatically using the FragmentManager or in XML with the [[Fragment]] tag
+* communicate with the activity with a listener. Have the Activity implement the listener interface, then get an instance in the onAttach() method.
+
+===== Difference Between Activity Life Cycle =====
+onAttach()
+    Called when the fragment has been associated with the activity (the Activity is passed in here).
+onCreateView()
+    Called to create the view hierarchy associated with the fragment.
+onActivityCreated()
+    Called when the activity's onCreate() method has returned.
+onDestroyView()
+    Called when the view hierarchy associated with the fragment is being removed.
+onDetach()
+    Called when the fragment is being disassociated from the activity. 
+
+===== Communication Between Parent =====
++ Define an interface in the fragment
++ Have the parent implement the interface
++ Override onAttach() in the fragment and save a reference to the activity (which should implement) the interface
++ Call the saved interface when you need to talk to the parent
+
+To communicate the other way, use the FragmentManager. 
+For example:
+
+'''
+MyFragment fragment = (MyFragment) getFragmentManager()
+            .findFragmentById(R.id.myfragment);
+'''
+
+
+===== Links =====
+* http://www.vogella.com/articles/AndroidFragments/article.html
+
+===== Tags =====
+* InterviewTopics

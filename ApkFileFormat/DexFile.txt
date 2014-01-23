@@ -1,0 +1,33 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-10T10:28:06-04:00
+
+====== DexFile ======
+Created Tuesday 10 September 2013
+
+Compiled Android application code file.
+
+* .class files converted to Dalvik byte code
+* optimized for efficient storage and memory-mappable execution. 
+* zipped into a single [[ApkFile]] on the device.
+* created by automatically translating compiled applications written in the Java programming language.
+
+One of the most remarkable features of the Dalvik Virtual Machine (the workhorse under the Android system) is that it does not use Java bytecode. Instead, a homegrown format called DEX was introduced and not even the bytecode instructions are the same as Java bytecode instructions.
+
+Dex file format:
+
+1. File Header
+2. String Table
+3. Class List
+4. Field Table
+5. Method Table
+6. Class Definition Table
+7. Field List
+8. Method List
+9. Code Header
+10. Local Variable List
+
+====== Links ======
+* http://stackoverflow.com/questions/7750448/dex-file-in-android
+* http://www.retrodev.com/android/dexformat.html
+* http://developer.android.com/tools/building/index.html

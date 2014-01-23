@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-03T22:43:01-04:00
+
+====== Notifications ======
+Created Tuesday 03 September 2013
+
+===== Tips =====
+* The user's attention and focus is a resource that must be protected. ask yourself if they are important enough to warrant an interruption
+* Notifications should be used primarily for time sensitive events, and especially if these synchronous events involve other people. 
+* Examples: chats and calendar events
+* Never notify user about information that is not directed specifically at them,
+* Never notify user about info that is not truly time sensitive. 
+* Don't create a notification if the relevant new information is currently on screen.
+* Don't interrupt the user for low level technical operations,
+* Don't interrupt the user to inform them of an error if it is possible for the application to quickly recover from the error on its own without the user taking any action.
+* Don't create notifications that have no true notification content and merely advertise your app.
+* Don't create superfluous notifications just to get your brand in front of users.

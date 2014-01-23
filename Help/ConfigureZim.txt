@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-20T19:49:09-05:00
+
+====== ConfigureZim ======
+Created Wednesday 20 November 2013
+
+This notebook is designed to be edited in Zim.
+
+Add the following to the HTML templates to get math equations to render correctly:
+
+'''
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+'''
+
+

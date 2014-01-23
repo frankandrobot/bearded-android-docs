@@ -1,0 +1,23 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-07T13:25:16-04:00
+
+====== Synchronization ======
+Created Saturday 07 September 2013
+
+Java synchronized keyword is re-entrant in nature it means if a java synchronized method calls another synchronized method which requires same lock then current thread which is holding lock can enter into that method without acquiring lock.
+
+
+1) synchronized keyword in Java provides locking, which ensures mutual exclusive access of shared resource and prevent data race.
+
+2) synchronized keyword also prevent reordering of code statement by compiler which can cause subtle concurrent issue if we don't use synchronized or volatile keyword.
+
+3) synchronized keyword involve locking and unlocking. before entering into synchronized method or block thread needs to acquire the lock, at this point it reads data from main memory than cache and when it release the lock, it flushes write operation into main memory which eliminates memory inconsistency errors.
+
+Read more: http://javarevisited.blogspot.com/2011/04/synchronization-in-java-synchronized.html#ixzz2eEFQEWSO
+
+====== Gotchas ======
+* synchornized keyword synchronizes current *instance* so its possible to have static method and non-static method running at the same time (not expected!)
+* One Major disadvantage of Java synchronized keyword is that it doesn't allow concurrent read, which can potentially limit scalability. By using concept of lock stripping and using different locks for reading and writing, you can overcome this limitation of synchronized in Java. You will be glad to know that java.util.concurrent.locks.ReentrantReadWriteLock provides ready made implementation of ReadWriteLock in Java.
+
+Read more: http://javarevisited.blogspot.com/2011/04/synchronization-in-java-synchronized.html#ixzz2eEFvzVVL

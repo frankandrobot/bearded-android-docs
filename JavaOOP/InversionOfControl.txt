@@ -1,0 +1,34 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-12-12T10:50:13-05:00
+
+====== InversionOfControl ======
+Created Thursday 12 December 2013
+
+* http://stackoverflow.com/questions/3058/what-is-inversion-of-control
+* http://martinfowler.com/articles/injection.html#InversionOfControl
+
+There is some argument as to what Inversion of Control means. As per Martin Fowler, Inversion of Control =  [[DependencyInjection|Dependency Injection]]:
+
+The **Inversion of Control** (IoC) (aka **Dependency Injection [DI]**) pattern is about removing dependencies from your code.
+
+'''
+public class TextEditor
+{
+    private ISpellChecker checker;
+    public void checkSpelling()
+    {
+	//...
+        checker.check();
+	//...
+    }
+}
+'''
+
+The //inversion //is how the code lookups up the ISpellChecker implementation.
+There are several ways to achieve dependency injection:
+
+* constructor injection - "inject" the implementation via the constructor
+* setter injection - like constructor injection but pass the implementation via a setter
+* interface injection
+* service locator

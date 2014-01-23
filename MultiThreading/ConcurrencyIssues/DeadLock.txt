@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-08T21:38:38-04:00
+
+====== DeadLock ======
+Created Sunday 08 September 2013
+
+* http://docs.oracle.com/javase/tutorial/essential/concurrency/deadlock.html
+Deadlock describes a situation where two or more threads are blocked forever, waiting for each other. Here's an example.
+
+===== Example =====
+* John won't eat until Mary eats, so he asks Mary to eat...
+* Meanwhile Mary won't eat until John eats, so she asks John to eat...
+* Actually, this is probably an example of [[LiveLock]]

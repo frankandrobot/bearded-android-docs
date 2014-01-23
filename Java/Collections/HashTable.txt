@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-12-17T20:55:23-05:00
+
+====== HashTable ======
+Created Tuesday 17 December 2013
+
+A **hash table **is a datastructure that maps keys to values.
+
+In Java, a hash table:
+* is synchronized
+* does not allow null keys or values
+* implements Map<K,V> interface
+
+The [[HashTable]] class is roughly a very slow, synchronized version of [[HashMap]].

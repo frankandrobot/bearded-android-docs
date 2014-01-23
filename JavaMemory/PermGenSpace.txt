@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-09-07T12:07:29-04:00
+
+====== PermGenSpace ======
+Created Saturday 07 September 2013
+
+**PermGen space** is used to store classes and meta data about classes. 
+
+* When a class is loaded by a classloader, it is stored in the PermGen space.
+* A class gets removed from the PermGen space only when its classloader is garbage collected. 
+
+===== Troubleshooting =====
+* If classloader is never garbage collected, then Perm Gen space is never freed up. This causes a memory leak and eventually a  ''java.lang.OutOfMemoryError: PermGen space''. 
+* When you deploy a web application a new classloader gets created to load the classes used by the web application. So if the clasClassloader doesn't get garbage collected when your web application stops you will have memory leak in tomcat.
+
+Read more: http://javarevisited.blogspot.com/2012/01/tomcat-javalangoutofmemoryerror-permgen.html#ixzz2eDvk03cH

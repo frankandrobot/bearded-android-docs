@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-15T15:19:58-05:00
+
+====== Gradient ======
+Created Friday 15 November 2013
+
+The **gradient** of a function iss an operator \( \nabla \) (pronounced del operator)
+
+$$ \nabla f(x,y) = f_x \hat i + f_y \hat j$$
+
+where \(f_x\) is the partial derivative of f with respect to x.
+
+* In 2D, it points in the direction of the biggest ascent.
+* In 1D, the gradient reduces to \( \nabla f(x) = f_x \hat i\). In other words, in 1D, the gradient of a function is just the slope. 
