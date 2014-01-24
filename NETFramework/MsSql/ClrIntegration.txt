@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-01-24T13:18:26-05:00
+
+====== ClrIntegration ======
+Created Friday 24 January 2014
+
+See also [[ClrStoredProcedures]]
+
+* http://msdn.microsoft.com/en-us/library/ms254498(v=vs.90).aspx

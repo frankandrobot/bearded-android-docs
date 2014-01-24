@@ -1,0 +1,36 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-01-24T12:52:32-05:00
+
+====== ClrStoredProcedures ======
+Created Friday 24 January 2014
+
+**Note: **You need to set up [[ClrIntegration]] first.
+
+A **CLR stored procedure** or **SP** is a stored procedure written in a .NET language (like C#). SPs access the SQL server but do not have to run on the SQL server.
+
+===== SPs vs T-SQL Stored Procedures =====
+Short answer:
+* it depends
+
+Slightly longer, incomplete answer for SQL 2008:
+* If your logic mostly includes transformations of massive sets of data, which can be performed using set operations, then use TSQL.
+* If your logic mostly includes complex computations of relatively small amounts of data, use CLR.
+
+CLR stored procedures are for two main things:
+1. interaction with the OS, such as reading from a file or dropping a message in MSMQ.
+2. performing complex calculations, especially when you already have the code written in a .NET language to do the calculation. CLRs are specially good at working with regular expressions.
+
+===== SPs vs Application Code =====
+
+
+===== Resources =====
+* [[http://msdn.microsoft.com/en-us/library/5czye81z(v=vs.90).aspx|How to: Create and Run a CLR SQL Server Stored Procedure]]
+* [[http://msdn.microsoft.com/en-us/library/vstudio/zxsa8hkf(v=vs.100).aspx|Walkthrough: Creating a Stored Procedure in Managed Code]]
+* http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/
+* [[http://www.codeproject.com/Articles/37298/CLR-Stored-Procedure-and-Creating-It-Step-by-Step|Creating CLR Stored Procedure Step By Step]]
+* [[http://searchsqlserver.techtarget.com/tip/SQL-Server-stored-procedures-vs-CLR-stored-procedures-Time-to-migrate|SQL Server stored procedures vs. CLR stored procedures: Time to migrate?]]
+* http://stackoverflow.com/questions/58190/are-clr-stored-procedures-preferred-over-tsql-stored-procedures-in-sql-2005
+* [[http://aboutsqlserver.com/2013/07/22/clr-vs-t-sql-performance-considerations/|CLR vs T-SQL: Performance Considerations]]
+* [[http://stackoverflow.com/questions/2097958/sql-server-2008-clr-vs-t-sql-is-there-an-efficiency-speed-difference|SQL Server 2008 CLR vs T-SQL: Is there an efficiency/speed difference?]]
+

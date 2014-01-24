@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-01-24T13:15:16-05:00
+
+====== TransactSql ======
+Created Friday 24 January 2014
+
+A **transact-sql** or **T-sql** is Microsoft's extension to the SQL language. 
+
+In C#, an example query looks like this:
+
+'''
+string commandText = "SELECT OrderID, CustomerID FROM dbo.Orders;";
+      using (SqlConnection connection = new SqlConnection(connectionString))
+      {
+            using (SqlCommand command = new SqlCommand(commandText, connection))
+            {
+                  connection.Open();
+                  using (SqlDataReader reader = command.ExecuteReader())
+                  {
+                        while (reader.Read())
+                        {
+                              Console.WriteLine(String.Format("{0}, {1}", 
+                                reader[0], reader[1]));
+                        }
+                  }
+            }
+      }
+'''

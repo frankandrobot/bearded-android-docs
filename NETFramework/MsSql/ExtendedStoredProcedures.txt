@@ -5,14 +5,16 @@ Creation-Date: 2014-01-24T11:12:46-05:00
 ====== ExtendedStoredProcedures ======
 Created Friday 24 January 2014
 
-**Note:** As per [[http://technet.microsoft.com/en-us/library/ms175200(v=sql.105).aspx|this article]], extended stored procedures were deprecated after Sql Server 2008 R2. You should use [[ClrIntegration]] instead.
+**Note:** As per [[http://technet.microsoft.com/en-us/library/ms175200(v=sql.105).aspx|this article]], extended stored procedures are deprecated after Sql Server 2008 R2. You should use [[ClrStoredProcedures]] instead.
 
-An **extended stored procedure** is a DLL that can be run by the SQL Server. The stored procedure runs inside of the SQL server. You must have permission to run the stored procedure.
+An **extended stored procedure** or (**XP**) is a DLL that can be run by the SQL Server. Extended stored procedures are created in a programming language such as C. The stored procedure runs inside of the SQL server. You must have permission to run the stored procedure. 
 
 Features of extended stored procedures:
 
 * You can pass parameters
 * Can return results
 
-===== Resources  =====
+===== Resources =====
 * [[http://technet.microsoft.com/en-us/library/ms175200(v=sql.105).aspx|Extended Stored Procedures]]
+* http://stackoverflow.com/questions/14457962/when-to-use-extended-stored-procedure-instead-of-user-defined-stored-procedure
+* [[http://www.codeproject.com/Articles/414/Tutorial-on-Extended-Stored-Procedures-for-MS-SQL|Create Extended Stored Procedure]]
