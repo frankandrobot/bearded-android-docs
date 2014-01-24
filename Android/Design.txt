@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-08-31T18:57:53-04:00
+
+====== Design ======
+Created Saturday 31 August 2013
+
+Links
+* http://stackoverflow.com/questions/5529896/android-ui-examples
+* http://android-developers.blogspot.com/2010/05/twitter-for-android-closer-look-at.html

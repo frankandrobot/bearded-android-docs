@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-08-31T22:06:54-04:00
+
+====== NavigationDrawer ======
+Created Saturday 31 August 2013
+
+===== Navigation Drawer vs Spinner/Tabs =====
+* See :Design:ApplicationStructure
+* when more than 3 top-level views
+* deep hierarchy and you need to navigate in lower levels
+
+===== Tips =====
+* Use the navigation drawer icon in the action bar (top left) in top-most view
+* Other views show up icon (< icon)
+* Don't put actions
+* 404-9

@@ -1,8 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2013-08-27T22:23:23-04:00
-
-====== Notifications ======
-Created Tuesday 30 July 2013
-
-http://developer.android.com/design/patterns/notifications.html
