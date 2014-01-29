@@ -1,0 +1,48 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-01-29T17:04:28-05:00
+
+====== StoredProcedures ======
+Created Wednesday 29 January 2014
+
+===== A) Define Simple SP =====
+
+'''
+USE AdventureWorks2008R2;
+GO
+CREATE PROCEDURE HumanResources.uspGetAllEmployees
+AS
+    SET NOCOUNT ON;
+    SELECT LastName, FirstName, Department
+    FROM HumanResources.vEmployeeDepartmentHistory;
+GO
+
+-- Call SP
+EXECUTE HumanResources.uspGetAllEmployees; --OR
+EXE HumanResources.uspGetAllEmployees;
+'''
+
+
+===== B) Define SP With Params =====
+'''
+USE AdventureWorks2008R2;
+GO
+CREATE PROCEDURE HumanResources.uspGetEmployees 
+    @LastName nvarchar(50), 
+    @FirstName nvarchar(50) 
+AS 
+
+    SET NOCOUNT ON;
+    SELECT FirstName, LastName,Department
+    FROM HumanResources.vEmployeeDepartmentHistory
+    WHERE FirstName = @FirstName AND LastName = @LastName;
+GO
+
+-- Call SP
+EXECUTE HumanResources.uspGetAllEmployees N'Uriel', N'Avalos'; --OR
+EXECUTE HumanResources.uspGetAllEmployees @FirstName = N'Uriel', @LastName = N'Avalos';
+'''
+
+
+===== Resources =====
+* [[http://technet.microsoft.com/en-us/library/ms190669(v=sql.105).aspx|Creating Stored Procedures]]
