@@ -1,7 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2014-01-07T11:15:44-05:00
-
-====== CSharp ======
-Created Tuesday 07 January 2014
-

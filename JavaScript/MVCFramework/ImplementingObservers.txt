@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-02-28T13:35:28-05:00
+
+====== ImplementingObservers ======
+Created Friday 28 February 2014
+
+Recall Views subscribe to models and when a model changes it publishes changes to its observers.
+
+===== Use hidden INPUT fields as models? =====
+* Pros: built-in framework to subscribe/publish events
+* Cons: probably //bad //practice since it leads to complex code
+* Theoretically, INPUT fields are supposed to fire ''onchange'' whenever the INPUT changes... even when you change the value inside the observer attached to the ''onchange'' event. You need to check for who fired the ''onchange ''to prevent infinite loops (the observer noticing a change in the INPUT field so it changes the INPUT field which triggers the observer ... )
+* If you use INPUT fields as a model you need to manually fire an ''onchange ''event when you update the data because this doesn't automatically happen.
+
+To summarize, every observer must do the following:
+* figure out who is calling it (to prevent infinite loops)
+* keep track of whether or not a change occurs

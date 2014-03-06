@@ -1,0 +1,40 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-03-05T15:10:49-05:00
+
+====== ActiveMQ ======
+Created Wednesday 05 March 2014
+
+[[ActiveMQ]] or **Message Orientated Middleware (MOM)** is used to reliably communicate between two distributed processes. Yes you could store messages in a database to communicate between to processes, but as soon as the message is received you'd have to delete the message. That means a row insert and delete for each message. When you try to scale that up communicating thousands of messages per second, databases tend to fall over.
+
+* They asume that messages in a healthy system will be deleted very quickly
+* Can also push messages to consumers
+
+==== Are there different types of message queues? ====
+There seems to be only one type of queue. Usually, shops use multiple [[ActiveMQ]] queues each for a different purpose. There are also filters to figure out the type of message on the queue.
+
+==== Whats the largest object a message queue can receive? ====
+There's a special API for large files call //Blob Messages //for version 4.2 or later and //JMS Streams// for earlier versions.
+* with Blob messages there is no file size limit
+* with JMS Streams the file must reside in client-side memory
+
+
+==== Is there a limit to how many objects a message queue can receive (maximum queue size)? ====
+Below version 5, you could run out of memory.
+Starting with version 5, [[ActiveMQ]] pages messages to disk.
+
+==== Maximum number of consumers on a message queue? ====
+Any number of consumers can point to the queue but only 1 consumer accesses the queue at any given time. As soon as its done, the next consumer accesses the queue.
+
+==== Maximum number of producers on a message queue? ====
+
+
+==== How do you register a producer? ====
+==== How do you register a consumer? ====
+* http://java.dzone.com/articles/activemq-and-net-combined
+
+===== Links =====
+* http://stackoverflow.com/questions/12805377/what-is-activemq-used-for
+* http://stackoverflow.com/questions/16042317/maximum-number-of-active-mq-consumers-on-a-queue
+* http://activemq.apache.org/scaling-the-depth-of-a-queue.html
+* http://www.manning.com/snyder/snyder_meapch1.pdf

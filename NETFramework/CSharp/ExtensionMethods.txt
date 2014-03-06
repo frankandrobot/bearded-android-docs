@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-02-12T10:41:05-05:00
+
+====== ExtensionMethods ======
+Created Wednesday 12 February 2014
+
+Best practices:
+
+* You need a method on a type and you don't own the source.
+* You need a method on a type, you do own the source, and the type is an interface.
+* You need a method on a type, you do own the source, but adding the method creates undesired coupling.
+
+===== Links =====
+* [[http://msdn.microsoft.com/en-us/library/bb383977.aspx|Extension Methods]]
+* [[http://msdn.microsoft.com/en-us/library/bb311042.aspx|How to: Implement and Call a Custom Extension Method]]
+* http://stackoverflow.com/questions/4727325/extension-methods-vs-regular-methods-best-practice-ideas
+* http://blogs.msdn.com/b/vbteam/archive/2007/03/10/extension-methods-best-practices-extension-methods-part-6.aspx

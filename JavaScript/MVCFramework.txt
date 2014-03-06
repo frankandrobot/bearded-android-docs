@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-02-26T10:42:15-05:00
+
+====== MVCFramework ======
+Created Wednesday 26 February 2014
+
+* [[http://coding.smashingmagazine.com/2012/07/27/journey-through-the-javascript-mvc-jungle/|Choosing a JavaScript MVC Framework]]
+* [[+ImplementingObservers]] 

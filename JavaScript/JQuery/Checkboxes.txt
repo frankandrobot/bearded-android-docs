@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-02-05T12:19:59-05:00
+
+====== Checkboxes ======
+Created Wednesday 05 February 2014
+
+* [[http://jquery-howto.blogspot.com/2013/02/jquery-test-check-if-checkbox-checked.html|Getting value of checkbox]]
+* [[http://stackoverflow.com/questions/15044340/jquery-set-checkbox-checked|Set value of checkbox]]
