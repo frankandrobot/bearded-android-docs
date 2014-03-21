@@ -11,6 +11,7 @@ There are several ways of interacting with SQL in .NET:
 * [[+ExtendedStoredProcedures]]
 * [[+ClrStoredProcedures]]
 * [[http://technet.microsoft.com/en-us/library/ms188721(v=sql.105).aspx|+DistributedQueries]] 
+* [[+Functions]]
 
 Features
 * [[+Aggragates]]

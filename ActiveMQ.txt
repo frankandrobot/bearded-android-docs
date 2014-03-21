@@ -18,7 +18,6 @@ There's a special API for large files call //Blob Messages //for version 4.2 or 
 * with Blob messages there is no file size limit
 * with JMS Streams the file must reside in client-side memory
 
-
 ==== Is there a limit to how many objects a message queue can receive (maximum queue size)? ====
 Below version 5, you could run out of memory.
 Starting with version 5, [[ActiveMQ]] pages messages to disk.
@@ -30,6 +29,7 @@ Any number of consumers can point to the queue but only 1 consumer accesses the 
 
 
 ==== How do you register a producer? ====
+
 ==== How do you register a consumer? ====
 * http://java.dzone.com/articles/activemq-and-net-combined
 

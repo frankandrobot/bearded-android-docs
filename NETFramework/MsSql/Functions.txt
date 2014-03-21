@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-03-21T17:17:42-04:00
+
+====== Functions ======
+Created Friday 21 March 2014
+
+In general, **scalar functions are bad**. See http://sqlblog.com/blogs/hugo_kornelis/archive/2012/05/20/t-sql-user-defined-functions-the-good-the-bad-and-the-ugly-part-1.aspx. The problem boils down to the fact that the optimizer doesn't know how to optimize queries invoking scalar functions.
+
+The workaround is to convert a scalar function to return a table. See http://sqlblog.com/blogs/adam_machanic/archive/2006/08/04/scalar-functions-inlining-and-performance-an-entertaining-title-for-a-boring-post.aspx. 
+
+
