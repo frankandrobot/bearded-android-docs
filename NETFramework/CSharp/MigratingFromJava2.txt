@@ -293,6 +293,7 @@ foo d = delegate(int k) { // ...  };
 See the resources below for more information.
 
 ===== Resources =====
+* [[Delegates]]
 * [[ExtensionMethods]] 
 * [[http://msdn.microsoft.com/en-us/library/aa288459(v=vs.71).aspx|All about delegates]]
 * [[http://msdn.microsoft.com/en-us/library/aa645739(v=vs.71).aspx|Events Tutorial]]

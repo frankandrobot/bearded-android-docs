@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-03-25T11:07:53-04:00
+
+====== Resources ======
+Created Tuesday 25 March 2014
+
+* [[http://msdn.microsoft.com/en-us/library/7k989cfy%28v=vs.90%29.aspx|Adding and Editing Resources]]
