@@ -5,7 +5,9 @@ Creation-Date: 2014-03-31T22:33:27-04:00
 ====== LeNet4 ======
 Created Monday 31 March 2014
 
-4 layers;
+===== Convolutional Map For Digit Recognition =====
+
+4 layers:
 
 * Input layer is 28 x 28
 * Layer H1 is composed of 4 feature maps of size 24 x 24 for a total of 576 units in each map. Each unit receptive field is 5 x 5. 
@@ -22,3 +24,6 @@ Created Monday 31 March 2014
 
 
 For example, H3.1 is connected to only H2.1, H3.2 is connected to both H2.1 and H2.2.
+
+===== Links =====
+* Y. LeCun, B. Boser, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, and L. D. Jackel. Handwritten digit recognition with a back-propagation network.

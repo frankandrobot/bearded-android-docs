@@ -1,0 +1,57 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-03T22:04:19-04:00
+
+====== Implementation ======
+Created Thursday 03 April 2014
+
+===== Local Receptive Fields  =====
+In a fully-connected neural network, each neuron is connected to each input. 
+
+'''
+Input	Layer
+
+i1------N1
+       /
+      /
+i2---/
+'''
+
+When a neuron has a local receptive field, the neuron is connected to a //subset// of the input layer. In a [[ConvolutionalNetwork]], the inputs are arranged in a 2D grid. Each neuron is connected to a square in the input grid. 
+
+'''
+InputGrid    Layer
+		  
+X X X o o    N1(X)
+X X X o o
+X X X o o
+o o o o o
+o o o o o
+'''
+
+In the diagram, the input grid is 5 x 5. Neuron `N1` is connected to the inputs marked `X`.
+
+===== Shared Weights =====
+In a typical neural network, each neuron has its own set of weights. 
+
+'''
+Layer
+N1: w11 w12 w13
+N2: w21 w22 w23
+N3: w31 w32 w33
+'''
+
+Here weight w//ij// connects neuron `N_i` to input `x_i`. The w//ij//'s are not necessarily equal---each neuron has its own set of weights. In a CNN, //each neuron in a given layer share a set of common weights.//
+
+'''
+Layer
+N1: w1 w2 w3
+N2: w1 w2 w3
+N3: w1 w2 w3
+'''
+
+
+• shared weights
+* spatial or temporal subsampling
+
+* unlike a traditional neural networks, CNNs use **feature maps**. A feature map is best explained through an example  
