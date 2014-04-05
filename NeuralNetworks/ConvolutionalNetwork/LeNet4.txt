@@ -5,25 +5,29 @@ Creation-Date: 2014-03-31T22:33:27-04:00
 ====== LeNet4 ======
 Created Monday 31 March 2014
 
-===== Convolutional Map For Digit Recognition =====
+**LeNet4** is a [[ConvolutionalNetwork|convolutational network]] created for single-digit recognition. 
+It consists of 4 layers H1, H2, H3, H4:
 
-4 layers:
+* Input layer is 28x28
+* Layer H1 is composed of 4 feature maps of size 24x24 for a total of 576 units in each map. Each unit receptive field is 5x5. 
+* Layer H2 is composed of 4 subsampling layers of size 12x12. Unit receptive fields do not overlap. Each plane performs an averaging.
+* Layer H3 is composed of 12 feature maps of size 8 x 8. Each init receptive field is 5x5. However, each map is connected to one or two maps in the previous layer H2 (see below).
 
-* Input layer is 28 x 28
-* Layer H1 is composed of 4 feature maps of size 24 x 24 for a total of 576 units in each map. Each unit receptive field is 5 x 5. 
-* Layer H2 is composed of 4 planes of size 12 x 12. Unit receptive fields do not overlap. Each plane performs an averaging.
-* Layer H3 is composed of 12 feature maps of size 8 x 8. Unit receptive fields are one or two 5x5 neighborhoods (see below):
+The table below shows how each map in H3 is connected to the maps in H2. For example, H3.1 is connected to only H2.1 while H3.2 is connected to both H2.1 and H2.2.
 
 '''
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
 |      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
 | H2.1 | X | X | X |   | X | X |   |   |   |    |    |    |
 | H2.2 |   | X | X | X | X | X |   |   |   |    |    |    |
-| H2.3 |   |   |   |   |   |   | X | X | X |    |  X | X  |
-| H2.4 |   |   |   |   |   |   |   | X | X |  X |  X | X  |
+| H2.3 |   |   |   |   |   |   | X | X | X |    | X  | X  |
+| H2.4 |   |   |   |   |   |   |   | X | X |  X | X  | X  |
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
 '''
 
 
-For example, H3.1 is connected to only H2.1, H3.2 is connected to both H2.1 and H2.2.
+* Layer H4 is a fully-connected to layer 
 
 ===== Links =====
 * Y. LeCun, B. Boser, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, and L. D. Jackel. Handwritten digit recognition with a back-propagation network.

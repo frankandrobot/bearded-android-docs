@@ -5,28 +5,27 @@ Creation-Date: 2014-04-03T22:04:19-04:00
 ====== Implementation ======
 Created Thursday 03 April 2014
 
-===== Local Receptive Fields  =====
+===== Local Receptive Fields =====
 In a fully-connected neural network, each neuron is connected to each input. 
 
 '''
 Input	Layer
 
-i1------N1
+x1------N1
        /
-      /
-i2---/
+x2----/
 '''
 
 When a neuron has a local receptive field, the neuron is connected to a //subset// of the input layer. In a [[ConvolutionalNetwork]], the inputs are arranged in a 2D grid. Each neuron is connected to a square in the input grid. 
 
 '''
-InputGrid    Layer
+InputGrid --> Layer
 		  
-X X X o o    N1(X)
-X X X o o
-X X X o o
-o o o o o
-o o o o o
+X X X * *     N1(X)
+X X X * *
+X X X * *
+* * * * *
+* * * * *
 '''
 
 In the diagram, the input grid is 5 x 5. Neuron `N1` is connected to the inputs marked `X`.
@@ -36,22 +35,103 @@ In a typical neural network, each neuron has its own set of weights.
 
 '''
 Layer
-N1: w11 w12 w13
-N2: w21 w22 w23
-N3: w31 w32 w33
+N1: w10 w11 w12 w13
+N2: w20 w21 w22 w23
+N3: w30 w31 w32 w33
 '''
 
-Here weight w//ij// connects neuron `N_i` to input `x_i`. The w//ij//'s are not necessarily equal---each neuron has its own set of weights. In a CNN, //each neuron in a given layer share a set of common weights.//
+Here weight w//ij// connects neuron `N_i` to input `x_i` (and w//i//0 is the special case of the bias.) The w//ij//'s are not necessarily equal---each neuron has its own set of weights. In a CNN, //each neuron of a given layer share a set of common weights.//
 
 '''
 Layer
-N1: w1 w2 w3
-N2: w1 w2 w3
-N3: w1 w2 w3
+N1: w0 w1 w2 w3
+N2: w0 w1 w2 w3
+N3: w0 w1 w2 w3
 '''
 
 
-• shared weights
-* spatial or temporal subsampling
+===== Feature Maps =====
+We said above that in a CNN, each neuron is connected to a square in the input grid, but which input squares? In a //feature map//, we scan the input grid with a neuron. The diagram below shows a 5x5 input grid, a layer with 9 neurons each with a 3x3 local receptive field, producing a 3x3 output grid called the **feature map**. 
 
-* unlike a traditional neural networks, CNNs use **feature maps**. A feature map is best explained through an example  
+'''
+InputGrid --> Layer --> OutputGrid
+	       	      	   	  
+A A A * *     N1(A)   	A * *  	  
+A A A * *     N2(B)     * * *	 
+A A A * *     N3(C)     * * *
+* * * * *     ...  
+* * * * *     N9(I)
+       	       	      	      	 
+InputGrid --> Layer --> OutputGrid
+       	       	   	     	  
+* B B B *     N1(A)    	A B *  	  
+* B B B *     N2(B)     * * *	 
+* B B B *     N3(C)     * * *
+* * * * *     ...  
+* * * * *     N9(I)
+    	       	       	 	 
+InputGrid --> Layer --> OutputGrid
+       	       	       	   	  
+* * C C C     N1(A)    	A B C  	  
+* * C C C     N2(B)    	* * *	 
+* * C C C     N3(C)	* * *	 
+* * * * *     ...  	     	 
+* * * * *     N9(I)	     	 
+
+...
+      			     	 
+InputGrid --> Layer --> OutputGrid
+       	       	       	     	  
+* * * * *     N1(A)    	A B C  	  
+* * * * *     N2(B)    	D E F	 
+* * I I I     N3(C)	G H I	 
+* * I I I     ...  		 
+* * I I I     N9(I)		 
+'''
+
+Some observations:
+* The input squares overlap. 
+* A feature map consists of a single neuron. (The 9 neurons all share the same set of weights [and activation function], so the neurons are all identical.) 
+
+===== Subsampling Layer =====
+A **subsampling layer **is just like a feature map with some exceptions:
+* the input squares are adjacent but do //not //overlap
+* the weights (except for the bias) are all constrained to be equal, //so a subsampling layer consists of one neuron with only a single weight `w` and a bias `b`//
+
+It's called a //subsampling layer //because when the weight `w` equals the number of **units **(or //pixels// when the input grid is an image) in the input square, the input squares get averaged into a single value.
+
+The diagram below shows a 4x4 input grid, a layer with a neuron with a 2x2 local receptive field, producing a 2x2 subsampling layer.
+
+'''
+InputGrid --> Layer --> OutputGrid
+	       	      	   	  	     
+A A * *       N(A)     	A * 
+A A * *        	        * *
+* * * *
+* * * *        	   	  
+       	       	       	       	       	       	       	    
+InputGrid --> Layer --> OutputGrid			    
+       	       	   	     	  			    
+* * B B       N(B)     	A B
+* * B B	       	        * *
+* * * *		  
+* * * *		  
+    	       	       	 	 
+InputGrid --> Layer --> OutputGrid
+       	       	       	   	  
+* * * *       N(C)     	A B
+* * * *	       	        C *
+C C * *			 
+C C * *			 
+			 
+InputGrid --> Layer --> OutputGrid
+       	       	       	   	  
+* * * *       N(D)     	A B
+* * * *	       	        C D
+* * D D			   
+* * D D
+'''
+			   
+
+===== Putting It All Together =====
+A CNN usually consists of a sequence of alternating feature maps and subsampling layers followed by a final fully-connected output layer. See [[LeNet4]] for an example.
