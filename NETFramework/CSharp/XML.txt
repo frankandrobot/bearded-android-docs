@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-07T14:17:15-04:00
+
+====== XML ======
+Created Monday 07 April 2014
+
+* http://stackoverflow.com/questions/284324/what-is-the-best-way-to-build-xml-in-c-sharp-code
+* http://stackoverflow.com/questions/543319/how-to-return-xml-in-asp-net

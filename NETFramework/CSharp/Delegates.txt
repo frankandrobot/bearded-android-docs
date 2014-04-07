@@ -5,7 +5,7 @@ Creation-Date: 2014-03-27T15:26:02-04:00
 ====== Delegates ======
 Created Thursday 27 March 2014
 
-See [[MigratingFromJava2]]
+See [[MigratingFromJava:MigratingFromJava2]]
 
 ===== Creating a Delegate Without Declaring It =====
 Use Func:
