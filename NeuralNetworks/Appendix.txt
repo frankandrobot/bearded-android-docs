@@ -6,12 +6,12 @@ Creation-Date: 2013-11-15T10:31:42-05:00
 Created Friday 15 November 2013
 
 ===== Required Concepts =====
-* [[+EigenValues]]
-* [[+HessianMatrix]] 
 * [[+CriticalPoint]]
 * [[+Gradient]] 
 * [[+ChainRule]] 
 * [[+EuclidianDistance]]
 
-
-
+===== Optional =====
+* [[+EigenValues]]
+* [[+HessianMatrix]] 
+* [[+LagrangeMultipliers]] 

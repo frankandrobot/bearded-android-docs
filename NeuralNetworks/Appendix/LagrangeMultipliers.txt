@@ -1,0 +1,22 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-06T11:49:31-04:00
+
+====== LagrangeMultipliers ======
+Created Sunday 06 April 2014
+
+* http://tutorial.math.lamar.edu/Classes/CalcIII/LagrangeMultipliers.aspx
+
+* is a way of optimizing a function(s) to given constraints where the contraints are a set of equations or inequalities
+
+The **method of lagrange multiplies **is:
+
+Step 1. Solve the following system of equations.
+`\ \ \nabla f = \lambda \nabla g`
+`\ \ g = k`
+
+Step 2. Plug in all solutions, `bb x`, from the first step into `f` and identify the minimum and maximum values, provided they exist.
+
+The constant `\lambda` is called the **Lagrange Multiplier**. `f` is the function to optimize and `g` is the constraint.
+
+

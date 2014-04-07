@@ -5,7 +5,7 @@ Creation-Date: 2013-11-15T15:19:58-05:00
 ====== Gradient ======
 Created Friday 15 November 2013
 
-The **gradient** of a function iss an operator \( \nabla \) (pronounced del operator)
+The **gradient** of a function is an operator \( \nabla \) (pronounced del operator)
 
 $$ \nabla f(x,y) = f_x \hat i + f_y \hat j$$
 

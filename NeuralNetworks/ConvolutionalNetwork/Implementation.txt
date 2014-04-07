@@ -91,7 +91,13 @@ InputGrid --> Layer --> OutputGrid
 
 Some observations:
 * The input squares overlap. 
-* A feature map consists of a single neuron. (The 9 neurons all share the same set of weights [and activation function], so the neurons are all identical.) 
+* A feature map can consist of a single neuron. (The 9 neurons all share the same set of weights [and activation function], so the neurons are all identical.) 
+
+Notes:
+* While you //can //implement a feature map with a single neuron, you may get a faster implementation by using various neurons sharing the same set of weights.
+
+Aside:
+* The operation that produces a feature map is equivalent to a //convolution //with a small-sized kernel followed by a squashing function. (A convolution is normally used with image processing)
 
 ===== Subsampling Layer =====
 A **subsampling layer **is just like a feature map with some exceptions:

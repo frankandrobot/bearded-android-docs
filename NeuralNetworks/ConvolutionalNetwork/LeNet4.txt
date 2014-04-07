@@ -8,7 +8,7 @@ Created Monday 31 March 2014
 **LeNet4** is a [[ConvolutionalNetwork|convolutational network]] created for single-digit recognition. 
 It consists of 4 layers H1, H2, H3, H4, and an output layer:
 
-* Input layer is 28x28
+* Data input layer is 16x16; however, the data is centered in a larger 28x28 and fed to the CNN. //The actual input layer is 28x28//
 * Layer H1 is composed of 4 feature maps of size 24x24 for a total of 576 units in each map. Each unit receptive field is 5x5. 
 * Layer H2 is composed of 4 subsampling layers of size 12x12. Each unit receptive field is 2x2.
 * Layer H3 is composed of 12 feature maps of size 8x8. Each unit receptive field is 5x5. However, each map is connected to one or two maps in the previous layer H2 (see below).
