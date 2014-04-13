@@ -1,0 +1,24 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-12T13:15:32-04:00
+
+====== PaaS ======
+Created Saturday 12 April 2014
+
+Platform as a Service:
+
+* https://appharbor.com/
+* http://www.rackspace.com/cloud/sites/web-hosting/dotnet/
+* http://readwrite.com/2012/06/12/the-6-best-ways-to-run-microsofts-net-in-the-cloud#awesm=~oB5ja38FMYTbyC
+* http://apprenda.com/solutions/distributed-application-workloads/
+* http://azure.microsoft.com/en-us/
+
+===== AppHarbor =====
+* [[http://oleksiy.pro/2012/05/10/belz-using-appharbor-as-donet-worker-mule/|Tutorial for Using AppHarbor]]
+
+===== ActiveMQ =====
+
+==== IronMQ ====
+* https://github.com/iron-io/iron_dotnet
+* [[http://support.appharbor.com/kb/add-ons/using-ironmq|Using IronMq with AppHarbor]]
+* [[http://blog.appharbor.com/2012/3/22/ironmq-in-add-on-catalog|Using IronMq with AppHarbor2]]
