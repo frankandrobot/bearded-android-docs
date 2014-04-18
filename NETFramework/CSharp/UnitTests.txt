@@ -11,3 +11,6 @@ Created Monday 31 March 2014
 
 ===== Accessing Non-Public Fields/Properties/Methods =====
 * [[http://msmvps.com/blogs/deborahk/archive/2009/10/29/unit-testing-exposing-private-members.aspx|Use PrivateObject]]
+
+===== Mock Objects =====
+* See [[+Moq]] 

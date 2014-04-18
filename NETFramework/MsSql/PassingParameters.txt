@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-07T14:18:51-04:00
+
+====== PassingParameters ======
+Created Monday 07 April 2014
+
+===== Optional Arguments in Where Class =====
+• http://stackoverflow.com/questions/10185638/optional-arguments-in-where-claus
+
+===== Table-Valued Parameters =====
+* http://technet.microsoft.com/en-us/library/bb510489.aspx
+* another example: http://stackoverflow.com/questions/20105443/how-to-pass-a-temp-table-as-a-parameter-into-a-separate-stored-procedure
+
+===== General Guide =====
+* http://www.sommarskog.se/share_data.html#tableparam

@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-18T13:34:51-04:00
+
+====== Moq ======
+Created Friday 18 April 2014
+
+* can mock instances of classes only
+* mocks ''virtual ''methods only
+* mocks ''protected'' methods but you lose LINQ compile-time checks
+* can mock any method in an interface
+* to mock ''static'' methods/classes see [[Moles]]
+* "workarounds" exist to mock [[CSharp:ExtensionMethods]] but you need to change the source code. See [[http://stackoverflow.com/questions/562129/how-do-i-use-moq-to-mock-an-extension-method|here]]
+* https://github.com/Moq/moq4/wiki/Quickstart

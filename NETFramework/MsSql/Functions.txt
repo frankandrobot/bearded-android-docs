@@ -5,8 +5,18 @@ Creation-Date: 2014-03-21T17:17:42-04:00
 ====== Functions ======
 Created Friday 21 March 2014
 
+===== Scalar Functions =====
 In general, **scalar functions are bad**. See http://sqlblog.com/blogs/hugo_kornelis/archive/2012/05/20/t-sql-user-defined-functions-the-good-the-bad-and-the-ugly-part-1.aspx. The problem boils down to the fact that the optimizer doesn't know how to optimize queries invoking scalar functions.
 
 The workaround is to convert a scalar function to return a table. See http://sqlblog.com/blogs/adam_machanic/archive/2006/08/04/scalar-functions-inlining-and-performance-an-entertaining-title-for-a-boring-post.aspx. 
+
+===== Table-Valued Functions =====
+* http://www.developer.com/db/article.php/10920_3598891_2/User-Defined-Functions-Powerful-Alternatives-to-Views-and-Stored-Procedures.htm
+
+In general, you want to use inline table-valued functions. See http://sqlmag.com/t-sql/inline-vs-multistatement-table-valued-udfs
+
+See [[http://stackoverflow.com/questions/2554333/multi-statement-table-valued-function-vs-inline-table-valued-function|here]] for examples of how to create table-valued functions
+
+
 
 

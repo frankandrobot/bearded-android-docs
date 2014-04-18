@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-18T13:40:13-04:00
+
+====== Moles ======
+Created Friday 18 April 2014
+
+* allows you to mock static classes and //any //method
+* for Visual Studio 2010 and NET 4.0 (replaced by Fakes)
+* hasn't been updated in a while, so buggy as heck!
+
+===== Tutorials =====
+* http://www.dimecasts.net/Content/WatchEpisode/170
+* http://channel9.msdn.com/blogs/peli/moles-replace-any-net-method-with-a-delegate
