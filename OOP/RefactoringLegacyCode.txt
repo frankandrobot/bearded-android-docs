@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-22T20:51:18-04:00
+
+====== Working Effectively With Legacy Code: Notes ======
+
+Created Tuesday 22 April 2014
+
+===== Chapter 7 =====
