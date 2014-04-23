@@ -12,6 +12,12 @@ See also DesignByContract.
 
 * The LSP is functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.
 
+Some rules of thumb to help ensure LSP:
+1. Whenever possible, avoid overriding concrete methods.
+2. If you do, see if you can call the method you are overriding in the overriding method.
+
+Related to LSP is [[NormalizedHierarchy]] 
+
 ===== Example: Circle-Ellipse Problem =====
 
 A circle is a special case of an ellipse, so should we use inheritance to model this relationship?

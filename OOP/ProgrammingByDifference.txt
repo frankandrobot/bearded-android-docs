@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-22T22:05:46-04:00
+
+====== ProgrammingByDifference ======
+Created Tuesday 22 April 2014
+
+* http://link.springer.com/chapter/10.1007%2F3-540-58555-9_93#page-1
+
+**programming by difference** is when you define a new class by picking a closely related class as its parent class and adding only code that makes the new class different from the parent class
+
+* watch out for violations of the [[LiskovSubstitutionPrinciple]]!
+* Michael Feathers suggest using a [[NormalizedHierarchy]] to ensure LSP
+* ultimately, it may make sense to use [[ObjectComposition]] 

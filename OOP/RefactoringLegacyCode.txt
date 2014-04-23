@@ -6,4 +6,16 @@ Creation-Date: 2014-04-22T20:51:18-04:00
 
 Created Tuesday 22 April 2014
 
-===== Chapter 7 =====
+===== Chapter 7 - It Takes Forever to Make a Change =====
+* minimize dependencies by extracting interfaces
+
+===== Chapter 8 - How Do I Add a Feature? =====
+[[TestDrivenDevelopment]]:
+0. Get the class you want to change under test.
+1. Write a failing test case.
+2. Get it to compile.
+3. Make it pass. (Leave legacy code unchanged as much as possible)
+4. Remove duplication.
+5. Repeat.
+
+* use [[ProgrammingByDifference]] up until it makes sense. Ensure [[LiskovSubstitutionPrinciple]] by using a [[NormalizedHierarchy]] and you may have to ultimately use [[ObjectComposition]] 

@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-22T21:56:16-04:00
+
+====== NormalizedHierarchy ======
+Created Tuesday 22 April 2014
+
+* In a **normalized hierarchy**, no class has more than one implementation of a method
