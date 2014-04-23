@@ -1,7 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2014-02-26T10:55:33-05:00
-
-====== ProgrammingDesign ======
-Created Wednesday 26 February 2014
-
