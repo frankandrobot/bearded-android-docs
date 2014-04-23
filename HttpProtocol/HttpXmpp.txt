@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-10T20:55:08-05:00
+
+====== HttpXmpp ======
+Created Sunday 10 November 2013
+
+* http://web.archive.org/web/20120815100411/http://www.adarshr.com/papers/xmpp
+
+XMPP stands for eXtensible Messaging and Presence Protocol
