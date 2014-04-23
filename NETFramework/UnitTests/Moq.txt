@@ -9,6 +9,12 @@ Created Friday 18 April 2014
 * mocks ''virtual ''methods only
 * mocks ''protected'' methods but you lose LINQ compile-time checks
 * can mock any method in an interface
-* to mock ''static'' methods/classes see [[Moles]]
+* to mock ''static'' methods/classes see [[NETFramework:CSharp:UnitTests:Moles]]
 * "workarounds" exist to mock [[CSharp:ExtensionMethods]] but you need to change the source code. See [[http://stackoverflow.com/questions/562129/how-do-i-use-moq-to-mock-an-extension-method|here]]
+
+===== Tutorials =====
 * https://github.com/Moq/moq4/wiki/Quickstart
+
+===== Protected Methods =====
+* use ''Protected()'' found in ''Mock.Protected''
+* Make internals of project visible to MOQ. See http://code.google.com/p/moq/issues/detail?id=271

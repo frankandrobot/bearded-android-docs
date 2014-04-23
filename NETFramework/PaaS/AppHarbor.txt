@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-23T18:37:40-04:00
+
+====== AppHarbor ======
+Created Wednesday 23 April 2014
+
+* [[http://oleksiy.pro/2012/05/10/belz-using-appharbor-as-donet-worker-mule/|Tutorial for Using AppHarbor]]
+
+To use arbitrary packages, use nuGet:
+* right-click the solution and select ''Enable NuGet Package Restore''
+* remove the packages from git: ''git rm -r --cached **/packages/''
+* reinstall if necessary from nuget package manager. You may have to use the console package manager if it does not let you uninstall from the GUI. Use ''uninstall-package <name>''
+* http://blog.appharbor.com/2012/02/06/use-nuget-package-restore-to-avoid-pushing-packages-to-appharbor

@@ -14,7 +14,7 @@ Platform as a Service:
 * http://azure.microsoft.com/en-us/
 
 ===== AppHarbor =====
-* [[http://oleksiy.pro/2012/05/10/belz-using-appharbor-as-donet-worker-mule/|Tutorial for Using AppHarbor]]
+* See [[+AppHarbor]] 
 
 ===== ActiveMQ =====
 
