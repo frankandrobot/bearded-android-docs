@@ -6,4 +6,9 @@ Creation-Date: 2014-04-07T14:12:48-04:00
 Created Monday 07 April 2014
 
 * [[http://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo.datetimeformat%28v=vs.110%29.aspx|How to Format DateTime to Current Language]]
-* http://msdn.microsoft.com/en-us/library/zdtaw1bw%28v=vs.110%29.aspx
+* [[http://msdn.microsoft.com/en-us/library/zdtaw1bw%28v=vs.110%29.aspx|For Real: Format DateTime to Current Language]]
+* [[http://msdn.microsoft.com/en-us/library/8kb3ddd4%28v=vs.110%29.aspx|Custom Formats]]
+* [[http://msdn.microsoft.com/en-us/library/system.globalization.cultureinfo%28vs.71%29.aspx|List of all CultureInfos]]
+
+===== Gotchas =====
+* Spain (es) and many other European countries don't use AM/PM

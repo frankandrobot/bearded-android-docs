@@ -12,3 +12,4 @@ To use arbitrary packages, use nuGet:
 * remove the packages from git: ''git rm -r --cached **/packages/''
 * reinstall if necessary from nuget package manager. You may have to use the console package manager if it does not let you uninstall from the GUI. Use ''uninstall-package <name>''
 * http://blog.appharbor.com/2012/02/06/use-nuget-package-restore-to-avoid-pushing-packages-to-appharbor
+* ~~make sure the reference property of the libary is set to "Copy Local = False". Right click reference in Solution Explorer, click Properties.~~
