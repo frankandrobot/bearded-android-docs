@@ -1,0 +1,20 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-27T14:57:00-04:00
+
+====== SupersedeInstanceVariable ======
+Created Sunday 27 April 2014
+
+* add a setter method that allows you to replace an object that gets created in the constructor
+
+Unfortunately, this approach has several downsides when you don't use Spring or another [[OOP:InversionOfControl|IoC]] framework:
+* You are adding a setter that should be called only in unit tests
+* The original dependency is still instantiated
+* Breaks encapsulation 
+
+Alternatives
+* use an Ioc framework
+* use reflection to set the value of the object in the unit test
+the design of your class.
+
+* https://timhigh.wordpress.com/2008/08/15/legacy-code-bad-practices/#comments

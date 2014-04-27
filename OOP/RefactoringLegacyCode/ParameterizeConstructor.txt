@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-27T14:36:00-04:00
+
+====== ParameterizeConstructor ======
+Created Sunday 27 April 2014
+
+* used when a constructor has a hidden dependency
+* make the hidden dependency explicit in a new constructor and don't break existing code by having the old constructor call the new constructor
+
+'''
+//Before
+public BadConstructor()
+{
+    this.hiddenDependency = new HiddenDependency();
+}
+
+//After
+//(don't break existing code)
+public BadConstructor()
+{
+'''
+	'''
+	super(new HiddenDependency());
+	}
+	
+	@NewConstructor
+	public BadConstructor(HiddenDependency hd)
+	{
+	this.hiddenDependency = new HiddenDependency();
+	}
+	'''

@@ -1,0 +1,53 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-27T15:21:41-04:00
+
+====== IntroduceStaticSetter ======
+Created Sunday 27 April 2014
+
+* use on singleton classes and other static classes
+* add a setter method that allows you to replace the singleton with a fake/mock for testing
+* you usually also add helper methods to help testing
+
+'''
+class Singleton
+{
+    static private Singleton instance = null;
+
+    static public void setTestingInstance(Singleton newInstance)
+    {
+'''
+		'''
+		instance = newInstance
+		'''
+	'''
+	}
+	
+	static public Singleton getInstance()
+	{
+	'''
+		'''
+		return instance == null ? new Singleton() : instance;
+		'''
+	'''
+	}
+	
+	static public void resetForTesting()
+	{
+	'''
+		'''
+		instance = null;
+		'''
+	'''
+	}
+	}
+	'''
+
+
+Unfortunately, this approach has several downsides when you don't use Spring or another [[OOP:InversionOfControl|IoC]] framework:
+* You are adding methods that should be called only in unit tests
+* **You have to make the constructor to the singleton not private.**
+
+Alternatives
+* use an Ioc framework
+* use reflection to replace the instance of the singleton object

@@ -19,3 +19,21 @@ Created Tuesday 22 April 2014
 5. Repeat.
 
 * use [[ProgrammingByDifference]] up until it makes sense. Ensure [[LiskovSubstitutionPrinciple]] by using a [[NormalizedHierarchy]] and you may have to ultimately use [[ObjectComposition]] 
+
+===== Chapter 9 - I Can't Get This Class Into a Test Harness =====
+i.e., can't instantiate a class.
+
+==== Difficult Constructors ====
+• extracting an interface for a difficult class that's a parameter in a constructor
+• try passing null to one of the parameters (works only in Java/C#)
+
+==== Hidden Dependencies ====
+* [[+ParameterizeConstructor]] --- make the hidden dependency explicit in a new constructor and don't break existing code by having the old constructor call the new
+
+==== Construction Blob ====
+* Occurs when parameterizing constructor would result in a very large parameter list OR constructor creates objects with parameters
+* try [[+SupersedeInstanceVariable]] --- add a setter to override the object that gets created in the constructor
+
+==== Global Dependencies ====
+* In Java/C#, occurs when constructor uses a singleton object
+* try [[+IntroduceStaticSetter]] --- add a setter in the singleton class to override/reset singleton instance
