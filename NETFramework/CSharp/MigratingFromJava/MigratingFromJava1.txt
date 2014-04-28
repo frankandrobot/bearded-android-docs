@@ -27,7 +27,7 @@ Created Tuesday 07 January 2014
 * C# has extra language keywords (see below)
 * both support inheritance but each handles it slightly differently (see :CSharp:MigratingFromJava2)
 * C# has anonymous types (see :CSharp:MigratingFromJava2)
-* C# has //extension methods// --- "add" new methods to existing types without modifying the original source code (See [[:CSharp:MigratingFromJava2)]]
+* C# has //extension methods// --- "add" new methods to existing types without modifying the original source code (See [[MigratingFromJava2]])
 * C# can define a class across different files (see ''partial'' keyword below)
 
 ===== Java Keywords With No C# Equivalents =====

@@ -13,23 +13,27 @@ There are actually several types of neurons but the most important is the //sigm
 ===== Sigmoid Neuron =====
 The type of neuron most frequently used is the **sigmoid neuron**, defined as a pair `(bb w, phi)`:
 
-* The weights `bb w` consist of the bias plus a list of `k` weights `(w_0, w_1,... , w_k)`. We call `w_0` the bias weight. (Note: alternatively, we can put the bias at the end of the list. We would just need to redefine `x_0` accordingly. See below.)
+* `bb w` consist of //k //**weights** `(w_1,... , w_k)` and a **bias **`w_(k+1)`: `(w_1,... , w_(k+1))`. //The weights and bias are real numbers//.
 * `phi` is an [[ActivationFunction|activation function]]. 
 
-To define the output of a neuron, first define the **induced local field **`v_N(bb x)` of neuron //N //at input `bb x`//://
-
-* `v_N(bb x) = bb w * bb x = sum_i^k w_i x_i` where `v_N` is a function from `RR^(k+1)` to `RR`.
-
-**Note: **the induced local field is //not //a function; it's the value of `v_N` at a specfic `bb x`. 
-
-The output of a neuron is given by its **impulse function**, which we will denote `f_N: RR^(k+1) -> (0,1)`:
-
-* `f_N(bb x) = phi(v_N(bb x)) = phi(bb w * bb x)`
-
-**Note:** By convention, `x_0` (which is mapped to the bias) is fixed at 1 for all inputs `bb x`.
+**Note: **We treat the bias as a special weight to make calculations easier. //We'll arbitrarily use the convention that the bias will always be at the end of the list.//
 
 ==== Purpose of the Bias ====
 A neuron with a two weights separates 2D data with a line (or in general, a hyper plane). The bias allows for lines (or hyper planes) that do not pass through the origin. 
+
+==== Neuron Output ====
+
+=== The Induced Local Field ===
+The **induced local field **of input vector `bb x = (x_1, ..., x_k)` is the dot product of the weights `bb w` and `bb x`:
+
+`\ \ bb w * bb x = sum_i^k w_i x_i` 
+
+**Note: **In case you haven't noticed, the dot product won't work --- `bb x` is a vector with `k` terms while `bb w` has `k+1` terms. **To get around this, we define `x_(k+1) = 1` for all inputs `bb x`.**
+
+=== The Impulse Function ===
+The output of a neuron is given by its **impulse function **`f_N: RR^(k+1) -> (0,1)`:
+
+`\ \ f_N(bb x) = phi(bb w * bb x)`
 
 ===== Radial Neurons =====
 A **radial neuron** uses a Euclidian radial basis function (RBF) instead of an activation function. If the weights are `(w_1,... , w_k)`, then the output is

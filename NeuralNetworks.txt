@@ -5,11 +5,45 @@ Creation-Date: 2013-11-15T10:05:48-05:00
 ====== NeuralNetworks ======
 Created Friday 15 November 2013
 
-To understand what a neural network is, please see the definition of a [[+Neuron|neuron]] first.
+A **neural network **is basically a set of [[+Neuron|neurons]] working together in sequence and in parallel. The simplest neural network consists of a single neuron.
+{{./diagram.png?type=diagram}}
+The diagram above shows a neural network made up of a single neuron with 3 inputs and 1 output. 
 
-A **single layer** **neural network **is one or more [[+Neuron|neurons]] working together in parallel. A **multi-layer neural network** is two or more single-layer networks working in sequence. 
-See [[http://en.wikibooks.org/wiki/Artificial_Neural_Networks/Neural_Network_Basics|here]] for diagrams or take a look at the [[+Resources|resources.]] 
+The next level of complexity is to have neurons in a **layer** work together in parallel.
 
+{{./diagram001.png?type=diagram}}
+The diagram above shows a **single layer neural network** with 2 neurons, 3 inputs, and 2 outputs.
+
+The next level of complexity is to have layers work together in sequence. 
+{{./diagram002.png?type=diagram}}
+This diagram shows a **multi-layer neural network **with:
+* 3 inputs
+* 1 output
+* An input layer with 3 neurons
+* An output layer with 1 neuron
+
+===== Neural Network Families =====
+Unfortunately, a "universal" neural network suitable for any type of problem does //not// exist. Each problem type usually requires a specialized neural network. For example, [[+ConvolutionalNetwork|convolutional networks]] were built for handwriting recognition. The neural networks defined in the introduction are **fully connected networks **because each neuron is connected to all of the inputs in the previous layer.
+
+===== When Is a Neural Network NOT Appropriate? =====
+Following are some guidelines on when you should use //another// approach:
+
+* Can you write down a flow chart or a formula that accurately describes the problem? 
+* Is there a simple piece of hardware or software that already does what you want?
+* Do you want the functionality to "evolve" in a direction that is not pre-defined? If so, then consider using a Genetic Algorithm (that's another topic!).
+* Is generating input/output examples hard? 
+* Is the problem is very "discrete"? Can the correct answer can be found in a look-up table of reasonable size? If so, then use a look-up table.
+* Are precise numeric output values required?
+
+Conversely, here are some situations where backpropagation might be a good idea:
+
+* A large amount of input/output data is available, but you're not sure how to relate it to the output.
+* The problem appears to have overwhelming complexity, but there is clearly a solution.
+* It is easy to create a number of examples of the correct behavior.
+* The solution to the problem may change over time, within the bounds of the given input and output parameters (i.e., today 2+2=4, but in the future we may find that 2+2=3.8).
+* Outputs can be "fuzzy", or non-numeric.
+
+Source: http://www.seattlerobotics.org/encoder/nov98/neural.html
+
+===== Formal Definition =====
 Neural networks can be thought of as a function of the input //and //the weights of the neurons. More importantly, if each neuron represents a continuous and differentiable function, then the entire network is a continuous and differentiable function. This property is important for learning. (See [[+BackPropagation]]).
- 
-
