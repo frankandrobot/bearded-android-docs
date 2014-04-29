@@ -1,0 +1,27 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-28T23:14:07-04:00
+
+====== ErrorFunction ======
+Created Monday 28 April 2014
+
+Define the **error** `E[i]` of the ith [[TrainingExamples|training example]] as
+
+`\ \ E[i] = 1/2 ||bb o[i] - bb t[i]||^2`
+
+where `bb o[i]` is the actual output of the network for input `bb x[i]` and `||*||` is the [[NeuralNetworks:Appendix:EuclidianDistance|euclidian distance]].
+
+**Note 1:** Since we're dealing with vectors, the error is the sum of the differences of the expected (`t[i]`) and actual (`o[i]`) output //for each neuron in the output layer//. Each `E[i]` actually looks like this:
+
+`\ \ E[i] = (o[i]_1 - t[i]_1)^2 + cdots + (o[i]_m - t[i]_m)^2`
+
+where `o[i]_j` is the actual output of the jth neuron (in the output layer) and `t[i]_j` is the expected output of the jth neuron (in the output layer).
+
+**Note 2: **This is just one of many different error functions.
+
+**The error function is actually a function of the weights. **Each input `bb x[i]` and expected output `bb t[i]` are fixed.
+
+We want to minimize the **total error** `E` of the network:
+
+`\ \ E = sum_i^p E[i] = 1/2 sum_i^p ||bb o[i] - bb t[i]||^2`
+

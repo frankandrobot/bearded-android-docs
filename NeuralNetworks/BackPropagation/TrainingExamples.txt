@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-04-28T22:44:38-04:00
+
+====== TrainingExamples ======
+Created Monday 28 April 2014
+
+A neural network "learns" from //training data// or //training examples.// A single **training example** is an input vector `bb x` and the expected (or desired) output `bb t` at that input. 
+
+The "complexity" lies in the notation:
+* we'll denote multiple training data by `{(bb x[1], bb t[1]), ...,(bb x[p], bb t[p])}` where `p` is the size of the training data. `(bb x[1], bb t[1])` is the first training example, `(bb x[2], bb t[2])` is the second training example, and so on...
+* each input and expected output are vectors, `bb x[i] = (x[i]_1, ...,  x[i]_n)` and `bb t[i] = (t[i]_1, ..., t[i]_m)` where `n` and `m` are the dimensions of the input and output spaces, respectively.
+* **Each `t[i]_j` is the expected output of the ith training example for the jth neuron in the output layer.** 

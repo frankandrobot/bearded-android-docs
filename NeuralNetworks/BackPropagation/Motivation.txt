@@ -8,33 +8,10 @@ Created Thursday 21 November 2013
 * http://page.mi.fu-berlin.de/rojas/neural/chapter/K7.pdf
 * http://jeremykun.com/2012/12/09/neural-networks-and-backpropagation/
 
-Given training data `{(bb x_1, bb t_1), ...,(bb x_p, bb t_p)}` where each `bb x_i` and `bb t_i` are vectors:
-
-`bb x_i = (x_(i1), ...,  x_(i n))` and `bb t_i = (t_(i1), ..., t_(i n))`
-
-Each `t_(ij)` is the expected output of the ith training example for the jth neuron in the output layer. (However, the relationship between the `x_(ij)s` and the output layer isn't always as clear cut, and that's fine.)
-
-Define `E_i` as
-
-`E_i = 1/2 ||bb o_i - bb t_i||^2`
-
-where `bb o_i` is the actual output of the network for input `bb x_i` and `||*||` is the euclidian distance. Each `E_i` is just the error of the ith training example.
-
-**Note:** Since we're dealing with vectors, the error is the sum of the differences of the expected (`t_i`) and actual (`o_i`) output //for each neuron in the output layer//. Each `E_i` actually looks like this:
-
-`E_i = (o_(i1) - t_(i1))^2 + cdots + (o_(im) - t_(im))^2`
-
-where `o_(ij)` is the actual output of the jth neuron (in the output layer) and `t_(ij)` is the expected output of the jth neuron (in the output layer).
-
-We want to minimize the total error `E` of the network:
-
-`E = sum_i^p E_i = 1/2 sum_i^p ||bb o_i - bb t_i||^2`
-
 ===== Motivation for the Backpropagation Algorithm =====
-* E is actually function of the weights! The input `bb x_i` and expected output `bb t_i` are fixed. The weights are the only parameters that can minimize the error function.
-* E is continuous and differentiable. Each impulse function comprising the network is continuous and differentiable. E is built via composition and summation of the impulse functions. Thus, its gradient exists. 
-
-As a result, we can use the method of Appendix:GradientDescent to find the values of the weights. This is essentially all that the backpropagation algorithm is.
+* The [[ErrorFunction|total error]] E is actually function of the weights! Each [[TrainingExamples|training example]] is fixed. The weights are the only parameters that can minimize the [[ErrorFunction|error function]].
+* The total error E is continuous and differentiable. Each impulse function is continuous and differentiable. E is built via composition and summation of the impulse functions. Thus, its gradient exists. 
+* As a result, we can use the method of //gradient descent// to find the values of the weights. This is essentially all that the backpropagation algorithm is.
 
 ==== The Gradient of `E` ====
 Let's start with the case of a single-layer network with only a single neuron.
