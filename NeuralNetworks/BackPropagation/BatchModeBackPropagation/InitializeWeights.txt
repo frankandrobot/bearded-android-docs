@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-05-01T23:14:03-04:00
+
+====== InitializeWeights ======
+Created Thursday 01 May 2014
+
+"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See [[:NeuralNetworks|neural networks]]) lie at //the transition between the linear and saturated parts of the //[[NeuralNetworks:ActivationFunction|activation function]]" (I have no idea what the emphasized parts means.)
+
+Most researchers initialize the weights to random values between 0 and 1. I use a gaussian with mean 0.5 and standard deviation 1.
