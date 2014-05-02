@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bearded-android-docs : Android quick docs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="
+http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+
+    <title>CustomView</title>
+    <meta name='Generator' content='Zim 0.60'>
+    
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+  </head>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
+
+          <h1 id="project_title">Bearded-android-docs</h1>
+          <h2 id="project_tagline">CustomView</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<!-- Wiki content -->
+
+<!-- -->
+<!-- <h1>CustomView</h1> -->
+<!-- -->
+
+<p>
+Created Sunday 10 November 2013<br>
+</p>
+
+<p>
+<ul>
+<li><a href="http://developer.android.com/training/custom-views/%E2%80%8E" title="http://developer.android.com/training/custom-views/%E2%80%8E" class="http">http://developer.android.com/training/custom-views/%E2%80%8E</a></li>
+<li><a href="http://www.vogella.com/articles/AndroidCustomViews/article.html" title="http://www.vogella.com/articles/AndroidCustomViews/article.html" class="http">http://www.vogella.com/articles/AndroidCustomViews/article.html</a></li>
+</ul>
+</p>
+
+<p>
+<ul>
+<li>To allow the Android Developer Tools to interact with your view, at a minimum you must provide a constructor that takes a Context and an AttributeSet object as parameters. </li>
+</ul>
+</p>
+
+<p>
+To control the view with XML:<br>
+<ul>
+<li>define custom attributes for your view in a &lt;declare-styleable&gt; resource element</li>
+<li>Specify values for the attributes in your XML layout</li>
+<li>Retrieve attribute values at runtime</li>
+<li>Apply the retrieved attribute values to your view</li>
+</ul>
+</p>
+
+<h2>Defining Custom XML Attributes</h2>
+<pre>
+@Example (res/values/attrs.xml file)
+&lt;resources&gt;
+   &lt;declare-styleable name="PieChart"&gt;
+       &lt;attr name="showText" format="boolean" /&gt;
+       &lt;attr name="labelPosition" format="enum"&gt;
+           &lt;enum name="left" value="0"/&gt;
+           &lt;enum name="right" value="1"/&gt;
+       &lt;/attr&gt;
+   &lt;/declare-styleable&gt;
+&lt;/resources&gt;
+</pre>
+
+
+<h2>Using Custom XML Attributes</h2>
+
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:custom="http://schemas.android.com/apk/res/[yourpackagename]"&gt;
+ &lt;com.example.customviews.charting.PieChart
+     custom:showText="true"
+     custom:labelPosition="left" /&gt;
+&lt;/LinearLayout&gt;
+</pre>
+
+<p>
+<strong>Note: </strong>You can use any namespace instead of <code>custom</code>.<br>
+</p>
+
+<h3>Setting Custom XML Attributes in the View</h3>
+
+<pre>
+public PieChart(Context context, AttributeSet attrs) {
+   super(context, attrs);
+   
+</pre>
+<p>
+<code>TypedArray a = context.getTheme().obtainStyledAttributes(</code><br>
+<code>        attrs,</code><br>
+<code>        R.styleable.PieChart,</code><br>
+<code>        0, 0);</code><br>
+<br>
+<code>   try {</code><br>
+<code>       mShowText = a.getBoolean(R.styleable.PieChart_showText, false);</code><br>
+<code>       mTextPos = a.getInteger(R.styleable.PieChart_labelPosition, 0);</code><br>
+<code>   } finally {</code><br>
+<code>       a.recycle();</code><br>
+<code>   }</code><br>
+<code>}</code><br>
+<br>
+<strong>Note: </strong>use #obtainStyledAttributes to get a TypedArray. Make sure to call #recycle when you're done.<br>
+<br>
+</p>
+<h2>Layout</h2>
+<p>
+<ul>
+<li>All views must know how to measure and layout themselves.</li>
+<li>#requestLayout tells the view to measure and layout itself. This method calls #requestLayout on its parent so its potentially expensive. You don't normally override this.</li>
+<li>#onMeasure determines the size for the view and its children. It must set the dimension via a call to #setMeasuredDimension.</li>
+<li>#onLayout (in the parent) positions child views based on the result of #onMeasure. This call happens typically once. </li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+	<i>No backlinks to this page.</i>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bearded-android-docs maintained by <a href="https://github.com/frankandrobot">frankandrobot</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
