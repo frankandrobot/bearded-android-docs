@@ -1,7 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2013-09-10T13:32:47-04:00
-
-====== ViewGroup ======
-Created Tuesday 10 September 2013
-
