@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-05-26T19:50:56-05:00
+
+====== SwitchStatement ======
+Created Monday 26 May 2014
+
+* http://mrhaki.blogspot.com/2009/08/groovy-goodness-switch-statement.html
+
+Highlights:
+* You can use regex expressions in switch statements
+* You can use closures in switch statements

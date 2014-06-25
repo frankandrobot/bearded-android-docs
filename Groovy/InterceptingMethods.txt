@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-05-23T16:58:05-05:00
+
+====== InterceptingMethods ======
+Created Friday 23 May 2014
+
+* http://blog.art-of-coding.eu/method-interception-and-synthesis-with-groovy/ - intercept all methods
+* http://groovy.codehaus.org/JN3515-Interception
+* http://www.radomirml.com/blog/2009/03/23/intercepting-method-call-in-groovy-and-invoking-the-original-method/ - looks like we have a wienner but it's from 2009 so who knows if it still applies
+* whoops! looks like methods that are part of interfaces can't be overriden. Bug still present in groovy 2.0.2 http://jira.codehaus.org/browse/GROOVY-3493  ''invokeMethod'' might work...
+* this uses ''invokeMethod''. Your class must implement ''GroovyInterceptable''  http://jamesgdriscoll.wordpress.com/2012/09/29/method-dispatch-on-groovy-objects/
+* here's another way using [[InterceptClass]] and [[ProxyMetaClass]] http://mrhaki.blogspot.com/2009/11/groovy-goodness-intercept-methods-with.html

@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-05-22T09:31:21-05:00
+
+====== Proxy ======
+Created Thursday 22 May 2014
+
+
+* http://blog.nodejitsu.com/http-proxy-intro/
+* Java simple proxy http://examples.oreilly.com/jenut/SimpleProxyServer.java
