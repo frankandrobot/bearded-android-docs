@@ -13,7 +13,7 @@ There are actually several types of neurons but the most important is the //sigm
 ===== Sigmoid Neuron =====
 The type of neuron most frequently used is the **sigmoid neuron**, defined as a pair `(bb w, phi)`:
 
-* `bb w` consist of a **bias **`w_(0)` and //k //**weights** `(w_1,... , w_k)` and : `(w_0,... , w_k)`. //The weights and bias are real numbers//.
+* `bb w` consist of a **bias **`w_(0)` and //k //**weights** `(w_1,... , w_k)`: `(w_0,... , w_k)`. //The weights and bias are real numbers//.
 * `phi` is an [[ActivationFunction|activation function]]. 
 
 **Note 1: **We treat the bias as a special weight to make calculations easier. 
@@ -29,7 +29,7 @@ The **induced local field **of input vector `bb x = (x_1, ..., x_k)` is the dot 
 
 `\ \ bb w * bb x = sum_i^k w_i x_i` 
 
-In case you haven't noticed, the dot product won't work --- `bb x` is a vector with `k` terms while `bb w` has `k+1` terms. **To get around this, we use the convention that `x_0 = 1` for all inputs `bb x`.**
+In case you haven't noticed, the dot product is not well defined --- `bb x` is a vector with `k` terms while `bb w` has an extra term for the bias. **To get around this, we use the convention that `x_0 = 1` for all inputs `bb x`.**
 
 **Note: **//In code//, if you put the bias at the end of the list of weights, then use `x_(k+1)=1` for all inputs `bb x`.
 
