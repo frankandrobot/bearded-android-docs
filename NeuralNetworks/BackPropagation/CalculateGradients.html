@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>ActionBar</title>
+    <title>CalculateGradients</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">ActionBar</h2>
+          <h2 id="project_tagline">CalculateGradients</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,65 +40,73 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>ActionBar</h1> -->
+<!-- <h1>CalculateGradients</h1> -->
 <!-- -->
 
 <p>
-Created Saturday 31 August 2013<br>
+Created Thursday 01 May 2014<br>
 </p>
 
-<h1>General Organization</h1>
+<h2>Notation</h2>
 <p>
 <ul>
-<li>App icon (up button)</li>
-<li>View control</li>
-<li>Action buttons</li>
-<li>More button</li>
+<li>`L` = the output layer.</li>
+<li>`(bb x, bb t)` = <a href="./TrainingExamples.html" title="training example" class="page">training example</a></li>
+<li>`N_j^((l))` = neuron `j` in layer `l`</li>
+<li>`t_j` = the expected output of `N_j^((L))` <em>when the network input is `bb x`</em></li>
+<li>`o_j^((l))` = the actual output of `N_j^((l))` = impulse function value of `N_j^((l))` <em>when the network input is `bb x`</em></li>
+<li>`v_j^((l))` = the induced local field of `N_j^((l))` <em>when the network input is `bb x`</em> </li>
+<li>`gamma_j^((l))` = the derivative of `N_j^((l))`s <a href="../ActivationFunction.html" title="activation function" class="page">activation function</a>.</li>
+<li>(In general, let a superscript `l` denote layer `l`.)</li>
+<li>Let weight `w_(kj)^((l+1))` connect `N_k^((l+1))`  to `N_j^((l))`</li>
 </ul>
 </p>
 
-<h2>Tips</h2>
-<p>
-<ul>
-<li>Use different layouts</li>
-<li>Consider splitting action bar for portrait</li>
-<li>Actions on the bottom in this case</li>
-<li>Use FIT scheme to decide what actions to add</li>
-</ul>
-** is the action frequent? 7 out of 10 visits or several times in a row<br>
-** is the action important? <br>
-** is the action typical? <br>
-<ul>
-<li>screen width in dp determines how many icons fit in action bar</li>
-</ul>
-</p>
+<pre>
+Layer l               Layer (l+1)
+neuron 1              neuron 1
+...                   ...
+...                   ...
+neuron j ----w_kj---&gt; neuron k
+...                   ...	
+</pre>
 
 <p>
-    smaller than 360 dp = 2 icons (including more button)<br>
-    360-499 dp = 3 icons<br>
-    500-599 dp = 4 icons<br>
-    600 dp and larger = 5 icons<br>
+<strong>Note 1: </strong>`gamma_k` is a function. `v_j` and `o_j` are real numbers.<br>
+<strong>Note 2: </strong>`t_j` is the expected <em>network output</em>, that is, the output of the neuron <em>j </em>in the <em>output layer.</em><br>
 </p>
 
-<h1>Gotchas</h1>
+<h2>Calculating the Gradients `delta"s"`</h2>
 <p>
-As per <a href="http://stackoverflow.com/questions/11480302/overflow-actions-on-actionbar-not-showing" title="http://stackoverflow.com/questions/11480302/overflow-actions-on-actionbar-not-showing" class="http">http://stackoverflow.com/questions/11480302/overflow-actions-on-actionbar-not-showing</a><br>
+Define the local <a href="../Appendix/Gradient.html" title="gradient" class="page">gradient</a> `delta_j^((l))` of neuron `j` recursively as follows:<br>
 </p>
 
 <p>
 <ul>
-<li>If you have a physical menu key, the overflow indicator does not show. That is a behaviour by design. See here for more details on another question asked.</li>
+<li>for neuron `N_j^((L))` (output layer), `delta_j^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`.</li>
+<li>for neuron `N_j^((l))` (hidden layer), `delta_j^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))` where the summation `sum_k` is over the neurons in layer `(l+1)`. </li>
 </ul>
 </p>
 
-<h1>Links</h1>
 <p>
-<ul>
-<li><a href="http://developer.android.com/downloads/design/Android_Design_Icons_20120814.zip" title="http://developer.android.com/downloads/design/Android_Design_Icons_20120814.zip" class="http">http://developer.android.com/downloads/design/Android_Design_Icons_20120814.zip</a></li>
-<li><a href="http://android-developers.blogspot.com/2011/04/customizing-action-bar.html" title="http://android-developers.blogspot.com/2011/04/customizing-action-bar.html" class="http">http://android-developers.blogspot.com/2011/04/customizing-action-bar.html</a></li>
-<li><a href="http://stackoverflow.com/questions/17913084/actionbar-action-items-not-showing" title="http://stackoverflow.com/questions/17913084/actionbar-action-items-not-showing" class="http">http://stackoverflow.com/questions/17913084/actionbar-action-items-not-showing</a></li>
-<li><a href="http://developer.android.com/training/implementing-navigation/ancestral.html" title="http://developer.android.com/training/implementing-navigation/ancestral.html" class="http">http://developer.android.com/training/implementing-navigation/ancestral.html</a> - for properly implementing Up button</li>
-</ul>
+In other words, for a hidden neuron `N_j^((l))`, its gradient is the product of (a) the derivate of the activation function at its induced local field and (b) the sum of the product of the gradients in the <em>next </em>layer and the weights that connect `N_j` to that gradient's neuron.<br>
+</p>
+
+<pre>
+Layer l               Layer l+1
+neuron 1              neuron 1, gradient 1
+neuron 2            / neuron 2, gradient 2
+...               /   ...
+...           w_1j    ...
+...           /       ...
+...         /         ... 
+...       /           ...
+neuron j ----w_kj---&gt; neuron k, gradient k
+</pre>
+
+<p>
+<strong>Note 1: </strong>`gamma_j^((l)) ( v_j^((l)) )` = the derivative of the activation function at neuron `N_j`s induced local field `!=` a product.<br>
+<strong>Note 2: </strong>Its now clear why we needed to store the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.<br>
 </p>
 
 
@@ -108,7 +116,7 @@ As per <a href="http://stackoverflow.com/questions/11480302/overflow-actions-on-
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='./BatchModeBackPropagation.html'>NeuralNetworks:BackPropagation:BatchModeBackPropagation</a>
 
 
 

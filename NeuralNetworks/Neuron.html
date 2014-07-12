@@ -65,18 +65,19 @@ The type of neuron most frequently used is the <strong>sigmoid neuron</strong>, 
 
 <p>
 <ul>
-<li>`bb w` consist of <em>k </em><strong>weights</strong> `(w_1,... , w_k)` and a <strong>bias </strong>`w_(k+1)`: `(w_1,... , w_(k+1))`. <em>The weights and bias are real numbers</em>.</li>
+<li>`bb w` consist of a <strong>bias </strong>`w_(0)` and <em>k </em><strong>weights</strong> `(w_1,... , w_k)` and : `(w_0,... , w_k)`. <em>The weights and bias are real numbers</em>.</li>
 <li>`phi` is an <a href="./ActivationFunction.html" title="activation function" class="page">activation function</a>. </li>
 </ul>
 </p>
 
 <p>
-<strong>Note: </strong>We treat the bias as a special weight to make calculations easier. <em>We'll arbitrarily use the convention that the bias will always be at the end of the list.</em><br>
+<strong>Note 1: </strong>We treat the bias as a special weight to make calculations easier. <br>
+<strong>Note 2: </strong>To make the math notation easier, we put the bias at the beginning of the list. However, <em>in code</em>, it may make more sense to put the bias <em>at the end of the list</em>. <br>
 </p>
 
 <h3>Purpose of the Bias</h3>
 <p>
-A neuron with a two weights separates 2D data with a line (or in general, a hyper plane). The bias allows for lines (or hyper planes) that do not pass through the origin. <br>
+A neuron with two weights separates 2D data with a line (or in general, a hyper plane). The bias allows for lines (or hyper planes) that do not pass through the origin. <br>
 </p>
 
 <h3>Neuron Output</h3>
@@ -91,7 +92,11 @@ The <strong>induced local field </strong>of input vector `bb x = (x_1, ..., x_k)
 </p>
 
 <p>
-<strong>Note: </strong>In case you haven't noticed, the dot product won't work --- `bb x` is a vector with `k` terms while `bb w` has `k+1` terms. <strong>To get around this, we define `x_(k+1) = 1` for all inputs `bb x`.</strong><br>
+In case you haven't noticed, the dot product won't work --- `bb x` is a vector with `k` terms while `bb w` has `k+1` terms. <strong>To get around this, we use the convention that `x_0 = 1` for all inputs `bb x`.</strong><br>
+</p>
+
+<p>
+<strong>Note: </strong><em>In code</em>, if you put the bias at the end of the list of weights, then use `x_(k+1)=1` for all inputs `bb x`.<br>
 </p>
 
 <h4>The Impulse Function</h4>
@@ -119,9 +124,6 @@ In other words, each RBF neuron computes the Euclidian distance between the inpu
 <p>
 If the input represents an object and a radial neuron represents a class of objects, then its output represents a penalty term measuring the fit between the input and the class.<br>
 </p>
-
-
-
 
 
 <!-- End wiki content -->

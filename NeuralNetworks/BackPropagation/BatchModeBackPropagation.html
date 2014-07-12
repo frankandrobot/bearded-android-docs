@@ -48,18 +48,18 @@ Created Thursday 12 December 2013<br>
 </p>
 
 <p>
-Step 0. Pick values for the learning and momentum parameters. See <a href="./Parameters.html" title="backpropagation parameters" class="page">backpropagation parameters</a>. <br>
+Step 0. <a href="./Parameters.html" title="Pick values for the learning and momentum parameters" class="page">Pick values for the learning and momentum parameters</a>.<br>
 </p>
 
 <p>
-Step 1. Initialize the weights.<br>
+Step 1. <a href="./BatchModeBackPropagation/InitializeWeights.html" title="Initialize the weights" class="page">Initialize the weights</a>.<br>
 </p>
 
 <p>
 Step 2. Go through each training example:<br>
 <ul>
 <li>2a. Perform the <em>forward propagation</em>. Starting with the input layer, store each <a href="../Neuron.html" title="neuron's" class="page">neuron's</a> induced local field and impulse function value.</li>
-<li>2b. Perform the <em>backpropagation</em>. Starting with the output layer, calculate and store the gradients of each neuron.</li>
+<li>2b. Perform the <em>backpropagation</em>. Starting with the output layer, <a href="./CalculateGradients.html" title="calculate the gradients of each neuron" class="page">calculate the gradients of each neuron</a>. Make sure to store the gradients.</li>
 <li>2c. Update the cumulative learning term for each weight of each neuron starting with the output layer.</li>
 <li>2d. Discard the stored induced local fields, impulse functions, and gradients.</li>
 </ul>
@@ -95,91 +95,6 @@ You'll need data structure(s) to store:<br>
 <li>learning terms for the weights of the neurons in each layer. These represent the <em>cumulative </em>learning terms of all examples, so all you need is one set of data structure(s) per iteration.</li>
 <li><em>previous </em>weight values (these are used by the momentum term). You do not need to store the complete history of the weights, just the previous values.</li>
 </ul>
-</p>
-
-<h2>Initalizing the Weights</h2>
-<p>
-"Pick the weights from a uniform distribution whose mean is zero and whose variance is chosen to make the standard deviation of the induced local fields of the neurons (See <a href="../../NeuralNetworks.html" title="neural networks" class="page">neural networks</a>) lie at <em>the transition between the linear and saturated parts of the </em><a href="../ActivationFunction.html" title="activation function" class="page">activation function</a>" (I have no idea what the emphasized parts means.)<br>
-</p>
-
-<p>
-Most researchers initialize the weights to random values between 0 and 1. I use a gaussian with mean 0.5 and standard deviation 1.<br>
-</p>
-
-<h2>Performing the Forward Propagation</h2>
-<p>
-<ul>
-<li>Given a training input `bb x_i`, calculate the output of the neural network. </li>
-<li>Make sure to store the induced local fields and the values of the impulse functions of each neuron in each layer.</li>
-</ul>
-</p>
-
-<h2>Constructing the Gradients (`delta"s"`)</h2>
-<p>
-This is how to compute the local gradients (`delta"s"`) of each neuron:<br>
-</p>
-
-<p>
-<ul>
-<li>Let `N_j` be neuron `j`.</li>
-<li>Let `L` be the output layer. </li>
-<li>Let `v_j^((l))` be the induced local field of `N_j` in layer `l`. </li>
-<li>Let `o_j^((l))` be the output (value of the impulse function) of `N_j` in layer `l`.</li>
-<li>Let `gamma_j^((l))` be the derivative of `N_j`s <a href="../ActivationFunction.html" title="activation function" class="page">activation function</a>.</li>
-<li>Let weight `w_(kj)^((l))` connect `N_k` in layer `l` to `N_j` in the previous layer.</li>
-<li>(In general, let a superscript `l` denote layer `l`.)</li>
-</ul>
-</p>
-
-<p>
-<strong>Note: </strong>`gamma_k` is a function. `v_j` and `o_j` are real numbers.<br>
-</p>
-
-<p>
-Define the local gradient `delta_j^((l))` of neuron `j` recursively as follows:<br>
-</p>
-
-<p>
-<ul>
-<li>for neuron `N_j` in output layer `L`, `delta_k^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`</li>
-<li>for neuron `N_j` in hidden layer `l`, `delta_k^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))`</li>
-</ul>
-</p>
-
-<p>
-where the summation `sum_k` is over the neurons in layer `(l+1)` and weight `w_(kj)^((l+1))` connects `N_k` in layer `(l+1)` to `N_j` in layer `l`. <br>
-</p>
-
-<p>
-<strong>Note: </strong>If its not clear, `gamma_j^((l)) ( v_j^((l)) )` is the derivative of the activation function at neuron `N_j`s induced local field. It's not a product.<br>
-</p>
-
-<p>
-A diagram will help:<br>
-</p>
-
-<pre>
-Layer l               Layer (l+1)
-neuron 1              neuron 1, gradient 1
-neuron 2            / neuron 2, gradient 2
-...               /   ...
-...           w_1j    ...
-...           /       ...
-...         /         ... 
-...       /           ...
-neuron j ----w_kj---&gt; neuron k, gradient k
-</pre>
-
-<p>
-In other words, for a hidden neuron `N_j` in layer `l`, its gradient is the product of (a) the derivate of the activation function at its induced local field and (b) the sum of the product of the gradients in the <em>next </em>layer and the weights that connect `N_j` to that gradient's neuron.<br>
-</p>
-
-<p>
-<strong>Note:</strong><br>
-<ol type="1" start="1">
-<li>Its now clear why we needed to store the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.</li>
-<li>Don't forget to store the values of the `delta"s"` which will be needed in the next step.</li>
-</ol>
 </p>
 
 <h2>Constructing the Learning Terms</h2>
