@@ -67,4 +67,4 @@ where `alpha` is the **momentum parameter** and `w_j[prev]` is the value of `w_j
 
 **The backpropagation algorithm repeats this process until the error E is smaller than a preset value.**
 
-More generally, we can apply the same reasoning to an NN with more than one neuron and more than one layer. In the general case, the formula for a gradient is a function of the gradients in the _next_ layer. Hence, the name /backprogapation/ since you must start in the output layer and work backwards to find the weights.
+More generally, we can apply the same reasoning to an NN with more than one neuron and more than one layer. In the general case, the formula for a gradient is a function of the gradients in the //next// layer. Hence, the name //backprogapation// since you must start in the output layer and work backwards to find the weights.

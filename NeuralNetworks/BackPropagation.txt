@@ -13,6 +13,7 @@ The **backpropagation algorithm** is a popular way of training neural networks. 
 * The algorithm reduces the error one small step at a time. It iteratively travels along the direction of highest slope until error is less than given value.
 * The problem is that we don't know if we reached a local minimum or a global minimum. Theoretically, the algorithm can get stuck even when you add a correction term. However, it doesn't in practice and scientists aren't really sure why.
 
+
 You may want to first read the [[+Motivation|motivation]] for the back propagation algorithm.
 
 There are actually several types of backpropagation, all based on the method of **gradient descent**.
