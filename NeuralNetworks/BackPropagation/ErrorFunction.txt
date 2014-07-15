@@ -23,5 +23,5 @@ where `o[i]_j` is the actual output of the jth neuron (in the output layer) and 
 
 We want to minimize the **total error** `E` of the network:
 
-`\ \ E = sum_i^p E[i] = 1/2 sum_i^p ||bb o[i] - bb t[i]||^2`
+`\ \ E = sum_i^p E[i] = 1/2 sum_i^p ||bb o[i] - bb t[i]||^2`	
 

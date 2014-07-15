@@ -11,12 +11,15 @@ Created Thursday 21 November 2013
 ===== Motivation for the Backpropagation Algorithm =====
 * Goal: for fixed [[TrainingExamples|training example]] `bb x`, we want the NN to output a specific output `bb t`. 
 * We need to somehow modify the weights `bb w` so that the output is as close as possible to `bb t`.
-* We measure the difference between the actual output and expected output with the [[ErrorFunction|total error]] function i.e., //we need to minimize the total error function//.
-* The [[ErrorFunction|total error]] E is actually function of the weights! Each [[TrainingExamples|training example]] is fixed. The weights are the only parameters that can minimize the error function.
-* The total error E is continuous and differentiable. Each impulse function is continuous and differentiable. E is built via composition and summation of the impulse functions. Thus, its gradient exists. 
-* As a result, we can use the method of //gradient descent// to find the values of the weights. This is essentially all that the backpropagation algorithm is.
+* We can measure the difference between the actual output and expected output and somehow minimize the error.
+* The [[ErrorFunction|total error]] measures the difference between the actual and expected outputs.
+* The total error is actually function of the weights! (Each [[TrainingExamples|training example]] is fixed. The weights are the only parameters that can minimize the error function.)
+* The total error is continuous and differentiable! (Each impulse function is continuous and differentiable. E is built via composition and summation of the impulse functions. Thus, its gradient exists.)
+* As a result, we can use the method of //gradient descent// to minimize the error function and find the values of the weights. In a nutshell, this is the backpropagation algorithm.
 
-==== The Gradient of `E` ====
+===== Derivation of the Backpropagation Algorithm (Sort of) =====
+
+==== The Gradient of the total error `E` ====
 Consider a single-layer network with only a single neuron `(bb w,phi)` and a single training example `(bb x, bb t)`. Since the NN has a single neuron, `bb t` is a one-dimensional vector i.e., `bb t=t`, a scalar.
 
 Then the total error is `E=E[1]`.

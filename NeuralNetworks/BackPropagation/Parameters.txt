@@ -13,7 +13,7 @@ where
 * `w_(kj)^((l))` is a weight connecting neuron `N_k` in layer `l` to neuron `N_j` in the previous layer
 * `w_(kj)^(**(l))` is the //previous //value of the weight
 * `alpha` is called the **momentum parameter**
-* `eta` is called the **learning parameter**
+* `eta` is called the **learning parameter** and is used by the [[LearningTerm|learning term]]
 * the sum `sum_i` is over all the training examples
 * `sigma_k^((l))(i)` is the gradient of neuron `N_k^((l))` when the network is fed input `bb x(i)`
 * `y_j^((l-1))(i)` is the input fed to layer `l` when the network is fed input `bb x(i)`. See [[BackPropagation|back propagation implementation.]]
