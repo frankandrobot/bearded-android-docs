@@ -5,14 +5,14 @@ Creation-Date: 2013-12-12T13:50:58-05:00
 ====== BatchModeBackPropagation ======
 Created Thursday 12 December 2013
 
-Step 0. [[Parameters|Pick values for the learning and momentum parameters]].
+Step 0. [[ChoosingParameters|Pick values for the learning and momentum parameters]].
 
 Step 1. [[WeightInitialization|Initialize the weights]].
 
 Step 2. Go through each training example:
 * 2a. Perform the //forward propagation//. Starting with the input layer, store each [[NeuralNetworks:Neuron|neuron's]] induced local field and impulse function value.
 * 2b. Perform the //backpropagation//. Starting with the output layer, [[CalculateGradients|calculate the gradients of each neuron]]. Make sure to store the gradients.
-* 2c. [[+UpdatingTheLearningTerms|Update]] the cumulative [[LearningTerm|learning terms]] for each weight of each neuron starting with the output layer.
+* 2c. [[+UpdatingTheLearningTerms|Update]] the [[LearningTerm|cumulative learning terms]] for each weight of each neuron starting with the output layer.
 * 2d. Discard the stored induced local fields, impulse functions, and gradients.
 
 Step 3. Adjust each weight using its cumulative learning term and momentum term. Make sure to store the values of the previous weights.
@@ -75,4 +75,4 @@ Repeat another iteration of the backpropagation algorithm until the error is les
 
 ====== Troubleshooting ======
 * Unit test, unit test, unit test. You'll be suprised how easy it is to introduce a typo that breaks your implementation.
-* The error never converges? Make sure you know how the [[Parameters|backpropagation parameters]] work.
+* The error never converges? Make sure you know how the [[ChoosingParameters|backpropagation parameters]] work.

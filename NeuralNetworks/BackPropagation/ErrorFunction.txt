@@ -5,11 +5,17 @@ Creation-Date: 2014-04-28T23:14:07-04:00
 ====== ErrorFunction ======
 Created Monday 28 April 2014
 
-Define the **error** `E[i]` of the ith [[TrainingExamples|training example]] as
+The **error function** measures the difference between the expected and actual output and is a function of the weights. There is actually more than one way of defining the error function.
+
+===== Notation =====
+* Please read the [[Notation|notation page]]
+
+===== An Error Function =====
+A common way of defining the error function is to let the error `E[i]` of the ith training example be
 
 `\ \ E[i] = 1/2 ||bb o[i] - bb t[i]||^2`
 
-where `bb o[i]` is the actual output of the network for input `bb x[i]` and `||*||` is the [[NeuralNetworks:Appendix:EuclidianDistance|euclidian distance]].
+where `||*||` is the [[NeuralNetworks:Appendix:EuclidianDistance|euclidian distance]].
 
 **Note 1:** Since we're dealing with vectors, the error is the sum of the differences of the expected (`t[i]`) and actual (`o[i]`) output //for each neuron in the output layer//. Each `E[i]` actually looks like this:
 
@@ -19,9 +25,9 @@ where `o[i]_j` is the actual output of the jth neuron (in the output layer) and 
 
 **Note 2: **This is just one of many different error functions.
 
-**The error function is actually a function of the weights. **Each input `bb x[i]` and expected output `bb t[i]` are fixed.
+**The error function is actually a function of the weights. **Each input `bb x[i]` and expected output `bb t[i]` are fixed. The only variables are the weights.
 
-We want to minimize the **total error** `E` of the network:
+We care about minimizing the **total error** `E` of the network:
 
 `\ \ E = sum_i^p E[i] = 1/2 sum_i^p ||bb o[i] - bb t[i]||^2`	
 

@@ -44,19 +44,19 @@ Let's compute a `(dE)/(dw_j)`.
 
 where `C` and `D` are constants. Applying the chain rule twice (once on the squared term and then on `phi`)
 
-`\ (dE)/(dw_j)`
+`\ \ \ (dE)/(dw_j)`
 `\ \ = 2(phi(C + w_j x_j) - D) xx (d)/(dw_j)(phi(C + w_j x_j) - D)`
 `\ \ = 2(phi(C + w_j x_j) - D) xx phi'(C + w_j x_j) xx x_j`
 `\ \ = 2[phi(sum_k w_k x_k) - t] xx phi'(sum_k w_k x_k) xx x_j`
 
 Phew! Let's make a simplification. `phi(sum_k w_k x_k)` is just the output `o` of the neuron, so
 
-`\ (dE)/(dw_j) = 2(o - t) phi'(o) x_j`
+`\ \ (dE)/(dw_j) = 2(o - t) phi'(o) x_j`
 
 ==== The Backpropagation Algorithm ====
 The gradient points in the direction of steepest ascent, so if we want to go to the minimum, just travel backwards along the gradient. In other words, add a negative multiple of `(dE)/(dw_j)` to the current weight `w_j` to go towards the minimum of `E`:
 
-`\ w_j = w_j - eta (o - t) phi'(o) x_j`
+`\ \ w_j = w_j - eta (o - t) phi'(o) x_j`
 
 (We drop the "2" since it gets absorbed by `eta`. `eta` is called the **learning parameter**.)
 
@@ -64,7 +64,7 @@ Let's step back for a minute. We're adjusting the weights (which are the real in
 
 Enter the **momentum**.
 
-`\ w_j = w_j - eta (o - t) phi'(o) x_j + alpha w_j[prev]`
+`\ \ w_j = w_j - eta (o - t) phi'(o) x_j + alpha w_j[prev]`
 
 where `alpha` is the **momentum parameter** and `w_j[prev]` is the value of `w_j` from the previous iteration of the backpropagation algorithm.
 

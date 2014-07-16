@@ -29,4 +29,4 @@ neuron j ----w_kj---> neuron k, gradient k
 '''
 
 **Note 1: **`gamma_j^((l)) ( v_j^((l)) )` = the derivative of the activation function at neuron `N_j`s induced local field `!=` a product.
-**Note 2: **Its now clear why we needed to store the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.
+**Note 2: **Its now clear why it makes sense to the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.
