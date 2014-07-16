@@ -11,7 +11,7 @@ Step 1. [[WeightInitialization|Initialize the weights]].
 
 Step 2. Go through each training example:
 * 2a. Perform the //forward propagation//. Starting with the input layer, //store each //[[NeuralNetworks:Neuron|neuron]]//'s induced local field and impulse function value.//
-* 2b. Perform the //backpropagation//. Starting with the output layer, [[BackPropagation:CalculateGradients|calculate the gradients of each neuron]]. //Make sure to store the gradients.//
+* 2b. Perform the //backpropagation//. Starting with the output layer, [[BackPropagation:BackPropFormula:CalculateGradients|calculate the gradients of each neuron]]. //Make sure to store the gradients.//
 * 2c. [[+UpdatingTheLearningTerms|Update]] the [[BackPropFormula:LearningTerm|cumulative learning terms]] for each weight of each neuron starting with the output layer. **Do NOT apply the backprop formula yet.**
 * 2d. //Discard the stored induced local fields, impulse functions, and gradients.//
 
@@ -24,6 +24,7 @@ Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value. 
 1. Its called the //backpropagation //algorithm because you start from the output layer (Steps 2b and c) and work backwards to the input layer.
 2. Steps 2--4 are one iteration of the backpropagation algorithm.
 3. A common mistake is adjust the weights before cycling through all the examples. You need to calculate a weight's //cumulative //learning term (from all the examples) before updating it.
+4. Stuck? Read the [[+Troubleshooting]] page
 
 ===== Required Memory and Data Structures =====
 You'll need data structure(s) to store:
@@ -33,31 +34,4 @@ You'll need data structure(s) to store:
 * learning terms for the weights of the neurons in each layer. These represent the //cumulative //learning terms of all examples, so all you need is one set of data structure(s) per iteration.
 * //previous //weight values (these are used by the momentum term). You do not need to store the complete history of the weights, just the previous values.
 
-===== Constructing the Error Function =====
-* Let `{bb x(i), bb t(i)}` be the `p` training examples. 
-* Let `bb o(i)` be the actual output of the network for training input `bb x(i)`. 
-**Note:**
-1. Each `bb x(i)` and `bb t(i)` are vectors, `bb x(i) = (x_1(i), ...,  x_n(i))` and `bb t(i) = (t_1(i), ..., t_n(i))`. 
-2. Each `t_j(i)` is the expected output of the ith training example for the jth neuron in the output layer.
-3. `bb o(i)` is a vector `o_1(i), ..., o_n(i)`.
-4. `o_j(i)` is the output (value of the impulse function) of neuron `N_j` in the output layer for input `bb x(i)`. 
 
-With these definitions, `bb o(i) - bb t(i)` is the difference in the expected and actual values. We seek to minimize these differences for all training examples:
-
-For each training example `i`, construct the error `E_i`
-
-`\ E_i = 1/2 ||bb o(i) - bb t(i)||^2`
-
-where `||*||` is the [[NeuralNetworks:Appendix:EuclidianDistance|euclidian distance]].  Since we're dealing with vectors, each `E_i` actually looks like this:
-
-`\ E_i = 1/2 (o_1(i) - t_1(i))^2 + cdots + (o_n(i) - t_n(i))^2`
-
-Construct the total error `E` of the network for all training examples:
-
-`\ E = sum_i^p E_i = 1/2 sum_i^p ||bb o(i) - bb t(i)||^2 = 1/2 sum_i^p (o_1(i) - t_1(i))^2 + cdots + (o_n(i) - t_n(i))^2`
-
-Repeat another iteration of the backpropagation algorithm until the error is less than a pre-selected amount.
-
-====== Troubleshooting ======
-* Unit test, unit test, unit test. You'll be suprised how easy it is to introduce a typo that breaks your implementation.
-* The error never converges? Make sure you know how the [[BackPropFormula:ChoosingParameters|backpropagation parameters]] work.
