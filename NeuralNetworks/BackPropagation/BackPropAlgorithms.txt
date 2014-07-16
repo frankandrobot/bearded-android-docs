@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-07-16T01:28:53-05:00
+
+====== BackPropAlgorithms ======
+Created Wednesday 16 July 2014
+
+There are actually several types of backpropagation, all based on the method of **gradient descent**.
+
+* **online mode **- weights are updated after each example
+* **batch gradient **(or **batch mode**) - weights are updated after going through the entire training set. See [[+BatchModeBackPropagation]].
+* **stochastic gradient**
