@@ -19,9 +19,9 @@ where `||*||` is the [[NeuralNetworks:Appendix:EuclidianDistance|euclidian dista
 
 **Note 1:** Since we're dealing with vectors, the error is the sum of the differences of the expected (`t[i]`) and actual (`o[i]`) output //for each neuron in the output layer//. Each `E[i]` actually looks like this:
 
-`\ \ E[i] = (o[i]_1 - t[i]_1)^2 + cdots + (o[i]_m - t[i]_m)^2`
+`\ \ E[i] = (o_1[i] - t_1[i])^2 + cdots + (o_m[i] - t_m[i])^2`
 
-where `o[i]_j` is the actual output of the jth neuron (in the output layer) and `t[i]_j` is the expected output of the jth neuron (in the output layer).
+where `o_j[i]` is the actual output of the jth neuron (in the output layer) and `t_j[i]` is the expected output of the jth neuron (in the output layer).
 
 **Note 2: **This is just one of many different error functions.
 
@@ -29,5 +29,7 @@ where `o[i]_j` is the actual output of the jth neuron (in the output layer) and 
 
 We care about minimizing the **total error** `E` of the network:
 
-`\ \ E = sum_i^p E[i] = 1/2 sum_i^p ||bb o[i] - bb t[i]||^2`	
+`\ \ E = sum_i E[i]`
+`\ \ \ \ = 1/2 sum_i ||bb o[i] - bb t[i]||^2`	
+`\ \ \ \ = 1/2 sum_i (o_1[i] - t_1[i])^2 + cdots + (o_m[i] - t_m[i])^2`
 
