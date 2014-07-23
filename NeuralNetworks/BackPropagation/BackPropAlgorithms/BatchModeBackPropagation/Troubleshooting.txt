@@ -1,9 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2014-07-16T01:43:14-05:00
-
-====== Troubleshooting ======
-Created Wednesday 16 July 2014
-
-* Unit test, unit test, unit test. You'll be suprised how easy it is to introduce a typo that breaks your implementation.
-* The error never converges? Make sure you know how the [[BackPropFormula:ChoosingParameters|backpropagation parameters]] work.

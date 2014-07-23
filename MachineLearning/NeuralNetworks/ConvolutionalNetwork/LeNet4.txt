@@ -1,0 +1,36 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-03-31T22:33:27-04:00
+
+====== LeNet4 ======
+Created Monday 31 March 2014
+
+**LeNet4** is a convolutational network created for single-digit recognition. 
+It consists of 4 layers H1, H2, H3, H4, and an output layer:
+
+* Data input layer is 16x16; however, the data is centered in a larger 28x28 and fed to the CNN. //The actual input layer is 28x28//
+* Layer H1 is composed of 4 feature maps of size 24x24 for a total of 576 units in each map. Each unit receptive field is 5x5. 
+* Layer H2 is composed of 4 subsampling layers of size 12x12. Each unit receptive field is 2x2.
+
+So far so good. The connections between layers are straightforward --- each layer is connected to exactly one layer in the next layer. But then we have layer H3...
+
+* Layer H3 is composed of 12 feature maps of size 8x8. Each unit receptive field is 5x5. However, each map is connected to one or two maps in the previous layer H2 (see below).
+
+The table below shows how each map in H3 is connected to the maps in H2. For example, H3.1 is connected to only H2.1 while H3.2 is connected to both H2.1 and H2.2.
+
+'''
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
+|      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
+| H2.1 | X | X | X |   | X | X |   |   |   |    |    |    |
+| H2.2 |   | X | X | X | X | X |   |   |   |    |    |    |
+| H2.3 |   |   |   |   |   |   | X | X | X |    | X  | X  |
+| H2.4 |   |   |   |   |   |   |   | X | X |  X | X  | X  |
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
+'''
+
+* Layer H4 is composed of 12 subsampling layers of size 4x4. Each unit receptive field is 2x2.
+* The output layer is fully-connected to layer H4. There are 10 neurons, one for each digit. Each nueron is fully connected to all the units in layer H4. 
+
+===== Links =====
+* Y. LeCun, B. Boser, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, and L. D. Jackel. Handwritten digit recognition with a back-propagation network.

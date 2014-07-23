@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-05-01T23:16:39-04:00
+
+====== CalculateGradients ======
+Created Thursday 01 May 2014
+
+===== Notation =====
+* Please read the notation page.
+
+===== Calculating the Gradients `delta"s"` =====
+Define the local gradient `delta_j^((l))` of neuron `j` recursively as follows:
+
+* for neuron `N_j^((L))` (output layer), `delta_j^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`.
+* for neuron `N_j^((l))` (hidden layer), `delta_j^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))` where the summation `sum_k` is over the neurons in layer `(l+1)`. 
+
+In other words, for a hidden neuron `N_j^((l))`, its gradient is the product of (a) the derivate of the activation function at its induced local field and (b) the sum of the product of the gradients in the //next //layer and the weights that connect `N_j` to that gradient's neuron.
+
+'''
+Layer l               Layer l+1
+neuron 1              neuron 1, gradient 1
+neuron 2            / neuron 2, gradient 2
+...               /   ...
+...           w_1j    ...
+...           /       ...
+...         /         ... 
+...       /           ...
+neuron j ----w_kj---> neuron k, gradient k
+'''
+
+**Note 1: **`gamma_j^((l)) ( v_j^((l)) )` = the derivative of the activation function at neuron `N_j`s induced local field `!=` a product.
+**Note 2: **Its now clear why it makes sense to the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.

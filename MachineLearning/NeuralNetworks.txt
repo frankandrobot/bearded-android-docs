@@ -1,0 +1,39 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-15T10:05:48-05:00
+
+====== NeuralNetworks ======
+Created Friday 15 November 2013
+
+A **neural network **is basically a set of [[+Neuron|neurons]] working together in sequence and in parallel. The simplest neural network consists of a single neuron.
+{{./diagram.png?type=diagram}}
+The diagram above shows a neural network made up of a single [[+Neuron|neuron]] with 3 inputs and 1 output. In its most basic form, each input is multiplied by a neuron //weight//. The output is the sum of these products passed through an //activation function//. See the [[+Neuron|neuron page]] for details.
+
+The next level of complexity is to have neurons in a **layer** work together in parallel.
+
+{{./diagram001.png?type=diagram}}
+The diagram above shows a **single layer neural network** with 2 neurons, 3 inputs, and 2 outputs.
+
+The next level of complexity is to have layers work together in sequence. 
+{{./diagram002.png?type=diagram}}
+This diagram shows a **multi-layer neural network **with:
+* 3 inputs
+* 1 output
+* An input layer with 3 neurons
+* An output layer with 1 neuron
+* it is **fully connected** because each neuron is connected to all inputs in the previous layer
+
+===== Formal Definition =====
+Neural networks can be thought of as a function of the input //and //the weights of the neurons. More importantly, if each neuron represents a continuous and differentiable function, then the entire network is a continuous and differentiable function. This property is important for learning. (See [[+BackPropagation]]).
+
+===== Neural Network Families =====
+Unfortunately, a "universal" neural network suitable for any type of problem does //not// exist. There are actually different types of NNs suitable for different types of problems:
+
+* **recursive neural networks** - sentiment analysis (natural language processing)
+* [[+ConvolutionalNetwork|convolution networks]] - image processing, handwriting recognition
+* many more
+
+===== Further Reading =====
+* [[+WhyNeuralNetworks]]
+* [[+History]]
+* [[+NeuralNetworkGuidelines]]

@@ -1,0 +1,18 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-07-16T01:05:13-05:00
+
+====== BackPropFormula ======
+Created Wednesday 16 July 2014
+
+Not to be confused with the backprop algorithm, the **backpropagation formula **(or **backprop formula**) is used to adjust the values of the weights in each iteration of the backprop algorithm. As per the :NeuralNetworks:BackPropagation:Motivation page, the network "learns" by minimizing the error function via incrementally adjusting the weights until the actual output is close to the expected output. 
+
+===== Notation =====
+* Please read the notation page
+
+===== The Formula =====
+`\ w_(kj)^((l)) = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + sum_i Delta w_(kj)^((l))[i]`
+`\ \ \ \ = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + eta sum_i delta_k^((l))[i] y_j^((l-1))[i]`
+where `alpha` is the [[+MomentumTerm|momentum parameter]] and `eta` is the [[+LearningTerm|learning parameter]].
+
+Before you implement your own version of the backprop algorithm, check out the :NeuralNetworks:BackPropagation:Motivation and the different types of algorithms for implementation insights, tips, and gotchas.

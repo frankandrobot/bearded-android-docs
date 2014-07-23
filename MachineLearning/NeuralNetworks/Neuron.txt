@@ -1,0 +1,48 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-01-07T14:13:20-05:00
+
+====== Neuron ======
+Created Tuesday 07 January 2014
+
+There are actually several types of neurons but the most important is the //sigmoid neuron//:
+
+* sigmoid neuron
+* radial neuron
+
+===== Sigmoid Neuron =====
+The type of neuron most frequently used is the **sigmoid neuron**, defined as a pair `(bb w, phi)`:
+
+* `bb w` consist of a **bias **`w_(0)` and //k //**weights** `(w_1,... , w_k)`: `(w_0,... , w_k)`. //The weights and bias are real numbers//.
+* `phi` is an activation function. 
+
+**Note 1: **We treat the bias as a special weight to make calculations easier. 
+**Note 2: **To make the math notation easier, we put the bias at the beginning of the list. However, //in code//, it may make more sense to put the bias //at the end of the list//. 
+
+==== Purpose of the Bias ====
+A neuron with two weights separates 2D data with a line (or in general, a hyper plane). The bias allows for lines (or hyper planes) that do not pass through the origin. 
+
+==== Neuron Output ====
+
+=== The Induced Local Field ===
+The **induced local field **of input vector `bb x = (x_1, ..., x_k)` is the dot product of the weights `bb w` and `bb x`:
+
+`\ \ bb w * bb x = sum_i^k w_i x_i` 
+
+In case you haven't noticed, the dot product is not well defined --- `bb x` is a vector with `k` terms while `bb w` has an extra term for the bias. **To get around this, we use the convention that `x_0 = 1` for all inputs `bb x`.**
+
+**Note: **//In code//, if you put the bias at the end of the list of weights, then use `x_(k+1)=1` for all inputs `bb x`.
+
+=== The Impulse Function ===
+The output of a neuron is given by its **impulse function **`f_N: RR^(k+1) -> (0,1)`:
+
+`\ \ f_N(bb x) = phi(bb w * bb x)`
+
+===== Radial Neurons =====
+A **radial neuron** uses a Euclidian radial basis function (RBF) instead of an activation function. If the weights are `(w_1,... , w_k)`, then the output is
+
+`\ f_N(bb x) = sum_j (x_j - w_j)^2`
+
+In other words, each RBF neuron computes the Euclidian distance between the input and its weight vector. The farther away the input from the weight, the larger the output. 
+
+If the input represents an object and a radial neuron represents a class of objects, then its output represents a penalty term measuring the fit between the input and the class.

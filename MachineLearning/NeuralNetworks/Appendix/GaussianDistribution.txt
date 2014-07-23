@@ -1,0 +1,21 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-01-07T14:56:56-05:00
+
+====== GaussianDistribution ======
+Created Tuesday 07 January 2014
+
+A **gaussian distribution **(aka **normal distribution**) is defined by the following probability density function:
+
+`\ f(x) = 1/(sigma sqrt(2 pi)) e^(-(x-mu)^2∕(2sigma^2))`
+      
+where `mu` is the population mean and `sigma^2` is the variance.
+
+If a random variable X follows the normal distribution, then we write:
+          
+`\ X ~ N(mu, sigma^2)`
+
+The **standard normal distribution** is a special case of a normal distribution with `mu = 0` and `sigma = 1`.
+
+===== Resources =====
+* http://www.r-tutor.com/elementary-statistics/probability-distributions/normal-distribution

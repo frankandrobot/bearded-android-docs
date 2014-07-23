@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-12-07T18:07:25-05:00
+
+====== How to Choose the Momentum and Learning Parameters ======
+Created Saturday 07 December 2013
+
+Unfortunately, networks can not learn using arbitrary learning and momentum parameters. You might think that the implementation is broken but you’re just using the wrong parameters. So develop an intuitive understanding of these parameters:
+
+* start with a simple two-layer network and train it to learn one example. Explore how the parameters affect the rate of learning or whether the network learns at all. 
+* Repeat with two examples. 
+
+In general, you’ll find that difficult problems require a smaller learning parameter (but that increases the number of iterations of the backpropagation algorithm required). The momentum keeps the network from getting stuck but if its too large then it also keeps the network from learning.
+
+Note that not all versions of the backpropagation algorithm are created equal. The classical :NeuralNetworks:BackPropagation:BackPropAlgorithms:BatchModeBackPropagation algorithm is very sensitive to these parameters, while other versions such as the :NeuralNetworks:BackPropagation:StochasticGradientBackPropagation are more robust.

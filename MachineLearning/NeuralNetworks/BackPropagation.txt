@@ -1,0 +1,17 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-18T11:20:27-05:00
+
+====== BackPropagation ======
+Created Monday 18 November 2013
+
+The **backpropagation algorithm** (or the **backprop algorithm**) is a popular way of training neural networks. You may want to first read the [[+Motivation|motivation]] for the back propagation algorithm. The basic form is described [[+BackPropAlgorithms:BatchModeBackPropagation|here]].  
+
+* The backpropagation algorithm is a form of //supervised learning// because you supply the examples.
+* Its called "backprop" because it starts from the output layer and recursively works backwards to the input layer.
+* We make one small change to the neuron model in order for the backprop algorithm to be guaranteed to work---apply an activation function to the output of the neuron. (A commonly used one is ''tanh''. Activation functions have certain math properties that allow the math to work.)
+* The algorithm reduces the error one small step at a time. It iteratively travels along the direction of highest slope until error is less than given value.
+* The problem is that we don't know if we reached a local minimum or a global minimum. Theoretically, the algorithm can get stuck even when you add a correction term. However, it doesn't in practice and scientists aren't really sure why.
+
+===== Different Types of Backpropagation =====
+* See [[+BackPropAlgorithms]]

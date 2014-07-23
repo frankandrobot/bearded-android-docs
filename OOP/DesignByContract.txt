@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-07-17T22:29:31-05:00
+
+====== DesignByContract ======
+Created Thursday 17 July 2014
+
+https://archive.eiffel.com/doc/manuals/technology/contract/

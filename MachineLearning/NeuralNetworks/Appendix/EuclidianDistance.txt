@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2013-11-20T20:05:25-05:00
+
+====== EuclidianDistance ======
+Created Wednesday 20 November 2013
+
+The **Euclidian distance** (or **Euclidian norm**) of two vectors `bb x` and `bb y` is
+ 
+`||bb x - bb y|| = sqrt((bb x - bb y) * (bb x - bb y)) = sqrt( (x_i - y_i)^2 + cdots + (x_n - y_n)^2 )`

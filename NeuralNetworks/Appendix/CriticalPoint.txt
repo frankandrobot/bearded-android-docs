@@ -1,8 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2013-11-15T15:19:41-05:00
-
-====== CriticalPoint ======
-Created Friday 15 November 2013
-
-A **critical point** of f(x,y) is where \(f_x=0\) and \(f_y=0\). A critical point can be a **local minimum**, **local maximum**, or a **saddle point**. 

@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-07-17T22:11:47-05:00
+
+====== TestHarness ======
+Created Thursday 17 July 2014
+
+* Basically, Junit = test harness
+* Spock = test harness
+
+http://en.wikipedia.org/wiki/Test_harness

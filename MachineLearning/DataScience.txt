@@ -1,0 +1,12 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-07-22T20:13:12-05:00
+
+====== DataScience ======
+Created Tuesday 22 July 2014
+
+* 100,000ft overview - http://www.boozallen.com/content/dam/boozallen/media/file/The-Field-Guide-to-Data-Science.pdf
+
+===== News =====
+* http://www.fastcolabs.com/3033324/how-sports-data-analytics-is-upsetting-the-game-all-over-again
+* [[+Keywords]] 

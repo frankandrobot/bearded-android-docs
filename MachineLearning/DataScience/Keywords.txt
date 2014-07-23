@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-07-22T21:31:31-05:00
+
+====== Keywords ======
+Created Tuesday 22 July 2014
+
+* big data
+* hi-volume, hi-dimensionality data
+* data pipelines
+* d3.js
+* multivariate regression
+* logistic regression
+* boosting
+* decision trees
+* lifetime analysis
+* clustering algorithms
+* R
+* Hive
