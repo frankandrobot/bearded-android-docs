@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bearded-android-docs : Android quick docs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="
+http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+
+    <title>CalculateGradients</title>
+    <meta name='Generator' content='Zim 0.60'>
+    
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+  </head>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
+
+          <h1 id="project_title">Bearded-android-docs</h1>
+          <h2 id="project_tagline">CalculateGradients</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<!-- Wiki content -->
+
+<!-- -->
+<!-- <h1>CalculateGradients</h1> -->
+<!-- -->
+
+<p>
+Created Thursday 01 May 2014<br>
+</p>
+
+<h2>Notation</h2>
+<p>
+<ul>
+<li>`L` = the output layer.</li>
+<li>`(bb x, bb t)` = <a href="./TrainingExamples.html" title="training example" class="page">training example</a></li>
+<li>`N_j^((l))` = neuron `j` in layer `l`</li>
+<li>`t_j` = the expected output of `N_j^((L))` <em>when the network input is `bb x`</em></li>
+<li>`o_j^((l))` = the actual output of `N_j^((l))` = impulse function value of `N_j^((l))` <em>when the network input is `bb x`</em></li>
+<li>`v_j^((l))` = the induced local field of `N_j^((l))` <em>when the network input is `bb x`</em> </li>
+<li>`gamma_j^((l))` = the derivative of `N_j^((l))`s <a href="../ActivationFunction.html" title="activation function" class="page">activation function</a>.</li>
+<li>(In general, let a superscript `l` denote layer `l`.)</li>
+<li>Let weight `w_(kj)^((l+1))` connect `N_k^((l+1))`  to `N_j^((l))`</li>
+</ul>
+</p>
+
+<pre>
+Layer l               Layer (l+1)
+neuron 1              neuron 1
+...                   ...
+...                   ...
+neuron j ----w_kj---&gt; neuron k
+...                   ...	
+</pre>
+
+<p>
+<strong>Note 1: </strong>`gamma_k` is a function. `v_j` and `o_j` are real numbers.<br>
+<strong>Note 2: </strong>`t_j` is the expected <em>network output</em>, that is, the output of the neuron <em>j </em>in the <em>output layer.</em><br>
+</p>
+
+<h2>Calculating the Gradients `delta"s"`</h2>
+<p>
+Define the local <a href="../Appendix/Gradient.html" title="gradient" class="page">gradient</a> `delta_j^((l))` of neuron `j` recursively as follows:<br>
+</p>
+
+<p>
+<ul>
+<li>for neuron `N_j^((L))` (output layer), `delta_j^((L)) = ( t_j - o_j^((L)) ) xx gamma_j^((L)) ( v_j^((L)) )`.</li>
+<li>for neuron `N_j^((l))` (hidden layer), `delta_j^((l)) = gamma_j^((l)) ( v_j^((l)) ) xx sum_k delta_k^((l+1)) xx w_(kj)^((l+1))` where the summation `sum_k` is over the neurons in layer `(l+1)`. </li>
+</ul>
+</p>
+
+<p>
+In other words, for a hidden neuron `N_j^((l))`, its gradient is the product of (a) the derivate of the activation function at its induced local field and (b) the sum of the product of the gradients in the <em>next </em>layer and the weights that connect `N_j` to that gradient's neuron.<br>
+</p>
+
+<pre>
+Layer l               Layer l+1
+neuron 1              neuron 1, gradient 1
+neuron 2            / neuron 2, gradient 2
+...               /   ...
+...           w_1j    ...
+...           /       ...
+...         /         ... 
+...       /           ...
+neuron j ----w_kj---&gt; neuron k, gradient k
+</pre>
+
+<p>
+<strong>Note 1: </strong>`gamma_j^((l)) ( v_j^((l)) )` = the derivative of the activation function at neuron `N_j`s induced local field `!=` a product.<br>
+<strong>Note 2: </strong>Its now clear why we needed to store the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.<br>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+<h3>Backlinks:</h3>	<a href='./BatchModeBackPropagation.html'>NeuralNetworks:BackPropagation:BatchModeBackPropagation</a>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bearded-android-docs maintained by <a href="https://github.com/frankandrobot">frankandrobot</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

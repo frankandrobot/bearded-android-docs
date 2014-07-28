@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bearded-android-docs : Android quick docs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="
+http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+
+    <title>BatchModeBackPropagation</title>
+    <meta name='Generator' content='Zim 0.60'>
+    
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+  </head>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
+
+          <h1 id="project_title">Bearded-android-docs</h1>
+          <h2 id="project_tagline">BatchModeBackPropagation</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<!-- Wiki content -->
+
+<!-- -->
+<!-- <h1>BatchModeBackPropagation</h1> -->
+<!-- -->
+
+<p>
+Created Thursday 12 December 2013<br>
+</p>
+
+<p>
+Step 0. <a href="./Parameters.html" title="Pick values for the learning and momentum parameters" class="page">Pick values for the learning and momentum parameters</a>.<br>
+</p>
+
+<p>
+Step 1. <a href="./BatchModeBackPropagation/InitializeWeights.html" title="Initialize the weights" class="page">Initialize the weights</a>.<br>
+</p>
+
+<p>
+Step 2. Go through each training example:<br>
+<ul>
+<li>2a. Perform the <em>forward propagation</em>. Starting with the input layer, store each <a href="../Neuron.html" title="neuron's" class="page">neuron's</a> induced local field and impulse function value.</li>
+<li>2b. Perform the <em>backpropagation</em>. Starting with the output layer, <a href="./CalculateGradients.html" title="calculate the gradients of each neuron" class="page">calculate the gradients of each neuron</a>. Make sure to store the gradients.</li>
+<li>2c. Update the cumulative learning term for each weight of each neuron starting with the output layer.</li>
+<li>2d. Discard the stored induced local fields, impulse functions, and gradients.</li>
+</ul>
+</p>
+
+<p>
+Step 3. Adjust each weight using its cumulative learning term and momentum term. Make sure to store the values of the previous weights.<br>
+Step 4. Construct the error function from the training examples.<br>
+</p>
+
+<p>
+Step 5. Repeat steps 2--4 until the error is smaller than a pre-selected value. If the error never converges, pick new backpropagation parameters and restart from Step 0.<br>
+</p>
+
+<p>
+<strong>Notes:</strong> <br>
+<ol type="1" start="1">
+<li>Its called the <em>backpropagation </em>algorithm because you start from the output layer (Steps 2b and c) and work backwards to the input layer.</li>
+<li>Steps 2--4 are one iteration of the backpropagation algorithm.</li>
+<li>A common mistake is adjust the weights before cycling through all the examples. You need to calculate a weight's <em>cumulative </em>learning term (from all the examples) before updating it.</li>
+</ol>
+</p>
+
+<h2>Required Memory and Data Structures</h2>
+<p>
+You'll need data structure(s) to store:<br>
+</p>
+
+<p>
+<ul>
+<li>induced local fields and the values of the impulse functions of its neurons <em>for each layer</em>. Since these are just used to find the gradients and the learning terms, you do not need to store this data for each example. The data structure(s) can be shared by each example.</li>
+<li>gradients of the neurons of each layer. <em>Ditto.</em> Since these are just used to find the learning terms, you do not need to store this data for each example. The data structure(s) can be shared by each example.</li>
+<li>learning terms for the weights of the neurons in each layer. These represent the <em>cumulative </em>learning terms of all examples, so all you need is one set of data structure(s) per iteration.</li>
+<li><em>previous </em>weight values (these are used by the momentum term). You do not need to store the complete history of the weights, just the previous values.</li>
+</ul>
+</p>
+
+<h2>Constructing the Learning Terms</h2>
+<p>
+Up to this point, our notation hasn't taken into account the training examples `{bb x(i), bb t(i)}`. We'll do this now by appending a term with `(i)` to denote the value for the ith training example. Ex: `sigma_j^((l))(i)` is the gradient for neuron `N_j` in layer `l` when the network is fed input `bb x(i)` (the ith training example).<br>
+</p>
+
+<p>
+<strong>Note: </strong>Neuron `N_j` in layer `l` isn't necessarily fed input `bb x(i)`. <em>The network is fed input `bb x(i)` and that in turn completely determines the inputs to neuron `N_j^((l))`.</em><br>
+</p>
+
+<p>
+This is how we calculate the learning terms:<br>
+</p>
+
+<p>
+<ul>
+<li>Let `{bb x(i), bb t(i)}` be the training examples. `bb x(i)` is a vector `(x_1(i), ..., x_n(i))`.</li>
+<li>Let `eta` be the learning parameter.</li>
+<li>Let `o_j^((l))(i)` be the output (value of the impulse function) of neuron `N_j^((l))` when the network is fed input `bb x(i)`.</li>
+<li>Let weight `w_(kj)^((l))` connect `N_k` in layer `l` to `N_j` in the previous layer. </li>
+<li>Let weight `w_(j0)` be the bias for all `j`.</li>
+<li>Let `delta_j^((l))(i)` be the gradient of neuron `N_j^((l))` when the network is fed input `bb x(i)`.</li>
+</ul>
+</p>
+
+<p>
+Define `bb y^((l))(i)` as the output from neuron `N_j^((l))` when the network is fed input `bb x(i)`:<br>
+</p>
+
+<p>
+<ul>
+<li>For `l = 0` (input layer), let `y_j^((0))(i) = x_j(i)` (the "output" of the input layer is just the input). </li>
+<li>For `l &gt; 0`, let `y_j^((l))(i) = o_j^((l))(i)` (the output of neuron `N_j` in layer `l`).</li>
+<li>For all `l`, let `y_0^((l))(i) = +1` (`y_0` gets mapped to the bias).</li>
+</ul>
+</p>
+
+<p>
+<strong>Note:</strong> <br>
+<ol type="1" start="1">
+<li>`y_j^((l))(i)` can be thought of as the <em>input </em>that's fed to the <em>next </em>layer `(l+1)`.</li>
+<li>Since `w_(j0)` is always the bias, the output of neuron `N_j` in layer `l` with weights `bb w` and activation function `phi` is just `\ phi(bb y^((l-1))(i) * bb w) = phi(sum_i y_i^((l-1))(i) w_(ji))` where the sum `sum_i` is over neurons in the previous layer.</li>
+</ol>
+</p>
+
+<p>
+The learning term for weight `w_(kj)` in layer `l` <em>and</em> <em>the ith training example</em> is:<br>
+</p>
+
+<p>
+`\ Delta w_(kj)^((l))(i) = eta delta_k^((l))(i) y_j^((l-1))(i)`<br>
+</p>
+
+<p>
+Each weight will have a different learning term for each example<em>.</em> <strong>For each weight `w_(kj)^((l))`, store the sum of all its learning terms for all the training examples, `sum_i Delta w_(kj)^((l))(i)`. </strong>This cumulative sum is what's actually used to adjust the weight. <br>
+</p>
+
+<p>
+<strong>Note:</strong><br>
+<ol type="1" start="1">
+<li>Wait until you have the total sum `sum_i Delta w_(kj)^((l))(i)` from all the training examples before adjusting the weights. </li>
+<li>Its now clear why we needed to store the values of the impulse functions and the gradients---calculating these values dynamically significantly reduces the performance of the algorithm.</li>
+</ol>
+</p>
+
+<h2>Adjusting the Weights</h2>
+<p>
+This is how to adjust the weights:<br>
+</p>
+
+<p>
+<ul>
+<li>Let `w_(kj)^(**(l))` be the <em>previous</em> value of the weight. </li>
+<li>If there is no previous value, let `w_(kj)^(**(l)) = 0`.</li>
+<li>Let `sum_i Delta w_(kj)^((l))(i)` be the cumulative sum of the learning terms for `w_(kj)^((l))` for all the training examples. </li>
+<li>Let `alpha` be the momentum term.</li>
+</ul>
+</p>
+
+<p>
+Adjust the weights using this formula:<br>
+</p>
+
+<p>
+`\ w_(kj)^((l)) = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + sum_i Delta w_(kj)^((l))(i)`<br>
+`\ \ \ \ = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + eta sum_i delta_k^((l))(i) y_j^((l-1))(i)`<br>
+</p>
+
+<p>
+<strong>Note: </strong>`alpha w_(kj)^(**(l))` is the momentum term.<br>
+</p>
+
+<h2>Constructing the Error Function</h2>
+<p>
+<ul>
+<li>Let `{bb x(i), bb t(i)}` be the `p` training examples. </li>
+<li>Let `bb o(i)` be the actual output of the network for training input `bb x(i)`. </li>
+</ul>
+<strong>Note:</strong><br>
+<ol type="1" start="1">
+<li>Each `bb x(i)` and `bb t(i)` are vectors, `bb x(i) = (x_1(i), ...,  x_n(i))` and `bb t(i) = (t_1(i), ..., t_n(i))`. </li>
+<li>Each `t_j(i)` is the expected output of the ith training example for the jth neuron in the output layer.</li>
+<li>`bb o(i)` is a vector `o_1(i), ..., o_n(i)`.</li>
+<li>`o_j(i)` is the output (value of the impulse function) of neuron `N_j` in the output layer for input `bb x(i)`. </li>
+</ol>
+</p>
+
+<p>
+With these definitions, `bb o(i) - bb t(i)` is the difference in the expected and actual values. We seek to minimize these differences for all training examples:<br>
+</p>
+
+<p>
+For each training example `i`, construct the error `E_i`<br>
+</p>
+
+<p>
+`\ E_i = 1/2 ||bb o(i) - bb t(i)||^2`<br>
+</p>
+
+<p>
+where `||*||` is the <a href="../Appendix/EuclidianDistance.html" title="euclidian distance" class="page">euclidian distance</a>.  Since we're dealing with vectors, each `E_i` actually looks like this:<br>
+</p>
+
+<p>
+`\ E_i = 1/2 (o_1(i) - t_1(i))^2 + cdots + (o_n(i) - t_n(i))^2`<br>
+</p>
+
+<p>
+Construct the total error `E` of the network for all training examples:<br>
+</p>
+
+<p>
+`\ E = sum_i^p E_i = 1/2 sum_i^p ||bb o(i) - bb t(i)||^2 = 1/2 sum_i^p (o_1(i) - t_1(i))^2 + cdots + (o_n(i) - t_n(i))^2`<br>
+</p>
+
+<p>
+Repeat another iteration of the backpropagation algorithm until the error is less than a pre-selected amount.<br>
+</p>
+
+<h1>Troubleshooting</h1>
+<p>
+<ul>
+<li>Unit test, unit test, unit test. You'll be suprised how easy it is to introduce a typo that breaks your implementation.</li>
+<li>The error never converges? Make sure you know how the <a href="./Parameters.html" title="backpropagation parameters" class="page">backpropagation parameters</a> work.</li>
+</ul>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+<h3>Backlinks:</h3>	<a href='../BackPropagation.html'>NeuralNetworks:BackPropagation</a>	<a href='../History.html'>NeuralNetworks:History</a>	<a href='./Parameters.html'>NeuralNetworks:BackPropagation:Parameters</a>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bearded-android-docs maintained by <a href="https://github.com/frankandrobot">frankandrobot</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
