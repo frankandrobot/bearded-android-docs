@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>IntroduceStaticSetter</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">IntroduceStaticSetter</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,13 +40,65 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>IntroduceStaticSetter</h1> -->
 <!-- -->
 
 <p>
+Created Sunday 27 April 2014<br>
+</p>
+
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>use on singleton classes and other static classes</li>
+<li>add a setter method that allows you to replace the singleton with a fake/mock for testing</li>
+<li>you usually also add helper methods to help testing</li>
+</ul>
+</p>
+
+<pre>
+class Singleton
+{
+    static private Singleton instance = null;
+
+    static public void setTestingInstance(Singleton newInstance)
+    {
+</pre>
+<pre style='padding-left: 60pt'>
+instance = newInstance
+</pre>
+<pre style='padding-left: 30pt'>
+}
+
+static public Singleton getInstance()
+{
+</pre>
+<pre style='padding-left: 60pt'>
+return instance == null ? new Singleton() : instance;
+</pre>
+<pre style='padding-left: 30pt'>
+}
+
+static public void resetForTesting()
+{
+</pre>
+<pre style='padding-left: 60pt'>
+instance = null;
+</pre>
+<pre style='padding-left: 30pt'>
+}
+}
+</pre>
+<p>
+Unfortunately, this approach has several downsides when you don't use Spring or another <a href="../InversionOfControl.html" title="IoC" class="page">IoC</a> framework:<br>
+<ul>
+<li>You are adding methods that should be called only in unit tests</li>
+<li><strong>You have to make the constructor to the singleton not private.</strong></li>
+</ul>
+<br>
+Alternatives<br>
+<ul>
+<li>use an Ioc framework</li>
+<li>use reflection to replace the instance of the singleton object</li>
 </ul>
 </p>
 
@@ -57,7 +109,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='../RefactoringLegacyCode.html'>OOP:RefactoringLegacyCode</a>
 
 
 

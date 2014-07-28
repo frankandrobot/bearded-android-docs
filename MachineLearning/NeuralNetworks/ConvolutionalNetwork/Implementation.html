@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Bearded-android-docs : Android quick docs" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="
+http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
+
+    <title>Implementation</title>
+    <meta name='Generator' content='Zim 0.60'>
+    
+    <script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/2.3-latest/MathJax.js?config=AM_HTMLorMML.js">
+</script>
+
+  </head>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
+
+          <h1 id="project_title">Bearded-android-docs</h1>
+          <h2 id="project_tagline">Implementation</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/frankandrobot/bearded-android-docs/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+
+<!-- Wiki content -->
+
+<!-- -->
+<!-- <h1>Implementation</h1> -->
+<!-- -->
+
+<p>
+Created Thursday 03 April 2014<br>
+</p>
+
+<h2>Local Receptive Fields</h2>
+<p>
+In a fully-connected neural network, each neuron is connected to each input. <br>
+</p>
+
+<pre>
+Input	Layer
+
+x1------N1
+       /
+x2----/
+</pre>
+
+<p>
+When a neuron has a local receptive field, the neuron is connected to a <em>subset</em> of the input layer. In a :NeuralNetworks:ConvolutionalNetwork, the inputs are arranged in a 2D grid. Each neuron is connected to a square in the input grid. <br>
+</p>
+
+<pre>
+InputGrid --&gt; Layer
+		  
+X X X * *     N1(X)
+X X X * *
+X X X * *
+* * * * *
+* * * * *
+</pre>
+
+<p>
+In the diagram, the input grid is 5 x 5. Neuron `N1` is connected to the inputs marked `X`.<br>
+</p>
+
+<h2>Shared Weights</h2>
+<p>
+In a typical neural network, each neuron has its own set of weights. <br>
+</p>
+
+<pre>
+Layer
+N1: w10 w11 w12 w13
+N2: w20 w21 w22 w23
+N3: w30 w31 w32 w33
+</pre>
+
+<p>
+Here weight w<em>ij</em> connects neuron `N_i` to input `x_j` (and w<em>i</em>0 is the special case of the bias.) The w<em>ij</em>'s are not necessarily equal---each neuron has its own set of weights. In a CNN, <em>each neuron of a given layer share a set of common weights.</em><br>
+</p>
+
+<pre>
+Layer
+N1: w0 w1 w2 w3
+N2: w0 w1 w2 w3
+N3: w0 w1 w2 w3
+</pre>
+
+
+<h2>Feature Maps</h2>
+<p>
+We said above that in a CNN, each neuron is connected to a square in the input grid, but which input squares? In a <em>feature map</em>, we scan the input grid with a neuron. The diagram below shows a 5x5 input grid, a layer with 9 neurons each with a 3x3 local receptive field, producing a 3x3 output grid called the <strong>feature map</strong>. <br>
+</p>
+
+<pre>
+InputGrid --&gt; Layer --&gt; OutputGrid
+	       	      	   	  
+A A A * *     N1(A)   	A * *  	  
+A A A * *     N2(B)     * * *	 
+A A A * *     N3(C)     * * *
+* * * * *     ...  
+* * * * *     N9(I)
+       	       	      	      	 
+InputGrid --&gt; Layer --&gt; OutputGrid
+       	       	   	     	  
+* B B B *     N1(A)    	A B *  	  
+* B B B *     N2(B)     * * *	 
+* B B B *     N3(C)     * * *
+* * * * *     ...  
+* * * * *     N9(I)
+    	       	       	 	 
+InputGrid --&gt; Layer --&gt; OutputGrid
+       	       	       	   	  
+* * C C C     N1(A)    	A B C  	  
+* * C C C     N2(B)    	* * *	 
+* * C C C     N3(C)	* * *	 
+* * * * *     ...  	     	 
+* * * * *     N9(I)	     	 
+
+...
+      			     	 
+InputGrid --&gt; Layer --&gt; OutputGrid
+       	       	       	     	  
+* * * * *     N1(A)    	A B C  	  
+* * * * *     N2(B)    	D E F	 
+* * I I I     N3(C)	G H I	 
+* * I I I     ...  		 
+* * I I I     N9(I)		 
+</pre>
+
+<p>
+Some observations:<br>
+<ul>
+<li>The input squares overlap. </li>
+<li>A feature map can consist of a single neuron. (The 9 neurons all share the same set of weights [and activation function], so the neurons are all identical.) </li>
+</ul>
+</p>
+
+<p>
+Notes:<br>
+<ul>
+<li>While you <em>can </em>implement a feature map with a single neuron, you will be able to take advantage of fast-matrix-operation algorithms by using several neurons each sharing the same set of weights.</li>
+</ul>
+</p>
+
+<p>
+Aside:<br>
+<ul>
+<li>The operation that produces a feature map is equivalent to a <em>convolution </em>with a small-sized kernel followed by a squashing function. (A convolution is normally used with image processing)</li>
+</ul>
+</p>
+
+<h2>Subsampling Layer</h2>
+<p>
+A <strong>subsampling layer </strong>is just like a feature map with some exceptions:<br>
+<ul>
+<li>the input squares are adjacent but do <em>not </em>overlap</li>
+<li>the weights (except for the bias) are all constrained to be equal, <em>so a subsampling layer consists of one neuron with only a single weight `w` and a bias `b`</em></li>
+</ul>
+</p>
+
+<p>
+It's called a <em>subsampling layer </em>because when the weight `w` equals the number of <strong>units </strong>(or <em>pixels</em> when the input grid is an image) in the input square, the input squares get averaged into a single value.<br>
+</p>
+
+<p>
+The diagram below shows a 4x4 input grid, a layer with a neuron with a 2x2 local receptive field, producing a 2x2 subsampling layer.<br>
+</p>
+
+<pre>
+InputGrid --&gt; Layer --&gt; OutputGrid
+	       	      	   	  	     
+A A * *       N(A)     	A * 
+A A * *        	        * *
+* * * *
+* * * *        	   	  
+       	       	       	       	       	       	       	    
+InputGrid --&gt; Layer --&gt; OutputGrid			    
+       	       	   	     	  			    
+* * B B       N(B)     	A B
+* * B B	       	        * *
+* * * *		  
+* * * *		  
+    	       	       	 	 
+InputGrid --&gt; Layer --&gt; OutputGrid
+       	       	       	   	  
+* * * *       N(C)     	A B
+* * * *	       	        C *
+C C * *			 
+C C * *			 
+			 
+InputGrid --&gt; Layer --&gt; OutputGrid
+       	       	       	   	  
+* * * *       N(D)     	A B
+* * * *	       	        C D
+* * D D			   
+* * D D
+</pre>
+			   
+
+<h2>Putting It All Together</h2>
+<p>
+A CNN usually consists of a sequence of alternating feature maps and subsampling layers followed by a final fully-connected output layer. Simple, right? The complexity is in how those layers are chained together. See :NeuralNetworks:ConvolutionalNetwork:LeNet4 for an example.<br>
+</p>
+
+
+<!-- End wiki content -->
+
+<hr />
+
+<!-- Attachments and Backlinks -->
+
+<h3>Backlinks:</h3>	<a href='../ConvolutionalNetwork.html'>MachineLearning:NeuralNetworks:ConvolutionalNetwork</a>
+
+
+
+<!-- End Attachments and Backlinks -->
+
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'beardedandroid'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Bearded-android-docs maintained by <a href="https://github.com/frankandrobot">frankandrobot</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p><a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>

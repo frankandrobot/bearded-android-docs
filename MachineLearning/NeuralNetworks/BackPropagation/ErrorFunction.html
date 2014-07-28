@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>ErrorFunction</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">ErrorFunction</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,15 +40,67 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>ErrorFunction</h1> -->
 <!-- -->
 
 <p>
+Created Monday 28 April 2014<br>
+</p>
+
+<p>
+The <strong>error function</strong> measures the difference between the expected and actual output and is a function of the weights. There is actually more than one way of defining the error function.<br>
+</p>
+
+<h2>Notation</h2>
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>Please read the notation page</li>
 </ul>
 </p>
+
+<h2>An Error Function</h2>
+<p>
+A common way of defining the error function is to let the error `E[i]` of the ith training example be<br>
+</p>
+
+<p>
+`\ \ E[i] = 1/2 ||bb o[i] - bb t[i]||^2`<br>
+</p>
+
+<p>
+where `||*||` is the euclidian distance.<br>
+</p>
+
+<p>
+<strong>Note 1:</strong> Since we're dealing with vectors, the error is the sum of the differences of the expected (`t[i]`) and actual (`o[i]`) output <em>for each neuron in the output layer</em>. Each `E[i]` actually looks like this:<br>
+</p>
+
+<p>
+`\ \ E[i] = (o_1[i] - t_1[i])^2 + cdots + (o_m[i] - t_m[i])^2`<br>
+</p>
+
+<p>
+where `o_j[i]` is the actual output of the jth neuron (in the output layer) and `t_j[i]` is the expected output of the jth neuron (in the output layer).<br>
+</p>
+
+<p>
+<strong>Note 2: </strong>This is just one of many different error functions.<br>
+</p>
+
+<p>
+<strong>The error function is actually a function of the weights. </strong>Each input `bb x[i]` and expected output `bb t[i]` are fixed. The only variables are the weights.<br>
+</p>
+
+<p>
+We care about minimizing the <strong>total error</strong> `E` of the network:<br>
+</p>
+
+<p>
+`\ \ E = sum_i E[i]`<br>
+`\ \ \ \ = 1/2 sum_i ||bb o[i] - bb t[i]||^2`	<br>
+`\ \ \ \ = 1/2 sum_i (o_1[i] - t_1[i])^2 + cdots + (o_m[i] - t_m[i])^2`<br>
+</p>
+
 
 
 <!-- End wiki content -->

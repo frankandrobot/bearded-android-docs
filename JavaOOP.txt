@@ -1,7 +1,0 @@
-Content-Type: text/x-zim-wiki
-Wiki-Format: zim 0.4
-Creation-Date: 2013-10-31T16:21:51-04:00
-
-====== JavaOOP ======
-Created Thursday 31 October 2013
-

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>LeNet4</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">LeNet4</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,13 +40,62 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>LeNet4</h1> -->
 <!-- -->
 
 <p>
+Created Monday 31 March 2014<br>
+</p>
+
+<p>
+<strong>LeNet4</strong> is a convolutational network created for single-digit recognition. <br>
+It consists of 4 layers H1, H2, H3, H4, and an output layer:<br>
+</p>
+
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>Data input layer is 16x16; however, the data is centered in a larger 28x28 and fed to the CNN. <em>The actual input layer is 28x28</em></li>
+<li>Layer H1 is composed of 4 feature maps of size 24x24 for a total of 576 units in each map. Each unit receptive field is 5x5. </li>
+<li>Layer H2 is composed of 4 subsampling layers of size 12x12. Each unit receptive field is 2x2.</li>
+</ul>
+</p>
+
+<p>
+So far so good. The connections between layers are straightforward --- each layer is connected to exactly one layer in the next layer. But then we have layer H3...<br>
+</p>
+
+<p>
+<ul>
+<li>Layer H3 is composed of 12 feature maps of size 8x8. Each unit receptive field is 5x5. However, each map is connected to one or two maps in the previous layer H2 (see below).</li>
+</ul>
+</p>
+
+<p>
+The table below shows how each map in H3 is connected to the maps in H2. For example, H3.1 is connected to only H2.1 while H3.2 is connected to both H2.1 and H2.2.<br>
+</p>
+
+<pre>
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
+|      | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
+| H2.1 | X | X | X |   | X | X |   |   |   |    |    |    |
+| H2.2 |   | X | X | X | X | X |   |   |   |    |    |    |
+| H2.3 |   |   |   |   |   |   | X | X | X |    | X  | X  |
+| H2.4 |   |   |   |   |   |   |   | X | X |  X | X  | X  |
+|------+---+---+---+---+---+---+---+---+---+----+----+----|
+</pre>
+
+<p>
+<ul>
+<li>Layer H4 is composed of 12 subsampling layers of size 4x4. Each unit receptive field is 2x2.</li>
+<li>The output layer is fully-connected to layer H4. There are 10 neurons, one for each digit. Each nueron is fully connected to all the units in layer H4. </li>
+</ul>
+</p>
+
+<h2>Links</h2>
+<p>
+<ul>
+<li>Y. LeCun, B. Boser, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, and L. D. Jackel. Handwritten digit recognition with a back-propagation network.</li>
 </ul>
 </p>
 

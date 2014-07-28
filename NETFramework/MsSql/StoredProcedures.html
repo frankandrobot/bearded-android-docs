@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>StoredProcedures</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">StoredProcedures</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,13 +40,56 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>StoredProcedures</h1> -->
 <!-- -->
 
 <p>
+Created Wednesday 29 January 2014<br>
+</p>
+
+<h2>A) Define Simple SP</h2>
+
+<pre>
+USE AdventureWorks2008R2;
+GO
+CREATE PROCEDURE HumanResources.uspGetAllEmployees
+AS
+    SET NOCOUNT ON;
+    SELECT LastName, FirstName, Department
+    FROM HumanResources.vEmployeeDepartmentHistory;
+GO
+
+-- Call SP
+EXECUTE HumanResources.uspGetAllEmployees; --OR
+EXE HumanResources.uspGetAllEmployees;
+</pre>
+
+
+<h2>B) Define SP With Params</h2>
+<pre>
+USE AdventureWorks2008R2;
+GO
+CREATE PROCEDURE HumanResources.uspGetEmployees 
+    @LastName nvarchar(50), 
+    @FirstName nvarchar(50) 
+AS 
+
+    SET NOCOUNT ON;
+    SELECT FirstName, LastName,Department
+    FROM HumanResources.vEmployeeDepartmentHistory
+    WHERE FirstName = @FirstName AND LastName = @LastName;
+GO
+
+-- Call SP
+EXECUTE HumanResources.uspGetAllEmployees N'Uriel', N'Avalos'; --OR
+EXECUTE HumanResources.uspGetAllEmployees @FirstName = N'Uriel', @LastName = N'Avalos';
+</pre>
+
+
+<h2>Resources</h2>
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li><a href="http://technet.microsoft.com/en-us/library/ms190669(v=sql.105).aspx" title="Creating Stored Procedures" class="http">Creating Stored Procedures</a></li>
 </ul>
 </p>
 

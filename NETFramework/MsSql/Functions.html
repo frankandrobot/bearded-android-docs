@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>Functions</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">Functions</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,15 +40,40 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>Functions</h1> -->
 <!-- -->
 
 <p>
+Created Friday 21 March 2014<br>
+</p>
+
+<h2>Scalar Functions</h2>
+<p>
+In general, <strong>scalar functions are bad</strong>. See <a href="http://sqlblog.com/blogs/hugo_kornelis/archive/2012/05/20/t-sql-user-defined-functions-the-good-the-bad-and-the-ugly-part-1.aspx" title="http://sqlblog.com/blogs/hugo_kornelis/archive/2012/05/20/t-sql-user-defined-functions-the-good-the-bad-and-the-ugly-part-1.aspx" class="http">http://sqlblog.com/blogs/hugo_kornelis/archive/2012/05/20/t-sql-user-defined-functions-the-good-the-bad-and-the-ugly-part-1.aspx</a>. The problem boils down to the fact that the optimizer doesn't know how to optimize queries invoking scalar functions.<br>
+</p>
+
+<p>
+The workaround is to convert a scalar function to return a table. See <a href="http://sqlblog.com/blogs/adam_machanic/archive/2006/08/04/scalar-functions-inlining-and-performance-an-entertaining-title-for-a-boring-post.aspx" title="http://sqlblog.com/blogs/adam_machanic/archive/2006/08/04/scalar-functions-inlining-and-performance-an-entertaining-title-for-a-boring-post.aspx" class="http">http://sqlblog.com/blogs/adam_machanic/archive/2006/08/04/scalar-functions-inlining-and-performance-an-entertaining-title-for-a-boring-post.aspx</a>. <br>
+</p>
+
+<h2>Table-Valued Functions</h2>
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li><a href="http://www.developer.com/db/article.php/10920_3598891_2/User-Defined-Functions-Powerful-Alternatives-to-Views-and-Stored-Procedures.htm" title="http://www.developer.com/db/article.php/10920_3598891_2/User-Defined-Functions-Powerful-Alternatives-to-Views-and-Stored-Procedures.htm" class="http">http://www.developer.com/db/article.php/10920_3598891_2/User-Defined-Functions-Powerful-Alternatives-to-Views-and-Stored-Procedures.htm</a></li>
 </ul>
 </p>
+
+<p>
+In general, you want to use inline table-valued functions. See <a href="http://sqlmag.com/t-sql/inline-vs-multistatement-table-valued-udfs" title="http://sqlmag.com/t-sql/inline-vs-multistatement-table-valued-udfs" class="http">http://sqlmag.com/t-sql/inline-vs-multistatement-table-valued-udfs</a><br>
+</p>
+
+<p>
+See <a href="http://stackoverflow.com/questions/2554333/multi-statement-table-valued-function-vs-inline-table-valued-function" title="here" class="http">here</a> for examples of how to create table-valued functions<br>
+</p>
+
+
+
+
 
 
 <!-- End wiki content -->
@@ -57,7 +82,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='../MsSql.html'>NETFramework:MsSql</a>
 
 
 

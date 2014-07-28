@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>When Is a Neural Network Not Appropriate?</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">When Is a Neural Network Not Appropriate?</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,14 +40,44 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>When Is a Neural Network Not Appropriate?</h1> -->
 <!-- -->
 
 <p>
+Created Wednesday 25 June 2014<br>
+</p>
+
+<p>
+Following are some guidelines on when you should use <em>another</em> approach:<br>
+</p>
+
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>Can you write down a flow chart or a formula that accurately describes the problem? </li>
+<li>Is there a simple piece of hardware or software that already does what you want?</li>
+<li>Do you want the functionality to "evolve" in a direction that is not pre-defined? If so, then consider using a Genetic Algorithm (that's another topic!).</li>
+<li>Is generating input/output examples hard? </li>
+<li>Is the problem is very "discrete"? Can the correct answer can be found in a look-up table of reasonable size? If so, then use a look-up table.</li>
+<li>Are precise numeric output values required?</li>
 </ul>
+</p>
+
+<p>
+Conversely, here are some situations where backpropagation might be a good idea:<br>
+</p>
+
+<p>
+<ul>
+<li>A large amount of input/output data is available, but you're not sure how to relate it to the output.</li>
+<li>The problem appears to have overwhelming complexity, but there is clearly a solution.</li>
+<li>It is easy to create a number of examples of the correct behavior.</li>
+<li>The solution to the problem may change over time, within the bounds of the given input and output parameters (i.e., today 2+2=4, but in the future we may find that 2+2=3.8).</li>
+<li>Outputs can be "fuzzy", or non-numeric.</li>
+</ul>
+</p>
+
+<p>
+Source: <a href="http://www.seattlerobotics.org/encoder/nov98/neural.html" title="http://www.seattlerobotics.org/encoder/nov98/neural.html" class="http">http://www.seattlerobotics.org/encoder/nov98/neural.html</a><br>
 </p>
 
 
@@ -57,7 +87,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='../NeuralNetworks.html'>MachineLearning:NeuralNetworks</a>
 
 
 

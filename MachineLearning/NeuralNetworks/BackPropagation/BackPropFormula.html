@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>BackPropFormula</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">BackPropFormula</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,14 +40,33 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>BackPropFormula</h1> -->
 <!-- -->
 
 <p>
+Created Wednesday 16 July 2014<br>
+</p>
+
+<p>
+Not to be confused with the backprop algorithm, the <strong>backpropagation formula </strong>(or <strong>backprop formula</strong>) is used to adjust the values of the weights in each iteration of the backprop algorithm. As per the :NeuralNetworks:BackPropagation:Motivation page, the network "learns" by minimizing the error function via incrementally adjusting the weights until the actual output is close to the expected output. <br>
+</p>
+
+<h2>Notation</h2>
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>Please read the notation page</li>
 </ul>
+</p>
+
+<h2>The Formula</h2>
+<p>
+`\ w_(kj)^((l)) = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + sum_i Delta w_(kj)^((l))[i]`<br>
+`\ \ \ \ = w_(kj)^((l)) + alpha w_(kj)^(**(l)) + eta sum_i delta_k^((l))[i] y_j^((l-1))[i]`<br>
+where `alpha` is the <a href="./BackPropFormula/MomentumTerm.html" title="momentum parameter" class="page">momentum parameter</a> and `eta` is the <a href="./BackPropFormula/LearningTerm.html" title="learning parameter" class="page">learning parameter</a>.<br>
+</p>
+
+<p>
+Before you implement your own version of the backprop algorithm, check out the :NeuralNetworks:BackPropagation:Motivation and the different types of algorithms for implementation insights, tips, and gotchas.<br>
 </p>
 
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>MomentumTerm</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">MomentumTerm</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,14 +40,43 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>MomentumTerm</h1> -->
 <!-- -->
 
 <p>
+Created Wednesday 16 July 2014<br>
+</p>
+
+<p>
+The <strong>momentum term</strong> helps prevent the algorithm from getting stuck in local minimums. Note that there is no guarantee that the momentum works but it has been found to work in practice.<br>
+</p>
+
+<h2>Notation</h2>
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>Please read the notation page</li>
 </ul>
+</p>
+
+<h2>Calculating the Momentum</h2>
+<p>
+<ul>
+<li>Let `w_(kj)^(**(l))` = the value of the weight from the <em>previous</em> iteration of the backprop algorithm. </li>
+<li>If there is no previous value, let `w_(kj)^(**(l)) = 0`.</li>
+</ul>
+</p>
+
+<p>
+Then the <strong>momentum term</strong> is<br>
+</p>
+
+<p>
+`\ \ alpha w_(kj)^(**(l))`<br>
+</p>
+
+<p>
+where `alpha` is the <strong>momentum parameter</strong>.<br>
+See also how to pick the momentum parameter<br>
 </p>
 
 
@@ -57,7 +86,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='../BackPropFormula.html'>MachineLearning:NeuralNetworks:BackPropagation:BackPropFormula</a>
 
 
 

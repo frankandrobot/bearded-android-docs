@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>ConvolutionalNetwork</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">ConvolutionalNetwork</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,15 +40,74 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>ConvolutionalNetwork</h1> -->
 <!-- -->
 
 <p>
+Created Monday 09 December 2013<br>
+</p>
+
+<h2>Super-Condensed Summary</h2>
+<p>
+Pros:<br>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>good at recognizing invariant characteristics</li>
+<li>reduce the number of free parameters significantly while using a biology-inspired structure to solve complex problems</li>
 </ul>
 </p>
+
+<p>
+Cons: <br>
+<ul>
+<li>need large training examples???</li>
+</ul>
+</p>
+
+<h2>Overview</h2>
+<p>
+<strong>Convolutional networks</strong> or <strong>CNNs</strong> combine three ideas:<br>
+</p>
+
+<p>
+<ul>
+<li>local receptive fields (inspired by the feline visual system!)</li>
+<li>shared weights</li>
+<li>spatial or temporal subsampling</li>
+</ul>
+</p>
+
+<p>
+The result is shift and distortion invariance.<br>
+</p>
+
+<p>
+<ul>
+<li>Local receptive fields extract the topology of the input---elementary visual features such as oriented edges, end-points, etc. </li>
+<li>Higher layers then combine these features. </li>
+<li>Subsampling makes the network more robust to slight distortions and translations.</li>
+<li>Weight sharing allows knowledge learned in one feature detector to be used across other parts of the image. It also reduces the number of free parameters, increasing the network's ability to generalize.</li>
+</ul>
+</p>
+
+<h2>Reasons for Using a CNN</h2>
+<p>
+<ul>
+<li>invariance for translations or distortions in inputs</li>
+<li>a fully connected neural network requires 100,000s of weights while a CNN uses much less.</li>
+<li>fully connected neural network ignores the topology of the input. Nearby pixels have high correlation. CNN networks force the extraction of local features by using a local receptive field.</li>
+</ul>
+</p>
+
+<h2>Implementation</h2>
+<p>
+See <a href="./ConvolutionalNetwork/Implementation.html" title="+Implementation" class="page">+Implementation</a><br>
+</p>
+
+<h2>Learning With Backprop</h2>
+<p>
+The standard algorithm must be slighthly modified to take account of the weight sharing. An easy way to implement it is to first compute the partial derivatives of the loss function with respect to each connection (as if the network were conventional multi layer). Then the partial derivatives of all the connections that share the same parameter are added to form the derivative w/ respect to that parameter.<br>
+</p>
+
 
 
 <!-- End wiki content -->
@@ -57,7 +116,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='../NeuralNetworks.html'>MachineLearning:NeuralNetworks</a>
 
 
 

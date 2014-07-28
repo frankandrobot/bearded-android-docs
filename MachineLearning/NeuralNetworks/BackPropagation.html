@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>BackPropagation</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">BackPropagation</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,13 +40,31 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>BackPropagation</h1> -->
 <!-- -->
 
 <p>
+Created Monday 18 November 2013<br>
+</p>
+
+<p>
+The <strong>backpropagation algorithm</strong> (or the <strong>backprop algorithm</strong>) is a popular way of training neural networks. You may want to first read the <a href="./BackPropagation/Motivation.html" title="motivation" class="page">motivation</a> for the back propagation algorithm. The basic form is described <a href="./BackPropagation/BackPropAlgorithms/BatchModeBackPropagation.html" title="here" class="page">here</a>.  <br>
+</p>
+
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>The backpropagation algorithm is a form of <em>supervised learning</em> because you supply the examples.</li>
+<li>Its called "backprop" because it starts from the output layer and recursively works backwards to the input layer.</li>
+<li>We make one small change to the neuron model in order for the backprop algorithm to be guaranteed to work---apply an activation function to the output of the neuron. (A commonly used one is <code>tanh</code>. Activation functions have certain math properties that allow the math to work.)</li>
+<li>The algorithm reduces the error one small step at a time. It iteratively travels along the direction of highest slope until error is less than given value.</li>
+<li>The problem is that we don't know if we reached a local minimum or a global minimum. Theoretically, the algorithm can get stuck even when you add a correction term. However, it doesn't in practice and scientists aren't really sure why.</li>
+</ul>
+</p>
+
+<h2>Different Types of Backpropagation</h2>
+<p>
+<ul>
+<li>See <a href="./BackPropagation/BackPropAlgorithms.html" title="+BackPropAlgorithms" class="page">+BackPropAlgorithms</a></li>
 </ul>
 </p>
 
@@ -57,9 +75,10 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
 <!-- Attachments and Backlinks -->
 
-	<i>No backlinks to this page.</i>
+<h3>Backlinks:</h3>	<a href='../NeuralNetworks.html'>MachineLearning:NeuralNetworks</a>
 
-
+<h3>Attachments:</h3>
+<table>	<tr><td><a href='./BackPropagation/BackPropAlgorithms'>BackPropAlgorithms</a></td><td>&nbsp;</td><td>4.10kb</td></tr>	<tr><td><a href='./BackPropagation/BackPropFormula'>BackPropFormula</a></td><td>&nbsp;</td><td>4.10kb</td></tr>	<tr><td><a href='./BackPropagation/Motivation'>Motivation</a></td><td>&nbsp;</td><td>4.10kb</td></tr></table>
 
 <!-- End Attachments and Backlinks -->
 

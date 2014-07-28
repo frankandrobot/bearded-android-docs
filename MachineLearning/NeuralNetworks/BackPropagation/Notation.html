@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="
 http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 
-    <title>TODO</title>
+    <title>Notation</title>
     <meta name='Generator' content='Zim 0.60'>
     
     <script type="text/javascript"
@@ -24,7 +24,7 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
           <a id="forkme_banner" href="https://github.com/frankandrobot/bearded-android-docs">View on GitHub</a>
 
           <h1 id="project_title">Bearded-android-docs</h1>
-          <h2 id="project_tagline">TODO</h2>
+          <h2 id="project_tagline">Notation</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/frankandrobot/bearded-android-docs/zipball/master">Download this project as a .zip file</a>
@@ -40,13 +40,72 @@ http://frankandrobot.github.io/bearded-android-docs/stylesheets/stylesheet.css">
 <!-- Wiki content -->
 
 <!-- -->
-<!-- <h1>TODO</h1> -->
+<!-- <h1>Notation</h1> -->
 <!-- -->
 
 <p>
+Created Monday 14 July 2014<br>
+</p>
+
+<p>
 <ul>
-<li>activation function vs sigmoid function. Pick a notation or clarify</li>
-<li>gradient missing in notation</li>
+<li>`L` = the output layer.</li>
+<li>`(bb x, bb t)` = training example</li>
+<li>`N_j^((l))` = neuron `j` in layer `l`</li>
+<li>`t_j` = the expected output of `N_j^((L))` <em>when the network input is `bb x`</em></li>
+<li>`o_j^((l))` = the actual output of `N_j^((l))` = impulse function value of `N_j^((l))` <em>when the network input is `bb x`</em></li>
+<li>`v_j^((l))` = the induced local field of `N_j^((l))` <em>when the network input is `bb x`</em></li>
+<li>`gamma_j^((l))` = the derivative of `N_j^((l))`s activation function `phi`.</li>
+<li>In general, let superscript `l` denote layer `l`.</li>
+<li>Let weight `w_(kj)^((l+1))` connect `N_k^((l+1))`  to `N_j^((l))`</li>
+</ul>
+</p>
+
+<pre>
+Layer l               Layer (l+1)
+neuron 1              neuron 1
+...                   ...
+...                   ...
+neuron j ----w_kj---&gt; neuron k
+...                   ...	
+</pre>
+<p>
+<ul>
+<li>Let `w_(k0)^((l)` be the bias</li>
+</ul>
+<br>
+<strong>Note 1:</strong> Neuron `N_j^((l))` isn't necessarily fed input `bb x`. <em>The network is fed input `bb x` and that in turn completely determines the inputs to neuron `N_j^((l))`.</em><br>
+<strong>Note 2:</strong> `t_j` is the expected <em>network output</em>, that is, the output of the neuron <em>j</em> in the <em>output layer.</em><br>
+<strong>Note 3:</strong> Recall that there are two outputs associated with a neuron at input `bb y` --- the <em>induced local field</em> `bb w * bb y` and the <em>value of its impulse function</em> `phi(bb w * bb y)`. <br>
+<strong>Note 4:</strong> `gamma_k` is a function. `v_j` and `o_j` are real numbers.<br>
+<strong>Note 5:</strong> since `w_(k0)^((l))` is the bias, it's not really connected to a neuron in the previous layer (but see below).<br>
+<br>
+</p>
+<h2>All Layers Have an Input Layer</h2>
+<p>
+Given input `bb x`, define `bb y^((l))` as the input that that's fed to the next layer `(l+1)`:<br>
+<br>
+<ul>
+<li>For `l = 0` (input layer), let `y_j^((0)) = x_j` (the "output" of the input layer is just the input). </li>
+<li>For `l &gt; 0`, let `y_j^((l)) = o_j^((l))` (the output of neuron `N_j` in layer `l`).</li>
+<li>For all `l`, let `y_0^((l)) = +1` (map `y_0` to the bias).</li>
+</ul>
+<br>
+<strong>Note:</strong>  Since `w_(j0)` is always the bias, we can write the output of neuron `N_j^((l+1))` in terms of `y^((l))`:<br>
+<br>
+`\ o_j^((l+1)) = phi(bb y^((l)) * bb w) = phi(sum_k y_k^((l)) w_(jk))`<br>
+<br>
+where the sum `sum_k` is over the neurons in the previous layer.<br>
+<br>
+</p>
+<h2>More Than One Training Example</h2>
+<p>
+Up to this point, the notation doesn't take into account multiple training examples. To associate a term with the ith training example `{bb x[i], bb t[i]}`, use square brackets. For example,<br>
+<br>
+<ul>
+<li>`o_j^((l))[i]`= the output (value of the impulse function) of neuron `N_j^((l))` when the network is fed input `bb x[i]`.</li>
+<li>`delta_j^((l))[i]` = the gradient of neuron `N_j^((l))` when the network is fed input `bb x[i]`.</li>
+<li>`y_j^((l))[i]` = the output of neuron `N_j^((l))` when the network is fed input `bb x[i]`</li>
 </ul>
 </p>
 
