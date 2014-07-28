@@ -140,4 +140,7 @@ InputGrid --> Layer --> OutputGrid
 			   
 
 ===== Putting It All Together =====
-A CNN usually consists of a sequence of alternating feature maps and subsampling layers followed by a final fully-connected output layer. Simple, right? The complexity is in how those layers are chained together. See :NeuralNetworks:ConvolutionalNetwork:LeNet4 for an example.
+A CNN usually consists of a sequence of alternating feature maps and subsampling layers followed by a final fully-connected output layer. Simple, right? The complexity is in how those layers are chained together. See [[LeNet4]] for an example.
+
+===== Learning =====
+* See [[LearningWithBackprop]] 
