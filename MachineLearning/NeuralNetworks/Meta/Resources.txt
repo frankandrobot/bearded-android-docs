@@ -19,7 +19,7 @@ Created Friday 06 December 2013
 * [[http://yann.lecun.com/exdb/publis/pdf/lecun-89.pdf|LeCun (1989). Generalization and Network Design Strategies]]
 
 ===== Convolutional Networks =====
-* See :NeuralNetworks:ConvolutionalNetwork:Resources
+* See [[NeuralNetworks:ConvolutionalNetwork:Resources]]
 
 ===== Java Matrix Libraries =====
 * https://sites.google.com/site/piotrwendykier/software/parallelcolt
