@@ -5,5 +5,7 @@ Creation-Date: 2014-07-27T21:32:45-04:00
 ====== LearningWithBackprop ======
 Created Sunday 27 July 2014
 
-The standard algorithm must be slighthly modified to take account of the weight sharing. An easy way to implement it is to first compute the partial derivatives of the loss function with respect to each connection (as if the network were conventional multi layer). Then the partial derivatives of all the connections that share the same parameter are added to form the derivative w/ respect to that parameter.
+The [[NeuralNetworks:BackPropagation|standard algorithm]] must be slighthly modified to take into account the weight sharing. An easy way is:
+
+1. compute the partial derivatives of the [[NeuralNetworks:BackPropagation:ErrorFunction|loss]] function with respect to each connection (as if the network were conventional multi layer). Then the partial derivatives of all the connections that share the same parameter are added to form the derivative w/ respect to that parameter.
 
