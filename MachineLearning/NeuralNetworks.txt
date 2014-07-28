@@ -35,5 +35,5 @@ Unfortunately, a "universal" neural network suitable for any type of problem doe
 
 ===== Further Reading =====
 * [[+WhyNeuralNetworks]]
-* [[+History]]
-* [[+NeuralNetworkGuidelines]]
+* [[+Meta:History]]
+* [[+Meta:NeuralNetworkGuidelines]]
