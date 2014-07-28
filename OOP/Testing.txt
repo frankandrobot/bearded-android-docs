@@ -2,11 +2,21 @@ Content-Type: text/x-zim-wiki
 Wiki-Format: zim 0.4
 Creation-Date: 2014-06-27T11:41:17-05:00
 
-====== UnitTests ======
+====== Testing ======
 Created Friday 27 June 2014
 
-===== TDD =====
-* Best explanation of TDD ever: http://dannorth.net/introducing-bdd/
+Good testing, again, is based on careful thought and on basic principles of risk management. Risk management is based on statistics and information theory; if the testers (or at least the test manager) don't have at least rudimentary skills in this area, then you are likely to do a lot of useless tests. 
+
+===== Types of Tests =====
+* [[+UnitTests]] 
+* [[+TestDrivenDevelopment]] (note unit tests != TDD)
+* [[+ContractTests]]
+* [[+VEST]]
+* [[+DataDrivenTests]]
+* [[+SystemTests]]
+* [[+IntegrationTests]]
+* [[+ExploratoryTests]] (with monte carlo techniques)
+* [[+RegressionTests]] 
 
 ===== Contract Testing =====
 * https://github.com/arlobelshee/ArsEditorExample/blob/master/SimulatableApi.Tests/FileSystemCanLocateFilesAndDirs.cs
@@ -20,3 +30,4 @@ Actually unit tests are dead! or are they? http://codebetter.com/sebastienlambla
 
 
 * [[+TestHarness]] 
+* [[+Keywords]] 
