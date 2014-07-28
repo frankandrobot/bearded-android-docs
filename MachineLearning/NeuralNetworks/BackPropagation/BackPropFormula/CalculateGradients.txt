@@ -6,7 +6,7 @@ Creation-Date: 2014-05-01T23:16:39-04:00
 Created Thursday 01 May 2014
 
 ===== Notation =====
-* Please read the notation page.
+* Please read the [[NotationPage]]
 
 ===== Calculating the Gradients `delta"s"` =====
 Define the local gradient `delta_j^((l))` of neuron `j` recursively as follows:

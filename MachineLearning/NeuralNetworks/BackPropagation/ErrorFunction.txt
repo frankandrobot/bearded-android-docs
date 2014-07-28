@@ -8,7 +8,7 @@ Created Monday 28 April 2014
 The **error function** measures the difference between the expected and actual output and is a function of the weights. There is actually more than one way of defining the error function.
 
 ===== Notation =====
-* Please read the notation page
+* Please read the [[NotationPage]]
 
 ===== An Error Function =====
 A common way of defining the error function is to let the error `E[i]` of the ith training example be
