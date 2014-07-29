@@ -35,9 +35,9 @@ InputGrid --> Layer --> OutputGrid
 
 If these were different neurons, the backprop algorithm would pretty much work like this:
 
-* Starting with the output layer, [[BackPropagation:BackPropFormula:CalculateGradients|calculate the gradient of each neuron]]. 
-* [[+UpdatingTheLearningTerms|Update the cumulative learning terms]] for each weight of each neuron starting with the output layer. 
-* Apply the [[BackPropagation:BackPropFormula|backprop formula]] to each weight using its //cumulative// [[BackPropagation:BackPropFormula:LearningTerm|learning term]] and [[BackPropagation:BackPropFormula:MomentumTerm|momentum term]]. 
-* Construct the [[BackPropagation:ErrorFunction|error function]] from the training examples.
+* Starting with the output layer, calculate the gradient of each neuron.
+* Update the cumulative learning terms for each weight of each neuron starting with the output layer. 
+* Apply the backprop formula to each weight using its //cumulative //learning term and momentum term. 
+* Construct the error functionnd from the training examples.
 
 
