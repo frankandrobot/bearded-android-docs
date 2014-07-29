@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-07-28T18:57:27-05:00
+
+====== ErrorVsAccuracy ======
+Created Monday 28 July 2014
+
+* http://www.ginstruments.com/appnotes/AN103.pdf

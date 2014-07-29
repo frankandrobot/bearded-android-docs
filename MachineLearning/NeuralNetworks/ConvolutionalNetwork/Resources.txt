@@ -16,7 +16,7 @@ Created Sunday 06 April 2014
 * LeCun, O. Matan, B. Boser, J. S. Denker, D. Henderson, R. E. Howard, W. Hubbard, L. D. Jackel and H. S. Baird: [[http://yann.lecun.com/exdb/publis/pdf/lecun-90e.pdf|Handwritten Zip Code Recognition with Multilayer Networks]]
 
 ===== In-Depth =====
-* [[http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf|Gradient-Based Learning Applied to Document Recognition]] by Lecun, Bottou, Bengio, and Haffner - //more //detailed overview of convolutional networks
+* [[http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf|Gradient-Based Learning Applied to Document Recognition]] by Lecun, Bottou, Bengio, and Haffner - //more //detailed overview of convolutional networks + how to implement backprop in CNNs
 * http://ufldl.stanford.edu/wiki/index.php/Exercise:Convolution_and_Pooling - convolution and pooling
 * http://yann.lecun.com/exdb/publis/index.html
 * http://cs.nyu.edu/~koray/publis/lecun-iscas-10.pdf - //Convolutional Networks and Applications in Vision// by LeCun, Kavukcuoglu, and Farabet
