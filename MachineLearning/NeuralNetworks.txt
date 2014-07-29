@@ -31,6 +31,7 @@ Unfortunately, a "universal" neural network suitable for any type of problem doe
 
 * **recursive neural networks** - sentiment analysis (natural language processing)
 * [[+ConvolutionalNetwork|convolution networks]] - image processing, handwriting recognition
+* [[GraphTransformerNetwork]] (GTN)
 * many more
 
 ===== Further Reading =====

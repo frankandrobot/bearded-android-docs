@@ -5,7 +5,8 @@ Creation-Date: 2014-03-31T22:33:27-04:00
 ====== LeNet4 ======
 Created Monday 31 March 2014
 
-**LeNet4** is a convolutational network created for single-digit recognition. 
+**LeNet4** is a convolutational network created for single-digit recognition. It is based on "Optimal Brain Damage technique" (Le Cun, Denker and Solla).
+
 It consists of 4 layers H1, H2, H3, H4, and an output layer:
 
 * Data input layer is 16x16; however, the data is centered in a larger 28x28 and fed to the CNN. //The actual input layer is 28x28//
