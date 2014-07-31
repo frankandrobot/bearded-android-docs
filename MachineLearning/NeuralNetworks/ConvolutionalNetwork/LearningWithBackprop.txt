@@ -7,37 +7,5 @@ Created Sunday 27 July 2014
 
 The [[NeuralNetworks:BackPropagation|standard algorithm]] must be slighthly modified to take into account the weight sharing. An easy way is:
 
-1. compute the partial derivatives of the [[NeuralNetworks:BackPropagation:ErrorFunction|loss]] function with respect to each connection (as if the network were conventional multi layer). 
-2. Then the partial derivatives of all the connections that share the same parameter are added to form the derivative w/ respect to that parameter.
-
-===== Example: A Single Convolution Layer =====
-The diagram below shows a 5x5 input grid, a convolution layer with 9 (shared) neurons each with a 3x3 local receptive field, producing a 3x3 output. (See the [[Implementation]] for more details.)
-
-'''
-InputGrid --> Layer --> OutputGrid
-	       	      	   	  
-A A A * *     N1(A)   	A * *  	  
-A A A * *     N2(B)     * * *	 
-A A A * *     N3(C)     * * *
-* * * * *     ...  
-* * * * *     N9(I)
-       	       	      	      	 
-...
-      			     	 
-InputGrid --> Layer --> OutputGrid
-       	       	       	     	  
-* * * * *     N1(A)    	A B C  	  
-* * * * *     N2(B)    	D E F	 
-* * I I I     N3(C)	G H I	 
-* * I I I     ...  		 
-* * I I I     N9(I)		
-'''
-
-If these were different neurons, the backprop algorithm would pretty much work like this:
-
-* Starting with the output layer, calculate the gradient of each neuron.
-* Update the cumulative learning terms for each weight of each neuron starting with the output layer. 
-* Apply the backprop formula to each weight using its //cumulative //learning term and momentum term. 
-* Construct the error functionnd from the training examples.
-
-
+1. calculate the [[NeuralNetworks:BackPropagation:BackPropAlgorithms:BatchModeBackPropagation:UpdatingTheLearningTerms|cumulative learning term]] of each weight (gradient of each weight) ignoring the weight sharing i.e., pretend that the network is a conventional multi-layered NN. //At this step, do not update the weights just yet. //Normally, each weight has one cumulative learning term. But because of the weight sharing, each weight has more than one cumulative learning term.
+2. take the sum of all the cumulative learning terms of each weight. Proceed as you normally would using the backprop i.e., use this meta-cumulative learning term to update the weight, then add the momentum term.

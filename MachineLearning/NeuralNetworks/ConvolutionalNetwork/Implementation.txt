@@ -16,7 +16,7 @@ x1------N1
 x2----/
 '''
 
-When a neuron has a local receptive field, the neuron is connected to a //subset// of the input layer. In a :NeuralNetworks:ConvolutionalNetwork, the inputs are arranged in a 2D grid. Each neuron is connected to a square in the input grid. 
+When a neuron has a local receptive field, the neuron is connected to a //subset// of the input layer. In a **convolutional network (CNN)**, the inputs are arranged in a 2D grid. Each neuron is connected to a square in the input grid. 
 
 '''
 InputGrid --> Layer
@@ -30,7 +30,7 @@ X X X * *
 
 In the diagram, the input grid is 5 x 5. Neuron `N1` is connected to the inputs marked `X`.
 
-===== Shared Weights =====
+===== Shared Weights/Neurons =====
 In a typical neural network, each neuron has its own set of weights. 
 
 '''
@@ -40,7 +40,11 @@ N2: w20 w21 w22 w23
 N3: w30 w31 w32 w33
 '''
 
-Here weight w//ij// connects neuron `N_i` to input `x_j` (and w//i//0 is the special case of the bias.) The w//ij//'s are not necessarily equal---each neuron has its own set of weights. In a CNN, //each neuron of a given layer share a set of common weights.//
+Here weight w//ij// connects neuron `N_i` to input `x_j` (and w//i//0 is the special case of the bias.) The w//ij//'s are not necessarily equal---each neuron has its own set of weights. 
+
+In a CNN:
+* each neuron of a given layer share a set of common weights. 
+* (alternatively, a CNN consists of a single shared neuron.)
 
 '''
 Layer
@@ -51,7 +55,7 @@ N3: w0 w1 w2 w3
 
 
 ===== Feature Maps =====
-We said above that in a CNN, each neuron is connected to a square in the input grid, but which input squares? In a //feature map//, we scan the input grid with a neuron. The diagram below shows a 5x5 input grid, a layer with 9 neurons each with a 3x3 local receptive field, producing a 3x3 output grid called the **feature map**. 
+We said above that in a CNN, each neuron is connected to a square in the input grid, but which input squares? In a //feature map//, we scan the input grid with a neuron. The diagram below shows a 5x5 input grid, a layer with 9 neurons each with a 3x3 local receptive field, producing a 3x3 output grid called the **feature map **or (alternatively, a **convolution layer)**. 
 
 '''
 InputGrid --> Layer --> OutputGrid
@@ -97,7 +101,7 @@ Notes:
 * While you //can //implement a feature map with a single neuron, you will be able to take advantage of fast-matrix-operation algorithms by using several neurons each sharing the same set of weights.
 
 Aside:
-* The operation that produces a feature map is equivalent to a //convolution //with a small-sized kernel followed by a squashing function. (A convolution is normally used with image processing)
+* The operation that produces a feature map is equivalent to a [[NeuralNetworks:Appendix:Convolution|convolution]] with a small-sized kernel followed by a squashing function. (A convolution is normally used with image processing)
 
 ===== Subsampling Layer =====
 A **subsampling layer **is just like a feature map with some exceptions:
