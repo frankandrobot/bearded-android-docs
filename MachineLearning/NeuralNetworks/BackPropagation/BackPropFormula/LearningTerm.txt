@@ -7,6 +7,8 @@ Created Monday 14 July 2014
 
 The **learning term** takes its name because it is the primary term in the backpropagation algorithm that adjusts the weights in the NN. There are actually multiple learning terms --- each weight has its own learning term.
 
+More formally, the //learning term// is the [[NeuralNetworks:Appendix:Gradient|gradient]] of the [[BackPropagation:ErrorFunction|error function]] with respect to a given weight. 
+
 ===== Notation =====
 * Please read the [[NotationPage]]
 
