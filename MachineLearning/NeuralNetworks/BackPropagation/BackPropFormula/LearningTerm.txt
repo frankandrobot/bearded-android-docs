@@ -23,4 +23,4 @@ The **cumulative** **learning term** for weight `w_(kj)` in layer `l` and all tr
 
 `\ \ Delta w_(kj)^((l)) = eta sum_i Delta w_(kj)^((l))[i] = eta sum_i delta_k^((l))[i] y_j^((l-1))[i]`
 
-See also how to pick the learning parameter
+See also [[ChoosingParameters]] 

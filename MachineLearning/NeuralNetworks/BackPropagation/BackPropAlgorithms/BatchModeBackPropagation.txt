@@ -9,7 +9,7 @@ Step 0. [[BackPropagation:BackPropFormula:ChoosingParameters|Pick values for the
 
 Step 1. [[BackPropagation:WeightInitialization|Initialize the weights]].
 
-Step 2. Go through each training example:
+Step 2. Go through each [[BackPropagation:TrainingExamples|training example]]:
 * 2a. Perform the //forward propagation//. Starting with the input layer, //store each //[[NeuralNetworks:Neuron|neuron]]//'s induced local field and impulse function value.//
 * 2b. Perform the //backpropagation//. Starting with the output layer, [[BackPropagation:BackPropFormula:CalculateGradients|calculate the gradient of each neuron]]. //Make sure to store the gradients.//
 * 2c. [[+UpdatingTheLearningTerms|Update the cumulative learning terms]] for each weight of each neuron starting with the output layer. **Do NOT apply the backprop formula yet.**
