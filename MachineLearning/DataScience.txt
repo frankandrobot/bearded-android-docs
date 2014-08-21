@@ -7,6 +7,13 @@ Created Tuesday 22 July 2014
 
 * 100,000ft overview - http://www.boozallen.com/content/dam/boozallen/media/file/The-Field-Guide-to-Data-Science.pdf
 
+===== Tutorial =====
+* Learn R, Python, SQL
+* Learn fundamentals
+* Participate in data mining competitions. Ex: http://www.kaggle.com/
+
+Link: http://www.kdnuggets.com/2013/10/7-steps-learning-data-mining-data-science.html
+
 ===== News =====
 * http://www.fastcolabs.com/3033324/how-sports-data-analytics-is-upsetting-the-game-all-over-again
 * [[+Keywords]] 
