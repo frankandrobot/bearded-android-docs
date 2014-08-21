@@ -6,7 +6,7 @@ Creation-Date: 2014-05-01T23:16:39-04:00
 Created Thursday 01 May 2014
 
 ===== Notation =====
-* Please read the [[NotationPage]]
+* Please read the [[BackPropagation:NotationPage]]
 
 ===== Calculating the Gradients `delta"s"` =====
 Define the local gradient `delta_j^((l))` of neuron `j` recursively as follows:
@@ -30,3 +30,7 @@ neuron j ----w_kj---> neuron k, gradient k
 
 **Note 1: **`gamma_j^((l)) ( v_j^((l)) )` = the derivative of the activation function at neuron `N_j`s induced local field `!=` a product.
 **Note 2: **Its now clear why it makes sense to the induced local fields and the values of its impulse functions---calculating these values dynamically significantly reduces the performance of the algorithm.
+
+
+
+

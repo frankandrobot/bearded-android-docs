@@ -29,7 +29,27 @@ neuron j ----w_kj---> neuron k
 **Note 2:** `t_j` is the expected //network output//, that is, the output of the neuron //j// in the //output layer.//
 **Note 3:** Recall that there are two outputs associated with a neuron at input `bb y` --- the //induced local field// `bb w * bb y` and the //value of its impulse function// `phi(bb w * bb y)`. 
 **Note 4:** `gamma_k` is a function. `v_j` and `o_j` are real numbers.
-**Note 5:** since `w_(k0)^((l))` is the bias, it's not really connected to a neuron in the previous layer (but see below).
+**Note 5:** since `w_(k0)^((l))` is the bias, it's not really connected to a neuron in the previous layer (but see the input layer defined below).
+
+The notation for the weights can be confusing. Layer `l+1` is shown below with neurons ''N1'', ''N2'', ''N3''. Each with its own set of weights.  Layer `l` has neurons ''N1''', ''N2''', ''N3'''.
+
+'''
+Layer l     Layer l+1
+N1'         N1: w10 w11 w12 w13
+N2'         N2: w20 w21 w22 w23
+N3'         N3: w30 w31 w32 w33
+'''
+
+* w10 maps to the bias
+* w11 connects N1 => N1'
+* w12 connects N1 => N2'
+* w13 connects N1 => N3'
+* w20 maps to the bias
+* w21 connects N2 => N1'
+* w22 connects N2 => N2'
+* etc.
+
+In particular, if the weights are stored in a matrix, the weights that connect `N_j^((l))` with the next layer are found in column j of the matrix. For example, the weights that connect N1` are w11, w21, w31.
 
 ===== All Layers Have an Input Layer =====
 Given input `bb x`, define `bb y^((l))` as the input that that's fed to the next layer `(l+1)`:
