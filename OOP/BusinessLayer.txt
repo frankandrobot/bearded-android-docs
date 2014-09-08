@@ -1,0 +1,16 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-08-11T12:35:05-05:00
+
+====== BusinessLayer ======
+Created Monday 11 August 2014
+
+* a definition? http://database-programmer.blogspot.com/2010/12/working-definition-of-business-logic.html
+* another definition. http://thehelsinkideclaration.blogspot.com/2009/03/window-on-data-applications.html
+* yad. http://stackoverflow.com/questions/2630758/whats-the-difference-between-application-layer-and-business-logic-layer
+* see the comments. http://www.bennadel.com/blog/2436-what-the-heck-is-business-logic-anyway.htm
+* consolidate as much as you want but there will always be duplication plus it's only a guide, not a hard-and-fast rule. http://thedailywtf.com/Articles/The-Mythical-Business-Layer.aspx
+
+**Business logic** resides nearer to the data while **application logic **resides nearer to the users. Redundancy is OK.
+
+I'd have said something like "it's where you capture requirements that are unique to this client/department to keep them separate from the parts that can be reused in other projects." So, for example, all applications have user accounts that require passwords to authenticate-- but the password policies for a valid/strong password will be different from one department to the next, so that's a "business rule" you would capture in your middle tier

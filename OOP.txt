@@ -5,3 +5,7 @@ Creation-Date: 2013-10-31T16:21:51-04:00
 ====== OOP ======
 Created Thursday 31 October 2013
 
+A good ''design'' is defined by how well it serves you as the programmer, today and in the future. 
+
+For testing see, [[+Testing]] 
+* [[+BusinessLayer]]

@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-08-14T21:31:55-05:00
+
+====== RealWorldExamples ======
+Created Thursday 14 August 2014
+
+* Sriram Somanchi. //Early Code Blue Prediction Using Patient Medical Records. //Used [[SupportVectorMachine]]. 
+* Netflix recommender system. http://datasciencereport.com/2014/08/06/edu-videos-building-recommender-systems-by-netflix-researcheng-director-xavier-amatriain/?utm_content=buffer6c13c&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer#.U-0cirxdWgn
+ 
