@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-09-15T13:23:16-05:00
+
+====== ReverseEngineerWebApps ======
+Created Monday 15 September 2014
+
+* static analysis
+* behavioral analysis
+* dynamic analysis
+
+The assumption is that web apps always degenerate. Instead of working with brittle sphagetti code, work with a suitable model that abstracts way the issues.
+
+* http://www.slideshare.net/PorfirioTramontana/ware-a-tool-for-the-reverse-engineering-of-web-applications
+* http://www.researchgate.net/publication/229020901_Reverse_engineering_legacy_Web_applications_with_phpModeler

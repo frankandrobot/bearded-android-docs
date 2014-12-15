@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-23T14:45:22-05:00
+
+====== Entity ======
+Created Thursday 23 October 2014
+
+An object defined primarily by its identity rather than its attributes is an **entity**.

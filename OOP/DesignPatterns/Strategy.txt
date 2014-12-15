@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-22T17:12:26-05:00
+
+====== Strategy ======
+Created Wednesday 22 October 2014
+
+Is a process something domain experts talk about or is it just part of the mechanism of the computer program?
+If the former, then it should be a Strategy object.

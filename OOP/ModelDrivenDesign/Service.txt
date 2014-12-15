@@ -1,0 +1,29 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-23T21:36:18-05:00
+
+====== Service ======
+Created Thursday 23 October 2014
+
+There are various types of services. The most difficult one is a service in the domain layer. In general, you want to keep object behavior in the object. But there are exceptions to this rule:
+* the operation is complex drawing together many domain objects. This creates dependencies on all those objects and tangles concepts
+* the operation is an important domain concept
+
+**Note:** domain services should be used judiciously. Don't strip entities and value objects of all their behavior!
+
+===== Guidelines for Creating a Domain Service =====
+A good service has three traits:
+* the operation is a domain concept that is not a natural part of an entity or value object
+* the interface is defined in terms of other elements of the domain model
+* the operation is stateless
+
+===== Example of Partitioning Services into Layers =====
+
+==== Application ====
+Funds Transfer App Service: 1.Digests input (e.g. XML request), 2.sends message to domain service for fulfillment, 3.listens for confirmation, 4.decides to send notification using infrastructure service.
+
+==== Domain ====
+Funds Transfer Domain Service: Interacts with necessary Account and Ledger objects, making appropriate debits and credits, supplies confirmation of result (transfer allowed or not, etc.)
+
+==== Infrastructure ====
+Send Notification Service: Sends emails, letters, etc. as directed by application.[[OOP:DesignPatterns:Specification]]

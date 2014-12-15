@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-27T18:53:04-05:00
+
+====== Observer ======
+Created Monday 27 October 2014
+
+* http://c2.com/cgi/wiki?ObserverPattern
+
+* the observed should NOT know about the observers.
+
+===== Guidelines for Using =====
+* work best for //dynamic// relat

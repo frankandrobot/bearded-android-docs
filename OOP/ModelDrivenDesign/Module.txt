@@ -1,0 +1,14 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-23T22:13:45-05:00
+
+====== Module ======
+Created Thursday 23 October 2014
+
+There should be a low coupling between **modules** (or packages) and hi cohesion within them (concepts inside a module should make sense together).
+
+Modules divide the code into //concepts//. The //meaning// of objects being divided needs to drive the choice of modules.
+
+Even though it may be difficult, it makes sense to also refactor modules as the app grows.
+
+If a model tells a story, modules are chapters.
