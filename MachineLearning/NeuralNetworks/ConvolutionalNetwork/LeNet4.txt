@@ -10,12 +10,12 @@ Created Monday 31 March 2014
 It consists of 4 layers H1, H2, H3, H4, and an output layer:
 
 * Data input layer is 16x16; however, the data is centered in a larger 28x28 and fed to the CNN. //The actual input layer is 28x28//
-* Layer H1 is composed of 4 feature maps of size 24x24 for a total of 576 units in each map. Each unit receptive field is 5x5. 
-* Layer H2 is composed of 4 subsampling layers of size 12x12. Each unit receptive field is 2x2.
+* Layer H1 is composed of 4 feature maps of size 24x24 for a total of 576 units in each map. Each unit receptive field is 5x5. Each map has 26 weights (including the bias).
+* Layer H2 is composed of 4 subsampling layers of size 12x12. Each unit receptive field is 2x2. Each map has 5 weights (including the bias); however, the non-bias weights are constrained to be equal, so each map has 2 //free parameters//.
 
 So far so good. The connections between layers are straightforward --- each layer is connected to exactly one layer in the next layer. But then we have layer H3...
 
-* Layer H3 is composed of 12 feature maps of size 8x8. Each unit receptive field is 5x5. However, each map is connected to one or two maps in the previous layer H2 (see below).
+* Layer H3 is composed of 12 feature maps of size 8x8. However, each unit receptive field is made up of one or two 5x5 receptive fields, depending on whether or not the map is connected to one or two maps in H2 (see below).
 
 The table below shows how each map in H3 is connected to the maps in H2. For example, H3.1 is connected to only H2.1 while H3.2 is connected to both H2.1 and H2.2.
 
@@ -30,7 +30,9 @@ The table below shows how each map in H3 is connected to the maps in H2. For exa
 |------+---+---+---+---+---+---+---+---+---+----+----+----|
 '''
 
-* Layer H4 is composed of 12 subsampling layers of size 4x4. Each unit receptive field is 2x2.
+If a map in H3 is connected to two maps, then each unit is connected to //two //maps in H2. This type of unit has 50 weights plus a bias (5x5 times 2).
+
+* Layer H4 is composed of 12 subsampling layers of size 4x4. Each unit receptive field is 2x2. Each map has 5 weights but 2 free parameters.
 * The output layer is fully-connected to layer H4. There are 10 neurons, one for each digit. Each nueron is fully connected to all the units in layer H4. 
 
 ===== Links =====
