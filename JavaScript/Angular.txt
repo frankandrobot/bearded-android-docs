@@ -1,0 +1,11 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-29T16:18:50-05:00
+
+====== Angular ======
+Created Wednesday 29 October 2014
+
+* [[+AngularPromises]] 
+* [[+Watches]] 
+
+If you write any code that uses Ajax without $http, or listens for events without using Angular’s ng-* listeners, or sets a timeout without $timeout, you should wrap your code in $scope.$apply

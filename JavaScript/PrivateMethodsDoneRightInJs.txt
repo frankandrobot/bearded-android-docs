@@ -1,0 +1,8 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-11-01T11:39:26-05:00
+
+====== PrivateMethodsDoneRightInJs ======
+Created Saturday 01 November 2014
+
+* http://philipwalton.com/articles/implementing-private-and-protected-members-in-javascript/

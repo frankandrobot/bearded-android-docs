@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-10-29T16:19:06-05:00
+
+====== AngularPromises ======
+Created Wednesday 29 October 2014
+
+* http://lostechies.com/gabrielschenker/2014/02/04/angularjspart-11-promises/ - introduction (but unfortunately uses bad practices)
+* http://chariotsolutions.com/blog/post/angularjs-corner-using-promises-q-handle-asynchronous-calls/ - promises the right way
+* http://liamkaufman.com/blog/2013/09/09/using-angularjs-promises/ - and exceptions + notifications
+
+Traditional approach uses callbacks. This is pretty neat, but, it has some drawbacks; for one, combining or chaining multiple asynchronous processes is tricky; it either leads to a lot of boilerplate code, or what's known as callback hell (nesting callbacks and calls in each other)
+
+When creating custom asynchronous deferred tasks make sure to read [[AngularPromises]]
+
+===== $http =====
+* is a special case. You can use #then but it adds extra #success and #error functions. These functions internally return the $http promise
+
+===== Promise Chaining =====
