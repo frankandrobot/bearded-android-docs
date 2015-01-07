@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-09-09T10:46:27-05:00
+
+====== ParallelTests ======
+Created Tuesday 09 September 2014
+
+* http://sauceio.com/index.php/2010/10/parallel-junit-4-and-selenium-part-one-parameters/
+* http://sauceio.com/index.php/2010/10/parallel-junit-4-and-selenium-part-three-parallelism-and-ondemand/

@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-09-17T12:22:41-05:00
+
+====== FunctionalTests ======
+Created Wednesday 17 September 2014
+
+* http://java.sys-con.com/node/299945?utm_source=twitter&utm_medium=social&utm_content=4398114
+* a better definition --- http://www.slideshare.net/wakaleo/functional-testing-thegoodthebadandtheugly?utm_source=buffer&utm_campaign=Buffer&utm_content=buffer616b1&utm_medium=twitter

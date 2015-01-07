@@ -5,4 +5,5 @@ Creation-Date: 2014-02-26T10:41:57-05:00
 ====== JavaScript ======
 Created Wednesday 26 February 2014
 
-* [[http://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailmvcmvp|JavaScript Design Patterns - Free ebook]]
+* [[http://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailmvcmvp|JavaScript Design Patterns - Free eboo]][[http://addyosmani.com/resources/essentialjsdesignpatterns/book/#detailmvcmvp|k]]
+* [[+PrivateMethodsDoneRightInJs]] 

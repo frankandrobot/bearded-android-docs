@@ -1,0 +1,43 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-12-15T12:05:11-06:00
+
+====== UnitIntegrationSystemTests ======
+Created Monday 15 December 2014
+
+It may help to think about the system-test/integration-test/unit-test hierarchy as the inverse of the diagnostic process. When the dishwasher repairman arrived to fix my dishwasher, he started diagnosing the problem by interacting with the system interface, i.e. he closed the door, pressed some buttons on the control panel, listened to the sounds coming from the dishwasher, and then opened the dishwasher back up to see whether the dishes were wet. After that, he narrowed his search to a specific sub-assembly, which has its own interface that is different from the system's. Eventually he narrowed down the problem to a specific part, which has a different interface from the system's or the sub-assembly's.
+
+in my dictionary there are integration tests, system tests, and system integration tests, so the integration goes bottom-up. All of course depends on where you put boundaries between your and other systems. So I would say integration tests verify integration of internal interfaces inside of your system, in system tests you mock external interfaces, and in system integration tests you play with real external interfaces. Whatever you call it, the point is to verify both internal interface integration and external interface integration. 
+
+===== Unit Tests =====
+Some developers are of the opinion that unit tests are dead! (More on that later)
+
+**Unit-testing** is about testing individual (and perhaps indivisible) components.
+
+Certainly, risk-management should be taken into account when writing unit tests. Unit tests that always pass don't add value from a risk-management point of view and only serve to decrease developer velocity.
+
+* definition of unit tests (sort of): http://martinfowler.com/bliki/UnitTest.html
+* Unit tests are dead: http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html
+* Unit tests done right: http://www.rbcs-us.com/documents/Why-Most-Unit-Testing-is-Waste.pdf
+* http://www.rbcs-us.com/documents/Segue.pdf - part 2
+
+===== Integration Tests =====
+**Integration tests** act on a subset of the entire system. Parts of the system may be mocked. 
+
+Integration verification attempts to verify that seperate systems operate well together before they're used in the whole system.
+
+Integration tests can be brittle and complex. For that reason, some people recommend minimizing them.
+
+* http://sqa.stackexchange.com/questions/5131/how-does-system-testing-differ-from-system-integration-testing-sit
+* minimizing integration tests - http://stackoverflow.com/questions/9276337/removing-the-integration-test-scam-understanding-collaboration-and-contract
+* http://martinfowler.com/bliki/IntegrationContractTest.html
+
+===== System Tests =====
+**System tests** treat the entire system as a black box.  
+
+The objectives of system testing is to validate the public exposed interfaces of the platform, by behaving as an end user, with no privileged access to internal systems. 
+
+in **system integration tests** you play with real external interfaces
+
+===== Links =====
+* http://sqa.stackexchange.com/questions/2599/what-is-really-tested-in-an-integration-test

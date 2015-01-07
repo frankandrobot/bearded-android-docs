@@ -1,0 +1,15 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-01T12:56:39-06:00
+
+====== ContractTests ======
+Created Thursday 01 January 2015
+
+The basic argument for the use of contract tests is that they can help prove code correctness. That is, if every object interface is defined as an interface, and every interface has a contract test that covers all methods and their expected operation, and all objects have tests that mock the objects they call as per the interface definition, then running the entire suite of tests demonstrates that the interconnection between each object works and is correct.
+
+If we know that A calls B properly, and B calls C properly, then we can infer by transitivity that A calls C properly. Thus we can, with some work, prove that the code is correct.
+
+Contract tests will not discover misconfiguration. For example, if class A uses a map and expects a map that can accept null keys, but the configuration specifies a map implementation that does not accept null keys, the contract test will not detect the error. But then, this error is a configuration error caused by a missing requirement for the configuration. Contract tests will also not uncover misuse of methods or classes. In the simple case, if A calls a power function on B instead of an intended multiplication function, the contract test will not discover it. However, the other side of the testing equation — collaboration testing — should catch it.
+
+* http://www.drdobbs.com/testing/simplifying-contract-testing/240167128
+* http://blog.thecodewhisperer.com/2011/07/07/contract-tests-an-example/

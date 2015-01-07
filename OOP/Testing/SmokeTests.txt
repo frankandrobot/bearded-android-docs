@@ -1,0 +1,10 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2014-12-15T12:31:33-06:00
+
+====== SmokeTests ======
+Created Monday 15 December 2014
+
+Smoke Testing is performed after software build to ascertain that the critical functionalities of the program is working fine.It is executed "before" any detailed functional or regression tests are executed on the software build.The purpose is to reject a badly broken application, so that the QA team does not waste time installing and testing the software application.
+
+* http://www.guru99.com/smoke-sanity-testing.html

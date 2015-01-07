@@ -1,0 +1,9 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-07T15:11:25-06:00
+
+====== RingArchitecture ======
+Created Wednesday 07 January 2015
+
+* http://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html
+* http://c2.com/cgi/wiki?HexagonalArchitecture

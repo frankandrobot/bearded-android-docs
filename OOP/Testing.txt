@@ -8,15 +8,21 @@ Created Friday 27 June 2014
 Good testing, again, is based on careful thought and on basic principles of risk management. Risk management is based on statistics and information theory; if the testers (or at least the test manager) don't have at least rudimentary skills in this area, then you are likely to do a lot of useless tests. 
 
 ===== Types of Tests =====
-* [[+UnitTests]] 
+* [[+UnitIntegrationSystemTests|Unit Tests]]
+* [[+UnitIntegrationSystemTests|Integration Tests]]
+* [[+UnitIntegrationSystemTests|System Tests]]
 * [[+TestDrivenDevelopment]] (note unit tests != TDD)
 * [[+ContractTests]]
 * [[+VEST]]
 * [[+DataDrivenTests]]
-* [[+SystemTests]]
-* [[+IntegrationTests]]
 * [[+ExploratoryTests]] (with monte carlo techniques)
 * [[+RegressionTests]] 
+* [[+FunctionalTests]] 
+* [[+SmokeTests]] 
+* [[+SanityTesting]] 
+* [[+MockVsStateTests]] 
+* [[+MockTests]] 
+* [[+RingArchitecture]] 
 
 ===== Contract Testing =====
 * https://github.com/arlobelshee/ArsEditorExample/blob/master/SimulatableApi.Tests/FileSystemCanLocateFilesAndDirs.cs
