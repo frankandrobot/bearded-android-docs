@@ -1,0 +1,38 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-20T11:17:11-06:00
+
+====== UserStory ======
+Created Tuesday 20 January 2015
+
+user stories are:
+* user's tasks (goal -> task -> tool/features)
+* user's need
+* product description
+* planning item
+* token for convo
+* mechanism for deferring convo
+
+When used as **acceptance tests **(see [[SystemTest]] ), they are the absolute core functionality without which the story can't be complete. Acceptance tests are usually very hi-level.
+
+===== How to Write a User Story =====
+Basic template
+
+'''
+As a [type of user]
+I want to [perform some task]
+so that I can [reach some goal]
+'''
+
+
+* look for alternative tasks
+* look for exceptions (what could go wrong and what would user need to do to recover?)
+* consider other users
+
+===== Organizing User Stories =====
+* interdependent user stories together form a **workflow**
+* related stories can be done in parallel
+
+===== Links =====
+* http://www.slideshare.net/nashjain/user-story-mapping
+* http://sqa.stackexchange.com/questions/6450/how-can-i-test-a-user-story-examples-please

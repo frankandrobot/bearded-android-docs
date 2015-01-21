@@ -8,3 +8,5 @@ Created Wednesday 22 October 2014
 * [[+Strategy]] 
 * [[+Specification]] 
 * [[+Observer]] 
+* [[+Delegate]] aka Mixin
+* [[+ServiceObject]] 

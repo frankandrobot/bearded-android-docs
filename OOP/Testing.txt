@@ -10,7 +10,7 @@ Good testing, again, is based on careful thought and on basic principles of risk
 ===== Types of Tests =====
 * [[+UnitIntegrationSystemTests|Unit Tests]]
 * [[+UnitIntegrationSystemTests|Integration Tests]]
-* [[+UnitIntegrationSystemTests|System Tests]]
+* [[+UnitIntegrationSystemTests|System Tests]]  More [[+SystemTest]] 
 * [[+TestDrivenDevelopment]] (note unit tests != TDD)
 * [[+ContractTests]]
 * [[+VEST]]
@@ -23,6 +23,7 @@ Good testing, again, is based on careful thought and on basic principles of risk
 * [[+MockVsStateTests]] 
 * [[+MockTests]] 
 * [[+RingArchitecture]] 
+* [[+UserStory]] 
 
 ===== Contract Testing =====
 * https://github.com/arlobelshee/ArsEditorExample/blob/master/SimulatableApi.Tests/FileSystemCanLocateFilesAndDirs.cs

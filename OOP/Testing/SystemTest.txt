@@ -1,0 +1,36 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-16T15:37:35-06:00
+
+====== SystemTest ======
+Created Friday 16 January 2015
+
+===== Structuring Tests =====
+* one class (or component) per test
+* one feature (or requirement or user story or workflow) per test
+* one fixture per test
+* which to use?
+
+By "test", we mean "one file" that contains many "test methods". 
+
+One component per test doesn't really make sense because component tests are likely to be integration tests.
+
+If by "feature" we mean a //app feature// (ex: you can write posts in markdown), then that's starting to sound like a requirement. The reason is because that feature likely started as a //user story//. And as a system test, you're likely to test requirements/user stories via workflows (ex: you write a post in markdown and verify that it gets converted to equivalent html).
+
+One feature per test is starting to sound like the natural route for system tests.
+
+The problem is that you will likely have duplicate fixtures throughout. However, one fixture per test seems like an unnatural way to organize system tests. 
+
+===== Code Sharing =====
+Code duplication is bad and will hinder your ability to maintain hundreds of tests.
+
+* when duplication occurs inside the same file, extract common code to helper functions. You then have common setup, common assertion methods
+* if you then notice the same helpers across several files, then it's time to create a helper module.
+* DUH
+* the whole point of the helper functions is that you replace the duplicated code with functions that clearly describe what's going on (aka show the big picture)....//tests as documentation//
+
+===== Links =====
+* https://blog.codecentric.de/en/2010/07/how-to-structure-a-scalable-and-maintainable-acceptance-test-suite/
+* http://gojko.net/2010/06/16/anatomy-of-a-good-acceptance-test/
+* http://dhemery.com/pdf/writing_maintainable_automated_acceptance_tests.pdf
+* http://robdmoore.id.au/blog/2014/01/27/general-test-structure-automated-testing-series/

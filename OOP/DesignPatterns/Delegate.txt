@@ -1,0 +1,32 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2015-01-21T12:00:27-06:00
+
+====== Delegate ======
+Created Wednesday 21 January 2015
+
+also called **mixin**
+
+Basically, a mixin is a form of object composition. Really, a mixin is a way to implement an interface, so it's an alternative too inheritance. That means that you should prefer (proper) object composition to a mixin.
+
+'''
+Ex:
+
+class Foo {
+    void foo() {}
+}
+
+class Bar {
+    @Delegate private Foo foo = new Foo()
+}
+//you can now call
+bar.foo()
+'''
+
+
+===== Best Practices =====
+* object composition != mixin.  Just because you can easily add a delegate/mixin to an object doesn't mean you should.
+* don't forget the Single Responsibility Principle. Before adding a mixin to object, ask if it makes sense for that object to have that property
+
+====== Links ======
+* http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/
